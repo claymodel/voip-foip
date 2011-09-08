@@ -1,0 +1,122 @@
+#! /bin/sh
+#
+# callweaver	start the callweaver PBX
+# (c) Mark Purcell <msp@debian.org>
+# May be distributed under the terms of this General Public License
+#
+# Based on:
+#
+# skeleton	example file to build /etc/init.d/ scripts.
+#		This file should be used to construct scripts for /etc/init.d.
+#
+#		Written by Miquel van Smoorenburg <miquels@cistron.nl>.
+#		Modified for Debian GNU/Linux
+#		by Ian Murdock <imurdock@gnu.ai.mit.edu>
+#               adapted for OpenPBX by Gerd Flaig <gefla@pond.sub.org>.
+#
+# Version:	@(#)skeleton  1.9  26-Feb-2001  miquels@cistron.nl
+#
+### BEGIN INIT INFO
+# Provides:             callweaver
+# Required-Start:       $network $local_fs $remote_fs 
+# Required-Stop:
+# Default-Start:        2 3 4 5
+# Default-Stop:         0 1 6
+# Short-Description: init-Script for callweaver daemon
+### END INIT INFO
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+NAME=callweaver
+USER=$NAME
+DESC="CallWeaver PBX"
+PIDFILE="/var/run/$NAME/$NAME.pid"
+
+# by default: use real-time priority
+PARAMS=""
+CALLWEAVER_REALTIME="yes"
+RUNCALLWEAVER="no"
+MODULEINIT=""
+if [ -r /etc/default/$NAME ]; then . /etc/default/$NAME; fi
+
+if [ "$RUNCALLWEAVER" != "yes" ];then
+	echo "$DESC not yet configured. Edit /etc/default/$NAME first."
+	exit 0
+fi
+
+if [ "$CALLWEAVER_REALTIME" != "no" ]
+then
+  PARAMS="$PARAMS -p"
+fi
+
+if [ "x$USER" = "x" ]
+then
+  echo "Error: empty USER name"
+  exit 1
+fi
+if [ `id -u "$USER"` = 0 ]
+then
+  echo "Starting as root not supported."
+  exit 1
+fi
+PARAMS="$PARAMS -U $USER"
+if [ "x$RUNCALLWEAVERSAFE" = "xyes" ];then
+	DAEMON=/usr/sbin/safe_callweaver
+	REALDAEMON=/usr/sbin/callweaver
+else
+	DAEMON=/usr/sbin/callweaver
+fi
+
+test -x $DAEMON || exit 0
+
+set -e
+
+case "$1" in
+  start)
+	echo -n "Starting $DESC: "
+	start-stop-daemon --start --pidfile "$PIDFILE" --exec $DAEMON -- $PARAMS
+	echo "$NAME."
+	;;
+  stop)
+	echo -n "Stopping $DESC: "
+	if [ "$RUNCALLWEAVERSAFE" = "yes" ];then
+		# hopefully this will work. Untested
+		$REALDAEMON -rx 'stop now' > /dev/null  || true
+	else
+		# Try gracefully
+		$DAEMON -rx 'stop now' > /dev/null 2>&1 || true
+	fi
+	echo -n "$NAME"
+	# giving a small grace time to shut down cleanly.
+	sleep 2
+	if [ "$RUNCALLWEAVERSAFE" = "yes" ];then
+		start-stop-daemon --quiet --oknodo --stop --exec $DAEMON
+	fi
+	# just making sure it's really, really dead. 
+	# KILL is necessary just in case there's an callweaver -r in the background
+	start-stop-daemon --stop --quiet --oknodo --retry=0/2/TERM/2/KILL/5 --exec $DAEMON
+	echo "."
+	;;
+  reload)
+	echo "Reloading $DESC configuration files."
+	$DAEMON -rx 'reload'
+	;;
+  logger-reload)
+	$DAEMON -rx 'logger reload'
+	;;
+  extensions-reload)
+	echo "Reloading $DESC configuration files."
+	$DAEMON -rx 'extensions reload'
+	;;
+  restart|force-reload)
+	$0 stop
+	$0 start
+	;;
+  *)
+	N=/etc/init.d/$NAME
+	# echo "Usage: $N {start|stop|restart|reload|logger-reload|extensions-reload|force-reload}" >&2
+	echo "Usage: $N {start|stop|restart|force-reload}" >&2
+	exit 1
+	;;
+esac
+
+exit 0

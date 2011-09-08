@@ -1,0 +1,29 @@
+To: $SENDTO
+Subject: Fax $JOBINFO către $DESTINATION şters din coadă
+From: HylaFAX Agent <$FROMADDR>
+Content-type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: Quoted-Printable
+
+A fost şters din coadă.
+
+---- Starea sesiunii netransmise ----
+Destinaţie:         $number
+JobID:              $jobid
+GroupID:            $groupid
+Expeditor:          $sender
+Adresă e-mail:      $mailaddr
+CommID:             $commid
+Modem:              $modem
+Expediat de:        $client
+Lăţime pagină:      $pagewidth (mm)
+Lungime pagină:     $pagelength (mm)
+Rezoluţie:          $resolution (lpi)
+Stare:              $faxstatus
+Dialoguri:          $tottries
+Formare numere:     $ndials
+Apeluri:            $totdials
+Pagini:             $npages
+Număr total pagini: $totpages
+Încercări:          $ntries
+Număr director:     $dirnum
+

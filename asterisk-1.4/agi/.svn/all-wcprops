@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/asterisk/!svn/ver/327251/branches/1.4/agi
+END
+eagi-test.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/211528/branches/1.4/agi/eagi-test.c
+END
+jukebox.agi
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/asterisk/!svn/ver/43376/branches/1.4/agi/jukebox.agi
+END
+DialAnMp3.agi
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/43376/branches/1.4/agi/DialAnMp3.agi
+END
+eagi-sphinx-test.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/asterisk/!svn/ver/211528/branches/1.4/agi/eagi-sphinx-test.c
+END
+fastagi-test
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/43376/branches/1.4/agi/fastagi-test
+END
+numeralize
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/asterisk/!svn/ver/43376/branches/1.4/agi/numeralize
+END
+agi-test.agi
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/43376/branches/1.4/agi/agi-test.agi
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/asterisk/!svn/ver/207647/branches/1.4/agi/Makefile
+END

@@ -1,0 +1,209 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd
+END
+icd_command.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/icd_command.h
+END
+icd_event.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/icd_event.h
+END
+conf_leave.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/conf_leave.h
+END
+icd_globals.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/icd_globals.h
+END
+icd_queue.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/icd_queue.h
+END
+icd_agent.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/icd_agent.h
+END
+icd_fieldset.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/icd_fieldset.h
+END
+conf_enter.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/conf_enter.h
+END
+icd_distributor_private.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/icd_distributor_private.h
+END
+icd_types.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/icd_types.h
+END
+icd_list_private.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/icd_list_private.h
+END
+icd_distributor_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/icd_distributor_list.h
+END
+icd_member.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/icd_member.h
+END
+icd_conference.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/icd_conference.h
+END
+icd_memory.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/icd_memory.h
+END
+icd_listeners.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/icd_listeners.h
+END
+icd_plugable_fn_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/icd_plugable_fn_list.h
+END
+icd_distributor.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/icd_distributor.h
+END
+icd_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/icd_list.h
+END
+icd_module_api.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/icd_module_api.h
+END
+icd_plugable_fn.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/icd_plugable_fn.h
+END
+icd_play_dtmf.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/icd_play_dtmf.h
+END
+app_icd.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/app_icd.h
+END
+icd_apr.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/icd_apr.h
+END
+icd_metalist.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/icd_metalist.h
+END
+voidhash.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/voidhash.h
+END
+icd_common.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/icd_common.h
+END
+icd_caller_private.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/icd_caller_private.h
+END
+icd_bridge.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/icd_bridge.h
+END
+icd_caller_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/icd_caller_list.h
+END
+icd_customer.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/icd_customer.h
+END
+icd_member_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/icd_member_list.h
+END
+icd_caller.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/icd_caller.h
+END
+icd_config.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/icd/icd_config.h
+END

@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded
+END
+publish.sh
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/publish.sh
+END
+tclinstaller.tcl
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/tclinstaller.tcl
+END
+mkso.sh
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/mkso.sh
+END
+sqlite3.1
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/sqlite3.1
+END
+VERSION
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/VERSION
+END
+addopcodes.awk
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/addopcodes.awk
+END
+main.mk
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/main.mk
+END
+mkopcodec.awk.in
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/mkopcodec.awk.in
+END
+sqlite3.pc.in
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/sqlite3.pc.in
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/README
+END
+mkopcodeh.awk.in
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/mkopcodeh.awk.in
+END
+spec.template
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/spec.template
+END
+sqlite.pc.in
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/sqlite.pc.in
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/Makefile.am
+END
+mkdll.sh
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/mkdll.sh
+END
+install-sh
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/install-sh
+END

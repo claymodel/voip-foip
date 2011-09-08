@@ -1,0 +1,5 @@
+; Sample CallWeaver config file for CDR logging to PostgresSQL
+
+[global]
+;dsn=host=localhost dbname=cdrdb user=callweaver password=secret
+;table=cdr		;SQL table where CDRs will be inserted

@@ -1,0 +1,36 @@
+This module can be used to pull realtime and static callweaver configuration from a cgi or a 
+static webpage using curl. 
+This application should be useful for callweaver implementations, large and small,
+for provisioning or providing a load balanced LCR engine using a cluster of web servers.
+
+There are several ways you can use this module. 
+
+As an application:
+
+    URLFetch()
+    Fetch Data from a URL
+    "load a url that returns ast_config and set according chanvars"
+
+This applications fetches a hash from the url supplied. You call the app and it makes chan vars 
+based on the return data formatted like callweaver config, but beginnig with ;OK; in the 
+section [realtime]
+
+;OK;
+[realtime]
+a => b
+c => d
+foo => bar
+
+or as a realtime config plugin:
+
+extconfig.conf:
+
+; trailing / means append desired filename /
+queues.conf => curl,http://my.box.com/
+; not trailing / means treat it as a cgi ?_file=
+curl.conf => curl,http://my.box.com/test_res_config.cgi
+whatever => curl,http://my.box.com/test_res_config.cgi
+
+The return from the url should look like the example above, please note, it must begin with ;OK;
+The rest of the contents should match the format of regular callweaver config files.
+On realtime, this should begin with [realtime].

@@ -1,0 +1,1065 @@
+CONTENTS
+
+    Introduction
+    ICD Application Modules
+        app_icd
+        icd_distributor
+        icd_agent
+        icd_customer
+        icd_caller
+        icd_distributor_list
+        icd_caller_list
+    ICD Infrastructure Modules
+        icd_fields
+        icd_config
+        icd_listeners
+        icd_event
+        icd_list
+        icd_metalist
+    General Patterns in ICD
+    Basic Interactions
+    Use Cases
+    Todo list
+
+
+=================================================================
+
+INTRODUCTION  
+
+This document describes the Intelligent Call Distribution application. The
+goal of this application is to provide a flexible, thread-safe infrastructure
+to the CallWeaver for distributing calls.
+
+There are two major components to this system, the application itself and the 
+infrastructure pieces that support the functionality of the application.
+
+The design of the Intelligent Call Distribution application is based on the
+following set of modules.
+
+
+Application Modules:
+
+  app_icd: interface between callweaver and icd
+
+  icd_distributor: strategy linking one or more agents to one or more customers
+
+  icd_agent: an endpoint "within" the organization, usually a person
+  icd_customer: an endpoint "outside" the organization, often a customer
+  icd_caller: some call within the system that needs to be dispatched, either 
+          an agent or customer
+
+  icd_caller_list: a collection of callers (agents or customers)
+  icd_distributor_list: a collection of distributors
+
+
+Infrastructure Modules:
+
+  icd_fields: extension fields for icd modules
+  icd_config: config options for icd modules (includes a config registry)
+  icd_event: an event in the icd system as well as an event generator
+  icd_list: a thread-safe ordered list whose order is user-determined
+  icd_metalist: a list of lists
+  icd_listeners: a collection of listeners to whom events can be passed
+
+
+The descriptions of the modules and their functions follows.
+
+
+=================================================================
+
+ICD APPLICATION MODULES
+
+The ICD application interfaces to callweaver using the app_icd module. This
+module registers itself with callweaver, loads and parses a configuration file, 
+and builds the distributors specified. It then starts each distributor
+running.
+
+Each distributor has to know how to link a customer to an agent. There are
+seven types of distributors provided for you. You can use one of these as 
+is or customize it. All of the standard distributors order the customer list
+on a first-come, first-served basis. The standard distributors operate as 
+follows:
+
+  1) Round robin - The agents are assigned calls in a set order. If an agent
+     that reaches the top of the list is busy with another call, they are 
+     skipped until the next pass.
+
+  2) Least recent agent - Agents are assigned calls in the order that they
+     finished their last call.
+
+  3) Most recent agent - Agents are assigned calls according to how recently
+     they have come back into the distributor (either finishing another call
+     or logging in for the first time). This could keep some of your agents
+     very busy and others very bored.
+
+  4) Agent priority - All agents have a priority associated with them, and 
+     agents are assigned calls in order of their priority.
+
+  5) Agent callcount - The distributor keeps track of how many calls all of
+     the agents have had, and assigns the call to the agent that has handled
+     the least.
+
+  6) Random agent - agents are selected randomly from the list
+
+  7) Ringall - when a customer comes in to the distributor, all agents are 
+     linked to it, typically meaning their extensions are rung.
+
+When an agent and a customer are linked, the distributor assigns one or the
+other the task of bridging the call. It then continues distributing.
+
+Agent and customer are both types of callers, so we can speak more generally
+about callers. When the distributor so instructs, the caller that is
+responsible for bridging the call ensures that both sides have an callweaver
+channel, possibly by ringing one or more extensions. It then bridges the
+call. The caller that is being bridged (the bridgee) lets any other callers
+that it is linked to know that it has been bridged. So in the Ringall 
+distributor described above, for example, the customer lets all other 
+agents know to stop ringing once it has been bridged by one of them.
+
+Once an agent is finished with a call, they can be returned to the 
+distributor if they are not already there,
+
+That, in a nutshell, is how ICD is designed to work. The rest of this file
+gives the details on how that is accomplished and points where you can
+define your own custom behaviour.
+
+
+APP_ICD
+
+The app_icd module provides the glue between callweaver and the ICD system.
+It registers ICD with callweaver and provides the callweaver CLI with access
+to display the internals of ICD. It is also responsible for creating the 
+distributors, configuring them, and starting them going.
+
+It calls icd_distributor__start_distributing() to get the ball rolling.
+
+
+ICD_DISTRIBUTOR
+
+The icd_distributor module holds a set of all agents and customers that can
+talk to one another, as well as a thread of execution that links them together
+and tells one side or the other to bridge the channels.
+
+The distributor provides a strategy for controlling the linking of 
+customers to agents. Apart from using one of the seven prebuilt stategies,
+you can customize your own. There are a number of customization points
+provided. At the highest level, you can plug in the function that the
+distributor uses for deciding which agents and customers to link together.
+Three of these functions are provided for you and are used in the standard
+distributor configurations. These are:
+
+  1) Pop - keeps both the agents and the customers in some sort of order
+     and always links the first two in these lists together. All the 
+     standard distributors other than Round robin and Ringall use this one.
+
+  2) Pop-Push - used with Round robin, this pops the first agent off the 
+     list and checks whether they are free before linking to the customer.
+     Either way, the agent is added back to the list (which in Round robin's
+     case is kept in FIFO order, see below).
+
+  3) Ringall - Whenever a customer enters the distributor, link to all 
+     the agents and ring. When any agent picks up the customer call is
+     bridged. All agents remain in the distributor except the one that
+     answered.
+
+The pop strategy requires that both the customer and agent lists in the
+distributor are kept in some order, though not necessarily the same for 
+each. This provides a second level customization point because each
+list allows you to specify a function for deciding where to put new 
+callers into the list. You can write your own or use one of the four
+standard functions that are provided for you:
+
+  1) First-In, First-Out (FIFO) - The first caller to enter the list in the
+     distributor is the first one that is linked by the distributor.
+
+  2) Last-In, First-Out (LIFO) - The last caller to enter the list in the
+     distributor is the first one that is linked by the distributor.
+
+  3) Random - callers are added randomly to the list
+
+  4) Ordered - The list in kept in sorted order
+
+After reading the Ordered entry, you may be wondering what the caller
+list is sorted on. The answer is that it depends on the third level
+customization point, a comparison function that determines the sort
+order for an Ordered caller list.
+
+Again, you can provide any comparison function you like. There are many
+that are built in for you. Some are common to both agent and customer,
+and some are specific to either one. The standard comparison functions 
+include:
+
+  Shared
+    Customer ID order
+    Customer ID reverse order
+    Timeout order
+    Timeout reverse order
+    Last modified order
+    Last modified reverse order
+    State owner order
+    State owner reverse order
+    Start order
+    Start reverse order
+    Callcount order
+    Callcount reverse order
+    State order
+    State reverse order
+    Priority order
+    Priority reverse order
+    Last state change order
+    Last state change reverse order
+  Agent Specific
+     order
+     reverse order
+     order
+     reverse order
+  Customer Specific
+     order
+     reverse order
+     order
+     reverse order
+
+Now that you know about the three customization points for both agent and 
+customer lists, you should be able to identify which are used in the seven 
+types of standard distributors. Take a moment to think about it, and then 
+check this list to see if you were right. Here is a hint. All of the customer
+lists in the standard distributors use "Pop", "FIFO", "n/a" 
+(the third point is "n/a" because FIFO does not use a compare function).
+Now, can you figure how they have the agent list set up?
+
+                       1            2           3
+    Round Robin     Pop-Push      FIFO         n/a
+    LRU Agent         Pop         FIFO         n/a
+    MRU Agent         Pop         LIFO         n/a
+    Priority          Pop       Ordered      Priority
+    Callcount         Pop       Ordered     Callcount
+    Random            Pop        Random        n/a
+    Ringall          Ringall      n/a          n/a
+
+The distributor has a variety of initializers, one for each type of built-in
+distributor strategy. If you are creating your own distributor, you can call
+a specific distributor initializer or you can call the generic initializer
+and provide a "dist.type" parameter in the config. Valid values are 
+"roundrobin", "lruagent", "mruagent", "priority", "callcount", "random",
+and "ringall".
+
+You can also design your own initializer for a distributor and register
+it in the configuration registry. Then you can create a new initializer
+by setting "dist.type" to "mydist" or whatever. You can also take a standard 
+distributor and customize it, again using the configuration options for
+the more specific portions of the distributor (agents, customers, etc).
+
+The functions of icd_distributor are:
+
+  /* Init - Destroyer */
+  icd_distributor *create_icd_distributor(icd_config *data);
+  icd_status destroy_icd_distributor(icd_distributor **distp);
+  icd_status init_icd_distributor(icd_distributor *that, icd_config *data);
+  icd_status init_icd_distributor_round_robin(icd_distributor *that, icd_config *data);
+  icd_status init_icd_distributor_least_recent_agent(icd_distributor *that, icd_config *data);
+  icd_status init_icd_distributor_most_recent_agent(icd_distributor *that, icd_config *data);
+  icd_status init_icd_distributor_agent_priority(icd_distributor *that, icd_config *data);
+  icd_status init_icd_distributor_least_calls_agent(icd_distributor *that, icd_config *data);
+  icd_status init_icd_distributor_random(icd_distributor *that, icd_config *data);
+  icd_status init_icd_distributor_ringall(icd_distributor *that, icd_config *data);
+  icd_status icd_distributor__clear(icd_distributor *that);
+
+  /* Actions */
+  icd_status icd_distributor__add_agent(icd_distributor *that, icd_caller *new_agent);
+  icd_status icd_distributor__add_agent_list(icd_distributor *that, icd_caller_list *new_list);
+  int icd_distributor__agents_pending(icd_distributor *that);
+  int icd_distributor__agent_position(icd_distributor *that, icd_caller *target);
+  icd_status icd_distributor__add_customer(icd_distributor *that, icd_caller *new_cust);
+  icd_status icd_distributor__add_customer_list(icd_distributor *that, icd_caller_list *new_list);
+  int icd_distributor__customers_pending(icd_distributor *that);
+  int icd_distributor__customer_position(icd_distributor *that, icd_caller *target);
+  icd_status icd_distributor__dump(icd_distributor *that, int fd);
+  icd_status icd_distributor__start_distributing(icd_distributor *that);
+  icd_status icd_distributor__pause_distributing(icd_distributor *that);
+
+  /* Getters and Setters */
+  icd_status icd_caller_list__set_agent_list(icd_distributor *that, char *icd_caller_list);
+  icd_caller_list *icd_caller_list__get_agent_list(icd_distributor *that);
+  icd_status icd_caller_list__set_customer_list(icd_distributor *that, icd_caller_list *name);
+  icd_caller_list *icd_caller_list__get_customer_list(icd_distributor *that);
+
+  /* Callback Setters */
+  icd_status icd_distributor__set_link_callers_fn(icd_distributor *that, icd_status (*link_fn)(icd_distributor *, void *extra), void *extra);
+
+  /* Listeners */
+  icd_status icd_distributor__add_listener(icd_distributor *that, void *listener, int (*lstn_fn)(void *listener, icd_event *event, void *extra), void *extra);
+  icd_status icd_distributor__remove_listener(icd_distributor *that, void *listener);
+
+  /* Iterators */
+  icd_list_iterator *icd_list__get_customer_iterator(icd_distributor *that);
+  icd_list_iterator *icd_list__get_agent_iterator(icd_distributor *that);
+
+  /* Predefined Pluggable Actions */
+  icd_status icd_distributor__link_callers_via_pop(icd_distributor *, void *);
+  icd_status icd_distributor__link_callers_via_ringall(icd_distributor *, void *);
+
+
+ICD_AGENT
+
+The icd_agent module  is a specialization of the icd_caller that represents
+an internal entity that is going to deal with a customer call as represented
+by icd_customer. That entity might be a person at the end of a channel, or
+it might be a program or device.
+
+A specialized module may not be necessary for this. Time will tell.
+
+The functions of icd_agent are:
+
+  /* Init - Destroyer */
+  icd_agent *create_icd_agent(icd_config *data);
+  icd_status destroy_icd_agent(icd_agent **agentp);
+  icd_status init_icd_agent(icd_agent *that, icd_config *data);
+  icd_status icd_agent__clear(icd_agent *that);
+
+  /* Locking */
+  icd_status icd_agent__lock(icd_agent *that);
+  icd_status icd_agent__unlock(icd_agent *that);
+
+  /* Listeners */
+  icd_status icd_agent__add_listener(icd_agent *that, void *listener, int (*lstn_fn)(void *listener, icd_event *event, void *extra), void *extra);
+  icd_status icd_agent__remove_listener(icd_agent *that, void *listener);
+
+
+ICD_CUSTOMER
+
+The icd_customer module is a specialization of the icd_caller that represents
+a call that needs to be serviced by an internal entity, aka an icd_agent.
+
+A specialized module may not be necessary for this. Time will tell.
+
+The functions of icd_customer are:
+
+  /* Init - Destroyer */
+  icd_customer *create_icd_customer(icd_config *data);
+  icd_status destroy_icd_customer(icd_customer **custp);
+  icd_status init_icd_customer(icd_customer *that, icd_config *data);
+  icd_status icd_customer__clear(icd_customer *that);
+
+  /* Locking */
+  icd_status icd_customer__lock(icd_customer *that);
+  icd_status icd_customer__unlock(icd_customer *that);
+
+  /* Listeners */
+  icd_status icd_customer__add_listener(icd_customer *that, void *listener, int (*lstn_fn)(void *listener, icd_event *event, void *extra), void *extra);
+  icd_status icd_customer__remove_listener(icd_customer *that, void *listener);
+
+
+
+
+ICD_CALLER
+
+The icd_caller module represents a call that needs dispatching by the system.
+
+The module has many attributes that are controlled through getters and
+setters, including the distributor the call belongs to, the music on hold
+to be played, the state of the call, the owner of the call(?), the id of
+the caller, the timeout, start time, authentication token, last modified time,
+and the channel associated with this object. It has notifier callbacks,
+listeners, default pluggable behaviours, and a set of comparison functions
+for calls.
+
+Authentication can happen in one of two ways on a caller. It can be set
+using icd_caller__set_authorization() with a token that the caller treats
+as a black box. Or an authentication function can be places in the icd_caller,
+and the caller asked to perform an authentication itself.
+
+The functions of icd_caller are:
+
+  /* Init - Destroyer */
+  icd_caller *create_icd_caller(icd_config *data);
+  icd_status destroy_icd_caller(icd_caller **callp);
+  icd_status init_icd_caller(icd_caller *that, icd_config *data);
+  icd_status icd_caller__clear(icd_caller *that);
+
+  /* Actions */
+  icd_status icd_caller__assign_channel(icd_caller *that, cw_channelx *chan, void *extra);
+  icd_status icd_caller__link_to_caller(icd_caller *that, icd_caller *associate);
+  icd_status icd_caller__bridge(icd_caller *that);
+  icd_status icd_caller__authenticate(icd_caller *that, void *extra);
+  int icd_caller__has_role(icd_caller *that, int role);
+  icd_status icd_caller__add_role(icd_caller *that, int role);
+  icd_status icd_caller__clear_role(icd_caller *that, int role);
+  int icd_caller__get_roles(icd_caller *that);
+  icd_status icd_caller__clear_roles(icd_caller *that);
+  icd_status icd_caller__inc_callcount(icd_caller *that);
+  icd_status icd_caller__dec_callcount(icd_caller *that);
+  icd_status icd_caller__dump(icd_caller *that, int fd);
+
+  /* Getters and Setters */
+  icd_status icd_caller__set_distributor(icd_caller *that, icd_distributor *dist);
+  icd_distributor *icd_caller__get_distributor(icd_caller *that);
+  icd_status icd_caller__set_moh(icd_caller *that, char *moh);
+  char *icd_caller__get_moh(icd_caller *that);
+  icd_status icd_caller__set_announce(icd_caller *that, char *);
+  char *icd_caller__get_announce(icd_caller *that);
+  icd_status icd_caller__set_state(icd_caller *that, int);
+  int icd_caller__get_state(icd_caller *that);
+  icd_status icd_caller__set_owner(icd_caller *that, int);
+  int icd_caller__get_owner(icd_caller *that);
+  icd_status icd_caller__set_channel(icd_caller *that, char *cw_channelx);
+  cw_channelx *icd_caller_get_channel(icd_caller *that);
+  icd_status icd_caller__set_id(icd_caller *that, int);
+  int icd_caller__get_id(icd_caller *that);
+  icd_status icd_caller__set_timeout(icd_caller *that, int);
+  int icd_caller__get_timeout(icd_caller *that);
+  icd_status icd_caller__set_start(icd_caller *that, time_t);
+  time_t icd_caller__get_start(icd_caller *that);
+  icd_status icd_caller__set_last_mod(icd_caller *that, time_t);
+  time_t icd_caller__get_last_mod(icd_caller *that);
+  icd_status icd_caller__set_callcount(icd_caller *that, int);
+  int icd_caller__get_callcount(icd_caller *that);
+  icd_status icd_caller__set_authorization(icd_caller *that, void *);
+  void *icd_caller__get_authorization(icd_caller *that);
+  icd_status icd_caller__set_priority(icd_caller *that, int);
+  int icd_caller__get_priority(icd_caller *that);
+  icd_status icd_caller__set_last_state_change(icd_caller *that, time_t);
+  time_t icd_caller__get_last_state_change(icd_caller *that);
+
+  /* Callback Setters */
+  icd_status icd_caller__set_authenticate_fn(icd_caller *that, int (*auth_fn)(icd_caller *, void *));
+  icd_status icd_caller__set_state_change_notify_fn(icd_caller *that, int (*state_fn)(icd_caller *, int, int));
+  icd_status icd_caller__set_channel_assigned_notify_fn(icd_caller *that, int (*chan_fn)(icd_caller *, cw_channelx *));
+  icd_status icd_caller__set_added_to_list_notify_fn(icd_caller *that, int (*added_fn)(icd_caller *, icd_caller_list *));
+  icd_status icd_caller__set_linked_notify_fn(icd_caller *that, int (*link_fn)(icd_caller *, icd_caller *));
+  icd_status icd_caller__set_bridged_notify_fn(icd_caller *that, int (*bridge_fn)(icd_caller *, icd_caller *));
+  icd_status icd_caller__set_authenticate_notify_fn(icd_caller *that, int (*authn_fn)(icd_caller *, int));
+
+  /* Locking */
+  icd_status icd_caller__lock(icd_caller *that);
+  icd_status icd_caller__unlock(icd_caller *that);
+
+  /* Listeners */
+  icd_status icd_caller__add_listener(icd_caller *that, void *listener, int (*lstn_fn)(void *listener, icd_event *event, void *extra), void *extra);
+  icd_status icd_caller__remove_listener(icd_caller *that, void *listener);
+
+  /* Predefined Pluggable Actions */
+  int icd_caller__authenticate_always_succeeds(icd_caller *, void *);
+  int icd_caller__dummy_state_notify_hook(icd_caller *, int, int);
+  int icd_caller__dummy_channel_notify_hook(icd_caller *, cw_channelx *);
+  int icd_caller__dummy_caller_notify_hook(icd_caller *, icd_caller *);
+  int icd_caller__dummy_auth_notify_hook(icd_caller *, int);
+
+  /* Comparison functions ("void *" are all "icd_caller *") */
+  int icd_caller__cmp_cust_id_order(void *, void *);
+  int icd_caller__cmp_cust_id_reverse_order(void *, void *);
+  int icd_caller__cmp_timeout_order(void *, void *);
+  int icd_caller__cmp_timeout_reverse_order(void *, void *);
+  int icd_caller__cmp_last_mod_order(void *, void *);
+  int icd_caller__cmp_last_mod_reverse_order(void *, void *);
+  int icd_caller__cmp_state_owner_order(void *, void *);
+  int icd_caller__cmp_state_owner_reverse_order(void *, void *);
+  int icd_caller__cmp_start_order(void *, void *);
+  int icd_caller__cmp_start_reverse_order(void *, void *);
+  int icd_caller__cmp_callcount_order(void *, void *);
+  int icd_caller__cmp_callcount_reverse_order(void *, void *);
+  int icd_caller__cmp_state_order(void *, void *);
+  int icd_caller__cmp_state_reverse_order(void *, void *);
+  int icd_caller__cmp_priority(void *, void *);
+  int icd_caller__cmp_priority_reverse_order(void *, void *);
+  int icd_caller__cmp_last_state_change_order(void *, void *);
+  int icd_caller__cmp_last_state_change_reverse_order(void *, void *);
+
+
+ICD_DISTRIBUTOR_LIST
+
+The icd_distributor_list module keeps a collection of distributors, and so
+for simplicity it is an extension of icd_list. In addition, though, it knows
+how to manipulate distributors. So you could keep code in the distributor
+list that allows one distributor to steal an agent or customer from another.
+It also has the ability to assign an agent or customer to a particular
+distributor, although we will likely use other mechanisms to make this
+connection most of the time.
+
+
+ICD_CALLER_LIST
+
+The icd_caller_list is a typical icd_list with a few extensions that are
+specific to keeping a list of icd_callers. It sets some default attributes
+for the callers it holds, such as the moh, announce, and default distributor
+for the callers to belong to.
+
+In addition, it keeps track of a few events fired off by individual
+icd_caller elements and amalgamates them into one place. So if you want
+to be notified when any icd_caller in this list is bridged, you
+would register yourself with icd_caller_list__set_assigned_agent_notify_fn().
+
+The functions of icd_caller_list are:
+
+  /* Init - Destroyer */
+  icd_caller_list *create_icd_caller_list(icd_config *data);
+  icd_status destroy_icd_caller_list(icd_caller_list **listp);
+  icd_status init_icd_caller_list(icd_caller_list *that, icd_config *data);
+  icd_status icd_caller_list__clear(icd_caller_list *that);
+
+  /* Actions */
+  icd_status icd_caller_list__push(icd_caller_list *that, icd_caller *new_call);
+  icd_caller *icd_caller_list__pop(icd_caller_list *that);
+  int icd_caller_list__has_callers(icd_caller_list *that);
+  int icd_caller_list__caller_position(icd_caller_list *that, icd_caller *target);
+  icd_status icd_caller_list__dump(icd_caller_list *that, int fd);
+  /* Are these three necessary if the list is properly sorted? */
+  icd_caller *icd_caller_list__fetch_caller(icd_caller_list *that, char *id);
+  icd_status icd_caller_list__remove_caller(icd_caller_list *that, char *id);
+  icd_status icd_caller_list__remove_caller_by_element(icd_caller_list *that, icd_caller *target);
+
+  /* Getters and Setters */
+  icd_status icd_caller_list__set_name(icd_caller_list *that, char *name);
+  char *icd_caller_list__get_name(icd_caller_list *that);
+  icd_status icd_caller_list__set_moh(icd_caller_list *that, char *moh);
+  char *icd_caller_list__get_moh(icd_caller_list *that);
+  icd_status icd_caller_list__set_context(icd_caller_list *that, char *context);
+  char *icd_caller_list__get_context(icd_caller_list *that);
+  icd_status icd_caller_list__set_announce(icd_caller_list *that, char *announce);
+  char *icd_caller_list__get_announce(icd_caller_list *that);
+  icd_status icd_caller_list__set_default_distributor(icd_caller_list *that, icd_distributor *dist);
+  icd_distributor *icd_caller_list__get_default_distributor(icd_caller_list *that);
+
+  /* Callback Setters */
+  icd_status icd_caller_list__set_state_change_notify_fn(icd_caller_list *that, int (*state_fn)(icd_caller *, int, int));
+  icd_status icd_caller_list__set_channel_attached_notify_fn(icd_caller_list *that, int (*chan_fn)(icd_caller *, cw_channelx *));
+  icd_status icd_caller_list__set_linked_notify_fn(icd_caller_list *that, int (*link_fn)(icd_caller *, icd_caller *));
+  icd_status icd_caller_list__set_bridged_notify_fn(icd_caller_list *that, int (*bridge_fn)(icd_caller *, icd_caller *));
+  icd_status icd_caller_list__set_authenticate_notify_fn(icd_caller_list *that, int (*authn_fn)(icd_caller *, int));
+
+  /* Locking */
+  icd_status icd_caller_list__lock(icd_caller_list *that);
+  icd_status icd_caller_list__unlock(icd_caller_list *that);
+
+  /* Predefined Pluggable Actions */
+  int icd_caller_list__add_notify_distributor(icd_list *that, void *caller, void *distributor);
+  int icd_caller_list__remove_notify_distributor(icd_list *that, void *caller, void *distributor);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=================================================================
+
+
+ICD INFRASTRUCTURE MODULES
+
+The ICD Infrastructure modules are designed to meet the needs of ICD, but
+they are also more generally applicable to other uses. You may find that
+you can pick up one of the modules and drop it into your program, so long 
+as you follow the license.
+
+ICD_FIELDS
+
+
+ICD_CONFIG
+
+
+ICD_LISTENERS
+
+The icd_listeners module provides the support functions necessary to allow
+the modules of the ICD app to keep lists of listeners that are notified when
+events occur to that particular instance. This module is essentially private
+to the ICD module since all access to listeners is done through APIs on the
+other modules. Nonetheless, it is presented here since you may wish to reuse 
+it for other tasks.
+
+The functions for the icd_listeners module is:
+
+  /* Init - Destroyer */
+  icd_listeners *create_icd_listeners(void);
+  icd_status destroy_icd_listeners(icd_listeners **listenersp);
+  icd_status init_icd_listeners(icd_listeners *that);
+  icd_status icd_listeners__clear(icd_listeners *that);
+
+  /* Actions */
+  icd_status icd_listeners__add(icd_listeners *that, void *listener,
+          int (*lstn_fn)(void *listener, icd_event *event, void *extra),
+          void *extra);
+  icd_status icd_listeners__remove(icd_listeners *that, void *listener);
+  int icd_listeners__notify(icd_listeners *that, icd_event *event);
+  icd_status icd_listeners__dump(icd_listeners *that, int fd);
+
+Each of the ICD modules will have a pointer to an icd_listeners
+structure. Whenever an event occurs to an instance of an ICD structure,
+it will call all of its listeners with information about the event.
+
+The pattern for the listener functions specific to any module (agent,
+caller, customer, list ...) is as follows:
+
+    icd_status icd_[module]__add_listener(icd_[module] *that,
+          void *listener,
+          int (*lstn_fn)(void *listener, icd_event *event, void *extra),
+          void *extra);
+    icd_status icd_[module]__remove_listener(icd_[module] *that, void *listener);
+
+Some explanation is perhaps necessary for the difference between the
+"event->extra" and "extra" parameters. event->extra is provided by the object
+which is generating the events, and is event specific. So some events
+may not set it (event->extra is NULL), while others may pass information that
+the callback might be interested in. What it contains is dependent on what
+the generated event defines for it. The extra parameter, on the other
+hand, is provided by the listener. It gives a way for the listener to
+pass information into the callback.
+
+
+Event Flow
+1) The icd_[module]__add_listener() function calls icd_listeners__add(),
+   and icd_[module]__remove_listener() calls icd_listener__remove().
+   it will also perform this clean up on the events objects destruction
+
+2) The listener object will implement *lstn_fn to handle the event
+   notification. That function returns 0 if the event should go ahead, or
+   some non-zero value to indicate that it is vetoing the event.
+
+3) The listener object registers its implementation of lstn_fn with the object
+   whose events it wishes to keep track of with a call to
+   icd_[module]__add_listener(). The args are as follows:
+   *that - object to listen to (event object) (for a list it's icd_list, etc)
+   *listener - the listener object (for an agent it's icd_agent, etc)
+   *lstn_fn - the call back function ptr. It is often internal to the module
+              of the listener object. The event object will call this when
+              an event occurs. This function implements specfic biz logic 
+              then returns 1 if it wants to veto the action/event, otherwise 0
+   *extra - any additional args that the listener wants the callback to have
+              access to when it runs. This could be a struct or function ptrs
+              but will typically be name-value pairs in a hash.
+
+4) The event object will run the listener and notify hooks whenever an
+   event of interest occurs. Since this logic will be almost identical
+   for any such event, all modules will probably want to break that out
+   into a separate function so it can be reused. Such a function will
+   call the event notify callback as well as icd_listeners__notify().
+
+Note that we probably want the callweaver manager interface to be aware of all
+events, so it would make sense to have icd_listeners__notify() call the
+manager_event(). On second thought, let's use the ICD_EVENT module for that.
+
+
+
+ICD_EVENT
+
+A module that provides a definition for an event structure. It also defines
+a structure which can generate events, and so can have listeners added and 
+removed. There will be a default event generator for the ICD modules to use,
+but you can define your own as well. You can register listeners on the event
+generator, which allows you to selectively perform actions for every event.
+So you could call a function in the callweaver manager interface on every event,
+or send out an email when a call is bridged, or write to a socket when a 
+customer call comes in.
+
+
+ICD_LIST
+
+The icd_list module provides an implementation of a list that allows you
+to keep the elements in a user-determined order, and to push and pop
+elements on and off the list in a thread safe manner.
+
+It also provides hooks so that your program can be notified when an event
+on the list occurs, as well as listeners that can register to be notified
+of events. For the difference between the notification hooks and the
+listeners, see the GENERAL PATTERNS IN ICD section below.
+
+The list provides for a pluggable sort order by allowing you to replace the
+method that identifies the insertion point in the list for a new node. A null
+value means the top of the list, any other value identifies the node that will
+precede the new node in the list. There are four standard behaviours provided
+for you that you can use out of the box for this. They are fifo, lifo, random,
+and an in-place-sort order based on a pluggable comparison function.
+
+Comparison functions are kept in the modules containing the structures they
+will be comparing. In the icd_list module there are two comparison functions,
+icd_list__cmp_name_order and icd_list__cmp_name_reverse_order, which are
+used when storing lists in a list (ie. in icd_metalist).
+
+Note that the icd_list_node is a structure that keeps a position in the
+list and also holds the contents of the element you are storing in the
+list, and for the most part it is not used externally. The one place where
+they are required is in the pluggable function that returns the insertion
+point node. For that reason, a node iterator and a function to extract the
+payload of the node are provided for the use of that pluggable function.
+
+When writing an insertion point function, there are a few things to keep in
+mind. Always use the node iterator and make sure you return an icd_list node.
+On entry into your function the list will be locked, so don't lock it again
+or unlock it. Try not to try to lock some other entity inside your function
+as that provides the potential for race conditions. If you do have to lock
+something inside the function, make very sure nothing could already have
+locked that something and then tried to lock this list.
+
+If you want a new list from the stack, you use the create/destroy pair to
+control its lifecycle. If you have an icd_list structure already created,
+you use the init/clear pair to control its lifecycle. A structure can be
+reused after clearing by calling init again.
+
+Here is an example of its usage:
+
+   char *payload = "Test Payload";
+   char *popped_payload;
+   icd_config *data = [get list creation parameters size and name];
+   
+   /* Create a test list with a maximum of 10 nodes */
+   icd_list *list = create_icd_list(10, data);
+
+   /* Keep the items on the list in a FIFO order */
+   icd_status result = icd_list__set_node_insert_func(list, icd_list__insert_fifo, NULL);
+   
+   /* On second thought, let's keep items in a sorted order (you wouldn't do
+      both of these really, but for demo purposes let's see it) */
+   result = icd_list__set_node_insert_func(list, icd_list__insert_ordered, str_cmp);
+
+   /* Push a previously created payload structure onto the list */
+   result = icd_list__push(list, payload);
+
+   /* Get the payload back again. */
+   popped_payload = (char *)icd_list__pop(list);
+
+   /* Iterate over the list, printing the payload elements out */
+   result = icd_list__push(list, payload);
+   iter = icd_list__get_iterator(list);
+   while (icd_list_iterator__has_more(iter)) {
+       popped_payload = (char *)icd_list_iterator__next(iter);
+       printf("Payload = %s\n", popped_payload);
+   }
+
+   /* Destroy the iterator */
+   result = destroy_icd_list_iterator(&iter);
+   
+   /* Destroy the list */
+   result = destroy_icd_list(&list);
+
+The functions of icd_list are:
+
+  /* Init - Destroyer */
+  icd_list *create_icd_list(icd_config *data);
+  icd_status destroy_icd_list(icd_list **listp);
+  icd_status init_icd_list(icd_list *that, icd_config *data);
+  icd_status icd_list__clear(icd_list *that);
+
+  /* Actions */
+  icd_status icd_list__push(icd_list *that, void *element);
+  void *icd_list__pop(icd_list *that);
+  icd_status icd_list__merge(icd_list *that, icd_list *other);
+  icd_status icd_list__clear(icd_list *that);
+  int icd_list__size(icd_list *that);
+  int icd_list__count(icd_list *that);
+  void *icd_list__find(icd_list *that, void *key);
+  icd_status icd_list__remove(icd_list *that, void *key);
+  icd_status icd_list__remove_by_element(icd_list *that, void *payload);
+  icd_status icd_list__dump(icd_list *that, int fd);
+
+  /* Node behaviours */
+  void *icd_list__get_payload(icd_list_node *that);
+
+  /* Getters and Setters */
+  icd_status icd_list__set_name(icd_list *that, char *name);
+  char *icd_list__get_name(icd_list *that);
+
+  /* Callback Setters */
+  icd_status icd_list__set_node_insert_func(icd_list *that, icd_list_node *(*ins_fn)(icd_list *that, void *new_elem, void *extra), void *extra);
+  icd_status icd_list__set_key_check_func(icd_list *that, int (*key_fn)(void *key, void *payload));
+  icd_status icd_list__set_add_node_notify_func(icd_list *that, int (*add_fn)(icd_list *that, void *new_elem, void *extra), void *extra);
+  icd_status icd_list__set_remove_node_notify_func(icd_list *that, int (*del_fn)(icd_list *that, void *old_elem, void *extra), void *extra);
+  icd_status icd_list__set_clear_list_notify_func(icd_list *that, int (*clr_fn)(icd_list *that, void *extra), void *extra);
+  icd_status icd_list__set_destroy_list_notify_func(icd_list *that, int (*dstry_fn)(icd_list *that, void *extra), void *extra);
+
+  /* Locking */
+  icd_status icd_list__lock(icd_list *that);
+  icd_status icd_list__unlock(icd_list *that);
+
+  /* Listeners */
+  icd_status icd_list__add_listener(icd_list *that, void *listener, int (*lstn_fn)(void *listener, icd_event *event, void *extra), void *extra);
+  icd_status icd_list__remove_listener(icd_list *that, void *listener);
+
+  /* Iterators */
+  icd_list_iterator *icd_list__get_iterator(icd_list *that);
+  icd_list_iterator *icd_list__get_node_iterator(icd_list *that);
+  icd_status destroy_icd_list_iterator(icd_list_iterator **iterp);
+  int icd_list_iterator__has_more(icd_list_iterator *that);
+  void *icd_list_iterator__next(icd_list_iterator *that);
+
+  /* Predefined Pluggable Actions */
+  int icd_list__dummy_node_notify_hook(icd_list *, void *, void *);
+  int icd_list__dummy_notify_hook(icd_list *, void *);
+  icd_list_node *icd_list__insert_fifo(icd_list *that, void *new_elem, void *);
+  icd_list_node *icd_list__insert_lifo(icd_list *that, void *new_elem, void *);
+  icd_list_node *icd_list__insert_random(icd_list *that, void *new_elem, void *cmp_fn);
+  icd_list_node *icd_list__insert_ordered(icd_list *that, void *new_elem, void *cmp_fn);
+
+  /* Comparison functions ("void *" are all "icd_list *") */
+  int icd_list__cmp_name_order(void *, void *);
+  int icd_list__cmp_name_reverse_order(void *, void *);
+
+
+ICD_METALIST
+
+The icd_metalist module provides a list of lists. Each element stored in
+this list is itself a list. It allows access to the contained lists by
+name as well as through the mechanisms of icd_list. It also has its own
+typesafe iterator that returns icd_list structures.
+
+The icd_metalist is castable to an icd_list (since it is an extension
+of it) so the API of icd_list is usable on icd_metalist. See that
+section for more of the actions that are possible with icd_metalist
+via a cast.
+
+Because an icd_metalist is itself an icd_list (which is what icd_metalist
+contains), you could create arbitrarily deep trees by keeping icd_metalists
+in another icd_metalist.
+
+Internally, icd_metalist sets its insertion point function to icd_list's
+icd_list__insert_ordered() function, passing the icd_list__cmp_name_order()
+comparison function to it to use to determine the sort order. This shows an
+example of how you can keep list elements in an arbitrary sort order.
+
+The functions of icd_metalist are:
+
+  /* Init - Destroyer */
+  icd_metalist *create_icd_metalist(icd_config *data);
+  icd_status destroy_icd_metalist(icd_metalist **listp);
+  icd_status init_icd_metalist(icd_metalist *that, icd_config *data);
+  icd_status icd_metalist__clear(icd_metalist *that);
+
+  /* Actions */
+  icd_status icd_metalist__add_list(icd_metalist *that, icd_list *new_list);
+  icd_list *icd_metalist__fetch_list(icd_metalist *that, char *name);
+  icd_status icd_metalist__remove_list(icd_metalist *that, char *name);
+  icd_status icd_metalist__remove_list_by_element(icd_metalist *that, icd_list *target);
+  icd_status icd_metalist__dump(icd_metalist *that, int fd);
+
+  /* Iterators */
+  icd_list *icd_metalist_iterator__next(icd_metalist_iterator *that);
+
+
+
+=================================================================
+
+GENERAL PATTERNS IN ICD
+
+1. For ease of unique naming, modules are all given a namespace that is
+separated from the rest of a function name by a double underscore '__'.
+
+2. For generating valid ICD objects, there are two patterns of note. 
+Dynamically allocated objects have this pattern:
+
+    icd_[module] *obj = create_icd_[module]([params]);
+        ... do stuff ...
+    destroy_icd_[module](&obj);
+
+For automatic and stack variables, the sequence is:
+
+    icd_[module] obj;
+
+    init_icd_[module](&obj, [params]);
+        ... do stuff ...
+    icd_[module]__clear(&obj);
+
+The creation function mallocs an instance of the object and calls the
+init function. The destroy function calls the clear function and then
+frees the object.
+
+The init function initializes any necessary fields and mallocs any
+necessary memory for the internal fields. The clear function frees
+that same memory and clears the fields so that the object cannot be
+accidently reused.
+
+3. To always control the lifecycle, we follow one of two recursive 
+patterns when creating or destroying ICD objects:
+
+  a) malloc and free any memory in the same function (making sure to get
+     the free() happening before every exit point from the function)
+  b) Have a pair of functions, one of which mallocs and the other frees,
+     and have the functions which call them follow one of these two
+     lifecycle patterns.
+
+4. Once a structure has been created or initialized, it can have listeners
+added to it. A listener can be thought of as a callback function which is
+called every time the structure it is listening to has some event generated
+on it. Each structure has its own events defined and notifies all of its
+listeners when an event occurs. Listeners may choose to veto the event,
+in which case the event does not occur (if that is a sensible result).
+
+A concrete example may help. Say that you want a list that notifies an
+agent structure every time it has a node added or removed from it. The
+sequence would look like this:
+
+    icd_list *list = create_icd_list(10, "test.list");
+    icd_agent *agent = create_icd_agent("");
+
+    icd_list__add_listener(list, agent, agent_callback_function, NULL);
+
+    /* This calls agent_callback_function before adding the element */
+    /* If callback returns non-zero value, node won't be added */
+    icd_status result = icd_list__push(list, "new node in list");
+
+    if (result = ICD_EVETO) {
+        printf("agent_callback_function() returned something other than 0\n");
+    }
+    
+    icd_list__remove_listener(list, agent);
+    destroy_icd_agent(&agent);
+    destroy_icd_list(&list);
+
+5. All of the ICD modules have a second mechanism for notifying when an event
+occurs, an event motify callback. This is different from listeners in the
+following ways:
+
+    a) An event notify callback is only called for one particular event,
+       while a listener is called for all events on an instance.
+    b) There is only one notify callback for each type of an event whereas
+       you can register as many listeners as you like.
+    c) An event notify callback can have any number of parameters as makes
+       sense. The listener instead has a single icd_event parameter
+       which must wrap whatever additional information may be required for
+       the event.
+    d) An event notify callback is tightly bound to the instance. Listeners
+       are loosely coupled.
+
+There is a callback setter function for each of the types of events the
+module can generate.
+
+6. Any ICD module can have its init function replaced by providing an "init"
+key/value pair in the initialization icd_config object.
+
+7. All ICD modules provide the ability to store any information you wish
+using extension fields. These allow you to store key/value pairs into the
+ICD object, and to get them out again and use them for your own purposes.
+
+8. If you need more configurability than the extension fields and the
+function pointers provide for you, you can always extend the structure
+itself. There are several examples in ICD that show how this is done:
+
+    a) icd_agent extends icd_caller
+    b) icd_customer extends icd_caller
+    c) icd_caller_list extends icd_list
+    d) icd_distributor_list extends icd_list
+    e) icd_metalist extends icd_list
+    f) icd_config extends icd_fields
+
+9. When setting the values on an ICD structure, you can do it in one of
+two ways. If initializing, you can use the icd_config object to set values
+on the fields of the structure. Once it has been initialized, you can use
+the setter methods on the object to change its configuration.
+
+=================================================================
+
+BASIC INTERACTIONS
+
+1. Distributor creation
+2. Agent creation
+3. Customer Call creation
+4. Distributor links agent and customer
+
+
+1. Distributor creation
+
+Distributors are created from config files or are dynamically generated
+is some other way, such as through an external program sending commands
+via a socket. There are a number of built-in disttributors that can be used
+for creating them (see the init_* functions), or you can build your own
+by providing your own link_callers() function.
+
+The standard distributors use the link_callers_via_pop() action by default,
+except for ringall which uses the link_callers_via_ringall() action. The
+link_callers_via_pop() action relies on setting up the agent and customer
+lists in such a way that they are sorted in the correct order, so that
+popping off the top agent and customer will give the correct pair that
+should be bridged.
+
+The agent and customer lists are kept in the correct order by setting the
+node_insert() function on each of them to the correct one for our given
+distributor's strategy for linking calls. In the case of round robin of
+agents and customers, for example, you would set both agent and customer
+caller lists to use the insert_fifo() function for node_insert(). The
+"least calls to the agent" distributor, on the other hand, would use the
+insert_ordered() function for node_insert() on the agent list and would
+set the extra parameter to the icd_caller__cmp_callcount_reverse()
+function. The customer list could still be kept round robin, unless you
+wanted to change it to some other strategy.
+
+Starts distributor thread which links calls together by calling
+start_distributing(). Linking can also be paused on a distributor by
+calling pause_distributing().
+
+
+2. Agent creation
+
+Agents are created and registered with the distributor, which keeps all
+agents in a list ordered according to whatever strategy it follows for
+assigning calls. Or, in the case of the ringall distributor, it just keeps
+the agents in a list without worrying about the order.
+
+When an agent comes into the system either through a configuration file
+entry or dynamically, an icd_agent structure is created for it and it
+is placed in a distributor. Note that we are handwaving away agent groups
+for the time being, although interactions may end up happening through
+them instead. We will also ignore the implementation of listeners for
+now, since they will be fairly straightforward.
+
+The new agent structure "a" finds the distributor "d" through a master
+distribution list and calls add_agent(d, a), which adds agent a to its agent
+icd_caller_list "d->al" and calls set_distributor(a, d). set_distributor()
+sets an attribute on a and calls the a->added_to_list(a, d->al) callback as
+well as notifying listeners of the event.
+
+When d adds the agent a to d->al, it calls push(d->al, a). The push function
+determines the insertion point of the agent in the list by calling
+d->al->node_insert(d->al, a). It then adds the agent into the list in
+the next position. If node_insert() returns null, then the agent is added
+to the top of the list. if the node_insert() function is insert_fifo(), it
+always returns the last node in the list so the agent will be the last node.
+If it is insert_lifo(), it always returns null. If it is insert_ordered(), then
+it will rely on the "extra" parameter to determine the comparison function
+that determines the position in the list.
+
+
+3. Customer Call creation
+
+Much like Agent creation. To Be Completed.
+
+
+4. Distributor links agent and customer
+
+Pops top element off agent and customer lists. If either one has a channel
+and the other doesn't (there can be 0, 1, or 2 channels already present),
+it sets BRIDGER role on the one without and BRIDGEE on the one with,
+otherwise it chooses the roles arbitrarily. It then calls link_to_caller()
+on both. Thread then returns.
+
+Thread in BRIDGER wakes up on link being made. It requests a channel for either
+of the callers that don't have one if necessary, then bridges the call.
+
+BRIDGEE wakes up once call is bridged and alerts any linked BRIDGERs that it
+has been bridged.
+
+To Be Completed.
+
+
+TODO LIST (DOCUMENTATION)
+
+There is still a lot that needs to be fleshed out. We need Use Cases, a more
+complete description of how threading and locking work, a clean description
+of each of the events a module can create (along with APIs for any notify
+hooks that are required for them). With Use Cases, we'll also see where
+we fall down in the APIs currently provided.
+
+
+1/23/04 Tony
+
+Negative Associations / Enhanced strategy logic 
+
+We need a negative association list so if a bridge fails that caller 
+wont try the same one again till it has tried all the other
+possibilities or anything equivelent that will solve the problem where 
+a customer fails but wont try any other agent.
+

@@ -1,0 +1,17 @@
+K 10
+svn:ignore
+V 80
+*.o
+*.a
+*.d
+*.i
+*.ii
+*.oo
+*.makeopts
+*.moduleinfo
+*.s
+*.so
+gentone
+modules.link
+
+END

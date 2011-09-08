@@ -1,0 +1,87 @@
+
+=== DEVELOPMENT SUPPORT ===
+I'd like to thank the following companies for helping fund development of
+CallWeaver:
+
+Pilosoft, Inc. - for supporting ADSI development in CallWeaver
+
+Asterlink, Inc. - for supporting broad CallWeaver development
+
+GFS - for supporting ALSA development
+
+Telesthetic - for supporting SIP development
+
+Christos Ricudis - for substantial code contributions
+
+Paul Bagyenda, Digital Solutions - for initial Voicetronix driver development
+
+Speakup.nl - For jitterbuffer  http://www.speakup.nl/en/opensource/jitterbuffer/
+
+Roy Sigurd Karlsbakk - providing funding for generic jitterbuffer development 
+		       roy@karlsbakk.net, Briiz Telecom AS
+
+=== WISHLIST CONTRIBUTERS ===
+Jeremy McNamara - SpeeX support
+Nick Seraphin - RDNIS support
+Gary - Phonejack ADSI (in progress)
+Wasim - Hangup detect
+
+=== HARDWARE DONORS === 
+* Thanks to QuickNet Technologies for their donation of an Internet
+PhoneJack and Linejack card to the project.  (http://www.quicknet.net)
+
+=== MISCELLANEOUS PATCHES ===
+Anthony Minessale - Countless big and small fixes, and relentless forward push
+       anthmct@yahoo.com              http://www.asterlink.com
+James Golovich - Innumerable contributions
+       You can find him and callweaver-perl at http://callweaver.gnuinter.net
+Andre Bierwirth - Extension hints and status
+Oliver Daudey - ISDN4Linux fixes
+Pauline Middelink - ISDN4Linux patches and some general patches.
+       She can be found at http://www.polyware.nl/~middelink/En/
+Jean-Denis Girard - Various contributions from the South Pacific Islands
+       jd-girard@esoft.pf             http://www.esoft.pf
+William Jordan / Vonage - MySQL enhancmenets to Voicemail
+	wjordan@vonage.com
+Jac Kersing - Various fixes
+Steven Critchfield - Seek and Trunc functions for playback and recording
+       critch@basesys.com
+Jefferson Noxon - app_lookupcidname, app_db, and various other contributions
+Klaus-Peter Junghanns - in-band DTMF on SIP and MGCP
+Ross Finlayson - Dynamic RTP payload support
+Mahmut Fettahlioglu - Audio recording, music-on-hold changes, alaw file
+       format, and various fixes. Can be contacted at mahmut@oa.com.au
+James Dennis - Cisco SIP compatibility patches to work with SIP service
+       providers. Can be contacted at callweaver@jdennis.net
+Tilghman Lesher - - Route lookup code; cw_localtime(), cw_say_date_with_format(); 
+                    GotoIfTime, Random, SayUnixTime, HasNewVoicemail, and Cut applications, 
+		    along with various other patches. http://asterisk.drunkcoder.com/
+Jayson Vantuyl - Manager protocol changes, various other bugs.
+	jvantuyl@computingedge.net
+Thorsten Lockert - OpenBSD, FreeBSD ports, making MacOS X port run on 10.3,
+	dialplan include verification, route lookup on OpenBSD, various other
+	bugs. tholo@sigmasoft.com
+Brian West - ODBC support and Bug Marshaling  
+Josh Roberson - chan_zap reload support, Advanced Voicemail Features, other misc. patches,
+		and Bug Marshalling. - josh@asteriasgi.com, http://www.asteriasgi.com
+William Waites - syslog support, SIP NAT traversal for SIP-UA. ww@styx.org
+Rich Murphey - Porting to FreeBSD, NetBSD, OpenBSD, and Darwin.
+	rich@whiteoaklabs.com  http://whiteoaklabs.com
+Simon Lockhart - Porting to Solaris (based on work of Logan ???)	
+	simon@slimey.org
+Olle Johansson - SIP RFC compliance and testing, testing, testing
+	oej@edvina.net
+Jeffrey C. Ollie - SVN management, automake and bug marshalling
+
+Bartek Kania - numerous improvements and bug fixes
+
+Carlos Mantunes - Generators
+
+Michael Bielicki & co. Intelligent Call Distribution (ICD)
+
+
+=== OTHER CONTRIBUTIONS ===
+John Todd - Monkey sounds and associated teletorture prompt
+
+=== OTHER SOURCE CODE IN CALLWEAVER ===
+

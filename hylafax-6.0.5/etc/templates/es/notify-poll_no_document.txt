@@ -1,0 +1,10 @@
+To: $SENDTO
+Subject: Aviso de fax
+From: Servidor de Fax HylaFAX <$FROMADDR>
+Content-type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: Quoted-Printable
+
+Su trabajo fax para $number, el intento de poner el documento
+para envio, hs fallado porque no hay documento disponible para recuperación.
+
+El tiempo de procesamiento fue de $JTIME.

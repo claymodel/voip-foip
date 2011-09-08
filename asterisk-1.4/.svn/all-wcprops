@@ -1,0 +1,161 @@
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/asterisk/!svn/ver/327251/branches/1.4
+END
+mkinstalldirs
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/asterisk/!svn/ver/43376/branches/1.4/mkinstalldirs
+END
+configure
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/asterisk/!svn/ver/316089/branches/1.4/configure
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/asterisk/!svn/ver/245044/branches/1.4/LICENSE
+END
+bootstrap.sh
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/asterisk/!svn/ver/152992/branches/1.4/bootstrap.sh
+END
+default.exports
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/182808/branches/1.4/default.exports
+END
+makeopts.in
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/asterisk/!svn/ver/298905/branches/1.4/makeopts.in
+END
+config.guess
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/asterisk/!svn/ver/259852/branches/1.4/config.guess
+END
+sample.call
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/asterisk/!svn/ver/134976/branches/1.4/sample.call
+END
+CREDITS
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/asterisk/!svn/ver/212913/branches/1.4/CREDITS
+END
+config.sub
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/asterisk/!svn/ver/205288/branches/1.4/config.sub
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/asterisk/!svn/ver/168382/branches/1.4/README
+END
+BUGS
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/asterisk/!svn/ver/243863/branches/1.4/BUGS
+END
+README-SERIOUSLY.bestpractices.txt
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/asterisk/!svn/ver/260887/branches/1.4/README-SERIOUSLY.bestpractices.txt
+END
+configure.ac
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/asterisk/!svn/ver/316089/branches/1.4/configure.ac
+END
+UPGRADE-1.2.txt
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/120735/branches/1.4/UPGRADE-1.2.txt
+END
+Makefile.moddir_rules
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/207647/branches/1.4/Makefile.moddir_rules
+END
+Zaptel-to-DAHDI.txt
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/asterisk/!svn/ver/137679/branches/1.4/Zaptel-to-DAHDI.txt
+END
+UPGRADE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/asterisk/!svn/ver/288266/branches/1.4/UPGRADE.txt
+END
+BSDmakefile
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/asterisk/!svn/ver/285088/branches/1.4/BSDmakefile
+END
+Makefile.rules
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/asterisk/!svn/ver/262321/branches/1.4/Makefile.rules
+END
+CHANGES
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/asterisk/!svn/ver/172517/branches/1.4/CHANGES
+END
+COPYING
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/asterisk/!svn/ver/43376/branches/1.4/COPYING
+END
+.cleancount
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/asterisk/!svn/ver/159900/branches/1.4/.cleancount
+END
+missing
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/asterisk/!svn/ver/43376/branches/1.4/missing
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/asterisk/!svn/ver/297818/branches/1.4/Makefile
+END
+install-sh
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/asterisk/!svn/ver/43376/branches/1.4/install-sh
+END

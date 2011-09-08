@@ -1,0 +1,401 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib
+END
+utils.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/utils.c
+END
+config.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/config.c
+END
+loader.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/loader.c
+END
+poll.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/poll.c
+END
+term.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/term.c
+END
+channel.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/channel.c
+END
+cdr.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/cdr.c
+END
+manager.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/manager.c
+END
+app.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/app.c
+END
+image.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/image.c
+END
+dns.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/dns.c
+END
+db.c
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/db.c
+END
+phone_no_utils.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/phone_no_utils.c
+END
+generator.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/generator.c
+END
+udp.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/udp.c
+END
+translate.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/translate.c
+END
+slinfactory.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/slinfactory.c
+END
+aestab.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/aestab.c
+END
+acl.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/acl.c
+END
+rtp.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/rtp.c
+END
+callweaver_expr2.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/callweaver_expr2.c
+END
+chanvars.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/chanvars.c
+END
+callweaver_expr2.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/callweaver_expr2.h
+END
+muted.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/muted.c
+END
+callweaver_expr2.l
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/callweaver_expr2.l
+END
+stubfunctions-crypto.c
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/stubfunctions-crypto.c
+END
+stubfunctions-adsi.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/stubfunctions-adsi.c
+END
+alaw.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/alaw.c
+END
+callweaver.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/callweaver.c
+END
+dsp.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/dsp.c
+END
+udptl.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/udptl.c
+END
+autoservice.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/autoservice.c
+END
+frame.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/frame.c
+END
+callweaver_expr2.y
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/callweaver_expr2.y
+END
+say.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/say.c
+END
+devicestate.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/devicestate.c
+END
+enum.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/enum.c
+END
+indications.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/indications.c
+END
+cli.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/cli.c
+END
+io.c
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/io.c
+END
+malloc.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/malloc.c
+END
+ulaw.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/ulaw.c
+END
+callweaver_expr2f.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/callweaver_expr2f.c
+END
+strcompat.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/strcompat.c
+END
+callweaver_mm.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/callweaver_mm.c
+END
+logger.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/logger.c
+END
+udpfromto.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/udpfromto.c
+END
+version.sh.in
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/version.sh.in
+END
+stubfunctions-features.c
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/stubfunctions-features.c
+END
+sched.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/sched.c
+END
+callweaver_hash.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/callweaver_hash.c
+END
+pbx.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/pbx.c
+END
+stun.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/stun.c
+END
+dnsmgr.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/dnsmgr.c
+END
+aesopt.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/aesopt.h
+END
+netsock.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/netsock.c
+END
+srv.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/srv.c
+END
+privacy.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/privacy.c
+END
+file.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/file.c
+END
+callerid.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/callerid.c
+END
+defaults.h.in
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/defaults.h.in
+END
+aeskey.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/aeskey.c
+END
+dlfcn.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/dlfcn.c
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/Makefile.am
+END
+aescrypt.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/aescrypt.c
+END
+stubfunctions-monitor.c
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/corelib/stubfunctions-monitor.c
+END

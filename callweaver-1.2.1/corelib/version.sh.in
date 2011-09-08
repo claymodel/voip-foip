@@ -1,0 +1,45 @@
+#!/bin/sh
+
+PACKAGE_STRING="@PACKAGE_STRING@"
+
+AWK="@AWK@"
+CAT="@CAT@"
+GIT="@GIT@"
+GREP="@GREP@"
+SVN="@SVN@"
+
+ver=
+
+if test -r "SVNVERSION" ; then
+	ver="${PACKAGE_STRING} SVN r`${CAT} SVNVERSION`"
+fi
+
+if test -z "$ver" && test -x "${SVN}" ; then
+	x="`${SVN} info`"
+	if test -n "$x" ; then
+		svnurl="`${SVN} info | ${AWK} '/^URL: / { sub("^.*/callweaver/", "", $2); print $2 }'`"
+		svnrev="`${SVN} info | ${AWK} '/^Revision: / { print $2 }'`"
+		mod=
+		if "${SVN}" status | "${GREP}" '^M ' > /dev/null 2>&1; then
+			mod=' (modified)'
+		fi
+		ver="${PACKAGE_STRING} SVN $svnurl r$svnrev$mod"
+	fi
+fi
+
+if test -z "$ver" && test -x "${GIT}" ; then
+	b="`${GIT} branch | ${AWK} '$1 == "*" { print $2 }'`"
+	c="`${GIT} log -1 --pretty=oneline | ${AWK} '{ print substr($1, 0, 8); }'`"
+	mod=
+	if "${GIT}" status | "${GREP}" '^#	modified: ' > /dev/null 2>&1; then
+		mod=' (modified)'
+	fi
+	ver="${PACKAGE_STRING} GIT $b $c$mod"
+fi
+
+if test -z "$ver" ; then
+	ver="${PACKAGE_STRING}"
+fi
+
+echo "const char cw_version_string[] =\"$ver\";"
+exit 0

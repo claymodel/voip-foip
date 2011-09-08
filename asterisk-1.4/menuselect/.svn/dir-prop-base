@@ -1,0 +1,33 @@
+K 18
+branch-1.0-blocked
+V 20
+/branches/1.0:49,132
+K 17
+branch-1.0-merged
+V 71
+/branches/1.0:1-316,383,437,465,467,473,475,477,518,676,678,680,682,684
+K 15
+reviewboard:url
+V 32
+https://reviewboard.asterisk.org
+K 13
+svn:externals
+V 42
+mxml http://svn.digium.com/svn/mxml/trunk
+
+K 10
+svn:ignore
+V 130
+*.o
+menuselect
+gmenuselect
+config.status
+config.log
+autoconfig.h
+makeopts
+autom4te.cache
+cmenuselect
+nmenuselect
+configure.lineno
+
+END

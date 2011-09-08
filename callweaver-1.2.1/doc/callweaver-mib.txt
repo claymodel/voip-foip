@@ -1,0 +1,725 @@
+-- vim:ft=mib
+CALLWEAVER-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+	OBJECT-TYPE, MODULE-IDENTITY, Integer32, Counter32, TimeTicks
+		FROM SNMPv2-SMI
+
+	TEXTUAL-CONVENTION, DisplayString, TruthValue
+		FROM SNMPv2-TC
+
+	digium
+		FROM DIGIUM-MIB;
+
+callweaver MODULE-IDENTITY
+	LAST-UPDATED	"200603061840Z"
+	ORGANIZATION	"www.callweaver.org"
+	CONTACT-INFO	"www.callweaver.org"
+	DESCRIPTION
+		"CallWeaver is an Open Source PBX.  This MIB defined
+		objects for managing CallWeaver instances."
+	REVISION	"200603061840Z"
+	DESCRIPTION
+		"Change audio codec identification from 3kAudio to
+		Audio3k to conform better with specification.
+
+		Expand on contact information."
+	REVISION	"200602041900Z"
+	DESCRIPTION
+		"Initial published revision."
+	::= { digium 1 }
+
+callweaverVersion	OBJECT IDENTIFIER ::= { callweaver 1 }
+callweaverConfiguration	OBJECT IDENTIFIER ::= { callweaver 2 }
+callweaverModules	OBJECT IDENTIFIER ::= { callweaver 3 }
+callweaverIndications	OBJECT IDENTIFIER ::= { callweaver 4 }
+callweaverChannels	OBJECT IDENTIFIER ::= { callweaver 5 }
+
+-- callweaverVersion
+
+cwVersionString OBJECT-TYPE
+	SYNTAX		DisplayString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Text version string of the version of CallWeaver that
+		the SNMP Agent was compiled to run against."
+	::= { callweaverVersion 1 }
+
+cwVersionTag OBJECT-TYPE
+	SYNTAX		Unsigned32
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"SubVersion revision of the version of CallWeaver that
+		the SNMP Agent was compiled to run against -- this is
+		typically 0 for release-versions of CallWeaver."
+	::= { callweaverVersion 2 }
+
+-- callweaverConfiguration
+
+cwConfigUpTime OBJECT-TYPE
+	SYNTAX		TimeTicks
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Time ticks since CallWeaver was started."
+	::= { callweaverConfiguration 1 }
+
+cwConfigReloadTime OBJECT-TYPE
+	SYNTAX		TimeTicks
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Time ticks since CallWeaver was last reloaded."
+	::= { callweaverConfiguration 2 }
+
+cwConfigPid OBJECT-TYPE
+	SYNTAX		Integer32
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"The process id of the running CallWeaver process."
+	::= { callweaverConfiguration 3 }
+
+cwConfigSocket OBJECT-TYPE
+	SYNTAX		DisplayString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"The control socket for giving CallWeaver commands."
+	::= { callweaverConfiguration 4 }
+
+-- callweaverModules
+
+cwNumModules OBJECT-TYPE
+	SYNTAX		Integer32
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Number of modules currently loaded into CallWeaver."
+	::= { callweaverModules 1 }
+
+-- callweaverIndications
+
+cwNumIndications OBJECT-TYPE
+	SYNTAX		Integer32
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Number of indications currently defined in CallWeaver."
+	::= { callweaverIndications 1 }
+
+cwCurrentIndication OBJECT-TYPE
+	SYNTAX		DisplayString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Default indication zone to use."
+	::= { callweaverIndications 2 }
+
+cwIndicationsTable OBJECT-TYPE
+	SYNTAX		SEQUENCE OF CwIndicationsEntry
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+		"Table with all the indication zones currently know to
+		the running CallWeaver instance."
+	::= { callweaverIndications 3 }
+
+cwIndicationsEntry OBJECT-TYPE
+	SYNTAX		CwIndicationsEntry
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+		"Information about a single indication zone."
+	INDEX		{ cwIndIndex }
+	::= { cwIndicationsTable 1 }
+
+CwIndicationsEntry ::= SEQUENCE {
+	cwIndIndex		Integer32,
+	cwIndCountry		DisplayString,
+	cwIndAlias		DisplayString,
+	cwIndDescription	DisplayString
+}
+
+cwIndIndex OBJECT-TYPE
+	SYNTAX		Integer32
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Numerical index into the table of indication zones."
+	::= { cwIndicationsEntry 1 }
+
+cwIndCountry OBJECT-TYPE
+	SYNTAX		DisplayString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Country for which the indication zone is valid,
+		typically this is the ISO 2-letter code of the country."
+	::= { cwIndicationsEntry 2 }
+
+cwIndAlias OBJECT-TYPE
+	SYNTAX		DisplayString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		""
+	::= { cwIndicationsEntry 3 }
+
+cwIndDescription OBJECT-TYPE
+	SYNTAX		DisplayString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Description of the indication zone, usually the full
+		name of the country it is valid for."
+	::= { cwIndicationsEntry 4 }
+
+-- callweaverChannels
+
+cwNumChannels OBJECT-TYPE
+	SYNTAX		Integer32
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Current number of active channels."
+	::= { callweaverChannels 1 }
+
+cwChanTable OBJECT-TYPE
+	SYNTAX		SEQUENCE OF CwChanEntry
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+		"Table with details of the currently active channels
+		in the CallWeaver instance."
+	::= { callweaverChannels 2 }
+
+cwChanEntry OBJECT-TYPE
+	SYNTAX		CwChanEntry
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+		"Details of a single channel."
+	INDEX		{ cwChanIndex }
+	::= { cwChanTable 1 }
+
+CwChanEntry ::= SEQUENCE {
+	cwChanIndex		Integer32,
+	cwChanName		DisplayString,
+	cwChanLanguage		DisplayString,
+	cwChanType		DisplayString,
+	cwChanMusicClass	DisplayString,
+	cwChanBridge		DisplayString,
+	cwChanMasq		DisplayString,
+	cwChanMasqr		DisplayString,
+	cwChanWhenHangup	TimeTicks,
+	cwChanApp		DisplayString,
+	cwChanData		DisplayString,
+	cwChanContext		DisplayString,
+	cwChanMacroContext	DisplayString,
+	cwChanMacroExten	DisplayString,
+	cwChanMacroPri		Integer32,
+	cwChanExten		DisplayString,
+	cwChanPri		Integer32,
+	cwChanAccountCode	DisplayString,
+	cwChanForwardTo		DisplayString,
+	cwChanUniqueId		DisplayString,
+	cwChanCallGroup		Unsigned32,
+	cwChanPickupGroup	Unsigned32,
+	cwChanState		INTEGER,
+	cwChanMuted		TruthValue,
+	cwChanRings		Integer32,
+	cwChanCidDNID		DisplayString,
+	cwChanCidNum		DisplayString,
+	cwChanCidName		DisplayString,
+	cwChanCidANI		DisplayString,
+	cwChanCidRDNIS		DisplayString,
+	cwChanCidPresentation	DisplayString,
+	cwChanCidANI2		Integer32,
+	cwChanCidTON		Integer32,
+	cwChanCidTNS		Integer32,
+	cwChanAMAFlags		INTEGER,
+	cwChanADSI		INTEGER,
+	cwChanToneZone		DisplayString,
+	cwChanHangupCause	INTEGER,
+	cwChanVariables		DisplayString,
+	cwChanFlags		BITS,
+	cwChanTransferCap	INTEGER
+}
+
+cwChanIndex OBJECT-TYPE
+	SYNTAX		Integer32
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Index into the channel table."
+	::= { cwChanEntry 1 }
+
+cwChanName OBJECT-TYPE
+	SYNTAX		DisplayString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Name of the currentl channel."
+	::= { cwChanEntry 2 }
+
+cwChanLanguage OBJECT-TYPE
+	SYNTAX		DisplayString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Which language the current channel is configured to
+		use -- used mainly for prompts."
+	::= { cwChanEntry 3 }
+
+cwChanType OBJECT-TYPE
+	SYNTAX		DisplayString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Underlying technology for the current channel."
+	::= { cwChanEntry 4 }
+
+cwChanMusicClass OBJECT-TYPE
+	SYNTAX		DisplayString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Music class to be used for Music on Hold for this
+		channel."
+	::= { cwChanEntry 5 }
+
+cwChanBridge OBJECT-TYPE
+	SYNTAX		DisplayString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Which channel this channel is currently bridged (in a
+		conversation) with."
+	::= { cwChanEntry 6 }
+
+cwChanMasq OBJECT-TYPE
+	SYNTAX		DisplayString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Channel masquerading for us."
+	::= { cwChanEntry 7 }
+
+cwChanMasqr OBJECT-TYPE
+	SYNTAX		DisplayString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Channel we are masquerading for."
+	::= { cwChanEntry 8 }
+
+cwChanWhenHangup OBJECT-TYPE
+	SYNTAX		TimeTicks
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"How long until this channel will be hung up."
+	::= { cwChanEntry 9 }
+
+cwChanApp OBJECT-TYPE
+	SYNTAX		DisplayString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Current application for the channel."
+	::= { cwChanEntry 10 }
+
+cwChanData OBJECT-TYPE
+	SYNTAX		DisplayString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Arguments passed to the current application."
+	::= { cwChanEntry 11 }
+
+cwChanContext OBJECT-TYPE
+	SYNTAX		DisplayString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Current extension context."
+	::= { cwChanEntry 12 }
+
+cwChanMacroContext OBJECT-TYPE
+	SYNTAX		DisplayString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Current macro context."
+	::= { cwChanEntry 13 }
+
+cwChanMacroExten OBJECT-TYPE
+	SYNTAX		DisplayString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Current macro extension."
+	::= { cwChanEntry 14 }
+
+cwChanMacroPri OBJECT-TYPE
+	SYNTAX		Integer32
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Current macro priority."
+	::= { cwChanEntry 15 }
+
+cwChanExten OBJECT-TYPE
+	SYNTAX		DisplayString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Current extension."
+	::= { cwChanEntry 16 }
+
+cwChanPri OBJECT-TYPE
+	SYNTAX		Integer32
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Current priority."
+	::= { cwChanEntry 17 }
+
+cwChanAccountCode OBJECT-TYPE
+	SYNTAX		DisplayString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Account Code for billing."
+	::= { cwChanEntry 18 }
+
+cwChanForwardTo OBJECT-TYPE
+	SYNTAX		DisplayString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Where to forward to if asked to dial on this
+		interface."
+	::= { cwChanEntry 19 }
+
+cwChanUniqueId OBJECT-TYPE
+	SYNTAX		DisplayString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Unique Channel Identifier."
+	::= { cwChanEntry 20 }
+
+cwChanCallGroup OBJECT-TYPE
+	SYNTAX		Unsigned32
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Call Group."
+	::= { cwChanEntry 21 }
+
+cwChanPickupGroup OBJECT-TYPE
+	SYNTAX		Unsigned32
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Pickup Group."
+	::= { cwChanEntry 22 }
+
+cwChanState OBJECT-TYPE
+	SYNTAX		INTEGER {
+		stateDown(0),
+		stateReserved(1),
+		stateOffHook(2),
+		stateDialing(3),
+		stateRing(4),
+		stateRinging(5),
+		stateUp(6),
+		stateBusy(7),
+		stateDialingOffHook(8),
+		statePreRing(9)
+	}
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Channel state."
+	::= { cwChanEntry 23 }
+
+cwChanMuted OBJECT-TYPE
+	SYNTAX		TruthValue
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Transmission of voice data has been muted."
+	::= { cwChanEntry 24 }
+
+cwChanRings OBJECT-TYPE
+	SYNTAX		Integer32
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Number of rings so far."
+	::= { cwChanEntry 25 }
+
+cwChanCidDNID OBJECT-TYPE
+	SYNTAX		DisplayString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Dialled Number ID."
+	::= { cwChanEntry 26 }
+
+cwChanCidNum OBJECT-TYPE
+	SYNTAX		DisplayString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Caller Number."
+	::= { cwChanEntry 27 }
+
+cwChanCidName OBJECT-TYPE
+	SYNTAX		DisplayString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Caller Name."
+	::= { cwChanEntry 28 }
+
+cwCanCidANI OBJECT-TYPE
+	SYNTAX		DisplayString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"ANI"
+	::= { cwChanEntry 29 }
+
+cwChanCidRDNIS OBJECT-TYPE
+	SYNTAX		DisplayString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Redirected Dialled Number Service."
+	::= { cwChanEntry 30 }
+
+cwChanCidPresentation OBJECT-TYPE
+	SYNTAX		DisplayString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Number Presentation/Screening."
+	::= { cwChanEntry 31 }
+
+cwChanCidANI2 OBJECT-TYPE
+	SYNTAX		Integer32
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"ANI 2 (info digit)."
+	::= { cwChanEntry 32 }
+
+cwChanCidTON OBJECT-TYPE
+	SYNTAX		Integer32
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Type of Number."
+	::= { cwChanEntry 33 }
+
+cwChanCidTNS OBJECT-TYPE
+	SYNTAX		Integer32
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Transit Network Select."
+	::= { cwChanEntry 34 }
+
+cwChanAMAFlags OBJECT-TYPE
+	SYNTAX		INTEGER {
+		Default(0),
+		Omit(1),
+		Billing(2),
+		Documentation(3)
+	}
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"AMA Flags."
+	::= { cwChanEntry 35 }
+
+cwChanADSI OBJECT-TYPE
+	SYNTAX		INTEGER {
+		Unknown(0),
+		Available(1),
+		Unavailable(2),
+		OffHookOnly(3)
+	}
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Whether or not ADSI is detected on CPE."
+	::= { cwChanEntry 36 }
+
+cwChanToneZone OBJECT-TYPE
+	SYNTAX		DisplayString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Indication zone to use for channel."
+	::= { cwChanEntry 37 }
+
+cwChanHangupCause OBJECT-TYPE
+	SYNTAX		INTEGER {
+		NotDefined(0),
+		Unregistered(3),
+		Normal(16),
+		Busy(17),
+		NoAnswer(19),
+		Congestion(34),
+		Failure(38),
+		NoSuchDriver(66)
+	}
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Why is the channel hung up."
+	::= { cwChanEntry 38 }
+
+cwChanVariables OBJECT-TYPE
+	SYNTAX		DisplayString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Channel Variables defined for this channel."
+	::= { cwChanEntry 39 }
+
+cwChanFlags OBJECT-TYPE
+	SYNTAX		BITS {
+		WantsJitter(0),
+		DeferDTMF(1),
+		WriteInterrupt(2),
+		Blocking(3),
+		Zombie(4),
+		Exception(5),
+		MusicOnHold(6),
+		Spying(7),
+		NativeBridge(8),
+		AutoIncrementingLoop(9)
+	}
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Flags set on this channel."
+	::= { cwChanEntry 40 }
+
+cwChanTransferCap OBJECT-TYPE
+	SYNTAX		INTEGER {
+		Speech(0),
+		Digital(8),
+		RestrictedDigital(9),
+		Audio3k(16),
+		DigitalWithTones(17),
+		Video(24)
+	}
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Transfer Capabilities for this channel."
+	::= { cwChanEntry 41 }
+
+cwNumChanTypes OBJECT-TYPE
+	SYNTAX		Integer32
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Number of channel types (technologies) supported."
+	::= { callweaverChannels 3 }
+
+cwChanTypeTable OBJECT-TYPE
+	SYNTAX		SEQUENCE OF CwChanTypeEntry
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+		"Table with details of the supported channel types."
+	::= { callweaverChannels 4 }
+
+cwChanTypeEntry OBJECT-TYPE
+	SYNTAX		CwChanTypeEntry
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+		"Information about a technology we support, including
+		how many channels are currently using this technology."
+	INDEX		{ cwChanTypeIndex }
+	::= { cwChanTypeTable 1 }
+
+CwChanTypeEntry ::= SEQUENCE {
+	cwChanTypeIndex		Integer32,
+	cwChanTypeName		DisplayString,
+	cwChanTypeDesc		DisplayString,
+	cwChanTypeDeviceState	Integer32,
+	cwChanTypeIndications	Integer32,
+	cwChanTypeTransfer	Integer32,
+	cwChanTypeChannels	Gauge32
+}
+
+cwChanTypeIndex OBJECT-TYPE
+	SYNTAX		Integer32
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Index into the table of channel types."
+	::= { cwChanTypeEntry 1 }
+
+cwChanTypeName OBJECT-TYPE
+	SYNTAX		DisplayString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Unique name of the technology we are describing."
+	::= { cwChanTypeEntry 2 }
+
+cwChanTypeDesc OBJECT-TYPE
+	SYNTAX		DisplayString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Description of the channel type (technology)."
+	::= { cwChanTypeEntry 3 }
+
+cwChanTypeDeviceState OBJECT-TYPE
+	SYNTAX		TruthValue
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Whether the current technology can hold device states."
+	::= { cwChanTypeEntry 4 }
+
+cwChanTypeIndications OBJECT-TYPE
+	SYNTAX		TruthValue
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Whether the current technology supports progress indication."
+	::= { cwChanTypeEntry 5 }
+
+cwChanTypeTransfer OBJECT-TYPE
+	SYNTAX		TruthValue
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Whether the current technology supports transfers, where
+		CallWeaver can get out from inbetween two bridged channels."
+	::= { cwChanTypeEntry 6 }
+
+cwChanTypeChannels OBJECT-TYPE
+	SYNTAX		Gauge32
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"Number of active channels using the current technology."
+	::= { cwChanTypeEntry 7 }
+
+END

@@ -1,0 +1,1796 @@
+# Vietnamese translation for HylaFAX.
+# Copyright © 2009 Free Software Foundation, Inc.
+# This file is distributed under the same license as the hylafax package.
+# Clytie Siddall <clytie@riverland.net.au>, 2008-2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hylafax 6.0.0-beta1\n"
+"Report-Msgid-Bugs-To: http://bugs.hylafax.org\n"
+"POT-Creation-Date: Wed Nov 26 10:33:46 EST 2008\n"
+"PO-Revision-Date: 2009-02-15 15:40+0930\n"
+"Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
+"Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: LocFactoryEditor 1.8\n"
+
+#, c-format
+msgid "Illegal minutes value %u"
+msgstr "Giá trị phút cấm %u"
+
+#. translator: HH:MM represents (each two digits) hour:minutes
+msgid "expecting HH:MM"
+msgstr "mong đợi HH:MM (hai chữ số đại diện số giờ và số phút)"
+
+#, c-format
+msgid "%u:%02u is not an AM value"
+msgstr "%u:%02u không phải là giá trị buổi sáng"
+
+#, c-format
+msgid "%u:%02u is not a PM value"
+msgstr "%u:%02u không phải là giá trị buổi chiều"
+
+#, c-format
+msgid "unrecognized symbolic time \"%s\""
+msgstr "không nhận ra thời gian tượng trưng « %s »"
+
+msgid "Illegal time value; out of range"
+msgstr "Giá trị thời gian cấm: ở ngoại phạm vi"
+
+msgid "expecting \"+\" after time"
+msgstr "đợi « + » đằng sau thời gian"
+
+msgid "Invalid date/time; time must be in the future"
+msgstr "Ngày/Giờ cấm: thời gian phải nằm trong tương lai"
+
+msgid "missing or invalid day of month"
+msgstr "ngày của tháng bị thiếu hoặc không hợp lệ"
+
+msgid "missing year"
+msgstr "thiếu năm"
+
+#, c-format
+msgid "Sorry, cannot handle dates before %u"
+msgstr "Tiếc là không thể xử lý ngày tháng nằm trước %u"
+
+#, c-format
+msgid "Invalid day of month, %s has only %u days"
+msgstr "Ngày của tháng không hợp lệ: %s chỉ có %u ngày"
+
+msgid "expecting number after \"+\""
+msgstr "đợi một số nằm sau « + »"
+
+#, c-format
+msgid "\"+%u\" without unit"
+msgstr "« +%u » không có đơn vị"
+
+#, c-format
+msgid "Unknown increment unit \"%s\""
+msgstr "Đơn vị tăng/giảm dần không rõ « %s »"
+
+msgid "Syntax error, "
+msgstr "Lỗi cú pháp, "
+
+msgid "3.85 line/mm"
+msgstr "3.85 dòng/mm"
+
+msgid "7.7 line/mm"
+msgstr "7.7 dòng/mm"
+
+msgid "15.4 line/mm"
+msgstr "15.4 dòng/mm"
+
+msgid "R16 x 15.4 line/mm"
+msgstr "R16 × 15.4 dòng/mm"
+
+msgid "200 x 100 dpi"
+msgstr "200 × 100 dpi"
+
+msgid "200 x 200 dpi"
+msgstr "200 × 200 dpi"
+
+msgid "200 x 400 dpi"
+msgstr "200 × 400 dpi"
+
+msgid "300 x 300 dpi"
+msgstr "300 x 300 dpi"
+
+msgid "2400 bit/s"
+msgstr "2400 bit/giây"
+
+msgid "4800 bit/s"
+msgstr "4800 bit/giây"
+
+msgid "7200 bit/s"
+msgstr "7200 bit/giây"
+
+msgid "9600 bit/s"
+msgstr "9600 bit/giây"
+
+msgid "12000 bit/s"
+msgstr "12000 bit/giây"
+
+msgid "14400 bit/s"
+msgstr "14400 bit/giây"
+
+msgid "16800 bit/s"
+msgstr "16800 bit/giây"
+
+msgid "19200 bit/s"
+msgstr "19200 bit/giây"
+
+msgid "21600 bit/s"
+msgstr "21600 bit/giây"
+
+msgid "24000 bit/s"
+msgstr "24000 bit/giây"
+
+msgid "26400 bit/s"
+msgstr "26400 bit/giây"
+
+msgid "28800 bit/s"
+msgstr "28800 bit/giây"
+
+msgid "31200 bit/s"
+msgstr "31200 bit/giây"
+
+msgid "33600 bit/s"
+msgstr "33600 bit/giây"
+
+msgid "0 bit/s"
+msgstr "0 bit/giây"
+
+msgid "1-D MH"
+msgstr "1-D MH"
+
+msgid "2-D MR"
+msgstr "2-D MR"
+
+msgid "2-D Uncompressed Mode"
+msgstr "2-D Chế độ chưa nén"
+
+msgid "2-D MMR"
+msgstr "2-D MMR"
+
+msgid "JBIG"
+msgstr "JBIG"
+
+msgid "JPEG Greyscale"
+msgstr "JPEG mức xám"
+
+msgid "JPEG Full-Color"
+msgstr "JPEG màu đầy đủ"
+
+msgid "MH"
+msgstr "MH"
+
+msgid ", MR"
+msgstr ", MR"
+
+msgid ", MMR"
+msgstr ", MMR"
+
+msgid ", JBIG"
+msgstr ", JBIG"
+
+msgid ", JPEG Full-Color"
+msgstr ", JPEG màu đầy đủ"
+
+msgid ", JPEG Greyscale"
+msgstr ", JPEG mức xám"
+
+msgid "A4 page width (215 mm)"
+msgstr "Bề rộng giấy A4 (215 mm)"
+
+msgid "B4 page width (255 mm)"
+msgstr "Bề rộng giấy B4 (255 mm)"
+
+msgid "A3 page width (303 mm)"
+msgstr "Bề rộng giấy A3 (303 mm)"
+
+msgid "page width 151 mm"
+msgstr "bề rộng giấy 151 mm"
+
+msgid "page width 107 mm"
+msgstr "bề rộng giấy 107 mm"
+
+msgid "undefined page width (wd=5)"
+msgstr "không rõ bề rộng giấy (wd=5)"
+
+msgid "undefined page width (wd=6)"
+msgstr "không rõ bề rộng giấy (wd=6)"
+
+msgid "undefined page width (wd=7)"
+msgstr "không rõ bề rộng giấy (wd=7)"
+
+msgid "A4 page length (297 mm)"
+msgstr "Bề dài giấy A4 (297 mm)"
+
+msgid "B4 page length (364 mm)"
+msgstr "Bề dài giấy B4 (364 mm)"
+
+msgid "unlimited page length"
+msgstr "bề dài giấy vô hạn"
+
+msgid "invalid page length (ln=3)"
+msgstr "bề dài giấy không rõ (ln=3)"
+
+msgid "0 ms/scanline"
+msgstr "0 mili-giây/dòng quét"
+
+msgid "5 ms/scanline"
+msgstr "5 mili-giây/dòng quét"
+
+msgid "10 ms, 5 ms/scanline"
+msgstr "10 mili-giây, 5 mili-giây/dòng quét"
+
+msgid "10 ms/scanline"
+msgstr "10 mili-giây/dòng quét"
+
+msgid "20 ms, 10 ms/scanline"
+msgstr "20 mili-giây, 10 mili-giây/dòng quét"
+
+msgid "20 ms/scanline"
+msgstr "20 mili-giây/dòng quét"
+
+msgid "40 ms, 20 ms/scanline"
+msgstr "40 mili-giây, 20 mili-giây/dòng quét"
+
+msgid "40 ms/scanline"
+msgstr "40 mili-giây/dòng quét"
+
+msgid "no ECM"
+msgstr "không có ECM"
+
+msgid "T.30 Annex A, 64-byte ECM"
+msgstr "T.30 Annex A, 64-byte ECM"
+
+msgid "T.30 Annex A, 256-byte ECM"
+msgstr "T.30 Annex A, 256-byte ECM"
+
+msgid "T.30 Annex C, half duplex ECM"
+msgstr "T.30 Annex C, bán song công ECM"
+
+msgid "T.30 Annex C, full duplex ECM"
+msgstr "T.30 Annex C, hai chiều đây đủ ECM"
+
+msgid "undefined ECM"
+msgstr "chưa xác định ECM"
+
+#, c-format
+msgid "Cannot open file \"%s\" for reading"
+msgstr "Không thể mở tập tin « %s » để đọc"
+
+#. translator: Screen output about a variable %s being defined to "%s"
+#, c-format
+msgid "Define %s = \"%s\""
+msgstr "Xác định %s = \"%s\""
+
+#. translator: Screen output about undefining variable %s
+#, c-format
+msgid "Undefine %s"
+msgstr "Hủy xác định %s"
+
+msgid "Syntax error, expecting identifier"
+msgstr "Gặp lỗi cú pháp; đợi bộ nhận diện"
+
+msgid "Missing '[' while parsing rule set"
+msgstr "Thiếu dấu ngoặc vu mở « [ » khi phân tích tập hợp quy tắc"
+
+#, c-format
+msgid "Missing '=' or ':=' after \"%s\""
+msgstr "Thiếu « = » hoặc « := » đằng sau « %s »"
+
+#. translator: "CanonicalNumber" is the name of a rule and must not be translated.
+msgid "Warning, no \"CanonicalNumber\" rules."
+msgstr "Cảnh báo : không có quy tắc « CanonicalNumber » (số đúng tiêu chuẩn)"
+
+#. translator: "DialString" is the name of a rule and must not be translated.
+msgid "Warning, no \"DialString\" rules."
+msgstr "Cảnh báo : không có quy tắc « DialString » (chuỗi quay số)"
+
+msgid "String with unmatched '\"'"
+msgstr "Chuỗi có dấu nháy kép riêng lẻ"
+
+msgid "Bad '\\' escape sequence"
+msgstr "Dãy thoát « \\ » sai"
+
+msgid "Missing '}' for variable reference"
+msgstr "Thiếu dấu ngoặc móc đóng « } » đối với tham chiếu biến"
+
+msgid "Missing ']' while parsing rule set"
+msgstr "Thiếu dấu ngoặc vu đóng « ] » khi phân tích tập hợp quy tắc"
+
+msgid "Rule pattern without '='"
+msgstr "Mẫu quy tắc không có dấu bằng « = »"
+
+#, c-format
+msgid "Apply %s rules to \"%s\""
+msgstr "Áp dụng các quy tắc %s cho « %s »"
+
+#, c-format
+msgid "--> match rule \"%s\", result now \"%s\""
+msgstr "--> khớp với quy tắc « %s », kết quả hiện thời là « %s »"
+
+#, c-format
+msgid "--> return result \"%s\""
+msgstr "--> trả về kết quả « %s »"
+
+#. translator: "line" as in the line number %u of filename %s.
+#, c-format
+msgid "%s: line %u: "
+msgstr "%s: dòng %u:"
+
+msgid "Warning, "
+msgstr "Cảnh báo : "
+
+# File: libhylafax/FaxClient.c++, line: 163
+#, c-format
+msgid "Couldn't parse IPv6 ip address string: \"%s\""
+msgstr "Không thể phân tích cú pháp của chuỗi địa chỉ IP loại IPv6: « %s »"
+
+#, c-format
+msgid "Can not locate your password entry (uid %lu): %s"
+msgstr "Không tìm thấy mục nhập mật khẩu của bạn (UID %lu): %s"
+
+msgid "Bad (null) user name; your password file entry probably has bogus GECOS field information."
+msgstr "Tên người dùng sai (vô giá trị); mục nhập tập tin mật khẩu của bạn rất có thể chứa thông tin GECOS giả"
+
+msgid "Malformed (null) username"
+msgstr "Tên người dùng dạng sai (vô giá trị)"
+
+msgid "Login failed: "
+msgstr "Lỗi đăng nhập: "
+
+msgid "Admin failed: "
+msgstr "Lỗi quản trị: "
+
+#, c-format
+msgid "Bad %s parameter value %u."
+msgstr "Giá trị tham số %s sai %u."
+
+#, c-format
+msgid "Bad time zone parameter value %u."
+msgstr "Giá trị tham số múi giờ sai %u."
+
+msgid "Unable to initialize data connection to server"
+msgstr "Không thể khởi tạo kết nối dữ liệu tới máy phục vụ"
+
+msgid "Unable to open data connection to server"
+msgstr "Không thể mở kết nối dữ liệu tới máy phục vụ"
+
+msgid "Unable to abort data connection to server"
+msgstr "Không thể hủy bỏ kết nối dữ liệu tới máy phục vụ"
+
+msgid "Service not available, remote server closed connection"
+msgstr "Dịch vụ hiện thời không sẵn sàng, máy phục vụ từ xa đã đóng kết nối"
+
+msgid "Unexpected server response: "
+msgstr "Đáp ứng máy phục vụ bất thường: "
+
+msgid "Protocol botch"
+msgstr "Giao thức bị làm vụng"
+
+msgid "No control connection for command"
+msgstr "Không có kết nối điều khiển cho câu lệnh"
+
+#, c-format
+msgid ": No \"%s\" in %s response: %s"
+msgstr ": Không có « %s » trong đáp ứng %s: %s"
+
+#, c-format
+msgid ": Null %s in %s response: %s"
+msgstr ": Có %s vô giá trị trong đáp ứng %s: %s"
+
+#, c-format
+msgid "Unable to open script file \"%s\"."
+msgstr "Không thể mở tập tin văn lệnh « %s »."
+
+#, c-format
+msgid "%s: Read error: %s"
+msgstr "%s: Lỗi đọc: %s"
+
+#, c-format
+msgid "%s: line %u: %s"
+msgstr "%s: dòng %u: %s"
+
+msgid " (server closed connection)"
+msgstr " (máy phục vụ đã đóng kết nối)"
+
+#, c-format
+msgid " (server write error: %s)."
+msgstr " (lỗi ghi máy phục vụ : %s)"
+
+#, c-format
+msgid "SEND data, %lu bytes"
+msgstr "GỬI dữ liệu, %lu byte"
+
+#, c-format
+msgid " (data read: %s)."
+msgstr " (dữ liệu đã đọc: %s)."
+
+#, c-format
+msgid "SEND compressed data, %lu bytes"
+msgstr "GỬI dữ liệu đã nén, %lu byte"
+
+#, c-format
+msgid " (data read: %s)"
+msgstr " (dữ liệu đã đọc: %s)"
+
+#, c-format
+msgid "zlib compressor error: %s"
+msgstr "Lỗi nén zlib: %s"
+
+#, c-format
+msgid "SEND %lu bytes transmitted (%.1fx compression)"
+msgstr "GỬI %lu byte được truyền (nén %.1fx)"
+
+#, c-format
+msgid "Can not initialize compression library: %s"
+msgstr "Không thể khởi tạo thư viện nén: %s"
+
+#, c-format
+msgid "Data Connection: %s"
+msgstr "Kết nối Dữ liệu : %s"
+
+#, c-format
+msgid "Decoding error: %s"
+msgstr "Gặp lỗi mã hoá: %s"
+
+#, c-format
+msgid "Can not initialize decoder: %s"
+msgstr "Không thể khởi tạo bộ giải mã: %s"
+
+#. translator: Column header for Recipient sub-address
+msgid "SUB"
+msgstr "CHỦ_ĐỀ"
+
+#. translator: Column header for Recipient password (of sub-address)
+msgid "PWD"
+msgstr "MẬT_KHẨU"
+
+#. translator: Column header for Recipient company name
+msgid "Company"
+msgstr "Công ty"
+
+#. translator: Column header for (total dials):(maximum dials)
+msgid "Dials"
+msgstr "Quay số"
+
+#. translator: Column header for signalling rate
+msgid "BR"
+msgstr "BR"
+
+#. translator: Column header for job tagline
+msgid "Tagline"
+msgstr "Tôn chỉ"
+
+#. translator: Column header for min-scanline-time
+msgid "ST"
+msgstr "ST"
+
+#. translator: Column header for data format
+msgid "DF"
+msgstr "DF"
+
+#. translator: Column header for user-requested scheduling priority
+msgid "UsrPri"
+msgstr "UsrPri"
+
+#. translator: Column header for user specified job tag
+msgid "JobTag"
+msgstr "Thẻ_công_việc"
+
+#. translator: Column header for ECM (symbol)
+msgid "EC"
+msgstr "EC"
+
+#. translator: Column header for recipient location
+msgid "Location"
+msgstr "Vị trí"
+
+#. translator: Column header for mail address
+msgid "MailAddr"
+msgstr "Địa chỉ thư"
+
+#. translator: Column header for tagline handling (symbol)
+msgid "DT"
+msgstr "DT"
+
+#. translator: Column header for continuation cover page use (symbol)
+msgid "CC"
+msgstr "CC"
+
+#. #-#-#-#-#  messages.pot  #-#-#-#-#
+#. translator: Column header for (number of pages):(total pages)
+#. translator: Column header for number of pages
+msgid "Pages"
+msgstr "Trang"
+
+#. translator: Column header for minimum speed
+msgid "MinSP"
+msgstr "MinSP"
+
+#. translator: Column header for receiver name
+msgid "Receiver"
+msgstr "Ai nhận"
+
+#. #-#-#-#-#  messages.pot  #-#-#-#-#
+#. translator: Column header for sender name
+msgid "Sender"
+msgstr "Ai gửi"
+
+#. translator: Column header for (total tries):(maximum tries)
+msgid "Tries"
+msgstr "Lần thử"
+
+#. translator: Column header for minimum white space before chopping
+msgid "ChopThreshold"
+msgstr "Ngưỡng xén"
+
+#. translator: Column header for operation to do when job completes
+msgid "DoneOp"
+msgstr "DoneOp"
+
+#. translator: Column header for communication ID
+msgid "CommID"
+msgstr "CommID"
+
+#. translator: Column header for job type
+msgid "JobType"
+msgstr "Kiểu công việc"
+
+#. translator: Column header for Date & Time
+msgid "Date       Time"
+msgstr "Ngày       Giờ"
+
+#. translator: Column header for seconds since the UNIX epoch
+msgid "UNIX Time"
+msgstr "Giờ UNIX"
+
+#. translator: Column header for job state (symbol)
+msgid "State"
+msgstr "Tình trạng"
+
+#. translator: Column header for number of tries
+msgid "NTries"
+msgstr "Số lần thử"
+
+#. translator: Column header for identity of machine that submitted job
+msgid "Client"
+msgstr "Trình khách"
+
+#. translator: Column header for total dials
+msgid "TotDials"
+msgstr "Tổng số lần quay số"
+
+#. translator: Column header for recipient fax number
+#. translator: Column header for fax phone number
+msgid "Number"
+msgstr "Số"
+
+#. translator: Column header for number of dials
+msgid "NDials"
+msgstr "Số lần quay số"
+
+#. translator: Column header for group identifier
+#. translator: Column header for file GID
+msgid "GID"
+msgstr "GID"
+
+#. translator: Column header for page chopping (symbol)
+msgid "Chop"
+msgstr "Xén"
+
+#. translator: Column header for current scheduling priority
+msgid "Priority"
+msgstr "Ưu tiên"
+
+#. translator: Column header for job identifier
+msgid "JID"
+msgstr "JID"
+
+#. translator: Column header for time to kill job
+msgid "LastTime"
+msgstr "Giờ cuối"
+
+#. translator: Column header for page length
+msgid "PageLength"
+msgstr "Bề dài trang"
+
+#. translator: Column header for modem group
+#. translator: Column header for canonical modem name
+msgid "Modem"
+msgstr "Bộ điều giải"
+
+#. translator: Column header for email notification (symbol)
+msgid "Notify"
+msgstr "Thông báo"
+
+#. translator: Column header for owner name
+#. translator: Column header for job owner
+#. translator: Column header for file owner
+msgid "Owner"
+msgstr "Sở hữu"
+
+#. translator: Column header for retry time
+msgid "RetryTime"
+msgstr "Thời gian thử lại"
+
+#. translator: Column header for fax image vertical resolution
+#. translator: Column header for fax image resolution
+msgid "Resolution"
+msgstr "Độ phân giải"
+
+#. translator: Column header for request status indicator
+#. translator: Column header for status information
+msgid "Status"
+msgstr "Trạng thái"
+
+#. translator: Column header for total tries
+msgid "TotTries"
+msgstr "Tổng số lần thử"
+
+#. translator: Column header for maximum tries
+msgid "MaxTries"
+msgstr "Số tối đa lần thử"
+
+#. translator: Column header for dial string
+msgid "DialString"
+msgstr "Chuỗi quay số"
+
+#. translator: Column header for page width
+msgid "PageWidth"
+msgstr "Bề rộng trang"
+
+#. translator: Column header for maximum dials
+msgid "MaxDials"
+msgstr "Số tối đa lần quay số"
+
+#. translator: Column header for total of pages
+msgid "TotPages"
+msgstr "Tổng số trang"
+
+#. translator: Column header for time to send
+msgid "TTS"
+msgstr "TTS"
+
+#. translator: Column header for extended vertical resolution use (symbol)
+msgid "UseXVres"
+msgstr "UseXVres"
+
+#. translator: Column header for error description
+msgid "Error"
+msgstr "Lỗi"
+
+#. translator: Column header for file name
+msgid "Filename"
+msgstr "Tên tập tin"
+
+#. translator: Column header for time spent receiving
+msgid "Time"
+msgstr "Giờ"
+
+#. translator: Column header for callerid name
+msgid "CIDName"
+msgstr "Tên CID"
+
+#. translator: Column header for caller id number
+msgid "CIDNumber"
+msgstr "Số CID"
+
+#. translator: Column header for page length
+msgid "Length"
+msgstr "Bề dài"
+
+#. translator: Column header for fax protection mode
+#. translator: Column header for file protection flags
+msgid "Protect"
+msgstr "Bảo vệ"
+
+#. translator: Column header for file size
+msgid "Size"
+msgstr "Kích cỡ"
+
+#. translator: Column header for sender TSI (Transmitting Station Information)
+msgid "Sender/TSI"
+msgstr "Ai gửi/TSI"
+
+#. translator: Column header for time received
+msgid "Recvd@"
+msgstr "Nhận vào"
+
+#. translator: Column header for page width
+msgid "Width"
+msgstr "Bề rộng"
+
+#. translator: Column header for machine hostname
+msgid "Host"
+msgstr "Máy"
+
+#. translator: Column header for local identifier
+msgid "LocalID"
+msgstr "ID cục bộ"
+
+#. translator: Column header for maximum received pages
+msgid "MaxRecv"
+msgstr "Nhận tối đa"
+
+#. translator: Column header for server:session tracing level
+msgid "Tracing"
+msgstr "Theo dõi"
+
+#. translator: Column header for speaker volume (symbol)
+msgid "Speaker"
+msgstr "Loa"
+
+#. translator: Column header for file last access time
+msgid "LastAcc"
+msgstr "Vào cuối"
+
+#. translator: Column header for file creation time
+msgid "Created"
+msgstr "Tạo"
+
+#. translator: Column header for ID of device containing file
+msgid "Device"
+msgstr "Thiết bị"
+
+#. translator: Column header for file link count
+msgid "Links"
+msgstr "Liên kết"
+
+#. translator: Column header for file last modification time
+msgid "LastMod"
+msgstr "Sửa cuối"
+
+#. translator: Column header for ID of device if special file
+msgid "RootDev"
+msgstr "RootDev"
+
+#. translator: Column header for file UID
+msgid "UID"
+msgstr "UID"
+
+#, c-format
+msgid "Read config file %s"
+msgstr "Đọc tập tin cấu hình %s"
+
+#, c-format
+msgid "No passwd file entry for uid %u, cannot expand ~ in \"%s\""
+msgstr "Không có mục nhập tập tin mật khẩu cho UID %u, không thể mở rộng dấu ngã « ~ » trong « %s »"
+
+#, c-format
+msgid "Syntax error at line %u, missing ':' in \"%s\""
+msgstr "Gặp lỗi cú pháp ở dòng %u : thiếu dấu hai chấm « : » trong « %s »"
+
+#, c-format
+msgid "Syntax error at line %u, missing quote mark in \"%s\""
+msgstr "Gặp lỗi cú pháp ở dòng %u : thiếu dấu nháy trong « %s »"
+
+#, c-format
+msgid "%s = %s (line %u)"
+msgstr "%s = %s (dòng %u)"
+
+#, c-format
+msgid "Unknown configuration parameter \"%s\" ignored at line %u"
+msgstr "Tham số cấu hình không rõ « %s » bị bỏ qua ở dòng %u"
+
+#, c-format
+msgid "%s: line %d: Unmatched \"]\".\n"
+msgstr "%s: dòng %d: dấu ngoặc vu đóng « ] » riêng lẻ.\n"
+
+#, c-format
+msgid "%s: line %d: Missing \":\" separator.\n"
+msgstr "%s: dòng %d: thiếu dấu tách « : ».\n"
+
+#, c-format
+msgid "%s: Premature EOF.\n"
+msgstr "%s: Gặp kết thúc tập tin quá sớm.\n"
+
+#, c-format
+msgid "%s: No protocol definition, using default."
+msgstr "%s: Chưa xác định giao thức nên dùng mặc định."
+
+# File: libhylafax/InetTransport.c++, line: 106
+#, c-format
+msgid "getaddrinfo failed with %d: %s"
+msgstr "getaddrinfo bị lỗi với %d: %s"
+
+#, c-format
+msgid "Trying %s [%d] (%s) at port %u..."
+msgstr "Đang thử %s [%d] (%s) trên cổng %u..."
+
+#, c-format
+msgid "Connected to %s."
+msgstr "Đã kết nối tới %s."
+
+#, c-format
+msgid "setsockopt(TOS): %s (ignored)"
+msgstr "setsockopt(TOS): %s (bị bỏ qua)"
+
+#, c-format
+msgid "setsockopt(OOBLINE): %s (ignored)"
+msgstr "setsockopt(OOBLINE): %s (bị bỏ qua)"
+
+#, c-format
+msgid "Can not reach service %s at host \"%s\"."
+msgstr "Không thể tới dịch vụ %s trên máy « %s »."
+
+# File: libhylafax/InetTransport.c++, line: 269
+# File: libhylafax/InetTransport.c++, line: 273
+# File: libhylafax/InetTransport.c++, line: 283
+#, c-format
+msgid "Couldn't parse last response \"%s\""
+msgstr "Không thể phân tích cú pháp của đáp ứng cuối cùng « %s »"
+
+# File: libhylafax/InetTransport.c++, line: 278
+msgid "EPSV not supported, trying PASV since we're AF_INET\n"
+msgstr "EPSV không được hỗ trợ nên thử PASV vì máy này là AF_INET\n"
+
+# File: libhylafax/InetTransport.c++, line: 347
+msgid "EPRT not supported, trying PORT"
+msgstr "EPRT không được hỗ trợ nên thử PORT (cổng)"
+
+msgid "Sorry, no TCP/IP communication support was configured."
+msgstr "Tiếc là chưa cấu hình hỗ trợ khả năng liên lạc qua TCP/IP."
+
+#, c-format
+msgid "%s: Sub class must define method \"%s\".\n"
+msgstr "%s: Hạng phụ phải xác định phương pháp « %s ».\n"
+
+#, c-format
+msgid "Unexpected end of line after \"%s\".\n"
+msgstr "Gặp kết thúc dòng bất thường đằng sau « %s ».\n"
+
+msgid "page size name"
+msgstr "tên kích cỡ trang"
+
+msgid "page size abbreviation"
+msgstr "lời viết tắt kích cỡ trang"
+
+msgid "page width"
+msgstr "bề rộng trang"
+
+msgid "page height"
+msgstr "bề cao trang"
+
+msgid "guaranteed page width"
+msgstr "bề rộng trang đã bảo đảm"
+
+msgid "guaranteed page height"
+msgstr "bề cao trang đã bảo đảm"
+
+msgid "top margin"
+msgstr "lề trên"
+
+#, c-format
+msgid "Warning, no page size database file \"%s\", using builtin default.\n"
+msgstr "Cảnh báo : không có tập tin cơ sở dữ liệu kích cỡ trang « %s » nên dùng mặc định có sẵn.\n"
+
+msgid "Malformed (null) sender name or mail address"
+msgstr "Tên người gửi hoặc địa chỉ thư có dạng sai (vô giá trị)"
+
+#, c-format
+msgid "Can not locate your password entry (uid %lu): %s."
+msgstr "Không tìm thấy mục nhập mật khẩu của bạn (UID %lu): %s."
+
+#, c-format
+msgid "Invalid hold time \"%s\": %s"
+msgstr "Khoảng thời gian giữ lại không hợp lệ « %s »: %s"
+
+msgid ": Unknown host"
+msgstr ": Máy lạ"
+
+msgid "Can not create socket to connect to server."
+msgstr "Không thể tạo ổ cắm để kết nối tới máy phục vụ."
+
+#, c-format
+msgid "No \"%s\" service definition, using default %u/%s."
+msgstr "Chưa xác định dịch vụ « %s » nên dùng mặc định %u/%s."
+
+#, c-format
+msgid "Trying %s (%s) at port %u..."
+msgstr "Đang thử %s (%s) ở cổng %u..."
+
+#, c-format
+msgid "Can not reach server at host \"%s\", port %u."
+msgstr "Không thể tới máy phục vụ ở máy « %s », cổng %u."
+
+msgid "Not logged in to server"
+msgstr "Chưa đăng nhập vào máy phục vụ"
+
+#, c-format
+msgid "destination pin %s: request id is %s for host %s\n"
+msgstr "PIN đích đến %s: mã số yêu cầu là %s đối với máy %s\n"
+
+#, c-format
+msgid "SEND message data, %lu bytes"
+msgstr "GỬI dữ liệu thư, %lu byte"
+
+#, c-format
+msgid "Unable to open message file \"%s\"."
+msgstr "Không thể mở tập tin thư « %s »."
+
+#, c-format
+msgid "no SITE %s support; ignoring set request."
+msgstr "không hỗ trợ SITE %s nên bỏ qua yêu cầu đặt."
+
+msgid "Unable to setup file typing and conversion rules"
+msgstr "Không thể thiết lập các quy tắc về kiểu tập tin và tiến trình chuyển đổi"
+
+msgid "Unknown page size "
+msgstr "Kích cỡ giấy không rõ"
+
+#, c-format
+msgid "Error creating cover sheet; could not fork subprocess: %s"
+msgstr "Gặp lỗi khi tạo trang bìa; không thể tạo tiến trình con: %s"
+
+#, c-format
+msgid "Error creating cover sheet; command was \"%s\"; exit status %x"
+msgstr "Gặp lỗi khi tạo trang bìa; câu lệnh là « %s »; trạng thái thoát %x"
+
+#, c-format
+msgid "Error creating cover sheet; unable to create pipe to subprocess: %s"
+msgstr "Gặp lỗi khi tạo trang bìa; không thể tạo ống dẫn tới tiến trình con: %s"
+
+#, c-format
+msgid "%s: Can not create temporary file for cover page"
+msgstr "%s: Không thể tạo tập tin tạm thời đối với trang bìa"
+
+msgid "Documents not prepared"
+msgstr "Chưa chuẩn bị tài liệu"
+
+#, c-format
+msgid ": Can not open: %s"
+msgstr ": Không thể mở : %s"
+
+msgid "Document transfer failed: "
+msgstr "Lỗi truyền tài liệu : "
+
+#, c-format
+msgid "request id is %s (group id %s) for host %s (%u file)\n"
+msgid_plural "request id is %s (group id %s) for host %s (%u files)\n"
+msgstr[0] "mã số yêu cầu là %s (GID %s) đối với máy %s (tập tin %u)\n"
+
+#, c-format
+msgid "Error converting document; command was \"%s\""
+msgstr "Lỗi chuyển đổi tài liệu : câu lệnh là « %s »"
+
+#, c-format
+msgid "%s: Can not open file"
+msgstr "%s: Không thể mở tập tin"
+
+#, c-format
+msgid "%s: Can not stat file"
+msgstr "%s: Không thể lấy trạng thái về tập tin"
+
+#, c-format
+msgid "%s: Not a regular file"
+msgstr "%s: Không phải là tập tin chuẩn"
+
+#, c-format
+msgid "%s: Empty file"
+msgstr "%s: Tập tin rỗng"
+
+#, c-format
+msgid "%s: Can not determine file type"
+msgstr "%s: Không thể xác định kiểu tập tin"
+
+#, c-format
+msgid "%s: Can not open: %s"
+msgstr "%s: Không thể mở %s"
+
+#, c-format
+msgid "Unable to open sequence number file %s; %s."
+msgstr "Không thể mở tập tin số thứ tự dãy %s; %s."
+
+#, c-format
+msgid "%s: Invalid sequence number \"%s\", resetting to 1"
+msgstr "%s: số thứ tự dãy không hợp lệ « %s »: đang đặt lại về 1"
+
+#, c-format
+msgid "Unable update sequence number file %s; write failed."
+msgstr "Không thể cập nhật tập tin số thứ tự dãy %s; lỗi ghi."
+
+#, c-format
+msgid "Font %s: %s"
+msgstr "Phông %s: %s"
+
+#, c-format
+msgid "Cannot open temporary file: %s"
+msgstr "Không thể mở tập tin tạm thời: %s"
+
+msgid "point size is unusually large (>18pt)"
+msgstr "kích cỡ điểm rất lớn (>18pt)"
+
+#, c-format
+msgid "Margin values too large for page; lm %lu rm %lu page width %lu"
+msgstr "Giá trị lề quá lớn so với kích cỡ giấy; lề trái %lu lề phải %lu bề rộng giấy %lu"
+
+#, c-format
+msgid "Margin values too large for page; tm %lu bm %lu page height %lu"
+msgstr "Giá trị lề quá lớn so với kích cỡ giấy; lề trên %lu lề dưới %lu bề cao giấy %lu"
+
+#, c-format
+msgid "Close failure on temporary file: %s"
+msgstr "Lỗi đóng tập tin tạm thời: %s"
+
+#, c-format
+msgid "Read error during reverse collation: %s"
+msgstr "Gặp lỗi đọc trong khi đối chiếu ngược: %s"
+
+#, c-format
+msgid "Output write error: %s"
+msgstr "Lỗi ghi kết xuất: %s"
+
+#, c-format
+msgid "%s: Cannot open file: %s"
+msgstr "%s: Không thể mở tập tin: %s"
+
+#, c-format
+msgid "Warning: %s - line too long."
+msgstr "Cảnh báo : %s — dòng quá dài."
+
+#, c-format
+msgid "Warning: %s invalid Fontmap entry - no filename present"
+msgstr "Cảnh báo : mục nhập Fontmap không hợp lệ %s — không có tên tập tin"
+
+#, c-format
+msgid "%s: Can not open font metrics file; using fixed widths"
+msgstr "%s: Không thể mở tập tin đơn vị đo phông nên dùng bề rộng cố định"
+
+#, c-format
+msgid "%s: No glyph metric table located; using fixed widths"
+msgstr "%s: Không tìm thấy bảng hệ đo hình tượng nên dùng bề rộng cố định"
+
+#
+#
+#
+#, c-format
+msgid "%s, line %u: format error"
+msgstr "%s, dòng %u: lỗi định dạng"
+
+#. translator: This shows the rule to be processed (the last two %s) starting at offset %#lx.
+#, c-format
+msgid "rule: %soffset %#lx %s %s"
+msgstr "quy tắc: %soffset %#lx %s %s"
+
+msgid " <any value>"
+msgstr " <bất kỳ giá trị>"
+
+msgid "failed (offset past data)\n"
+msgstr "bị lỗi (bù dữ liệu đã qua)\n"
+
+#, c-format
+msgid "failed (unprintable char %#x)\n"
+msgstr "bị lỗi (ký tự không thể in %#x)\n"
+
+msgid "failed (insufficient data)\n"
+msgstr "bị lỗi (không đủ dữ liệu)\n"
+
+#, c-format
+msgid "success (result %s, rule \"%s\")\n"
+msgstr "đã thành công (kết quả %s, quy tắc « %s »)\n"
+
+msgid "failed (comparison)\n"
+msgstr "bị lỗi (so sánh)\n"
+
+#, c-format
+msgid "%s: Can not open type rules file.\n"
+msgstr "%s: Không thể mở tập tin quy tắc kiểu.\n"
+
+msgid "Missing file offset"
+msgstr "Thiếu bù tập tin"
+
+#, c-format
+msgid "Unknown datatype \"%.*s\""
+msgstr "Không rõ kiểu dữ liệu « %.*s »"
+
+msgid "Missing match value"
+msgstr "Thiếu giá trị khớp"
+
+#, c-format
+msgid "Unknown result \"%.*s\""
+msgstr "Kết quả không rõ « %.*s »"
+
+#, c-format
+msgid "match against (..., %u)\n"
+msgstr "khớp với (..., %u)\n"
+
+msgid "no match\n"
+msgstr "không khớp\n"
+
+#, c-format
+msgid "connect to server at %s"
+msgstr "kết nối tới máy phục vụ ở %s"
+
+#, c-format
+msgid "Can not reach server at Unix domain socket \"%s\"."
+msgstr "Không thể tới máy phục vụ ở ổ cắm miền UNIX « %s »."
+
+msgid "Sorry, no Unix domain communication support was configured."
+msgstr "Tiếc là chưa cấu hình hỗ trợ khả năng liên lạc với miền UNIX."
+
+msgid "No job parameters specified for alteration."
+msgstr "Chưa ghi rõ tham số công việc để thay đổi."
+
+#, c-format
+msgid "Job %s: duplicated as job %s.\n"
+msgstr "Công việc %s: trùng với công việc %s.\n"
+
+#, c-format
+msgid "Job %s: done.\n"
+msgstr "Công việc %s: hoàn tất.\n"
+
+msgid "usage: faxalter [-C] [-h server-host] [-a time] [-d number] [-k time] [-m modem] [-n notify] [-P priority] [-t tries] [-A] [-g] [-p] [-r] [-v] [-DQR] jobID..."
+msgstr "sử dụng: faxalter [-C] [-h máy_phục_vụ] [-a giờ] [-d số] [-k giờ] [-m bộ_điều_giải] [-n thông_báo] [-P ưu_tiên] [-t lần_thử] [-A] [-g] [-p] [-r] [-v] [-DQR] mã_số_công_việc..."
+
+#, c-format
+msgid "Unknown page size \"%s\""
+msgstr "Kích cỡ giấy không rõ « %s »"
+
+#, c-format
+msgid "usage: %s [-t to] [-c comments] [-p #pages] [-l to-location] [-m maxcomments] [-z maxlencomments] [-r regarding] [-v to-voice-number] [-x to-company] [-C template-file] [-D date-format] [-L from-location] [-M from-mail-address] [-N from-fax-number] [-V from-voice-number] [-X from-company] [-s pagesize] -f from -n fax-number"
+msgstr "sử dụng: %s [-t to] [-c ghi_chú] [-p số_trang] [-l tới_địa_chỉ] [-m số_tối_đa_ghi_chú] [-z chiều_dài_tối_đa_ghi_chú] [-r về] [-v tới_số_thoại] [-x tới_công_ty] [-C tập_tin_mẫu] [-D định_dạng_ngày_tháng] [-L từ_địa_chỉ] [-M từ_địa_chỉ_thư] [-N từ_số_điện_thư] [-V từ_số_thoại] [-X từ_công_ty] [-s kích_cỡ_giấy] -f từ -n số_điện_thư"
+
+#, c-format
+msgid "Could not locate prototype cover sheet \"%s\""
+msgstr "Không tìm thấy trang bìa nguyên mẫu « %s »"
+
+msgid "Can not figure out who you are."
+msgstr "Không nhận diện bạn."
+
+msgid "Syntax error parsing MIME Content-Type: "
+msgstr "Gặp lỗi cú pháp khi phân tích Kiểu Nội Dung (Content-Type) MIME: "
+
+#, c-format
+msgid "Internal error, unsupported Content-Transfer-Encoding %u"
+msgstr "Gặp lỗi nội bộ : Bảng mã Truyền Nội dung (Content-Transfer-Encoding) không được hỗ trợ %u"
+
+#, c-format
+msgid "HEADER %s: %s\n"
+msgstr "PHẦN ĐẦU %s: %s\n"
+
+#, c-format
+msgid "+HEADER %s: %s\n"
+msgstr "+PHẦN ĐẦU %s: %s\n"
+
+#, c-format
+msgid "Cannot create temp directory %s"
+msgstr "Không thể tạo thư mục tạm thời %s"
+
+msgid "No Destination/Dialstring specified"
+msgstr "Chưa xác định Đích đến hoặc Chuỗi quay số"
+
+msgid "No From/Sender identity specified"
+msgstr "Chưa xác định người/nhà Từ hoặc Người gửi"
+
+#, c-format
+msgid "faxmail: This is a MIME message\n"
+msgstr "faxmail: Đây là một thư MIME\n"
+
+#, c-format
+msgid "faxmail: This is not a MIME message\n"
+msgstr "faxmail: Đây không phải là một thư MIME\n"
+
+#, c-format
+msgid ""
+"unable to process message:\n"
+"\t%s"
+msgstr ""
+"Không thẻ xử lý thư :\n"
+"\t%s"
+
+msgid "Badly formatted MIME; premature EOF"
+msgstr "MIME dạng sai; gặp kết thúc tập tin quá sớm"
+
+# File: faxmail/faxmail.c++, line: 639
+#, c-format
+msgid "CONVERT: run %s\n"
+msgstr "CONVERT: chạy %s\n"
+
+#, c-format
+msgid "DISCARDED %s (%s/%s) GOES HERE\n"
+msgstr "%s (%s/%s) BỊ HỦY RA ĐÂY\n"
+
+#, c-format
+msgid "DISCARDED %s/%s GOES HERE\n"
+msgstr "%s/%s BỊ HỦY RA ĐÂY\n"
+
+#, c-format
+msgid "DISCARDED: %s (%s/%s)\n"
+msgstr "BỊ HỦY: %s (%s/%s)\n"
+
+#, c-format
+msgid "DISCARDED: %s/%s\n"
+msgstr "BỊ HỦY: %s/%s\n"
+
+#, c-format
+msgid "%s: write error: %s"
+msgstr "%s: lỗi ghi: %s"
+
+#, c-format
+msgid "%s: Can not create temporary file"
+msgstr "%s: Không thể tạo tập tin tạm thời"
+
+#, c-format
+msgid "Couldn't open output file: %s"
+msgstr "Không thể mở tập tin xuất: %s"
+
+#, c-format
+msgid "Error converting %s/%s; could not fork subprocess: %s"
+msgstr "Gặp lỗi khi chuyển đổi %s/%s; không thể tạo tiến trình con: %s"
+
+#, c-format
+msgid "Error converting %s/%s; command was \"%s %s\"; exit status %x"
+msgstr "Gặp lỗi khi chuyển đổi %s/%s; câu lệnh là « %s/%s »; trạng thái thoát %x"
+
+msgid "usage: faxmail [-b boldfont] [-H pageheight] [-i italicfont] [-f textfont] [-p pointsize] [-s pagesize] [-W pagewidth] [-M margins] [-C covertemplate] [-t notify] [-u user] [-12cnNrRTv]"
+msgstr "sử dụng: faxmail [-b phông_đậm] [-H chiều_cao_giấy] [-i phông_nghiêng] [-f phông_văn_bản] [-p kích_cỡ_điểm] [-s kích_cỡ_giấy] [-W chiều_rộng_giấy] [-M lề] [-C mẫu_bìa] [-t thông_báo] [-u ngườI_dùng] [-12cnNrRTv]"
+
+#. translator: File %s has been removed.
+#, c-format
+msgid "%s removed.\n"
+msgstr "%s bị gỡ bỏ\n"
+
+#, c-format
+msgid "Job %s removed.\n"
+msgstr "Công việc %s bị gỡ bỏ.\n"
+
+#, c-format
+msgid "Job %s removed (from doneq).\n"
+msgstr "Công việc %s bị gỡ bỏ khỏi hàng đợi hoàn tất (doneq).\n"
+
+msgid "usage: faxrm [-h server-host] [-adv] id..."
+msgstr "sử dụng: faxrm [-h máy_phục_vụ] [-adv] id..."
+
+msgid "usage: faxstat [-h server-host] [-adfgilrsv]"
+msgstr "sử dụng: faxstat [-h máy_phục_vụ] [-adfgilrsv]"
+
+#, c-format
+msgid "%s: No destination specified.\n"
+msgstr "%s: Chưa ghi rõ đích đến.\n"
+
+#, c-format
+msgid "%s: Unused options after last destination.\n"
+msgstr "%s: Gặp tùy chọn không dùng đằng sau đích đến cuối cùng.\n"
+
+#, c-format
+msgid "can only wait for one job (right now), waiting for job %s."
+msgstr "hiện thời chỉ có thể đợi một công việc: đang đợi công việc %s."
+
+#, c-format
+msgid ""
+"usage: %s [options] [files]\n"
+"(Read the manual page; it's too complicated)"
+msgstr ""
+"sử dụng: %s [tùy_chọn] [tập_tin]\n"
+"Xem trang hướng dẫn (man)."
+
+#, c-format
+msgid "Null destination for \"%s\""
+msgstr "« %s » có đích đến vô giá trị"
+
+msgid "ECM disabled, limiting job to 14400 bps."
+msgstr "ECM bị tắt nên hạn chế công việc thành 14400 baud/giây."
+
+#, c-format
+msgid "%s: no such file"
+msgstr "%s: không có tập tin như vậy"
+
+#, c-format
+msgid "%s: write error"
+msgstr "%s: lỗi ghi"
+
+msgid "No input data; transmission aborted"
+msgstr "Không có dữ liệu nhập vào nên hủy bỏ tiến trình truyền"
+
+#, c-format
+msgid "%s: No pager identification number (PIN) specified.\n"
+msgstr "%s: Chưa xác định số nhận diện máy nhắn tin (PIN).\n"
+
+#, c-format
+msgid ""
+"usage: %s -p PIN [-p PIN ...]\n"
+" [-a time-to-send] [-l service-level] [-s message-subject]\n"
+"     [-h host[:modem]] [-f from]\n"
+"     [-I retry-time] [-t max-tries] [-T max-dials] [-nqvDNR] [msgs ...]"
+msgstr ""
+"sử dụng: %s -p PIN [-p PIN ...]\n"
+" [-a giờ_sẽ_gửi] [-l cấp_dịch_vụ] [-s chủ_đề_thư]\n"
+"     [-h máy[:bộ_điều_giải]] [-f từ]\n"
+"     [-I thời_gian_thử_lại] [-t số_lần_thử_lại_tối_đa] [-T số_lần_quay_số_tối_đa] [-nqvDNR] [thư ...]"
+
+#, c-format
+msgid "usage: %s [-v] [-a area-code] [-c country-code] [-i international-prefix] [-l long-distance-prefix] dialrules"
+msgstr "sử dụng: %s [-v] [-a mã_vùng] [-c mã_quốc_gia] [-i tiền_tố_quốc_tế] [-l tiền_tố_đường_dài] quy_tắc_quay_số"
+
+#, c-format
+msgid "ready> "
+msgstr "sẵn sàng> "
+
+#, c-format
+msgid "%s: Problem parsing rules in %s"
+msgstr "%s: Gặp lỗi khi phân tích quy tắc trong %s"
+
+#, c-format
+msgid "input = \"%s\"\n"
+msgstr "nhập vào = « %s »\n"
+
+#, c-format
+msgid "canonical = \"%s\"\n"
+msgstr "đúng tiêu chuẩn = « %s »\n"
+
+#, c-format
+msgid "dial-string = \"%s\"\n"
+msgstr "chuỗi quay số = « %s »\n"
+
+#, c-format
+msgid "display = \"%s\"\n"
+msgstr "trình bày = « %s »\n"
+
+msgid "usage: faxfetch [-h server-host] [-v] file"
+msgstr "sử dụng: faxfetch [-h máy_phục_vụ] [-v] tập_tin"
+
+#, c-format
+msgid ""
+"usage: %s [-n] [-S fmt] [-s fmt] [-e fmt] [-E fmt] [-D]\n"
+"\n"
+msgstr ""
+"sử dụng: %s [-n] [-S đd] [-s đd] [-e đd] [-E đd] [-D]\n"
+"\n"
+
+#, c-format
+msgid "\t-n\tPrint FAX filename\n"
+msgstr "\t-n\tIn ra tên tập tin FAX\n"
+
+#, c-format
+msgid "\t-C d\tQuoted CSV-style output with <d> as the deliminator\n"
+msgstr "\t-C d\tKết xuất kiểu CSV đã trích dẫn định giới bằng <d>\n"
+
+#, c-format
+msgid "\t-c d\tCSV-style output with <d> as the deliminator\n"
+msgstr "\t-c d\tKết xuất kiểu CSV định giới bằng <d>\n"
+
+#, c-format
+msgid "\t-r\traw format - values outputed with no names\n"
+msgstr "\t-r\tđịnh dạng thô — xuất giá trị không có tên\n"
+
+#, c-format
+msgid "  Raw format options:\n"
+msgstr "  Tùy chọn định dạng thô :\n"
+
+#, c-format
+msgid "\t-S fmt\tUse fmt for the fax start format\n"
+msgstr "\t-S đd\tĐặt đd là định dạng bắt đầu điện thư\n"
+
+#, c-format
+msgid "\t-s fmt\tUse fmt for the field start format\n"
+msgstr "\t-s đd\tĐặt đd là định dạng bắt đầu trường\n"
+
+#, c-format
+msgid "\t-e fmt\tUse fmt for the field end format\n"
+msgstr "\t-e đd\tĐặt đd là định dạng kết thúc trường\n"
+
+#, c-format
+msgid "\t-E fmt\tUse fmt for the fax end format\n"
+msgstr "\t-E đd\tĐặt đd là định dạng kết thúc điện thư\n"
+
+#, c-format
+msgid "Could not open %s; either not TIFF or corrupted.\n"
+msgstr "Không thể mở %s; hoặc không phải là TIFF hoặc bị hỏng.\n"
+
+#, c-format
+msgid "Does not look like a facsimile?\n"
+msgstr "Không hỉnh như một điện thư ?\n"
+
+msgid "<unknown>"
+msgstr "<không rõ>"
+
+msgid "SubAddr"
+msgstr "SubAddr"
+
+msgid "Normal"
+msgstr "Chuẩn"
+
+msgid "Quality"
+msgstr "Chất lượng"
+
+msgid "Fine"
+msgstr "Chính xác"
+
+msgid "Superfine"
+msgstr "Siêu chính xác"
+
+msgid "Hyperfine"
+msgstr "Chính xác quá"
+
+#, c-format
+msgid "%u lines/inch"
+msgstr "%u dòng/insơ"
+
+msgid "Page"
+msgstr "Trang"
+
+#, c-format
+msgid "%u by %u"
+msgstr "%u theo %u"
+
+msgid "Received"
+msgstr "Đã nhận"
+
+msgid "TimeToRecv"
+msgstr "Giờ sẽ nhận"
+
+msgid "SignalRate"
+msgstr "Tỷ lệ tín hiệu"
+
+msgid "DataFormat"
+msgstr "Định dạng dữ liệu"
+
+msgid "ErrCorrect"
+msgstr "Sửa lỗi"
+
+msgid "No"
+msgstr "Không"
+
+msgid "Yes"
+msgstr "Có"
+
+#, c-format
+msgid "CallID%u"
+msgstr "ID gọi %u"
+
+#, c-format
+msgid "write error: %s"
+msgstr "lỗi ghi: %s"
+
+msgid "time values reported in GMT"
+msgstr "các giá trị thời gian được thông báo dạng UTC"
+
+#, c-format
+msgid "usage: %s [-h host] [-g] [-l] [-v] trigger-specification"
+msgstr "sử dụng: %s [-h máy] [-g] [-l] [-v] đặc_tả_bộ_gây_nên"
+
+#, c-format
+msgid "Usage: %s [-1] [-2] [-B] [-c] [-D] [-f fontname] [-F fontdir(s)] [-m N] [-o #] [-p #] [-r] [-U] [-Ml=#,r=#,t=#,b=#] [-V #] files... >out.ps\n"
+msgstr "Sử dụng: %s [-1] [-2] [-B] [-c] [-D] [-f tên_phông] [-F thư_mục_phông(s)] [-m N] [-o #] [-p #] [-r] [-U] [-Ml=#,r=#,t=#,b=#] [-V #] tập_tin... >out.ps\n"
+
+#, c-format
+msgid "Default options: -f Courier -1 -p 11bp -o 0\n"
+msgstr "Tùy chọn mặc định: -f Courier -1 -p 11bp -o 0\n"
+
+#, c-format
+msgid "%s: No font metric information found for \"%s\".\n"
+msgstr "%s: Không tìm thấy thông tin đơn vị đo phông đối với « %s ».\n"
+
+#, c-format
+msgid "Bad margin syntax.\n"
+msgstr "Cú pháp lề sai.\n"
+
+#, c-format
+msgid "Unknown page size %s.\n"
+msgstr "Kích cỡ giấy lạ %s.\n"
+
+#, c-format
+msgid "Unrecognized option \"%c\".\n"
+msgstr "Không rõ tùy chọn « %c ».\n"
+
+#, c-format
+msgid "usage: %s [-r vertical-res] [-l page-length] [-w page-width] [-1] [-2] [-3] input.tif"
+msgstr "sử dụng: %s [-r độ_phân_giải_dọc] [-l bề_dài_trang] [-w bề_rộng_trang] [-1] [-2] [-3] vào.tif"
+
+msgid "Document file is unreadable or does not exist"
+msgstr "Tập tin tài liệu không thể được đọc hoặc không tồn tại"
+
+msgid "Document is not valid TIFF (unspecified format error)"
+msgstr "Tài liệu không phải là TIFF hợp lệ (lỗi định dạng không rõ)"
+
+#, c-format
+msgid "Document is not a bilevel image (bits/sample %u).\n"
+msgstr "Tài liệu không phải là một ảnh cấp đôi (bit/mẫu %u).\n"
+
+#, c-format
+msgid "Document is a multi-sample image (samples/pixel %u).\n"
+msgstr "Tài liệu là một ảnh đa mẫu (mẫu/điểm ảnh %u).\n"
+
+# File: util/tiffcheck.c++, line: 166
+msgid "Document is not black-on-white.\n"
+msgstr "Tài liệu không phải đen trên trắng.\n"
+
+msgid "Document requires reformatting, not in Group 4 format.\n"
+msgstr "Tài liệu cần thiết được định dạng lại, không phải theo định dạng Nhóm 4.\n"
+
+msgid "Document requires reformatting, not in Group 3 format.\n"
+msgstr "Tài liệu cần thiết được định dạng lại, không phải theo định dạng Nhóm 3.\n"
+
+msgid "Document requires reformatting, not in 2DMR format.\n"
+msgstr "Tài liệu cần thiết được định dạng lại, không phải theo định dạng 2MDR.\n"
+
+msgid "Document should be reformatted as a single strip.\n"
+msgstr "Tài liệu nên được định dạng lại theo một dải riêng lẻ.\n"
+
+msgid "Document should be reformatted with LSB-to-MSB bit order.\n"
+msgstr "Tài liệu nên được định dạng lại theo thứ tự byte LSB-sang-MSB.\n"
+
+#, c-format
+msgid "Document requires reformatting to adjust vertical resolution (convert to %lu, document is %lu).\n"
+msgstr "Tài liệu cần thiết được định dạng lại để điều chỉnh độ phân giải theo chiều dọc (chuyển đổi sang %lu, tài liệu là %lu).\n"
+
+msgid "Document is not valid TIFF (missing ImageWidth tag).\n"
+msgstr "Tài liệu không phải là TIFF hợp lệ (thiếu thẻ Ảnh_Rộng (ImageWidth)).\n"
+
+#, c-format
+msgid "Document requires resizing to adjust page width (convert to %lu, document is %lu).\n"
+msgstr "Kích cỡ tài liệu cần thiết được thay đổi để điều chỉnh bề rộng trang (chuyển đổi sang %lu, tài liệu là %lu).\n"
+
+msgid "Document is not valid TIFF (missing ImageLength tag).\n"
+msgstr "Tài liệu không phải là TIFF hợp lệ (thiếu thẻ Ảnh_Dài (ImageLength)).\n"
+
+#, c-format
+msgid "Document requires resizing to adjust page length (convert to %lu, document is %lu).\n"
+msgstr "Kích cỡ tài liệu cần thiết được thay đổi để điều chỉnh bề dài trang (chuyển đổi sang %lu, tài liệu là %lu).\n"
+
+#, c-format
+msgid "%s: Can not open file\n"
+msgstr "%s: Không thể mở tập tin\n"
+
+#, c-format
+msgid "%s: Can not stat file\n"
+msgstr "%s: Không thể lấy trạng thái về tập tin\n"
+
+#, c-format
+msgid "%s: Not a regular file\n"
+msgstr "%s: Không phải là tập tin chuẩn\n"
+
+#, c-format
+msgid "%s: Empty file\n"
+msgstr "%s: Tập tin rỗng\n"
+
+#, c-format
+msgid "%s: Can not determine file type\n"
+msgstr "%s: Không thể quyết định kiểu tập tin\n"
+
+#, c-format
+msgid "usage: %s [-f rulesfile] files\n"
+msgstr "sử dụng: %s [-f tập_tin_quy_tắc] tập_tin\n"
+
+#, c-format
+msgid "Unable to setup file typing and conversion rules\n"
+msgstr "Không thể thiết lập các quy tắc về kiểu tập tin và tiến trình chuyển đổi\n"
+
+#, c-format
+msgid "usage: %s [-a] [-t threshold] input.tif\n"
+msgstr "sử dụng: %s [-a] [-t ngưỡng] vào.tif\n"
+
+#, c-format
+msgid "%s: Cannot open, or not a TIFF file"
+msgstr "%s: Không thể mở tập tin, hoặc tập tin không phải là TIFF"
+
+#, c-format
+msgid "%s: Not a Group 3 or Group 4-encoded TIFF file"
+msgstr "%s: Không phải là một tập tin TIFF mã hoá Nhóm 3 hoặc Nhóm 4"
+
+#, c-format
+msgid "Chop all pages with >=%.2g\" of white space at the bottom.\n"
+msgstr "Xén mọi trang có ≥%.2g insơ khoảng trắng ở dưới.\n"
+
+#, c-format
+msgid "Chop last page if >=%.2g\" of white space at the bottom.\n"
+msgstr "Xén trang cuối cùng nếu nó có ≥%.2g insơ khoảng trắng ở dưới.\n"
+
+#, c-format
+msgid "Chop %u rows, strip was %lu bytes, need only %lu\n"
+msgstr "Xén %u hàng, dải là %lu byte, chỉ cần %lu\n"
+
+#, c-format
+msgid "Don't chop, found %u rows, need %u rows\n"
+msgstr "Đừng xén, đã tìm %u hàng, cần %u hàng\n"
+
+msgid "Missing EOL after 5 seconds"
+msgstr "Thiếu tín hiệu kết thúc dòng sau 5 giây"
+
+#, c-format
+msgid "Adjusting for RTC found at row %u"
+msgstr "Đang điều chỉnh về RTC đã tìm ở hàng %u"
+
+#, c-format
+msgid "adjusting for trailing noise (%lu run)"
+msgstr "đang điều chỉnh về nhiễu (%lu lần chạy)"
+
+#, c-format
+msgid "%lu total lines, %lu bad lines, %lu consecutive bad lines"
+msgstr "%lu tổng số dòng, %lu dòng sai, %lu dòng sai liên tiếp"
+
+#, c-format
+msgid "RECV: %s: write error"
+msgstr "NHẬN: %s: lỗi ghi"
+
+#, c-format
+msgid "RECV: REJECT page quality, %u%% good lines (%u%% required)"
+msgstr "NHẬN: TỪ CHỐI mức chất lượng của trang, %u%% dòng tốt (cần thiết %u%%)"
+
+#, c-format
+msgid "RECV: REJECT page quality, %u-line run (max %u)"
+msgstr "NHẬN: TỪ CHỐI mức chất lượng của trang, lần chạy %u-dòng (tối đa %u)"
+
+msgid "RECV: "
+msgstr "NHẬN: "
+
+#, c-format
+msgid "Invalid %s code word, row %u, x %d"
+msgstr "Từ mã %s không hợp lệ, hàng %u, x %d"
+
+#, c-format
+msgid "Bad %s pixel count, row %u, got %d, expected %d"
+msgstr "Số đếm điểm ảnh %s sai, hàng %u, nhận %d còn đợi %d"
+
+#, c-format
+msgid "Panic, bad %s decoding state, row %u, x %d"
+msgstr "Không thể phục hồi, tình trạng giải mã %s sai, hàng %u, x %d"
+
+msgid "RECV/CQ: "
+msgstr "NHẬN/CQ:"
+
+#, c-format
+msgid "usage: %s [-m maxbad] [-p %%good] [-o output.tif] input.tif\n"
+msgstr "sử dụng: %s [-m sai_tối_đa] [-p %%tốt] [-o ra.tif] vào.tif\n"
+
+#, c-format
+msgid "%s: Cannot open, or not a TIFF file\n"
+msgstr "%s: Không thể mở tập tin, hoặc không phải là tập tin TIFF\n"
+
+#, c-format
+msgid "%s: Cannot create TIFF file\n"
+msgstr "%s: Không thể tạo tập tin TIFF\n"
+
+#, c-format
+msgid "Read error on strip %u\n"
+msgstr "Lỗi đọc ở dải %u\n"
+
+#, c-format
+msgid "Scan %s directory for jobs to remove+archive.\n"
+msgstr "Quét thư mục %s tìm công việc để gở bỏ và lưu trữ.\n"
+
+#, c-format
+msgid "%s: Could not scan directory for jobs.\n"
+msgstr "%s: Không thể quét thư mục tìm công việc.\n"
+
+#, c-format
+msgid "%s: ignored (cannot stat or not a regular file)\n"
+msgstr "%s: bị bỏ qua (không thể lấy trạng thái hoặc không phải là tập tin chuẩn\n"
+
+#, c-format
+msgid "%s: job too new, ignored (for now).\n"
+msgstr "%s: công việc quá mới, bị bỏ qua (hiện thời).\n"
+
+#, c-format
+msgid "JOB %s: archive (%s)%s.\n"
+msgstr "CÔNG VIỆC %s: kho (%s)%s.\n"
+
+msgid " (not done)"
+msgstr " (chưa làm)"
+
+#, c-format
+msgid "JOB %s: remove (%s) %s.\n"
+msgstr "CÔNG VIỆC %s: gỡ bỏ (%s) %s.\n"
+
+#, c-format
+msgid "%s: malformed queue file: remove\n"
+msgstr "%s: tập tin hàng đợi dạng sai: gỡ bỏ\n"
+
+#, c-format
+msgid "Done scanning %s directory\n"
+msgstr "Thư mục %s đã được quét\n"
+
+#, c-format
+msgid "JOB %s: reference %s\n"
+msgstr "CÔNG VIỆC %s: tham chiếu %s\n"
+
+#, c-format
+msgid "Scan %s directory and remove unreferenced documents.\n"
+msgstr "Quét thư mục %s và gỡ bỏ các tài liệu không có tham chiếu.\n"
+
+#, c-format
+msgid "%s: Could not scan directory for unreferenced documents.\n"
+msgstr "%s: Không thể quét thư mục tìm tài liệu không có tham chiếu.\n"
+
+#, c-format
+msgid "%s: ignored, cannot stat or not a regular file\n"
+msgstr "%s: bị bỏ qua, không thể lấy trạng thái hoặc không phải là tập tin chuẩn\n"
+
+#, c-format
+msgid "%s: ignored, file has %u links\n"
+msgstr "%s: bị bỏ qua, tập tin có %u liên kết\n"
+
+#, c-format
+msgid "%s: ignored, file has %u references\n"
+msgstr "%s: bị bỏ qua, tập tin có %u tham chiếu\n"
+
+#, c-format
+msgid "%s: ignored, file is too new to remove\n"
+msgstr "%s: bị bỏ qua, tập tin quá mới để gỡ bỏ\n"
+
+#, c-format
+msgid "%s: file looks to be referenced by job\n"
+msgstr "%s: hình như tập tin được tham chiếu bởi công việc\n"
+
+#, c-format
+msgid "%s: file has no matching %s\n"
+msgstr "%s: tập tin không có %s tương ứng\n"
+
+#, c-format
+msgid "%s: Could not scan directory for base file.\n"
+msgstr "%s: Không thể quét thư mục tìm thư mục cơ bản.\n"
+
+#, c-format
+msgid "%s: found match to base '%s', skipping.\n"
+msgstr "%s: tìm đồ tương ứng với cơ bản « %s » nên bỏ qua.\n"
+
+#, c-format
+msgid "%s: did not find base '%s' match.\n"
+msgstr "%s: không tìm thấy đồ tương ứng với cơ bản « %s ».\n"
+
+#, c-format
+msgid "DOC %s: unreferenced document removed%s.\n"
+msgstr "TÀI LIỆU %s: tài liệu không có tham chiếu thì bị gỡ bỏ %s.\n"
+
+#, c-format
+msgid "%s: error removing unreferenced document: %s.\n"
+msgstr "%s: gặp lỗi khi gỡ bỏ tài liệu không có tham chiếu : %s.\n"
+
+#, c-format
+msgid "usage: %s [-a] [-j time] [-d time] [-q queue-directory]\n"
+msgstr "sử dụng: %s [-a] [-j giờ] [-d giờ] [-q thư_mục_hàng_đợi]\n"
+
+#, c-format
+msgid "%s: Can not change directory: %s.\n"
+msgstr "%s: Không thể chuyển đổi thư mục: %s.\n"
+
+#, c-format
+msgid "usage: %s [-m format] [-o t.tif] [-f font.pcf] input.tif\n"
+msgstr "sử dụng: %s [-m định_dạng] [-o t.tif] [-f phông.pcf] vào.tif\n"
+
+#, c-format
+msgid "%s: Problem reading font"
+msgstr "%s: Gặp khó đọc phông"
+
+#, c-format
+msgid "%s: Cannot create output file"
+msgstr "%s: Không thể tạo tập tin xuất"
+
+#, c-format
+msgid "%s: Write error at strip %u, writing %lu bytes"
+msgstr "%s: Lỗi ghi ở dải %u, đang ghi %lu byte"
+
+#, c-format
+msgid "Bad TSI pattern: %s: "
+msgstr "Mẫu TSI sai: %s: "
+
+#, c-format
+msgid "usage: %s [-q] tsifile"
+msgstr "sử dụng: %s [-q] tập_tin_TSI"
+
+#, c-format
+msgid "[check %s]\n"
+msgstr "[kiểm tra %s]\n"
+
+#, c-format
+msgid "accept (matched by %s)\n"
+msgstr "chấp nhận (tương ứng với %s)\n"
+
+#, c-format
+msgid "reject (matched by %s)\n"
+msgstr "từ chối (tương ứng với %s)\n"
+
+#, c-format
+msgid "reject (no pattern match)\n"
+msgstr "từ chối (không tương ứng với mẫu)\n"
+
+#, c-format
+msgid "reject (no patterns)\n"
+msgstr "từ chối (không có mẫu)\n"

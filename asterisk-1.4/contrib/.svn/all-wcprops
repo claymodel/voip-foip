@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/asterisk/!svn/ver/317102/branches/1.4/contrib
+END
+dictionary.digium
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/asterisk/!svn/ver/43376/branches/1.4/contrib/dictionary.digium
+END
+festival-1.4.1-diff
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/asterisk/!svn/ver/43376/branches/1.4/contrib/festival-1.4.1-diff
+END
+asterisk-ng-doxygen
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/asterisk/!svn/ver/157104/branches/1.4/contrib/asterisk-ng-doxygen
+END
+festival-1.4.2.diff
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/asterisk/!svn/ver/43376/branches/1.4/contrib/festival-1.4.2.diff
+END
+valgrind-RedHat-8.0.supp
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/asterisk/!svn/ver/43376/branches/1.4/contrib/valgrind-RedHat-8.0.supp
+END
+festival-1.4.3.diff
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/asterisk/!svn/ver/43376/branches/1.4/contrib/festival-1.4.3.diff
+END
+asterisk-ices.xml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/asterisk/!svn/ver/43376/branches/1.4/contrib/asterisk-ices.xml
+END
+asterisk-doxygen-header
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/asterisk/!svn/ver/43376/branches/1.4/contrib/asterisk-doxygen-header
+END
+README.festival
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/asterisk/!svn/ver/43376/branches/1.4/contrib/README.festival
+END
+i18n.testsuite.conf
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/asterisk/!svn/ver/170671/branches/1.4/contrib/i18n.testsuite.conf
+END
+valgrind.supp
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/290323/branches/1.4/contrib/valgrind.supp
+END
+festival-1.95.diff
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/asterisk/!svn/ver/43376/branches/1.4/contrib/festival-1.95.diff
+END

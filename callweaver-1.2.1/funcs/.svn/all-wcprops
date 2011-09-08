@@ -1,0 +1,107 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/funcs
+END
+func_language.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/funcs/func_language.c
+END
+func_moh.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/funcs/func_moh.c
+END
+func_db.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/funcs/func_db.c
+END
+func_md5.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/funcs/func_md5.c
+END
+func_timeout.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/funcs/func_timeout.c
+END
+func_env.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/funcs/func_env.c
+END
+func_math.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/funcs/func_math.c
+END
+func_strings.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/funcs/func_strings.c
+END
+func_logic.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/funcs/func_logic.c
+END
+func_uri.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/funcs/func_uri.c
+END
+func_enum.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/funcs/func_enum.c
+END
+func_config.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/funcs/func_config.c
+END
+func_groupcount.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/funcs/func_groupcount.c
+END
+func_cdr.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/funcs/func_cdr.c
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/funcs/Makefile.am
+END
+func_fileexists.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/funcs/func_fileexists.c
+END
+func_callerid.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/funcs/func_callerid.c
+END

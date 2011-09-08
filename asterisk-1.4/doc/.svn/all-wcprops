@@ -1,0 +1,449 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/asterisk/!svn/ver/298905/branches/1.4/doc
+END
+channelvariables.txt
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/asterisk/!svn/ver/226377/branches/1.4/doc/channelvariables.txt
+END
+speechrec.txt
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/43376/branches/1.4/doc/speechrec.txt
+END
+sms.txt
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/asterisk/!svn/ver/43376/branches/1.4/doc/sms.txt
+END
+enum.txt
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/asterisk/!svn/ver/58955/branches/1.4/doc/enum.txt
+END
+security.txt
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/98265/branches/1.4/doc/security.txt
+END
+rtp-packetization.txt
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/asterisk/!svn/ver/43674/branches/1.4/doc/rtp-packetization.txt
+END
+jingle.txt
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/asterisk/!svn/ver/44240/branches/1.4/doc/jingle.txt
+END
+asterisk.sgml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/43376/branches/1.4/doc/asterisk.sgml
+END
+musiconhold-opsound.txt
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/asterisk/!svn/ver/212913/branches/1.4/doc/musiconhold-opsound.txt
+END
+misdn.txt
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/asterisk/!svn/ver/162659/branches/1.4/doc/misdn.txt
+END
+ip-tos.txt
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/asterisk/!svn/ver/58955/branches/1.4/doc/ip-tos.txt
+END
+chaniax.txt
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/asterisk/!svn/ver/58955/branches/1.4/doc/chaniax.txt
+END
+asterisk.8
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/asterisk/!svn/ver/298905/branches/1.4/doc/asterisk.8
+END
+plc.txt
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/asterisk/!svn/ver/269784/branches/1.4/doc/plc.txt
+END
+app-sms.txt
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/asterisk/!svn/ver/58955/branches/1.4/doc/app-sms.txt
+END
+sip-retransmit.txt
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/asterisk/!svn/ver/132645/branches/1.4/doc/sip-retransmit.txt
+END
+cdrdriver.txt
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/asterisk/!svn/ver/137405/branches/1.4/doc/cdrdriver.txt
+END
+linkedlists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/asterisk/!svn/ver/58955/branches/1.4/doc/linkedlists.txt
+END
+math.txt
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/asterisk/!svn/ver/58955/branches/1.4/doc/math.txt
+END
+mp3.txt
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/asterisk/!svn/ver/77429/branches/1.4/doc/mp3.txt
+END
+extensions.txt
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/asterisk/!svn/ver/58955/branches/1.4/doc/extensions.txt
+END
+model.txt
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/asterisk/!svn/ver/58955/branches/1.4/doc/model.txt
+END
+realtime.txt
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/106178/branches/1.4/doc/realtime.txt
+END
+sla.pdf
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/asterisk/!svn/ver/58955/branches/1.4/doc/sla.pdf
+END
+HOWTO_collect_debug_information.txt
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/asterisk/!svn/ver/270078/branches/1.4/doc/HOWTO_collect_debug_information.txt
+END
+voicemail_odbc_postgresql.txt
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/asterisk/!svn/ver/272562/branches/1.4/doc/voicemail_odbc_postgresql.txt
+END
+ices.txt
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/asterisk/!svn/ver/58955/branches/1.4/doc/ices.txt
+END
+queuelog.txt
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/58955/branches/1.4/doc/queuelog.txt
+END
+macroexclusive.txt
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/43376/branches/1.4/doc/macroexclusive.txt
+END
+hardware.txt
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/130298/branches/1.4/doc/hardware.txt
+END
+cygwin.txt
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/asterisk/!svn/ver/58955/branches/1.4/doc/cygwin.txt
+END
+osp.txt
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/asterisk/!svn/ver/57263/branches/1.4/doc/osp.txt
+END
+IAX2-security.pdf
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/216008/branches/1.4/doc/IAX2-security.pdf
+END
+dundi.txt
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/asterisk/!svn/ver/58955/branches/1.4/doc/dundi.txt
+END
+mysql.txt
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/asterisk/!svn/ver/58955/branches/1.4/doc/mysql.txt
+END
+cli.txt
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/asterisk/!svn/ver/118052/branches/1.4/doc/cli.txt
+END
+cliprompt.txt
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/58955/branches/1.4/doc/cliprompt.txt
+END
+manager.txt
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/265570/branches/1.4/doc/manager.txt
+END
+CODING-GUIDELINES
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/211583/branches/1.4/doc/CODING-GUIDELINES
+END
+snmp.txt
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/asterisk/!svn/ver/48592/branches/1.4/doc/snmp.txt
+END
+h323.txt
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/asterisk/!svn/ver/58955/branches/1.4/doc/h323.txt
+END
+backtrace.txt
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/asterisk/!svn/ver/257426/branches/1.4/doc/backtrace.txt
+END
+billing.txt
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/asterisk/!svn/ver/58955/branches/1.4/doc/billing.txt
+END
+jabber.txt
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/asterisk/!svn/ver/78646/branches/1.4/doc/jabber.txt
+END
+extconfig.txt
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/58955/branches/1.4/doc/extconfig.txt
+END
+asterisk-mib.txt
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/124372/branches/1.4/doc/asterisk-mib.txt
+END
+jitterbuffer.txt
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/asterisk/!svn/ver/58955/branches/1.4/doc/jitterbuffer.txt
+END
+channels.txt
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/58955/branches/1.4/doc/channels.txt
+END
+odbcstorage.txt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/asterisk/!svn/ver/58955/branches/1.4/doc/odbcstorage.txt
+END
+freetds.txt
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/asterisk/!svn/ver/58955/branches/1.4/doc/freetds.txt
+END
+smdi.txt
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/asterisk/!svn/ver/120671/branches/1.4/doc/smdi.txt
+END
+callfiles.txt
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/43376/branches/1.4/doc/callfiles.txt
+END
+sla.tex
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/asterisk/!svn/ver/130042/branches/1.4/doc/sla.tex
+END
+ael.txt
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/asterisk/!svn/ver/130042/branches/1.4/doc/ael.txt
+END
+queues-with-callback-members.txt
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/asterisk/!svn/ver/89450/branches/1.4/doc/queues-with-callback-members.txt
+END
+externalivr.txt
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/asterisk/!svn/ver/229355/branches/1.4/doc/externalivr.txt
+END
+apps.txt
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/asterisk/!svn/ver/58955/branches/1.4/doc/apps.txt
+END
+callingpres.txt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/asterisk/!svn/ver/58955/branches/1.4/doc/callingpres.txt
+END
+valgrind.txt
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/225484/branches/1.4/doc/valgrind.txt
+END
+video.txt
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/asterisk/!svn/ver/43376/branches/1.4/doc/video.txt
+END
+configuration.txt
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/250041/branches/1.4/doc/configuration.txt
+END
+ajam.txt
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/asterisk/!svn/ver/58955/branches/1.4/doc/ajam.txt
+END
+modules.txt
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/asterisk/!svn/ver/43376/branches/1.4/doc/modules.txt
+END
+asterisk-conf.txt
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/197259/branches/1.4/doc/asterisk-conf.txt
+END
+IAX2-security.txt
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/216263/branches/1.4/doc/IAX2-security.txt
+END
+datastores.txt
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/asterisk/!svn/ver/66398/branches/1.4/doc/datastores.txt
+END
+imapstorage.txt
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/asterisk/!svn/ver/250050/branches/1.4/doc/imapstorage.txt
+END
+PEERING
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/asterisk/!svn/ver/85523/branches/1.4/doc/PEERING
+END
+privacy.txt
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/asterisk/!svn/ver/58955/branches/1.4/doc/privacy.txt
+END
+iax.txt
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/asterisk/!svn/ver/80362/branches/1.4/doc/iax.txt
+END
+localchannel.txt
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/253260/branches/1.4/doc/localchannel.txt
+END
+digium-mib.txt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/asterisk/!svn/ver/124372/branches/1.4/doc/digium-mib.txt
+END
+00README.1st
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/212913/branches/1.4/doc/00README.1st
+END
+radius.txt
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/asterisk/!svn/ver/58955/branches/1.4/doc/radius.txt
+END

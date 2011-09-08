@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/keys
+END
+serverkey.pem
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/keys/serverkey.pem
+END
+dh1024.pem
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/keys/dh1024.pem
+END
+trustcerts.pem
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/keys/trustcerts.pem
+END
+dh512.pem
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/keys/dh512.pem
+END
+servercert.pem
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/keys/servercert.pem
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/keys/Makefile.am
+END

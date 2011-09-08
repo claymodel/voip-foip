@@ -1,0 +1,12 @@
+We have collected a set of patches here for hacky workarounds that may break
+standards, but still can come in handy. Below is a list of the patches and brief
+documentation.
+
+
+sip-silencesupp.patch
+	This patch, discussed in http://bugs.digium.com/view.php?id=6669 and
+	http://callweaver.org/ticket/58 enables turning off silence suppression
+	SIP headers, a=silenceSupp:off for client SIP stacks that don't support
+	this set to off. To use this, add silencesupp=hide for the peer in
+	sip.conf.
+

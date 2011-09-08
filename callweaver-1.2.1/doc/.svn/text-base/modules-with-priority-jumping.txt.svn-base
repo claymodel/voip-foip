@@ -1,0 +1,17 @@
+# vim:ft=txt:tw=80:ts=8
+
+The following modules use priority jumping. This should be changed to setting
+variables instead and always returning zero
+
+These are separated into two groups. Will fix and Won't fix. Since some of these
+are in modules or apps that are depricated, or part of the 1.2 high priority
+modules, we won't fix them.
+
+WON'T FIX
+  apps/icd/icd_bridge.c
+  apps/app_osplookup.c
+  apps/app_valetparking.c
+  	These modules are not part of the default build/configure, and are not
+	officially supported in in 1.2, so no change will be made to fix
+	priority jumping.
+

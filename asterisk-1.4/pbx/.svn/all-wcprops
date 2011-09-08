@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/asterisk/!svn/ver/327251/branches/1.4/pbx
+END
+pbx_config.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/285365/branches/1.4/pbx/pbx_config.c
+END
+pbx_gtkconsole.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/117507/branches/1.4/pbx/pbx_gtkconsole.c
+END
+dundi-parser.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/asterisk/!svn/ver/43376/branches/1.4/pbx/dundi-parser.h
+END
+pbx_loopback.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/asterisk/!svn/ver/211528/branches/1.4/pbx/pbx_loopback.c
+END
+pbx_spool.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/241544/branches/1.4/pbx/pbx_spool.c
+END
+pbx_ael.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/asterisk/!svn/ver/310435/branches/1.4/pbx/pbx_ael.c
+END
+pbx_realtime.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/asterisk/!svn/ver/85515/branches/1.4/pbx/pbx_realtime.c
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/asterisk/!svn/ver/262421/branches/1.4/pbx/Makefile
+END
+pbx_dundi.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/271761/branches/1.4/pbx/pbx_dundi.c
+END
+dundi-parser.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/asterisk/!svn/ver/211528/branches/1.4/pbx/dundi-parser.c
+END

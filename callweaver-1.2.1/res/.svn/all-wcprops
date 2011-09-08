@@ -1,0 +1,119 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/res
+END
+res_jabber.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/res/res_jabber.c
+END
+res_monitor.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/res/res_monitor.c
+END
+res_srtp.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/res/res_srtp.c
+END
+res_config_curl.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/res/res_config_curl.c
+END
+res_config_mysql.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/res/res_config_mysql.c
+END
+res_config_odbc.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/res/res_config_odbc.c
+END
+res_sqlite.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/res/res_sqlite.c
+END
+res_osp.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/res/res_osp.c
+END
+res_indications.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/res/res_indications.c
+END
+res_odbc.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/res/res_odbc.c
+END
+res_config_pgsql.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/res/res_config_pgsql.c
+END
+res_js.c
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/res/res_js.c
+END
+res_snmp.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/res/res_snmp.c
+END
+res_features.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/res/res_features.c
+END
+res_ogi.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/res/res_ogi.c
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/res/Makefile.am
+END
+res_crypto.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/res/res_crypto.c
+END
+res_adsi.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/res/res_adsi.c
+END
+res_musiconhold.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/res/res_musiconhold.c
+END

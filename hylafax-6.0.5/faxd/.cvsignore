@@ -1,0 +1,16 @@
+*.so.*.*.*
+.c++dependtime
+choptest
+cqtest
+faxgetty
+faxq
+faxqclean
+faxsend
+hash.h
+Makedepend
+Makefile
+mkhash
+pagesend
+tagtest
+tsitest
+messages.po

@@ -1,0 +1,98 @@
+As of 2004-12-23, this documentation is no longer maintained. The doxygen documentation
+generated from linkedlists.h should be referred to in its place, as it is more complete
+and better maintained.
+
+2nd version, implemented as macros.
+
+	include <callweaver/linkedlists.h>
+
+CW_LIST_ENTRY declares pointers inside the object structure : 
+
+	struct ast_var_t {
+	        char *name;
+	        char *value;
+	        CW_LIST_ENTRY(ast_var_t) listpointers;
+	};
+
+CW_LIST_HEAD declares a head structure, which is initialized
+to CW_LIST_HEAD_NULL : 
+
+	CW_LIST_HEAD(head, ast_var_t) head 
+
+Next, we declare a pointer to this structure : 
+
+	struct headtype *headp = head;
+
+CW_LIST_INIT initializes the head pointer to a null value
+
+	CW_LIST_INIT(headp);
+
+CW_LIST_INSERT_HEAD inserts an element to the head of the list : 
+
+	struct ast_var_t *node; 
+
+	node=malloc(sizeof(struct ast_var_t));
+	(...we fill data in struct....)
+	data->name=malloc(100);
+	strcpy(data->name,"lalalalaa");
+	etc etc
+
+	(then we insert the node in the head of the list :)
+
+	CW_LIST_INSERT_HEAD(headp,node,listpointers);
+
+CW_LIST_INSERT_HEAD_AFTER inserts an element after another : 
+
+	struct ast_var_t *node1;
+	...
+	CW_LIST_INSERT_AFTER(node,node1,listpointers);
+
+CW_LIST_REMOVE removes an arbitrary element from the head:
+
+	CW_LIST_REMOVE(headp,node1,ast_var_t,listpointers);
+
+CW_LIST_REMOVE_HEAD removes the entry at the head of the list and
+returns a pointer to the removed entry: 
+
+	CW_LIST_REMOVE_HEAD(headp,node,listpointers);
+
+CW_LIST_FIRST returns a pointer to the first element of the list;
+
+	struct ast_var_t *firstnode;
+	firstnode=CW_LIST_FIRST(headp);
+
+CW_LIST_NEXT returns a pointer to the next element : 
+
+	struct ast_var_t *nextnode;
+	nextnode=CW_LIST_NEXT(firstnode,listpointers);
+
+CW_LIST_TRAVERSE traverses all elements of the list : 
+
+	struct ast_var_t *node;
+
+	CW_LIST_TRAVERSE(headp,node,listpointers) {
+		printf("%s\n",node->name);
+	}
+
+CW_LIST_EMPTY evaluates to a true condition if there are no elements on 
+the list. 
+
+To completely delete a list : 
+
+	struct ast_var_t *vardata;
+
+        while (!CW_LIST_EMPTY(headp)) {           /* List Deletion. */
+                    vardata = CW_LIST_REMOVE_HEAD(head, ast_var_t, listpointers);
+                    free(vardata->name);
+		    free(vardata->value);
+        }
+
+CW_LIST_LOCK returns true if it can lock the list, CW_LIST_UNLOCK unlocks
+the list : 
+
+if (CW_LIST_LOCK(headp)) {
+	...do all list operations here...
+	CW_LIST_UNLOCK(headp);
+} else {
+	cw_log(LOG_WARNING,"List locked bla bla bla\n");
+}

@@ -1,0 +1,178 @@
+#!/bin/sh
+# 
+# callweaver:		Starts the callweaver service
+# 
+# Version:		@(#) /etc/rc.d/init.d/callweaver 1.0
+# 
+# chkconfig: 2345 95 10
+# description:	Starts the callweaver service
+# 
+# processname:	callweaver
+# 
+
+TTY=9			# TTY (if you want one) for CallWeaver to run on
+CONSOLE=yes		# Whether or not you want a console
+NOTIFY=root		# Who to notify about crashes
+DUMPDROP=/tmp
+HOSTNAME=`hostname`
+CONFIGFILE=/etc/sysconfig/`basename $0`
+
+# Setup environment
+cd /usr/src
+if [ -f /usr/lib/callweaver/modules/chan_h323.so -a `grep -c ^noload=chan_h323.so /etc/callweaver/modules.conf` -eq 0 ]; then
+	OPENH323DIR=/usr/src/h323/openh323
+	PWLIBDIR=/usr/src/h323/pwlib
+else
+	OPENH323DIR=/usr/src/oh323/openh323
+	PWLIBDIR=/usr/src/oh323/pwlib
+fi
+
+# Put overrides in /etc/sysconfig/callweaver
+[ -f $CONFIGFILE ] && . $CONFIGFILE
+
+LD_LIBRARY_PATH=$OPENH323DIR/lib:$PWLIBDIR/lib
+export OPENH323DIR PWLIBDIR LD_LIBRARY_PATH
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+#
+# Don't fork when running "safely"
+#
+ASTARGS="-p"
+if [ "$TTY" != "" ]; then
+	if [ -c /dev/tty${TTY} ]; then
+		TTY=tty${TTY}
+	elif [ -c /dev/vc/${TTY} ]; then
+		TTY=vc/${TTY}
+	else
+		echo "Cannot find your TTY (${TTY})" >&2
+		exit 1
+	fi
+	ASTARGS="${ASTARGS} -vvv"
+	if [ "$CONSOLE" != "no" ]; then
+		ASTARGS="${ASTARGS} -c"
+	fi
+fi
+if [ ! -w ${DUMPDROP} ]; then	
+	echo "Cannot write to ${DUMPDROP}" >&2
+	exit 1
+fi
+
+#
+# Let CallWeaver dump core
+#
+ulimit -c unlimited
+
+#launch_callweaver()
+#{
+#}
+
+SIGMSG=("Hangup" "Interrupt" "Quit" "Illegal instruction" "Trace trap" "IOT Trap" "Bus Error" "Floating-point exception" "Killed" "User-defined signal 1" "Segmentation violation" "User-defined signal 2" "Broken pipe" "Alarm clock" "Termination" "Stack fault")
+
+run_callweaver()
+{
+	while :; do 
+
+		if [ "$TTY" != "" ]; then
+			cd /tmp
+			stty sane < /dev/${TTY}
+			callweaver ${ASTARGS} > /dev/${TTY} 2>&1 < /dev/${TTY}
+		else
+			cd /tmp
+			callweaver ${ASTARGS}
+		fi
+		EXITSTATUS=$?
+		echo "CallWeaver ended with exit status $EXITSTATUS"
+		if [ "$EXITSTATUS" = "0" ]; then
+			# Properly shutdown....
+			echo "CallWeaver shutdown normally."
+			exit 0
+		elif [ $EXITSTATUS -gt 128 ]; then
+			EXITSIGNAL=$(($EXITSTATUS - 128))
+			EXITMSG=$SIGMSG[$EXITSIGNAL]
+			echo "CallWeaver exited on signal $EXITSIGNAL - $EXITMSG."
+			if [ "$NOTIFY" != "" ]; then
+				echo "CallWeaver exited on signal $EXITSIGNAL - $EXITMSG.  Might want to take a peek." | \
+				mail -s "CallWeaver Died ($HOSTNAME)" $NOTIFY
+			fi
+			if [ -f /tmp/core ]; then
+				mv /tmp/core ${DUMPDROP}/core.`hostname`-`date -Iseconds` &
+			fi
+		else
+			echo "CallWeaver died with code $EXITSTATUS.  Aborting."
+			if [ -f /tmp/core ]; then
+				mv /tmp/core ${DUMPDROP}/core.`hostname`-`date -Iseconds` &
+			fi
+			exit 0
+		fi
+		echo "Automatically restarting CallWeaver."
+	done
+}
+
+case "$1" in
+	start)
+		gprintf "Starting callweaver: "
+		run_callweaver >/dev/null 2>&1 &
+		sleep 2	# Give it time to die
+		succeeded=`pidof callweaver|awk '{print NF}'`
+		if [ $succeeded = "0" ]; then
+			failure
+		else
+			success
+		fi
+		echo
+		;;
+	stop)
+		gprintf "Stopping callweaver: "
+		callweaver -r -x "stop gracefully" >/dev/null 2>&1
+		killall -9 mpg123 2>/dev/null
+		success
+		echo
+		;;
+	restart)
+		$0 stop
+		usleep 100000
+		$0 start
+		;;
+	reload)
+		gprintf "Reloading callweaver: "
+		callweaver -r -x "reload" >/dev/null 2>&1
+		success
+		echo
+		;;
+	stopnow)
+		gprintf "Stopping callweaver: "
+		callweaver -r -x "stop now" >/dev/null 2>&1
+		success
+		echo
+		;;
+	restartnow)
+		$0 stopnow
+		$0 start
+		;;
+	fullrestart)
+		$0 stop
+		service zaptel restart
+		$0 start
+		;;
+	fullrestartnow)
+		$0 stopnow
+		service zaptel restart
+		$0 start
+		;;
+	status)
+		succeeded=`pidof callweaver|awk '{print NF}'`
+		if [ $succeeded = "0" ]; then
+			echo "CallWeaver is not running"
+		else
+			echo "CallWeaver is currently running with $succeeded threads"
+		fi
+		;;
+	*)
+		gprintf "*** Usage: $0 {start|stop[now]|reload|[full]restart[now]|status}\n"
+		exit 1
+esac
+
+exit 0
+

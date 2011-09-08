@@ -1,0 +1,20 @@
+20 Sep 2007 - Antonio Gallo wrote: 1.2 is freezed and we're going to release RC5
+soon and then 1.2.0. So we're not accepting any more features since its freezed.
+
+I'm collecting here usefull patches for new features that will going to be in 1.2.1
+don't forget that "trunk" is the new 2.0 but will require some times before it
+is out since we're rewriting the whole "core" of the system.
+
+So it make senses to use those patches:
+
+- app_pickup2:	porting of Pickup2, PickDown2, Steal2; enahnced version of Pickup
+		that allow to pickup multiple extensions using a channell instead
+		of an extension
+
+- cdr_mysql_extra:	add a new value in manager_mysql.conf called "extrafields="
+			that add those fields to the mysql insert query when the
+			PBX post a CDR.
+
+NOTE: patch has been generated using "svn diff" to apply the patch be sure to be
+in source root directory and to use "patch -p0 < contrib/..../filename.patch"
+

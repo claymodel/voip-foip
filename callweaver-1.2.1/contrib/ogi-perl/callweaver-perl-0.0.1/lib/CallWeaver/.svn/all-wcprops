@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/contrib/ogi-perl/callweaver-perl-0.0.1/lib/CallWeaver
+END
+Voicemail.pm
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/contrib/ogi-perl/callweaver-perl-0.0.1/lib/CallWeaver/Voicemail.pm
+END
+Manager.pm
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/contrib/ogi-perl/callweaver-perl-0.0.1/lib/CallWeaver/Manager.pm
+END
+Outgoing.pm
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/contrib/ogi-perl/callweaver-perl-0.0.1/lib/CallWeaver/Outgoing.pm
+END
+QCall.pm
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/contrib/ogi-perl/callweaver-perl-0.0.1/lib/CallWeaver/QCall.pm
+END
+OGI.pm
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/contrib/ogi-perl/callweaver-perl-0.0.1/lib/CallWeaver/OGI.pm
+END

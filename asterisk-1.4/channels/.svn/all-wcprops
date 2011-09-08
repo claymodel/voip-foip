@@ -1,0 +1,185 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/asterisk/!svn/ver/327251/branches/1.4/channels
+END
+iax2-provision.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/asterisk/!svn/ver/43376/branches/1.4/channels/iax2-provision.h
+END
+misdn_config.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/asterisk/!svn/ver/222797/branches/1.4/channels/misdn_config.c
+END
+gentone.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/asterisk/!svn/ver/43376/branches/1.4/channels/gentone.c
+END
+chan_dahdi.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/313188/branches/1.4/channels/chan_dahdi.c
+END
+chan_phone.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/284478/branches/1.4/channels/chan_phone.c
+END
+iax2-parser.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/asterisk/!svn/ver/216000/branches/1.4/channels/iax2-parser.h
+END
+chan_misdn.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/284478/branches/1.4/channels/chan_misdn.c
+END
+answer.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/43376/branches/1.4/channels/answer.h
+END
+DialTone.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/asterisk/!svn/ver/43376/branches/1.4/channels/DialTone.h
+END
+chan_skinny.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/asterisk/!svn/ver/314607/branches/1.4/channels/chan_skinny.c
+END
+gentone-ulaw.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/asterisk/!svn/ver/43376/branches/1.4/channels/gentone-ulaw.c
+END
+ring10.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/43376/branches/1.4/channels/ring10.h
+END
+chan_features.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/asterisk/!svn/ver/68196/branches/1.4/channels/chan_features.c
+END
+chan_h323.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/273793/branches/1.4/channels/chan_h323.c
+END
+iax2.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/216000/branches/1.4/channels/iax2.h
+END
+chan_alsa.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/284478/branches/1.4/channels/chan_alsa.c
+END
+chan_nbs.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/asterisk/!svn/ver/60989/branches/1.4/channels/chan_nbs.c
+END
+busy_tone.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/230839/branches/1.4/channels/busy_tone.h
+END
+chan_mgcp.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/253158/branches/1.4/channels/chan_mgcp.c
+END
+chan_vpb.cc
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/228079/branches/1.4/channels/chan_vpb.cc
+END
+chan_local.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/316328/branches/1.4/channels/chan_local.c
+END
+chan_sip.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/asterisk/!svn/ver/325275/branches/1.4/channels/chan_sip.c
+END
+chan_agent.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/314908/branches/1.4/channels/chan_agent.c
+END
+iax2-provision.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/asterisk/!svn/ver/211528/branches/1.4/channels/iax2-provision.c
+END
+ring_tone.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/230839/branches/1.4/channels/ring_tone.h
+END
+chan_gtalk.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/185362/branches/1.4/channels/chan_gtalk.c
+END
+chan_iax2.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/324627/branches/1.4/channels/chan_iax2.c
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/asterisk/!svn/ver/207647/branches/1.4/channels/Makefile
+END
+chan_oss.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/asterisk/!svn/ver/291862/branches/1.4/channels/chan_oss.c
+END
+iax2-parser.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/asterisk/!svn/ver/216000/branches/1.4/channels/iax2-parser.c
+END

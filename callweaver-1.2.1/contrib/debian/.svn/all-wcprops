@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/contrib/debian
+END
+callweaver.logrotate
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/contrib/debian/callweaver.logrotate
+END
+apt-get.callweaver
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/contrib/debian/apt-get.callweaver
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/contrib/debian/README
+END

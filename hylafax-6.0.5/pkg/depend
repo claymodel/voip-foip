@@ -1,0 +1,11 @@
+# $Id$
+#
+#	Tim Rice
+#
+# Example depend lines
+#
+##P	tifftools	tiff-v3.4beta035
+##	(i386)	v3.4beta035
+#
+##P	gs510	Aladdin Ghostscript 5.10
+##	(i386)	5.10

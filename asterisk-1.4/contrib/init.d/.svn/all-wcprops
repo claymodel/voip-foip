@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/asterisk/!svn/ver/297818/branches/1.4/contrib/init.d
+END
+org.asterisk.muted.plist
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/asterisk/!svn/ver/297818/branches/1.4/contrib/init.d/org.asterisk.muted.plist
+END
+rc.gentoo.asterisk
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/asterisk/!svn/ver/119301/branches/1.4/contrib/init.d/rc.gentoo.asterisk
+END
+rc.mandrake.zaptel
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/asterisk/!svn/ver/67061/branches/1.4/contrib/init.d/rc.mandrake.zaptel
+END
+rc.slackware.asterisk
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/asterisk/!svn/ver/119301/branches/1.4/contrib/init.d/rc.slackware.asterisk
+END
+rc.suse.asterisk
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/asterisk/!svn/ver/119301/branches/1.4/contrib/init.d/rc.suse.asterisk
+END
+org.asterisk.asterisk.plist
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/asterisk/!svn/ver/252617/branches/1.4/contrib/init.d/org.asterisk.asterisk.plist
+END
+rc.debian.asterisk
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/asterisk/!svn/ver/287197/branches/1.4/contrib/init.d/rc.debian.asterisk
+END
+rc.mandrake.asterisk
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/asterisk/!svn/ver/135482/branches/1.4/contrib/init.d/rc.mandrake.asterisk
+END
+rc.redhat.asterisk
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/asterisk/!svn/ver/226811/branches/1.4/contrib/init.d/rc.redhat.asterisk
+END

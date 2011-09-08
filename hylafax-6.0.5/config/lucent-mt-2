@@ -1,0 +1,49 @@
+# $Id$
+#
+# prototype config file for MultiTech MT5634ZPX-PCI (Lucent Venus)
+# Note that this file is named intentionally "lucent-mt-2"
+# to precede "mt-1432" and win the pick; the two files are
+# incompatible and conflict in CONFIG catch-strings.
+# Non-MT5634ZPX-PCI modems will pass this file by
+# because this CONFIG line is model-specific.
+#
+
+#
+# CONFIG: CLASS2:"Multi-Tech Systems"-"MT5634ZPX-PCI"-*
+# CONFIG: CLASS2:"Multi-Tech Systems"-"MT5634ZBA"-*
+# CONFIG: CLASS2:*-"ISI5634PCI"-*
+# CONFIG: CLASS2:*-"MT5634SMI-V92"-*
+#
+# BEGIN-SERVER
+# END-SERVER
+#
+
+ModemType:		Class2
+ModemRate:		19200
+ModemFlowControl:	rtscts
+ModemNoFlowCmd:		AT&K0
+ModemSoftFlowCmd:	AT&K4
+ModemHardFlowCmd:	AT&K3
+ModemRecvFillOrder:	MSB2LSB		# classic MultiTech
+
+Class2APQueryCmd:	none		# not available
+Class2BUGCmd:		none		# not available
+Class2NFLOCmd:		AT+FLO=0
+Class2SFLOCmd:		AT+FLO=1
+Class2HFLOCmd:		AT+FLO=2
+
+# The modem performs copy quality correction (in Class 2... gasp!)
+# always, thus it's not a good idea to use host-based CQ.  The
+# query response is incorrect, also.
+Class2CQQueryCmd:	"!0-2"
+Class2CQCmd:		AT+FCQ=1
+
+# If your line supports Caller-ID, you may want to uncomment this...
+# ModemResetCmds:	AT+VCID=1
+# CallIDPattern:	"NMBR="
+# CallIDPattern:	"NAME="
+
+# Or with the MT5634ZBA-DID you'll probably need something like...
+# ModemReadyCmds:	AT*DS1*DD0*DF1*DN4	# enable DTMF-DID, wink-start, 4 digits
+# CallIDPattern:	"DTMF"		# format of AT*DF1
+# CallIDAnswerLength:	4		# four DTMF-DID digits then ATA

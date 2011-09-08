@@ -1,0 +1,37 @@
+Intro
+-----
+
+This for people running Gentoo/portage and who wants to try the current trunk
+of CallWeaver. There are two versions, daily bootstrapped and svn.
+
+Digests are already made so they should match. Just drop the 2 subdirs in your $PORTDIR_OVERLAY and you are all set.
+
+Requirements
+------------
+
+- spandsp spandsp-0.0.4_pre1.ebuild (in media-libs)
+- you need to know how to put files in $PORTDIR_OVERLAY and $DISTDIR (see 
+  Gentoo wiki for how to do that)
+- activate $PORTDIR_OVERLAY in your make.conf
+
+Pre-flight check
+----------------
+
+- put the spandsp ebuild in $PORTDIR_OVERLAY/media-libs/spandsp
+- put net-misc in your $PORTDIR_OVERLAY
+- cd $PORTDIR_OVERLAY/media-libs/spandsp
+- cd $PORTDIR_OVERLAY/net-misc/callweaver
+
+Installation
+------------
+- emerge -pv callweaver
+- set the USE flags you want (EXPERIMENTAL!!!)
+- emerge callweaver
+
+You will find more information about how to run/configure CallWeaver.org on
+http://www.CallWeaver.org/
+
+A Gentoo HOWTO is coming soon.
+
+Regards,
+heart

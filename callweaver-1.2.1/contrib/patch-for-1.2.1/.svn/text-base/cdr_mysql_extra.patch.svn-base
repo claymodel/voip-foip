@@ -1,0 +1,125 @@
+Index: cdr/cdr_mysql.c
+===================================================================
+--- cdr/cdr_mysql.c	(revision 4021)
++++ cdr/cdr_mysql.c	(working copy)
+@@ -59,6 +59,8 @@
+ static int records = 0;
+ static int totalrecords = 0;
+ static int userfield = 0;
++static char *extrafields_name[10];
++static int extrafields_count;
+ static unsigned int timeout = 0;
+ 
+ CW_MUTEX_DEFINE_STATIC(mysql_lock);
+@@ -119,8 +121,14 @@
+ 	char sqlcmd[2048], timestr[128];
+ 	char *clid=NULL, *dcontext=NULL, *channel=NULL, *dstchannel=NULL, *lastapp=NULL, *lastdata=NULL;
+ 	int retries = 5;
++	char *uniqueid = NULL;
++	int i;
++	int sqlcmd_size;
++	char *sqlcmd_ptr;
+ #ifdef MYSQL_LOGUNIQUEID
+-	char *uniqueid = NULL;
++	int loguniqueid =1;
++#else
++	int loguniqueid =0;
+ #endif
+ 
+ 	cw_mutex_lock(&mysql_lock);
+@@ -187,10 +195,10 @@
+ 	mysql_escape_string(lastapp, cdr->lastapp, strlen(cdr->lastapp));
+ 	lastdata = alloca(strlen(cdr->lastdata) * 2 + 1);
+ 	mysql_escape_string(lastdata, cdr->lastdata, strlen(cdr->lastdata));
+-#ifdef MYSQL_LOGUNIQUEID
+-	uniqueid = alloca(strlen(cdr->uniqueid) * 2 + 1);
+-	mysql_escape_string(uniqueid, cdr->uniqueid, strlen(cdr->uniqueid));
+-#endif
++	if (loguniqueid==1) {
++		uniqueid = alloca(strlen(cdr->uniqueid) * 2 + 1);
++		mysql_escape_string(uniqueid, cdr->uniqueid, strlen(cdr->uniqueid));
++	}
+ 	if (userfield) {
+ 		userfielddata = alloca(strlen(cdr->userfield) * 2 + 1);
+ 		mysql_escape_string(userfielddata, cdr->userfield, strlen(cdr->userfield));
+@@ -198,20 +206,48 @@
+ 
+ 	cw_log(LOG_DEBUG, "cdr_mysql: inserting a CDR record.\n");
+ 
++	/* start building the query : insert fields */
++	sqlcmd_size = 2048;
++	sqlcmd_ptr = sqlcmd;
++	cw_build_string( &sqlcmd_ptr, &sqlcmd_size, 
++		"INSERT INTO %s (calldate,clid,src,dst,dcontext,channel,dstchannel,lastapp,lastdata,duration,billsec,disposition,amaflags,accountcode", 
++		dbtable 
++	);
++	if (loguniqueid) {
++		cw_build_string( &sqlcmd_ptr, &sqlcmd_size, ",uniqueid");
++	}
+ 	if (userfield && userfielddata) {
+-#ifdef MYSQL_LOGUNIQUEID
+-		sprintf(sqlcmd, "INSERT INTO %s (calldate,clid,src,dst,dcontext,channel,dstchannel,lastapp,lastdata,duration,billsec,disposition,amaflags,accountcode,uniqueid,userfield) VALUES ('%s','%s','%s','%s','%s', '%s','%s','%s','%s',%i,%i,'%s',%i,'%s','%s','%s')", dbtable, timestr, clid, cdr->src, cdr->dst, dcontext, channel, dstchannel, lastapp, lastdata, cdr->duration, cdr->billsec, cw_cdr_disp2str(cdr->disposition), cdr->amaflags, cdr->accountcode, uniqueid, userfielddata);
+-#else
+-		sprintf(sqlcmd, "INSERT INTO %s (calldate,clid,src,dst,dcontext,channel,dstchannel,lastapp,lastdata,duration,billsec,disposition,amaflags,accountcode,userfield) VALUES ('%s','%s','%s','%s','%s', '%s','%s','%s','%s',%i,%i,'%s',%i,'%s','%s')", dbtable, timestr, clid, cdr->src, cdr->dst, dcontext,channel, dstchannel, lastapp, lastdata, cdr->duration, cdr->billsec, cw_cdr_disp2str(cdr->disposition), cdr->amaflags, cdr->accountcode, userfielddata);
+-#endif
+-	} else {
+-#ifdef MYSQL_LOGUNIQUEID
+-		sprintf(sqlcmd, "INSERT INTO %s (calldate,clid,src,dst,dcontext,channel,dstchannel,lastapp,lastdata,duration,billsec,disposition,amaflags,accountcode,uniqueid) VALUES ('%s','%s','%s','%s','%s', '%s','%s','%s','%s',%i,%i,'%s',%i,'%s','%s')", dbtable, timestr, clid, cdr->src, cdr->dst, dcontext,channel, dstchannel, lastapp, lastdata, cdr->duration, cdr->billsec, cw_cdr_disp2str(cdr->disposition), cdr->amaflags, cdr->accountcode, uniqueid);
+-#else
+-		sprintf(sqlcmd, "INSERT INTO %s (calldate,clid,src,dst,dcontext,channel,dstchannel,lastapp,lastdata,duration,billsec,disposition,amaflags,accountcode) VALUES ('%s','%s','%s','%s','%s', '%s','%s','%s','%s',%i,%i,'%s',%i,'%s')", dbtable, timestr, clid, cdr->src, cdr->dst, dcontext, channel, dstchannel, lastapp, lastdata, cdr->duration, cdr->billsec, cw_cdr_disp2str(cdr->disposition), cdr->amaflags, cdr->accountcode);
+-#endif
++		cw_build_string( &sqlcmd_ptr, &sqlcmd_size, ",userfield");
+ 	}
+-	
++	for (i=0;i<extrafields_count;i++) {
++		cw_build_string( &sqlcmd_ptr, &sqlcmd_size, ",%s", extrafields_name[i]);
++	}
++	/* start building the query : insert values */
++	cw_build_string( &sqlcmd_ptr, &sqlcmd_size, 
++		" ) VALUES ('%s','%s','%s','%s','%s', '%s','%s','%s','%s',%i,%i,'%s',%i,'%s'", 
++		timestr, clid, cdr->src, cdr->dst, dcontext, channel, dstchannel, lastapp, lastdata, 
++		cdr->duration, cdr->billsec, cw_cdr_disp2str(cdr->disposition), cdr->amaflags, cdr->accountcode
++	);
++	if (loguniqueid) {
++		cw_build_string( &sqlcmd_ptr, &sqlcmd_size, ",'%s'", uniqueid );
++	}
++	if (userfield && userfielddata) {
++		cw_build_string( &sqlcmd_ptr, &sqlcmd_size, ",'%s'", userfielddata );
++	}
++	for (i=0;i<extrafields_count;i++) {
++		char *ret = NULL;
++		char sqlvar[80];
++		cw_cdr_getvar( cdr, extrafields_name[i], &ret, sqlvar, sizeof(sqlvar), 0 );
++		if (sqlvar!=NULL) {
++			char sqlvar2[80];
++			mysql_escape_string(sqlvar2, sqlvar, strlen(sqlvar));
++			cw_build_string( &sqlcmd_ptr, &sqlcmd_size, ",'%s'", sqlvar2);
++		} else {
++			cw_build_string( &sqlcmd_ptr, &sqlcmd_size, ",''" );
++		}
++	}
++	strncat( sqlcmd, ")", 2048 );
++
+ 	cw_log(LOG_DEBUG, "cdr_mysql: SQL command as follows: %s\n", sqlcmd);
+ 	
+ 	if (connected) {
+@@ -403,7 +439,18 @@
+ 			userfield = 0;
+ 		}
+ 	}
+-	
++
++	tmp = cw_variable_retrieve(cfg, "global", "extrafields");
++	int i;
++	for (i=0;i<10;i++) {
++		extrafields_name[i]=0;
++	}
++	char *atmp[10];
++	extrafields_count = cw_separate_app_args(tmp, ',', 10, atmp);
++	for (i=0;i<extrafields_count;i++) {
++		extrafields_name[i] = strdup(atmp[i]);
++	}
++
+ 	cw_config_destroy(cfg);
+ 
+ 	cw_log(LOG_DEBUG, "cdr_mysql: got hostname of %s\n", hostname);

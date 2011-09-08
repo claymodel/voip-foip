@@ -1,0 +1,36 @@
+CallWeaver.org Perl Modules
+by xming based on Perl Modules
+by James Golovich <james@gnuinter.net>
+
+
+These are all modules for interfacing with the CallWeaver.org open source pbx
+system.
+
+The main site for these files is http://callweaver.org.gnuinter.net, or soon
+to be found at a CPAN mirror near you.
+
+There is a mailing list setup to discuss callweaver.org-perl related topics,
+you can subscribe by sending an empty email to 
+callweaver.org-perl-subscribe@lists.gnuinter.net
+
+Some documentation is in the the perl modules, use perldoc to read it
+(example: perldoc CallWeaver::OGI)
+
+To install these modules just do:
+	perl Makefile.PL
+	make all
+	make install
+
+Examples that use these modules can be found in the examples/ directory
+
+Here is a short description of what each does:
+
+ogi-sayani.ogi: OGI Script that says the callerid and dnis
+ogi-test.ogi: Rewrite of OGI Example included with callweaver.org
+calleridnamelookup.ogi: OGI Script that uses an online reverse number databases to add a name to callerid
+tts-bofh.ogi: OGI script that uses Festival to give a random bofh excuse
+tts-ping.ogi: OGI script that pings an ip address and notifies the user if the host is up or down
+tts-line.ogi: OGI script that uses Festival to read a text file one line at a time
+manager-test.pl: Example usage of the CallWeaver.org::Manager module
+
+CallWeaver.org can be found at http://www.callweaver.org

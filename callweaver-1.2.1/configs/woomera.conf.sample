@@ -1,0 +1,25 @@
+[settings]
+;debug=2 		; set for console output 1 = some, 2 = more, 3 = too much
+;more_threads=no	; if you don't want to give each channel it's own monitor thread
+
+[default]
+host=localhost		; host where woomera can be reached
+port=42420		; port where woomera is listening
+audio_ip=127.0.0.1	; ip to use for udp audio
+context=default		; context for inbound calls
+;inbound=no		; disable inbound calls
+;outbound=no		; disable outbound calls
+;disabled=yes		; disable the whole profile
+
+; each different profile will connect on it's own
+[someprofile]
+disabled=yes
+host=localhost
+port=42420
+audio_ip=1.2.3.4
+context=polycom
+
+; usage 
+; WOOMERA/[PROTOCOL:]<address>[*profile]
+; WOOMERA/H323:123@1.2.3.4
+; WOOMERA/H323:333@1.2.3.5*someprofile

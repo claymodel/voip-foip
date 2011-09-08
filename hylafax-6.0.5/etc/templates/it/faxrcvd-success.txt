@@ -1,0 +1,21 @@
+From: Server fax HylaFAX <$FROMADDR>
+To: $SENDTO
+Subject: Fax ricevuto da $SENDER
+Content-type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: Quoted-Printable
+
+$FILE (ftp://$HOSTNAME:$PORT/$FILE):
+                Mittente: $SENDER
+                  Pagine: $PAGES
+                 Qualità: $QUALITY
+              Dimensione: $PAGE
+                Ricevuto: $RECEIVED
+  Durata della ricezione: $TIMETORECV
+Velocità di trasmissione: $SIGNALRATE
+            Formato dati: $DATAFORMAT
+     Correzione d'errore: $ERRCORRECT
+                 CallID1: $CALLID1
+                 CallID2: $CALLID2
+        Ricevuto tramite: $DEVICE
+                  CommID: $COMMID (ftp://$HOSTNAME:$PORT/log/c$COMMID)
+

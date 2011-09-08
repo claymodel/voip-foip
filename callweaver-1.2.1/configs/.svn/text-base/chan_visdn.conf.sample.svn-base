@@ -1,0 +1,139 @@
+;
+; vISDN configuration file for CallWeaver.org
+;
+;
+; network_role = private
+;		(user | private | local | transit | international)
+;	The role of the interface in the ISDN network. Normally you would use
+;	"private" to indicate a private branch. If you ever want to be seen as
+;	the public operator you should use "local". "transit" and
+;	"international" are mostly unused.
+;	Context: global, interface
+;
+; type_of_number = unknown
+;		(unknown | international | national | network_specific |
+;		subscriber | abbreviated)
+; 	Type of number used for called numbers (outbound calls)
+;	Context: global, interface
+;
+; local_type_of_number = unknown
+;		(unknown | international | national | network_specific |
+;		subscriber | abbreviated)
+; 	Type of number used for caller id. Some network require you to use a
+;	specific type of network to correctly accept the caller_id.
+;	Context: global, interface
+;
+; overlap_sending = Yes
+;	Enables/disables overlap dialing. Disabiling overlap dialing means
+;	that the called party number in the SETUP message is considered
+;	complete. If existant it will be connected, otherwise the call will
+;	be rejected. Note that "sending" means that the user is sending digits.
+;	Context: global, interface
+;
+; overlap_receiving = No
+;	Enables/disables overlap receiving on the interface. Overlap receiving
+;	is used to implement DID thru PBXs.
+;	Context: global, interface
+;
+; context =
+;	Context in which to look for destination in inbound calls
+;	Context: global, interface
+;
+; default_inbound_caller_id =
+;	Caller ID to be used when the peer (usually the phones when we are
+;	acting as the network).
+;	Context: global, interface
+;
+; force_inbond_caller_id =
+;	Always use this caller party number with inbound calls. Mostly used
+;	in NT role with phones attached.
+;
+; national_prefix =
+;	Prefix to prepend when transforming numbers of type "national"
+;	Context: global, interface
+;
+; international_prefix =
+;	Prefix to prepend when transforming numbers of type "international"
+;	Context: global, interface
+;
+; autorelease_dlc =
+;	Release the DLC after the specified timeout (in seconds).
+;	'0' disabled the autorelease mechanism.
+;	Context: global, interface
+;
+; T301 = T322
+;	Configure Layer3/CCB timers. For a description of the timers meaning
+;	refer to ETS 300 102 Table 9.1 and successive modifications.
+;	Avoid to modify them if you don't know what you're doing.
+;
+
+;[general]
+
+;[global]
+;network_role = private
+;type_of_number = unknown
+;local_type_of_number = unknown
+;tones_option = yes
+;context = visdn0_in
+;default_inbound_caller_id = 300
+;force_inbound_caller_id = No
+;overlap_sending = Yes
+;overlap_receiving = No
+;national_prefix = 0
+;international_prefix = 00
+;autorelease_dlc = 10
+
+;[visdn0]
+;network_role = private
+;type_of_number = unknown
+;local_type_of_number = unknown
+;tones_option = yes
+;context = visdn0_in
+;default_inbound_caller_id = 300
+;force_inbound_caller_id = No
+;overlap_sending = Yes
+;overlap_receiving = No
+
+;[visdn1.0]
+;network_role = private
+;type_of_number = unknown
+;local_type_of_number = unknown
+;tones_option = yes
+;context = visdn1_0_in
+;default_inbound_caller_id = QuadBRI Port 1 <200>
+;force_inbound_caller_id = No
+;overlap_sending = Yes
+;overlap_receiving = No
+
+;[visdn1.1]
+;network_role = private
+;type_of_number = unknown
+;local_type_of_number = unknown
+;tones_option = yes
+;context = visdn1_1_in
+;default_inbound_caller_id = 300
+;force_inbound_caller_id = No
+;overlap_sending = Yes
+;overlap_receiving = No
+
+;[visdn1.2]
+;network_role = private
+;type_of_number = unknown
+;local_type_of_number = unknown
+;tones_option = yes
+;context = visdn1_2_in
+;default_inbound_caller_id = 
+;force_inbound_caller_id = No
+;overlap_sending = Yes
+;overlap_receiving = No
+
+;[visdn1.3]
+;network_role = private
+;type_of_number = unknown
+;local_type_of_number = unknown
+;tones_option = yes
+;context = visdn1_3_in
+;default_inbound_caller_id = 
+;force_inbound_caller_id = No
+;overlap_sending = Yes
+;overlap_receiving = No

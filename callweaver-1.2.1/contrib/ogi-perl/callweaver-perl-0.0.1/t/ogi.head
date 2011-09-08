@@ -1,0 +1,7 @@
+ogi_request: someogi.ogi
+ogi_channel: Zap/1
+ogi_language: en
+ogi_type: Zap
+ogi_context: demo
+ogi_extension: 1
+ogi_priority: 2

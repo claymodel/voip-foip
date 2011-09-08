@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/debian
+END
+control
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/debian/control
+END
+compat
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/debian/compat
+END
+callweaver.logrotate
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/debian/callweaver.logrotate
+END
+callweaver.dirs
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/debian/callweaver.dirs
+END
+callweaver-zaptel.install
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/debian/callweaver-zaptel.install
+END
+callweaver.init
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/debian/callweaver.init
+END
+changelog
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/debian/changelog
+END
+docs
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/debian/docs
+END
+callweaver.install
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/debian/callweaver.install
+END
+rules
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/debian/rules
+END
+callweaver-misdn.install
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/debian/callweaver-misdn.install
+END
+callweaver-dev.install
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/debian/callweaver-dev.install
+END
+callweaver.postinst
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/debian/callweaver.postinst
+END
+callweaver.default
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/debian/callweaver.default
+END
+copyright
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/debian/copyright
+END
+control_misdn
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/debian/control_misdn
+END

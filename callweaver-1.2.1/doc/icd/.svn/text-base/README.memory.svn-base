@@ -1,0 +1,105 @@
+BCA - The methods in this document are currently under debate. See icd_memory.h
+for some of the talking points. I'm temporarily leaving the documentation here
+alone but once we've made some decisions, we'll have to come back to this
+document and revamp it.
+
+============================[ New Method ]===============================
+
+1. Declare a field in a structure for memory management:
+
+struct myclass {
+    ...
+    ICD_MEM_MANAGER_DECLARE;
+}
+
+2. Create a structure that contains that declaration:
+
+create_icd_myclass() {
+    myobj = ICD_OBJECT_CALLOC(myclass);
+}
+
+3. Free such a structure:
+
+destroy_icd_myclass(myclass **myobjp) {
+    if ((*myobjp)->allocated) {
+        ICD_OBJECT_FREE((*myobjp));
+    }
+}
+
+4. Initialize another structure to use the pool in yours (beware
+of deleting the second structure, it should not destroy the pool):
+
+    ICD_MEM_MANAGER_INHERIT(objectWithPool, objectSharingPool);
+
+5. Create an object that is created from and also uses another
+object's pool:
+
+hash_storage *vh_init_hash_storage(void_hash_table *hashtable) {
+    hash_storage *new_store;
+
+    new_store = ICD_OTHER_CALLOC(hashtable, hash_storage);
+    if(! new_store) {
+        return NULL;
+    }
+    ICD_MEM_MANAGER_INHERIT(hashtable, new_store);
+
+
+
+============================[ Old Method ]===============================
+
+
+The following are some examples on how to use memory pools.
+Thanks to the macros this code will work with or without USE_APR defined.
+See the bottom of icd_types.h for the macro code.
+
+CREATE A POOL AND MALLOC FROM IT THEN FREE THE MALLOCED MEM AND DESTROY THE POOL
+
+the ICD_POOL_FREE does nothing but it's there in case you don't have USE_APR
+if you do have USE_APR then ICD_NEW_POOL() does nothing and ICD_POOL_FREE() calls free()
+=========================================================================================
+ICD_NEW_POOL(pool); //declare
+char *string = ICD_POOL_MALLOC(pool,100);
+strncpy(string,"ICD ROCKS",100);
+ICD_POOL_FREE(string);
+ICD_POOL_DESTROY(pool);
+
+
+struct mystruct {
+                char name[100];
+                char *dyna;
+                icd_memory *memory; // required member...
+};
+
+
+CREATE AN OBJ THAT CONTAINS IT'S OWN POOL
+
+this actually fills in the ->memory member with an apr_pool_t for all its
+allocing needs....This also will work with no USE_APR it will malloc()/free() instead.
+=========================================================================================
+struct mystruct *new;
+ICD_MALLOC(new,sizeof(struct mystruct));
+ICD_FREE(new);
+
+
+USE THE SUBPOOL FROM AN OBJ TO MALLOC MORE OF ITSELF
+since the obj has it's own pool, you can use it to ask for more memory
+=========================================================================================
+struct mystruct *new;
+ICD_MALLOC(new,sizeof(struct mystruct));
+new->dyna = ICD_INNER_MALLOC(new,100);
+strncpy(new->dyna,"ICD ROCKS",100);
+ICD_INNER_FREE(new->dyna);
+ICD_FREE(new);
+
+BORROW SOME MEM FROM AN OBJ THAT YOU KNOW WILL GIVE IT BACK
+since objects with ->memory always give back the pool you can use any obj's ->memory
+to malloc from and when you free the obj all the mem will go with it.
+again depending on if USE_APR is on or off some macro are empty some do stuff
+=========================================================================================
+
+struct mystruct *new;
+ICD_MALLOC(new,sizeof(struct mystruct));
+char *string = ICD_POOL_MALLOC(new->memory,100);
+strncpy(string,"ICD ROCKS",100);
+ICD_POOL_FREE(string);
+ICD_FREE(new);

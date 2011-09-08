@@ -1,0 +1,14 @@
+; vim:ft=cfg
+
+[memcache]
+
+; Should we enable this feature ?
+enabled = 0
+
+; What is our memcached server host and port ?
+server_host=127.0.0.1
+server_port=11211
+
+; What is the maximum cache lifetime of the values that we store ?
+; 0 means the maximum value (1 month)
+cache_lifetime=3600

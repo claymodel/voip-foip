@@ -1,0 +1,485 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps
+END
+app_t38gateway.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_t38gateway.c
+END
+leave.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/leave.h
+END
+app_getextstate.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_getextstate.c
+END
+app_dtmftotext.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_dtmftotext.c
+END
+app_settransfercapability.c
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_settransfercapability.c
+END
+app_groupcount.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_groupcount.c
+END
+app_changrab.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_changrab.c
+END
+app_chanspy.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_chanspy.c
+END
+app_stack.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_stack.c
+END
+app_faxdetect.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_faxdetect.c
+END
+app_adsiprog.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_adsiprog.c
+END
+app_cdr.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_cdr.c
+END
+app_setcallerpres.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_setcallerpres.c
+END
+app_read.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_read.c
+END
+app_dictate.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_dictate.c
+END
+app_softhangup.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_softhangup.c
+END
+app_getdevstate.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_getdevstate.c
+END
+app_getcpeid.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_getcpeid.c
+END
+app_db.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_db.c
+END
+app_setcdruserfield.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_setcdruserfield.c
+END
+app_controlplayback.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_controlplayback.c
+END
+app_valetparking.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_valetparking.c
+END
+app_enumlookup.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_enumlookup.c
+END
+app_visdn_ppp.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_visdn_ppp.c
+END
+app_zapateller.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_zapateller.c
+END
+app_senddtmf.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_senddtmf.c
+END
+app_milliwatt.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_milliwatt.c
+END
+app_meetme.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_meetme.c
+END
+app_muxmon.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_muxmon.c
+END
+app_exec.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_exec.c
+END
+app_sql_postgres.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_sql_postgres.c
+END
+app_forkcdr.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_forkcdr.c
+END
+app_lookupcidname.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_lookupcidname.c
+END
+app_setrdnis.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_setrdnis.c
+END
+app_pipe.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_pipe.c
+END
+app_backticks.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_backticks.c
+END
+app_directed_pickup.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_directed_pickup.c
+END
+app_skel.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_skel.c
+END
+app_dumpchan.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_dumpchan.c
+END
+dll_sms.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/dll_sms.h
+END
+app_sms.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_sms.c
+END
+app_verbose.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_verbose.c
+END
+app_voicemail.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_voicemail.c
+END
+app_dial.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_dial.c
+END
+app_page.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_page.c
+END
+app_waitforsilence.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_waitforsilence.c
+END
+app_hasnewvoicemail.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_hasnewvoicemail.c
+END
+app_echo.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_echo.c
+END
+app_sayunixtime.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_sayunixtime.c
+END
+app_userevent.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_userevent.c
+END
+app_disa.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_disa.c
+END
+app_ldap.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_ldap.c
+END
+enter.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/enter.h
+END
+app_chanisavail.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_chanisavail.c
+END
+app_transfer.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_transfer.c
+END
+app_system.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_system.c
+END
+app_playback.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_playback.c
+END
+app_rxfax.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_rxfax.c
+END
+app_txfax.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_txfax.c
+END
+app_osplookup.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_osplookup.c
+END
+app_sendtext.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_sendtext.c
+END
+app_amd.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_amd.c
+END
+app_lookupblacklist.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_lookupblacklist.c
+END
+app_proc.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_proc.c
+END
+app_directory.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_directory.c
+END
+app_backgrounddetect.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_backgrounddetect.c
+END
+app_while.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_while.c
+END
+app_privacy.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_privacy.c
+END
+app_record.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_record.c
+END
+app_authenticate.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_authenticate.c
+END
+app_devstate.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_devstate.c
+END
+app_waitfordigits.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_waitfordigits.c
+END
+app_random.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_random.c
+END
+app_sql_mysql.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_sql_mysql.c
+END
+app_queue.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_queue.c
+END
+app_eval.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_eval.c
+END
+app_v110.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_v110.c
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/Makefile.am
+END
+app_waitforring.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_waitforring.c
+END
+app_flash.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/app_flash.c
+END

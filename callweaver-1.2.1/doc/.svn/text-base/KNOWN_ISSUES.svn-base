@@ -1,0 +1,68 @@
+# vim:tw=80:ft=txt
+
+These are known issues with CallWeaver
+
+
+APP_QUEUE CDR LOGGING
+
+  Problem
+    - If having members in a queue reachable via Zap like member =>
+      Zap/g1/somenumber the member is called up correctly, but the call never gets
+      logged to CDR.
+  
+  Solution
+    - To have callweaver log CDRs correctly, change this to member =>
+      Local/somenumber@somecontext and add [somecontext] to your extensions.conf
+      for chan_local use.
+
+
+CHAN_SIP CALL COUNTER ISSUES
+
+  Problem
+    - If using call-limit in chan_sip, counters may not be decreased after end
+      of call. This is documented in trouble ticket #45, see
+      http://callweaver.org/ticket/45.
+
+  Solution
+    - Use dialplan logic with the GROUP and GROUP_COUNT functions intead of the
+      counters.
+
+RTC LOST INTERRUPT
+
+  Problem
+    - My kernel logs are filled with:
+      Sep  6 11:55:06 callweaver kernel: rtc: lost some interrupts at 1024Hz.
+
+  Solution
+    - check: cat /proc/sys/dev/rtc/max-user-freq
+      if less then 1000 use: echo 1000 > /proc/sys/dev/rtc/max-user-freq
+      put this in your startup script.
+    - if the problem persist check the output of "dmesg", lost interrupt can 
+      be also caused by problems with your hard disk(s) (some bad sectors).
+
+CLOCK_MONOTONIC SUPPORT IN LIBC
+
+  Problem
+    - For better timing performance CallWeaver need that your system libc has
+      support for CLOCK_MONOTONIC 
+
+  Solution
+    - on Linux, you have it with GNU libc6 >= 2.3.3
+    - on BSD, you need OS version >= 7.0
+
+CANNOT DIAL NUMBERS THAT START WITH '#'
+
+  Problem
+    - Some SIP client uses UTF-8 encoding to manage datas and give some 
+      problem dialing numbers that start with '#'
+
+  Solution
+    - First of all check if your phone does not use '#' as a "send" key
+    - Second just put "pedantic=yes" in your sip.conf, Snom phones are
+      affected by this.
+
+OTHER BUGS
+
+  - For more info about unsolved and solved bugs, please see
+    http://callweaver.org/tickets.
+

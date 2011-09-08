@@ -1,0 +1,8 @@
+This is a preliminary version of icd with jabber support.
+Needs one hell of a cleanup we are doing right now.
+Events need to be made a lot cleaner and less of them :)
+Jabber is stable but will be probably replaced by some sort of gernral res for callweaver
+This work was mostly sponsored by Halo Kwadrat Sp. z o.o.
+and partly by Sangoma Inc.
+Many many thanks to Bruce Callendish, Tim Clark and Anthony Minesalle for the initial icd version
+which we are now extending and adopting for callweaver.org

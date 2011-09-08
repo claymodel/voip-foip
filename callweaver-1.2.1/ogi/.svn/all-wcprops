@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/ogi
+END
+eogi-test.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/ogi/eogi-test.c
+END
+eogi-sphinx-test.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/ogi/eogi-sphinx-test.c
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/ogi/Makefile.am
+END
+ogi-test.ogi.in
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/ogi/ogi-test.ogi.in
+END
+fastogi-test.in
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/ogi/fastogi-test.in
+END

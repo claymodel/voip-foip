@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/formats
+END
+format_gsm.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/formats/format_gsm.c
+END
+format_g729.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/formats/format_g729.c
+END
+format_sln.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/formats/format_sln.c
+END
+format_wav.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/formats/format_wav.c
+END
+format_ogg_vorbis.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/formats/format_ogg_vorbis.c
+END
+format_g723_1.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/formats/format_g723_1.c
+END
+format_wav_gsm.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/formats/format_wav_gsm.c
+END
+format_au.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/formats/format_au.c
+END
+format_pcm.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/formats/format_pcm.c
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/formats/Makefile.am
+END
+format_h263.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/formats/format_h263.c
+END
+msgsm.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/formats/msgsm.h
+END
+format_pcm_alaw.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/formats/format_pcm_alaw.c
+END
+format_jpeg.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/formats/format_jpeg.c
+END
+format_g726.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/formats/format_g726.c
+END

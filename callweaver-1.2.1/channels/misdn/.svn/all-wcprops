@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/misdn
+END
+fac.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/misdn/fac.h
+END
+isdn_msg_parser.c
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/misdn/isdn_msg_parser.c
+END
+misdn_config.c
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/misdn/misdn_config.c
+END
+asn1.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/misdn/asn1.c
+END
+chan_misdn.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/misdn/chan_misdn.c
+END
+isdn_lib.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/misdn/isdn_lib.c
+END
+VERSION
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/misdn/VERSION
+END
+asn1.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/misdn/asn1.h
+END
+isdn_lib_intern.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/misdn/isdn_lib_intern.h
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/misdn/Makefile.am
+END
+isdn_lib.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/misdn/isdn_lib.h
+END
+fac.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/misdn/fac.c
+END
+chan_misdn_config.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/misdn/chan_misdn_config.h
+END
+ie.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/misdn/ie.c
+END

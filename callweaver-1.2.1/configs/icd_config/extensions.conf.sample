@@ -1,0 +1,40 @@
+;Examples for customer distribution
+;
+;Create a customer distributo called roundrobin-customer with some extra info and place each call in the roundrobin_q queue
+exten => 8001,1,icd_customer(name=roundrobin-customer|info=extra info|queue=roundrobin_q)
+; Create a customer distributor called priority-customer with addon infomration, place each call in the priority_q queue and five it a priority of 100
+exten => 8002,1,icd_customer(name=priority-customer|info=whatever|priority=100|queue=priority_q)
+; Create a customer distributor called fifo-customer with some additional information and place it in the fifo_q qeue
+exten => 8003,1,icd_customer(name=fifo-customer|info=your message here|queue=fifo_q)
+; Create a customer distributor called lifo-customer and place each call in the lifo_q queue
+exten => 8004,1,icd_customer(name=lifo-customer|queue=lifo_q)
+;
+; Next Examples will use conference bridging instead of normal bridging
+; create a customer distributor and place each call in the demo conference
+exten => 8006,1,icd_customer(conference=demo)
+; create a customer distributor and place each call in the conference called 1001, muted to be able to listen in on the conference
+exten => 8007,1,icd_customer(conference=1001|spy=1)
+; Create a customer distributor, place each call in the conference called demo, don't hangup on agent disconnect and go on in dialplan
+exten => 8008,1,icd_customer(conference=demo|nohangup=0)
+exten => 8008,2,Playback(demo-congrats)
+exten => 8008,3,Hangup
+; Create a customer distributor, place each call in the demo_locked conference which will ask for a pin for access(as defined in icd_conference)
+exten => 8009,1,icd_customer(conference=demo_locked)a
+; Create a barge in customer distributor that will jump from conf to conf when customer presses the * key and listen in muted
+exten => 8010,1,icd_customer(conference=autoscan|spy=1)
+; Create a customer distributor  and ask at each call for the conference id the call should be placed in
+exten => 8011,1,icd_customer(conference=query)
+
+
+
+
+
+; Login agent smith without authentification
+exten => 7001,1,icd_agent(agent=smith|noauth=1)
+; Login agent jones and prompt for password
+exten => 7002,1,icd_agent(agent=jones|noauth=0)
+; Login agent dialme and make him a member of queue roundrobin_q
+exten => 7003,1,icd_agent(agent=dialme|queue=roundrobin_q)
+; create a dynamic agent called dynamo, don't prompt for a password and make him a member of the roundrobin_q queue
+exten => 7004,1,icd_agent(agent=dynamo|noauth=1|dynamic=yes|queue=roundrobin_q)
+

@@ -1,0 +1,12 @@
+usr/include/callweaver
+usr/lib*/callweaver/libo*.so
+usr/lib*/callweaver/lib*.la
+usr/lib*/lib*.la
+usr/lib*/callweaver/modules/*.la
+usr/lib*/callweaver/modules/icd/*.la
+usr/lib64/callweaver/libo*.so
+usr/lib64/callweaver/lib*.la
+usr/lib64/lib*.la
+usr/lib64/callweaver/modules/*.la
+usr/lib64/callweaver/modules/icd/*.la
+

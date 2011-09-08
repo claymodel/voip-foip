@@ -1,0 +1,13 @@
+#[COMMENT: append this to control file without this line]
+
+Package: callweaver-misdn
+Depends: callweaver
+Section: comm
+Architecture: all
+Description: mISDN module for CallWeaver
+ CallWeaver is an Open Source PBX and telephony toolkit
+ .
+ This Package contains the CallWeaver mISDN Module, which is needed to
+ let CallWeaver talk to mISDN kernelmodules.
+ You will also need mISDN-user and mISDN-kernel-module to actually use this.
+

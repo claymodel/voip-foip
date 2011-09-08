@@ -1,0 +1,143 @@
+K 25
+svn:wc:ra_dav:version-url
+V 34
+/svn/menuselect/!svn/ver/931/trunk
+END
+configure
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/menuselect/!svn/ver/907/trunk/configure
+END
+make_version
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/menuselect/!svn/ver/29/trunk/make_version
+END
+menuselect_newt.c
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/menuselect/!svn/ver/931/trunk/menuselect_newt.c
+END
+menuselect_stub.c
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/menuselect/!svn/ver/18/trunk/menuselect_stub.c
+END
+menuselect.c
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/menuselect/!svn/ver/917/trunk/menuselect.c
+END
+bootstrap.sh
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/menuselect/!svn/ver/29/trunk/bootstrap.sh
+END
+makeopts.in
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/menuselect/!svn/ver/398/trunk/makeopts.in
+END
+autoconfig.h.in
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/menuselect/!svn/ver/907/trunk/autoconfig.h.in
+END
+config.guess
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/menuselect/!svn/ver/677/trunk/config.guess
+END
+menuselect.h
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/menuselect/!svn/ver/917/trunk/menuselect.h
+END
+menuselect_gtk.c
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/menuselect/!svn/ver/906/trunk/menuselect_gtk.c
+END
+config.sub
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/menuselect/!svn/ver/677/trunk/config.sub
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/menuselect/!svn/ver/725/trunk/README
+END
+strcompat.c
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/menuselect/!svn/ver/683/trunk/strcompat.c
+END
+configure.ac
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/menuselect/!svn/ver/907/trunk/configure.ac
+END
+acinclude.m4
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/menuselect/!svn/ver/814/trunk/acinclude.m4
+END
+menuselect_curses.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/menuselect/!svn/ver/917/trunk/menuselect_curses.c
+END
+missing
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/menuselect/!svn/ver/29/trunk/missing
+END
+linkedlists.h
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/menuselect/!svn/ver/906/trunk/linkedlists.h
+END
+example_menuselect-tree
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/menuselect/!svn/ver/558/trunk/example_menuselect-tree
+END
+aclocal.m4
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/menuselect/!svn/ver/907/trunk/aclocal.m4
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/menuselect/!svn/ver/438/trunk/Makefile
+END
+install-sh
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/menuselect/!svn/ver/29/trunk/install-sh
+END

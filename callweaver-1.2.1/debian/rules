@@ -1,0 +1,208 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+# Sample debian/rules that uses debhelper.
+# This file was originally written by Joey Hess and Craig Small.
+# As a special exception, when this file is copied by dh-make into a
+# dh-make output file, you may use that output file without restriction.
+# This special exception was added by Craig Small in version 0.37 of dh-make.
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+# These are used for cross-compiling and for saving the configure script
+# from having to guess our platform (since we know it already)
+DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+
+ENABLE_DEBUG=no
+
+CFLAGS = -Wall -g
+
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+	CFLAGS += -O0
+else
+	CFLAGS += -O2
+endif
+
+include /usr/share/dpatch/dpatch.make
+
+DEBVERSION:=$(shell head -n 1 debian/changelog \
+		    | sed -e 's/^[^(]*(\([^)]*\)).*/\1/')
+ORIGVERSION:=$(shell echo $(DEBVERSION) | sed -e 's/^.*://' -e 's/-[0-9.]*$$//' -e 's/.dfsg$$//')
+UPVERSION:=$(shell echo $(ORIGVERSION) | sed -e 's/~rc/_rc/')
+
+FILENAME := callweaver_$(ORIGVERSION)~dfsg.orig.tar.gz
+UPFILENAME := callweaver_$(UPVERSION).orig.tar.gz
+URL := http://www.callweaver.org/callweaver-$(UPVERSION).tar.gz
+
+# FOR AUTOCONF 2.52 AND NEWER ONLY
+ifeq ($(DEB_BUILD_GNU_TYPE), $(DEB_HOST_GNU_TYPE))
+   confflags += --build $(DEB_HOST_GNU_TYPE)
+else
+   confflags += --build $(DEB_BUILD_GNU_TYPE) --host $(DEB_HOST_GNU_TYPE)
+endif
+ifeq ($(ENABLE_DEBUG), yes)
+ CFLAGS= -ggdb3 -O0 -DDO_CRASH -DDEBUG_SCHEDULER -DSTACK_BACKTRACES -DDETECT_DEADLOCKS
+ confflags += \
+    --enable-debug=yes \
+    --enable-do-crash=yes \
+    --enable-frame-tracing=yes \
+    --enable-valgrind=yes \
+    --enable-debug=yes \
+    --enable-debug-scheduler=yes \
+    --enable-stack-backtraces=yes \
+    --disable-optimization \
+    --with-directory-layout=lsb \
+    --with-debug_malloc=yes
+endif
+
+config.status: patch-stamp configure
+	dh_testdir
+	# just make sure we're not regenerating configure =)
+	touch configure
+	CFLAGS="$(CFLAGS)" ./configure $(confflags) \
+			        --with-directory-layout=lsb \
+				--prefix=/usr \
+				--mandir=\$${prefix}/share/man \
+	        		--infodir=\$${prefix}/share/info \
+				--bindir=\$${prefix}/bin \
+				--sbindir=\$${prefix}/sbin \
+				--libdir=\$${prefix}/lib \
+				--datarootdir=\$${prefix}/share \
+				--localstatedir=/var \
+				--sysconfdir=/etc \
+				\
+				--with-pbx_ael=yes \
+				--with-app_sql_postgres=yes --enable-postgresql=yes \
+				--with-res_config_pgsql --with-res_sqlite=yes \
+				--with-cdr_pgsql=yes --with-app_meetme=no --with-chan-capi=yes \
+				--enable-iax-trunking=yes --with-res_config_curl=yes \
+				--enable-t38=yes --with-chan-fax=yes \
+				--with-res_jabber=yes --enable-odbc=yes --with-cdr_odbc=yes \
+				--with-res_config_odbc=yes --with-res_odbc=yes \
+				--with-chan_bluetooth=yes \
+				--enable-mysql=yes --with-app_sql_mysql=yes --with-cdr_mysql=yes \
+				--with-res_config_mysql=yes  --with-chan_zap=yes \
+				--enable-zaptel \
+				--with-app_icd=no \
+                                --with-chan_unicall=no \
+				--with-chan_misdn=no
+
+build: build-stamp
+
+build-stamp: config.status
+	dh_testdir
+
+	# Add here commands to compile the package.
+	$(MAKE)
+	touch build-stamp
+
+clean: clean-patched unpatch
+clean-patched:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp 
+	
+	# Add here commands to clean up after the build process.
+	-$(MAKE) clean distclean
+	rm -f config.status
+	#if [ -f config.sub.orig ];then \
+	#	rm -f config.sub; \
+	#	mv config.sub.orig config.sub; \
+	#fi
+	#if [ -f config.guess.orig ];then \
+	#	rm -f config.guess; \
+	#	mv config.guess.orig config.guess; \
+	#fi
+	
+	dh_clean 
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k 
+	dh_installdirs
+	
+	# Add here commands to install the package into debian/tmp.
+	$(MAKE) DESTDIR=$(CURDIR)/debian/tmp install
+	mkdir $(CURDIR)/debian/tmp/usr/bin
+#	sed -e "s,__OPENPBX_SBIN_DIR__,/usr/sbin," contrib/scripts/safe_callweaver > \
+#	        debian/tmp/usr/sbin/safe_callweaver
+
+# Build architecture-independent files here.
+binary-indep: install
+	dh_testdir -i
+	dh_testroot -i
+	dh_installlogrotate -i
+	dh_installinit -i -- defaults 21
+	dh_installdocs -i 
+	dh_installexamples -i -XCVS
+	#dh_installcron -i
+	dh_installchangelogs ChangeLog -i
+	dh_install -i --sourcedir=debian/tmp
+	dh_link -i
+	dh_compress -i
+	dh_fixperms -i
+	dh_installdeb -i
+	dh_gencontrol -i
+	dh_md5sums -i
+	dh_builddeb -i
+
+# Build architecture-dependent files here.
+binary-arch: install
+	dh_testdir -a
+	dh_testroot -a
+	dh_installchangelogs -a ChangeLog
+	dh_installdocs -a
+	dh_installexamples -a
+	dh_install -a --sourcedir=debian/tmp
+	rm -f debian/callweaver/etc/callweaver/zapata.conf
+	rm -f debian/callweaver/usr/lib/callweaver/modules/chan_zap.so
+	rm -f debian/callweaver/etc/callweaver/misdn.conf
+	rm -f debian/callweaver/usr/lib/callweaver/modules/chan_misdn.so
+#	dh_installmenu -a
+#	dh_installdebconf -a
+#	dh_installlogrotate -a
+#	dh_installemacsen -a
+#	dh_installpam -a
+#	dh_installmime -a
+	dh_installinit -a
+#	dh_installcron -a
+#	dh_installinfo -a
+#	dh_installman  -a
+	dh_link -a
+	dh_strip -a
+	dh_compress -a
+	dh_fixperms -a
+#	dh_perl -a
+#	dh_python -a
+	dh_makeshlibs  -a
+	dh_installdeb -a
+	dh_shlibdeps  -a
+	dh_gencontrol -a
+	dh_md5sums -a
+	dh_builddeb -a
+
+print-version:
+	@@echo "Debian version:          $(DEBVERSION)"
+	@@echo "Upstream version:        $(UPVERSION)"
+
+get-orig-source:
+	@@dh_testdir
+	@@[ -d ../tarballs/. ]||mkdir -p ../tarballs
+	@@echo Downloading $(UPFILENAME) from $(URL) ...
+	@@wget -N -nv -T10 -t3 -O ../tarballs/$(UPFILENAME) $(URL)
+	@@echo Repacking as DFSG-free...
+	@@mkdir -p ../tarballs/callweaver-$(UPVERSION).tmp/
+	@@cd ../tarballs/callweaver-$(UPVERSION).tmp ; \
+	tar xfz ../$(UPFILENAME) 
+	# move opstream's debian/ out of the way while we're doing the DFSG repack anyway.
+	@@cd ../tarballs/callweaver-$(UPVERSION).tmp/callweaver-$(UPVERSION) ; \
+	mkdir packaging;mv debian packaging
+	@@cd ../tarballs/callweaver-$(UPVERSION).tmp ; \
+	tar cfz ../$(FILENAME) *
+	@@echo Cleaning up...
+	@@$(RM) -rf ../tarballs/callweaver-$(UPVERSION).tmp/ ../tarballs/$(UPFILENAME)
+
+binary: binary-indep binary-arch
+.PHONY: build clean clean-patched patch unpatch binary-indep binary-arch binary install 

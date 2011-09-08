@@ -1,0 +1,70 @@
+--- channels/chan_sip.c.orig	2007-05-09 18:09:28 +0400
++++ channels/chan_sip.c	2007-05-23 23:26:43 +0400
+@@ -670,6 +670,7 @@ static struct sip_pvt {
+     unsigned int flags;            /*!< SIP_ flags */    
+     int timer_t1;                /*!< SIP timer T1, ms rtt */
+     unsigned int sipoptions;        /*!< Supported SIP sipoptions on the other end */
++    int silence_supp;           /*!< Show/Hide silenceSupp from header */
+     int capability;                /*!< Special capability (codec) */
+     int jointcapability;            /*!< Supported capability at both ends (codecs ) */
+     int peercapability;            /*!< Supported peer capability */
+@@ -867,6 +868,7 @@ struct sip_peer {
+     char cid_num[80];        /*!< Caller ID num */
+     char cid_name[80];        /*!< Caller ID name */
+     int callingpres;        /*!< Calling id presentation */
++    int silence_supp;               /*!< Show/Hide silenceSupp from header */
+     int inUse;            /*!< Number of calls in use */
+     int call_limit;            /*!< Limit of concurrent calls */
+     char vmexten[CW_MAX_EXTENSION]; /*!< Dialplan extension for MWI notify message*/
+@@ -2596,6 +2598,7 @@ static int create_addr_from_peer(struct 
+     }
+ 
+     cw_copy_flags(r, peer, SIP_FLAGS_TO_COPY);
++    r->silence_supp = peer->silence_supp;
+     r->capability = peer->capability;
+     r->prefs = peer->prefs;
+     r->t38capability = global_t38_capability;
+@@ -6415,8 +6418,11 @@ static int add_sdp(struct sip_request *r
+                     debug);
+     }
+ 
+-    sprintf(tmpstr, "a=silenceSupp:off - - - -");
+-    add_line(resp, tmpstr, SIP_DL_DONTCARE);
++    /* Show hide silenceSupp from header */
++    if (p->silence_supp) {
++        sprintf(tmpstr, "a=silenceSupp:off - - - -");
++        add_line(resp, tmpstr, SIP_DL_DONTCARE);
++    } 
+ 
+     if ((p->vrtp) && (!cw_test_flag(p, SIP_NOVIDEO)) && (capability & VIDEO_CODEC_MASK))
+     {
+@@ -15495,6 +15501,7 @@ static struct sip_peer *build_peer(const
+     peer->rtpkeepalive = global_rtpkeepalive;
+     peer->maxms = default_qualify;
+     peer->prefs = prefs;
++    peer->silence_supp = 1;
+     oldha = peer->ha;
+     peer->ha = NULL;
+     peer->addr.sin_family = AF_INET;
+@@ -15741,6 +15748,21 @@ static struct sip_peer *build_peer(const
+                 cw_log(LOG_WARNING, "Qualification of peer '%s' should be 'yes', 'no', or a number of milliseconds at line %d of sip.conf\n", peer->name, v->lineno);
+                 peer->maxms = 0;
+             }
++            else if (!strcasecmp(v->name, "silencesupp")) 
++            {
++                if (!strcasecmp(v->value, "hide")) 
++                {
++                    peer->silence_supp = 0;
++                }
++                else if (!strcasecmp(v->value, "show")) 
++                {
++                    peer->silence_supp = 1;
++                } 
++                else
++                {
++                    cw_log(LOG_WARNING, "silencesupp bad param on %s just use: 'show' or 'hide'\n", peer->name);
++                }
++            }
+         }
+         /* else if (strcasecmp(v->name,"type"))
+          *    cw_log(LOG_WARNING, "Ignoring %s\n", v->name);

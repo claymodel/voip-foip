@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/asterisk/!svn/ver/298905/branches/1.4/build_tools
+END
+cflags-devmode.xml
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/asterisk/!svn/ver/298905/branches/1.4/build_tools/cflags-devmode.xml
+END
+mkpkgconfig
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/asterisk/!svn/ver/220099/branches/1.4/build_tools/mkpkgconfig
+END
+get_moduleinfo
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/asterisk/!svn/ver/139909/branches/1.4/build_tools/get_moduleinfo
+END
+get_makeopts
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/asterisk/!svn/ver/139909/branches/1.4/build_tools/get_makeopts
+END
+make_version
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/asterisk/!svn/ver/181898/branches/1.4/build_tools/make_version
+END
+menuselect-deps.in
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/asterisk/!svn/ver/298905/branches/1.4/build_tools/menuselect-deps.in
+END
+embed_modules.xml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/asterisk/!svn/ver/46845/branches/1.4/build_tools/embed_modules.xml
+END
+make_build_h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/asterisk/!svn/ver/260801/branches/1.4/build_tools/make_build_h
+END
+make_sample_voicemail
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/asterisk/!svn/ver/50754/branches/1.4/build_tools/make_sample_voicemail
+END
+prep_tarball
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/asterisk/!svn/ver/212913/branches/1.4/build_tools/prep_tarball
+END
+make_buildopts_h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/asterisk/!svn/ver/89461/branches/1.4/build_tools/make_buildopts_h
+END
+make_version_h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/asterisk/!svn/ver/234699/branches/1.4/build_tools/make_version_h
+END
+make_defaults_h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/asterisk/!svn/ver/83695/branches/1.4/build_tools/make_defaults_h
+END
+cflags.xml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/asterisk/!svn/ver/242966/branches/1.4/build_tools/cflags.xml
+END

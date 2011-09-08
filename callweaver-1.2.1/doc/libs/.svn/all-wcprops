@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/doc/libs
+END
+fo-cust.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/doc/libs/fo-cust.xsl
+END
+global.ent
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/doc/libs/global.ent
+END
+html-cust.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/doc/libs/html-cust.xsl
+END
+common-cust.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/doc/libs/common-cust.xsl
+END
+corpstyle.css
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/doc/libs/corpstyle.css
+END
+html-chunk-cust.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/doc/libs/html-chunk-cust.xsl
+END

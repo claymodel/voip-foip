@@ -1,0 +1,14 @@
+# FreeBSD-ROMFS directory layout
+helpstring="for FreeBSD embedded devices with ROM filesystems"
+cwprefix=
+cwexecdir=/usr/libexec
+cwutilsdir=/usr/sbin
+cwconfdir=/etc/callweaver
+cwlibdir=/usr/lib/callweaver
+cwvardir=/var/lib/callweaver
+cwdatadir=/usr/share/callweaver
+cwlogdir=/var/log/callweaver
+cwrundir=/var/run
+cwspooldir=/var/spool/callweaver
+cwmandir=/usr/share/man
+cwdocdir=/usr/share/doc

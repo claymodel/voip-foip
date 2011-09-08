@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/asterisk/!svn/ver/327251/branches/1.4/utils
+END
+muted.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/asterisk/!svn/ver/297818/branches/1.4/utils/muted.c
+END
+frame.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/asterisk/!svn/ver/43376/branches/1.4/utils/frame.h
+END
+astman.1
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/asterisk/!svn/ver/43376/branches/1.4/utils/astman.1
+END
+astman.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/asterisk/!svn/ver/236890/branches/1.4/utils/astman.c
+END
+smsq.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/asterisk/!svn/ver/161354/branches/1.4/utils/smsq.c
+END
+ael_main.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/144924/branches/1.4/utils/ael_main.c
+END
+streamplayer.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/153337/branches/1.4/utils/streamplayer.c
+END
+frame.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/asterisk/!svn/ver/211528/branches/1.4/utils/frame.c
+END
+check_expr.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/asterisk/!svn/ver/159808/branches/1.4/utils/check_expr.c
+END
+stereorize.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/asterisk/!svn/ver/153337/branches/1.4/utils/stereorize.c
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/asterisk/!svn/ver/254800/branches/1.4/utils/Makefile
+END
+expr2.testinput
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/179807/branches/1.4/utils/expr2.testinput
+END

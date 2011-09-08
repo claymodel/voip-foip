@@ -1,0 +1,14 @@
+# FreeBSD directory layout
+helpstring="follow the FreeBSD ports system convention"
+cwprefix=/usr/local
+cwexecdir=${prefix}/libexec
+cwutilsdir=${prefix}/sbin
+cwconfdir=${prefix}/etc/callweaver
+cwlibdir=${prefix}/lib/callweaver
+cwvardir=${prefix}/var/lib/callweaver
+cwdatadir=${prefix}/share/callweaver
+cwlogdir=${prefix}/var/log
+cwrundir=${prefix}/var/run
+cwspooldir=${prefix}/var/spool/callweaver
+cwmandir=${prefix}/man
+cwdocdir=${prefix}/share/doc/callweaver

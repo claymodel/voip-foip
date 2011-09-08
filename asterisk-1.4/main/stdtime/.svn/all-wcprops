@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/asterisk/!svn/ver/327251/branches/1.4/main/stdtime
+END
+private.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/82285/branches/1.4/main/stdtime/private.h
+END
+test.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/asterisk/!svn/ver/43376/branches/1.4/main/stdtime/test.c
+END
+tzfile.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/82291/branches/1.4/main/stdtime/tzfile.h
+END
+localtime.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/asterisk/!svn/ver/144924/branches/1.4/main/stdtime/localtime.c
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/157859/branches/1.4/main/stdtime/Makefile
+END

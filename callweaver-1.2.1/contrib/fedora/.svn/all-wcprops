@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/contrib/fedora
+END
+callweaver.logrotate
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/contrib/fedora/callweaver.logrotate
+END
+callweaver
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/contrib/fedora/callweaver
+END
+callweaver.spec
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/contrib/fedora/callweaver.spec
+END

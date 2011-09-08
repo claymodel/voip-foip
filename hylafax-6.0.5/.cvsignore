@@ -1,0 +1,12 @@
+config.cache
+config.local
+config.log
+config.h
+defs
+.empty_directory
+Makefile
+port.h
+rules
+.project
+.settings
+messages.po

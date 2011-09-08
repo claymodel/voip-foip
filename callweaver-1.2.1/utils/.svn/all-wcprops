@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/utils
+END
+frame.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/utils/frame.h
+END
+cwman.1
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/utils/cwman.1
+END
+smsq.c
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/utils/smsq.c
+END
+cwman.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/utils/cwman.c
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/utils/Makefile.am
+END
+streamplayer.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/utils/streamplayer.c
+END
+check_expr.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/utils/check_expr.c
+END

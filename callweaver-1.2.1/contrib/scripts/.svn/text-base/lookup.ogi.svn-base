@@ -1,0 +1,112 @@
+#!/usr/bin/perl
+#
+#
+use Data::Dumper;
+use LWP::UserAgent;
+my $debug = 0;
+
+my $cid_cache = "/tmp/.cid";
+
+my %OGI;
+$|=1;
+sub url_decode {
+    my @args = @_;
+    s/%([0-9A-F]{2})/chr hex $1/egios for @args;
+    s/\"//egios for @args;
+    return wantarray ? @args : $args[0];
+}
+
+while(<STDIN>) {
+    chomp;
+    last unless length($_);
+    if (/^ogi_(\w+)\:\s+(.*)$/) {
+	$OGI{$1} = $2;
+    }
+}
+
+alarm(2);
+my %cid;
+my $number = $OGI{'callerid'};
+$number =~ /(\d+)/;
+$number = $1;
+die("You must specify a number") unless $number;
+if (-f "$cid_cache/$number") {
+    local $/ = undef;
+    open(CID,"$cid_cache/$number");
+    my $ref = eval <CID>;
+    close(CID);
+    %cid = %{$ref};
+} else {
+    my $ua = LWP::UserAgent->new;
+    $ua->agent("CallWeaver");
+    my $req = HTTP::Request->new(POST => 'http://www.phonenumber.com/2321/search/Reverse_Phone');
+    $req->content_type('application/x-www-form-urlencoded');
+    $req->content("phone=$number");
+    my $res = $ua->request($req);
+    if ($res->is_success) {
+	my $first, $last, $address, $street, $house, $city, $state, $zip, $phone;
+	if ($res->content =~ /PAGE: PHONE_NOT_FOUND/) {
+	    # Limited Information
+	    $res->content =~ /is a \s+([A-Za-z -]*), ([A-Z]{2}) \s+based phone number and the registered carrier is (.*)\.\s+/;
+	    ($city, $state, $last) =
+		map  { url_decode($_) } ($1, $2, $3);
+	    $cidname = "$city, $state";
+	} else {
+	    # Full Information
+	    $res->content =~ /RM_HTML_FIRST_ESC_=(.*)&_RM_HTML_LAST_ESC_=(.*)&_RM_HTML_ADDRESS_ESC_=(.*)&_RM_HTML_STREET_ESC_=(.*)&_RM_HTML_HOUSE_ESC_=(.*)&_RM_HTML_CITY_ESC_=(.*)&_RM_HTML_STATE_ESC_=(.*)&_RM_HTML_ZIP_ESC_=(.*)&_RM_HTML_PHONE_ESC_=(.*)&CITY=(.*)&STATE=(.*)/;
+	    ($first, $last, $address, $street, $house, $city, $state, $zip, $phone) =
+		map  { url_decode($_) } ($1, $2, $3, $4, $5, $6, $7, $8, $9);
+	    $cidname = $last;
+	    if ($first) {
+		$cidname = $first . " " . $last;
+	    } else {
+		$cidname = $last;
+	    }
+	    
+
+	}
+	$cidname = uc($cidname);
+	$cid{cidname} = $cidname;
+	$cid{first}   = $first;
+	$cid{last}    = $last;
+	$cid{address} = $address;
+	$cid{street}  = $street;
+	$cid{house}   = $house;
+	$cid{city}    = $city;
+	$cid{state}   = $state;
+	$cid{zip}     = $zip;
+	if(! -d $cid_cache) {
+	    mkdir "$cid_cache";
+	}
+	open(CID,">$cid_cache/$number");
+	print CID Dumper \%cid;
+	close(CID);
+    } else {
+	print STDERR $res->status_line . "\n";
+    }
+}
+
+print STDOUT "SET VARIABLE CALLERID(name) \"$cid{cidname}\"\n";
+<STDIN>;
+print STDOUT "SET VARIABLE CALLER_ZIP \"$cid{zip}\"\n";
+<STDIN>;
+print STDOUT "SET VARIABLE CALLER_STATE \"$cid{state}\"\n";
+<STDIN>;
+print STDOUT "SET VARIABLE CALLER_CITY \"$cid{city}\"\n";
+<STDIN>;
+print STDOUT "SET VARIABLE CALLER_ADDRESS \"$cid{address}\"\n";
+<STDIN>;
+print STDOUT "SET VARIABLE CALLER_LAST \"$cid{last}\"\n";
+<STDIN>;
+print STDOUT "SET VARIABLE CALLER_FIRST \"$cid{first}\"\n";
+<STDIN>;
+print STDERR "First: $first\n" .
+    "Last: $last\n" .
+    "Address: $address\n" .
+    "Street: $street\n" .
+    "House: $house\n" .
+    "City: $city\n" .
+    "State: $state\n" .
+    "Zip: $zip\n" .
+    "Phone: $phone\n" if $debug;
+

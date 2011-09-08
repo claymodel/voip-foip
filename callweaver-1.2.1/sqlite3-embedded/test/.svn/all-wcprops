@@ -1,0 +1,1241 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test
+END
+btree.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/btree.test
+END
+bindxfer.test
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/bindxfer.test
+END
+insert.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/insert.test
+END
+enc.test
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/enc.test
+END
+select6.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/select6.test
+END
+manydb.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/manydb.test
+END
+where.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/where.test
+END
+misc1.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/misc1.test
+END
+sync.test
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/sync.test
+END
+temptable.test
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/temptable.test
+END
+expr.test
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/expr.test
+END
+subquery.test
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/subquery.test
+END
+busy.test
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/busy.test
+END
+vacuum2.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/vacuum2.test
+END
+join4.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/join4.test
+END
+tkt1449.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/tkt1449.test
+END
+main.test
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/main.test
+END
+tkt1873.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/tkt1873.test
+END
+delete3.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/delete3.test
+END
+tkt1667.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/tkt1667.test
+END
+insert2.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/insert2.test
+END
+types3.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/types3.test
+END
+attach3.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/attach3.test
+END
+trigger5.test
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/trigger5.test
+END
+minmax.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/minmax.test
+END
+corrupt.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/corrupt.test
+END
+malloc7.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/malloc7.test
+END
+auth.test
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/auth.test
+END
+select3.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/select3.test
+END
+varint.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/varint.test
+END
+utf16.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/utf16.test
+END
+aggerror.test
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/aggerror.test
+END
+collate5.test
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/collate5.test
+END
+lock3.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/lock3.test
+END
+pager3.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/pager3.test
+END
+misc6.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/misc6.test
+END
+tableapi.test
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/tableapi.test
+END
+vtab5.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/vtab5.test
+END
+tkt1567.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/tkt1567.test
+END
+trigger2.test
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/trigger2.test
+END
+btree6.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/btree6.test
+END
+enc2.test
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/enc2.test
+END
+alter2.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/alter2.test
+END
+shared3.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/shared3.test
+END
+malloc4.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/malloc4.test
+END
+pager.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/pager.test
+END
+capi2.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/capi2.test
+END
+altermalloc.test
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/altermalloc.test
+END
+loadext.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/loadext.test
+END
+laststmtchanges.test
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/laststmtchanges.test
+END
+descidx1.test
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/descidx1.test
+END
+tclsqlite.test
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/tclsqlite.test
+END
+collate2.test
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/collate2.test
+END
+shared.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/shared.test
+END
+pragma.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/pragma.test
+END
+tkt1512.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/tkt1512.test
+END
+quick.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/quick.test
+END
+misc3.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/misc3.test
+END
+limit.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/limit.test
+END
+tkt1443.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/tkt1443.test
+END
+vtab2.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/vtab2.test
+END
+fts1b.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/fts1b.test
+END
+tkt1536.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/tkt1536.test
+END
+default.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/default.test
+END
+colmeta.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/colmeta.test
+END
+memdb.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/memdb.test
+END
+lastinsert.test
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/lastinsert.test
+END
+between.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/between.test
+END
+trigger7.test
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/trigger7.test
+END
+cast.test
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/cast.test
+END
+reindex.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/reindex.test
+END
+join.test
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/join.test
+END
+schema.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/schema.test
+END
+conflict.test
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/conflict.test
+END
+autoinc.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/autoinc.test
+END
+types.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/types.test
+END
+select5.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/select5.test
+END
+attach.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/attach.test
+END
+progress.test
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/progress.test
+END
+unique.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/unique.test
+END
+in.test
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/in.test
+END
+fts1porter.test
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/fts1porter.test
+END
+autovacuum_ioerr2.test
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/autovacuum_ioerr2.test
+END
+format4.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/format4.test
+END
+fkey1.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/fkey1.test
+END
+corrupt2.test
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/corrupt2.test
+END
+ioerr.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/ioerr.test
+END
+join3.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/join3.test
+END
+vtab7.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/vtab7.test
+END
+intpkey.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/intpkey.test
+END
+delete2.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/delete2.test
+END
+types2.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/types2.test
+END
+attach2.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/attach2.test
+END
+trigger4.test
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/trigger4.test
+END
+table.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/table.test
+END
+subselect.test
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/subselect.test
+END
+rollback.test
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/rollback.test
+END
+btree8.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/btree8.test
+END
+safety.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/safety.test
+END
+func.test
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/func.test
+END
+notnull.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/notnull.test
+END
+interrupt.test
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/interrupt.test
+END
+where3.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/where3.test
+END
+malloc6.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/malloc6.test
+END
+vacuum.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/vacuum.test
+END
+distinctagg.test
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/distinctagg.test
+END
+select2.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/select2.test
+END
+capi3b.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/capi3b.test
+END
+analyze.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/analyze.test
+END
+vtab_err.test
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/vtab_err.test
+END
+descidx3.test
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/descidx3.test
+END
+collate4.test
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/collate4.test
+END
+index.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/index.test
+END
+malloc.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/malloc.test
+END
+lock2.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/lock2.test
+END
+bind.test
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/bind.test
+END
+tkt1514.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/tkt1514.test
+END
+async.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/async.test
+END
+shared_err.test
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/shared_err.test
+END
+vtab4.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/vtab4.test
+END
+misc5.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/misc5.test
+END
+pager2.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/pager2.test
+END
+tkt1473.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/tkt1473.test
+END
+fts1d.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/fts1d.test
+END
+trigger1.test
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/trigger1.test
+END
+btree5.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/btree5.test
+END
+shared2.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/shared2.test
+END
+bigrow.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/bigrow.test
+END
+thread2.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/thread2.test
+END
+malloc3.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/malloc3.test
+END
+index3.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/index3.test
+END
+attachmalloc.test
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/attachmalloc.test
+END
+quote.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/quote.test
+END
+crash.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/crash.test
+END
+delete.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/delete.test
+END
+collate1.test
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/collate1.test
+END
+select7.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/select7.test
+END
+pagesize.test
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/pagesize.test
+END
+all.test
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/all.test
+END
+null.test
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/null.test
+END
+memleak.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/memleak.test
+END
+misc2.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/misc2.test
+END
+date.test
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/date.test
+END
+vtab1.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/vtab1.test
+END
+fts1a.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/fts1a.test
+END
+blob.test
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/blob.test
+END
+avtrans.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/avtrans.test
+END
+tkt1644.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/tkt1644.test
+END
+btree2.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/btree2.test
+END
+join5.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/join5.test
+END
+vtab9.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/vtab9.test
+END
+insert3.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/insert3.test
+END
+autovacuum_ioerr.test
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/autovacuum_ioerr.test
+END
+autovacuum.test
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/autovacuum.test
+END
+trigger6.test
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/trigger6.test
+END
+threadtest1.c
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/threadtest1.c
+END
+async2.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/async2.test
+END
+bigfile.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/bigfile.test
+END
+select4.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/select4.test
+END
+misuse.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/misuse.test
+END
+alter.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/alter.test
+END
+collate6.test
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/collate6.test
+END
+view.test
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/view.test
+END
+diskfull.test
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/diskfull.test
+END
+tkt1435.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/tkt1435.test
+END
+join2.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/join2.test
+END
+loadext2.test
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/loadext2.test
+END
+update.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/update.test
+END
+vtab6.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/vtab6.test
+END
+auth2.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/auth2.test
+END
+rowid.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/rowid.test
+END
+trigger3.test
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/trigger3.test
+END
+btree7.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/btree7.test
+END
+enc3.test
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/enc3.test
+END
+alter3.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/alter3.test
+END
+journal1.test
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/journal1.test
+END
+malloc5.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/malloc5.test
+END
+where2.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/where2.test
+END
+trace.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/trace.test
+END
+capi3.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/capi3.test
+END
+select1.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/select1.test
+END
+printf.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/printf.test
+END
+descidx2.test
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/descidx2.test
+END
+collate3.test
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/collate3.test
+END
+autovacuum_crash.test
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/autovacuum_crash.test
+END
+tester.tcl
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/tester.tcl
+END
+tkt1501.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/tkt1501.test
+END
+check.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/check.test
+END
+misc4.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/misc4.test
+END
+tkt1444.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/tkt1444.test
+END
+vtab3.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/vtab3.test
+END
+fts1c.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/fts1c.test
+END
+utf16align.test
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/utf16align.test
+END
+tkt1537.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/tkt1537.test
+END
+like.test
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/like.test
+END
+btree4.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/btree4.test
+END
+server1.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/server1.test
+END
+sort.test
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/sort.test
+END
+trans.test
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/trans.test
+END
+lock.test
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/lock.test
+END
+thread1.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/thread1.test
+END
+malloc2.test
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/malloc2.test
+END
+index2.test
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/index2.test
+END
+trigger8.test
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/trigger8.test
+END
+threadtest2.c
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/threadtest2.c
+END
+hook.test
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/test/hook.test
+END

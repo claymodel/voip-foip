@@ -1,0 +1,192 @@
+Call data records can be stored in many different databases or even CSV text.
+
+MSSQL:		CallWeaver can currently store CDRs into an MSSQL database in
+		two different ways:  cdr_odbc.c or cdr_tds.c
+		
+		Call Data Records can be stored using unixODBC (which requires
+		the FreeTDS package) [cdr_odbc.c] or directly by using just the
+		FreeTDS package [cdr_tds.c]  The following provide some
+		examples known to get callweaver working with mssql.
+		NOTE:  Only choose one db connector.
+
+	ODBC [cdr_odbc.c]:
+		Compile, configure, and install the latest unixODBC package:
+		   tar -zxvf unixODBC-2.2.9.tar.gz &&
+		   cd unixODBC-2.2.9 &&
+		   ./configure --sysconfdir=/etc --prefix=/usr --disable-gui &&
+		   make &&
+		   make install
+
+		Compile, configure, and install the latest FreeTDS package:
+		   tar -zxvf freetds-0.62.4.tar.gz &&
+		   cd freetds-0.62.4 &&
+		   ./configure --prefix=/usr --with-tdsver=7.0 \
+                        --with-unixodbc=/usr/lib &&
+		   make &&
+		   make install
+
+		Compile, or recompile, callweaver so that it will now add support
+		for cdr_odbc.c
+
+		   make clean &&
+		   make update &&
+		   make &&
+		   make install
+
+		Setup odbc configuration files.  These are working examples
+		from my system.  You will need to modify for your setup.
+		You are not required to store usernames or passwords here.
+
+		/etc/odbcinst.ini
+		   [FreeTDS]
+		   Description    = FreeTDS ODBC driver for MSSQL
+		   Driver         = /usr/lib/libtdsodbc.so
+		   Setup          = /usr/lib/libtdsS.so
+		   FileUsage      = 1
+
+		/etc/odbc.ini
+		   [MSSQL-callweaver]
+		   description         = CallWeaver ODBC for MSSQL
+		   driver              = FreeTDS
+		   server              = 192.168.1.25
+		   port                = 1433
+		   database            = voipdb
+		   tds_version         = 7.0
+		   language            = us_english
+
+		Only install one database connector.  Do not confuse callweaver
+		by using both ODBC (cdr_odbc.c) and FreeTDS (cdr_tds.c).
+		This command will erase the contents of cdr_tds.conf 
+
+		[ -f /etc/callweaver/cdr_tds.conf ] > /etc/callweaver/cdr_tds.conf
+
+		NOTE:  unixODBC requires the freeTDS package, but callweaver does
+		not call freeTDS directly.
+
+		Setup cdr_odbc configuration files.  These are working samples
+		from my system.  You will need to modify for your setup. Define
+		your usernames and passwords here, secure file as well.
+
+		/etc/callweaver/cdr_odbc.conf
+		   [global]
+		   dsn=MSSQL-callweaver
+		   username=voipdbuser
+		   password=voipdbpass
+		   loguniqueid=yes
+
+		And finally, create the 'cdr' table in your mssql database.
+
+		CREATE TABLE cdr ( 
+		        [calldate]      [datetime]              NOT NULL ,
+		        [clid]          [varchar] (80)          NOT NULL ,
+		        [src]           [varchar] (80)          NOT NULL ,
+		        [dst]           [varchar] (80)          NOT NULL ,
+		        [dcontext]      [varchar] (80)          NOT NULL ,
+		        [channel]       [varchar] (80)          NOT NULL ,
+		        [dstchannel]    [varchar] (80)          NOT NULL ,
+		        [lastapp]       [varchar] (80)          NOT NULL ,
+		        [lastdata]      [varchar] (80)          NOT NULL ,
+		        [duration]      [int]                   NOT NULL ,
+		        [billsec]       [int]                   NOT NULL ,
+		        [disposition]   [varchar] (45)          NOT NULL ,
+		        [amaflags]      [int]                   NOT NULL ,
+		        [accountcode]   [varchar] (20)          NOT NULL ,
+		        [uniqueid]      [varchar] (32)          NOT NULL ,
+		        [userfield]     [varchar] (255)         NOT NULL
+		)
+
+		Start callweaver in verbose mode, you should see that callweaver
+		logs a connection to the database and will now record every
+		call to the database when it's complete.
+
+	TDS [cdr_tds.c]:
+		Compile, configure, and install the latest FreeTDS package:
+		   tar -zxvf freetds-0.62.4.tar.gz &&
+		   cd freetds-0.62.4 &&
+		   ./configure --prefix=/usr --with-tdsver=7.0
+		   make &&
+		   make install
+
+                Compile, or recompile, callweaver so that it will now add support
+                for cdr_tds.c  (Currently only callweaver CVS supports cdr_tds.c)
+
+                   make clean &&
+                   make update &&
+                   make &&
+                   make install
+
+                Only install one database connector.  Do not confuse callweaver
+                by using both ODBC (cdr_odbc.c) and FreeTDS (cdr_tds.c).
+                This command will erase the contents of cdr_odbc.conf
+
+		[ -f /etc/callweaver/cdr_odbc.conf ] > /etc/callweaver/cdr_odbc.conf
+
+                Setup cdr_tds configuration files.  These are working samples
+                from my system.  You will need to modify for your setup. Define
+                your usernames and passwords here, secure file as well.
+
+                /etc/callweaver/cdr_tds.conf
+		   [global]
+		   hostname=192.168.1.25
+		   port=1433
+		   dbname=voipdb
+		   user=voipdbuser
+		   password=voipdpass
+		   charset=BIG5
+
+                And finally, create the 'cdr' table in your mssql database.
+
+		CREATE TABLE cdr (
+		        [accountcode]   [varchar] (20)          NULL ,
+		        [src]           [varchar] (80)          NULL ,
+		        [dst]           [varchar] (80)          NULL ,
+		        [dcontext]      [varchar] (80)          NULL ,
+		        [clid]          [varchar] (80)          NULL ,
+		        [channel]       [varchar] (80)          NULL ,
+		        [dstchannel]    [varchar] (80)          NULL ,
+		        [lastapp]       [varchar] (80)          NULL ,
+		        [lastdata]      [varchar] (80)          NULL ,
+		        [start]         [datetime]              NULL ,
+		        [answer]        [datetime]              NULL ,
+		        [end]           [datetime]              NULL ,
+		        [duration]      [int]                   NULL ,
+		        [billsec]       [int]                   NULL ,
+		        [disposition]   [varchar] (20)          NULL ,
+		        [amaflags]      [varchar] (16)          NULL ,
+		        [uniqueid]      [varchar] (32)          NULL
+		)
+
+                Start callweaver in verbose mode, you should see that callweaver
+                logs a connection to the database and will now record every
+                call to the database when it's complete.
+
+MYSQL:
+
+PGSQL:
+
+CREATE TABLE cdr (
+    cdr_id bigserial NOT NULL PRIMARY KEY,
+    calldate timestamp with time zone DEFAULT now() NOT NULL,
+    clid character varying(80) DEFAULT ''::character varying NOT NULL,
+    src character varying(80) DEFAULT ''::character varying NOT NULL,
+    dst character varying(80) DEFAULT ''::character varying NOT NULL,
+    dcontext character varying(80) DEFAULT ''::character varying NOT NULL,
+    channel character varying(80) DEFAULT ''::character varying NOT NULL,
+    dstchannel character varying(80) DEFAULT ''::character varying NOT NULL,
+    lastapp character varying(80) DEFAULT ''::character varying NOT NULL,
+    lastdata character varying(80) DEFAULT ''::character varying NOT NULL,
+    duration integer DEFAULT 0 NOT NULL,
+    billsec integer DEFAULT 0 NOT NULL,
+    disposition character varying(45) DEFAULT ''::character varying NOT NULL,
+    amaflags integer DEFAULT 0 NOT NULL,
+    accountcode character varying(20) DEFAULT ''::character varying NOT NULL,
+    uniqueid character varying(32) DEFAULT ''::character varying NOT NULL,
+    userfield character varying(255) DEFAULT ''::character varying NOT NULL
+);
+
+SQLLITE:
+
+-------------------------------------------------------------------------------
+
+08/02/2004 : Duane Cox <dcox@illicom.net> - added mssql information
+10/18/2005 : Jeffrey C. Ollie <jeff@ocjtech.us> - added PostgreSQL schema

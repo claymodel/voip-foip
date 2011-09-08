@@ -1,0 +1,11 @@
+copyright
+cpkginfo
+cproto.stub
+crequest
+Makefile
+make_proto.sh
+postinstall
+postremove
+spkginfo
+sproto.stub
+srequest

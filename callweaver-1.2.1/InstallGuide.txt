@@ -1,0 +1,134 @@
+CallWeaver Installation Guide
+
+
+
+Introduction
+
+CallWeaver is a software PBX derived (forked) from the Asterisk project. The primary goals of CallWeaver are to be fully open-source, and stable. CallWeaver is being crafted to run on many operating systems including Linux, OpenBSD, and MacOS X.
+
+A software PBX or Private Branch eXchange is like a hardware PBX employed in many business where an internal company phone system is used.  In a software PBX all of the digital switching takes place in software and specialized hardware running on commodity-style PC hardware.
+
+
+Overview for Installing CallWeaver
+
+
+CallWeaver is best installed using subversion. Subversion is a source code management tool available for many operating systems. There are also many dependencies required first to obtain the software and then to prepare to build it. Among the requirements are SpanDSP, Digital Signal Processor in software and with it libtiff. Optional components may include the open source Speex codec. Other software may include libpri and software to interface with telephony hardware such as Zaptel or Unicall. 
+
+
+Hardware Selection
+
+
+Current hardware is best with enough memory to prevent constant paging will perform best. The range of hardware CallWeaver will work on has not yet been determined. Sangoma and Digium cards have been successfully tested with CallWeaver.  Instructions for installing Libpri and Zaptel follow the basic installation instructions.
+
+
+Preparing to install
+
+
+The installation described here is standard using default settings. CallWeaver runs as a non-root user, the default user is callweaver but this can be changed during configure and in the callweaver.conf file.
+
+Prerequisites and dependencies and tools
+
+If you are using Debian or a derivative you may need to install these as well: 
+
+subversion 
+automake 1.9 
+libtool 
+bison 
+linux headers for the kernel you intend to build and use CallWeaver with.
+OpenSSL 
+Libssl-dev 
+libjpeg-dev 
+libtiff-dev 
+ncurses-dev 
+libspeex-dev 
+spandsp
+
+Most other distributions also have these packages, but possibly with different names.  Complete distributions like Fedora Core 4 will have most of the dependencies already.
+
+Create an callweaver user account.  This is the account, instead of root,  used to run CallWeaver.  
+
+useradd callweaver
+groupadd callweaver
+
+
+Make sure you have subversion installed
+The outline for download is here:
+	speex
+	libtiff
+	libpri
+	zaptel
+Use subversion to download CallWeaver, callweaver sounds, and music for music on hold.
+
+
+
+Installing SpanDSP.
+Libtiff is required by SpanDSP so it must be installed first. Download it from it's home at http://www.remotesensing.org/libtiff/
+
+wget ftp://ftp.remotesensing.org/pub/libtiff/tiff-3.8.0.tar.gz
+tar xzf tiff-3.8.0.tar.gz
+cd tiff
+./configure
+make
+make install
+
+Once Libtiff is installed SpanDSP may be installed. SpanDSP can be downloaded from www.soft-switch.org. SpanDSP does Digital Signal Processing in software and is written by Steve Underwood.
+
+wget http://www.soft-switch.org/downloads/spandsp/spandsp-0.0.6pre12.tgz
+tar xfvz spandsp-0.0.6pre12.tgz
+cd spandsp-0.0.6
+./configure
+make
+make install
+
+Unless you change settings the SpanDSP library is installed into '/usr/local/lib'.  If this lib is not in the library path on your distribution you will want to add or create the file '/etc/ld.so.conf' with and entry for '/usr/local/lib'.  
+
+Downloading and installing Speex is optional. Speex is an open-source codec that is capable of a wide range of compression and sound quality.  Unfortunately Speex is not widely supported in hardware phones but is useful for Inter-PBX links.
+
+wget http://downloads.us.xiph.org/releases/speex/speex-1.0.5.tar.gz
+
+tar -xjf speex-1.0.5.tar.gz
+
+cd speex
+./configure
+make
+make install
+
+Now that speex is installed you are ready to proceed with downloading and
+building callweaver.
+
+
+Installing CallWeaver
+
+cd /usr/src
+
+svn co http://svn.callweaver.org/callweaver/trunk 
+svn co http://svn.callweaver.org/callweaver-sounds
+
+cd callweaver
+./bootstrap.sh
+./configure
+make
+make install
+
+If everything goes well congratulations!  If not, look back through the instructions and see if you missed anything or visit freenode for #callweaver, check wiki.callweaver.org or send a message to callweaver-users@callweaver.org
+
+
+
+Zaptel udev hell
+
+
+Maybe it won't be that bad.  To find out what version of udev you have type 'udev -V' (uppercase V).
+If you install zaptel hardware and your distribution uses udev you will have to visit your /etc/udev and fix your relevant zaptel rules. 
+
+You will have to change the #zaptel section to resemble the entries below, probably starting with the comma before 'OWNER'. Use whatever account you created to run callweaver. 
+
+# Zaptel
+KERNEL=="zapctl", NAME="zap/ctl", OWNER="callweaver", GROUP="callweaver", MODE="0660"
+KERNEL=="zaptimer", NAME="zap/timer", OWNER="callweaver", GROUP="callweaver", MODE="0660"
+KERNEL=="zapchannel", NAME="zap/channel", OWNER="callweaver", GROUP="callweaver", MODE="0660"
+KERNEL=="zappseudo", NAME="zap/pseudo", OWNER="callweaver", GROUP="callweaver", MODE="0660"
+KERNEL=="zap[0-9]*", NAME="zap/%n", OWNER="callweaver", GROUP="callweaver", MODE="0660"
+
+You can test your udev settings with 'udevstart' then 
+ls -lasp /dev/zap should show all devices can be used by callweaver.
+

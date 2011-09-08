@@ -1,0 +1,34 @@
+To: $SENDTO
+Subject: fax zadanie $JOBINFO do $DESTINATION nieudane
+From: Serwer faxów HylaFAX <$FROMADDR>
+Content-type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: Quoted-Printable
+
+Zadanie fax do $number nie zostało wysłane, ponieważ konwersja dokumentu
+na fax zakończyła się niepowodzeniem. Komunikaty programu konwertującego:
+
+$faxstatus
+
+Należy sprawdzić, czy w dokumentach PostScriptowych nie występują
+niestandardowe czcionki lub nieprawidłowe konstrunkcje
+
+------- Unsent job status -------
+                 Adresat: $number
+              ID zadania: $jobid
+                ID grupy: $groupid
+                 Nadawca: $sender
+            Adres e-mail: $mailaddr
+          ID Komunikacji: $commid
+                   Modem: $modem
+            Nadano przez: $client
+        Szerokość strony: $pagewidth  (mm)
+         Wysokość strony: $pagelength (mm)
+           Rozdzielczość: $resolution (lpi)
+                  Status: $faxstatus
+                Połączeń: $tottries
+                        : $ndials
+ Połączeń telefonicznych: $totdials
+                   Stron: $npages
+                   Stron: $totpages
+                    Prób: $ntries
+                 Katalog: $dirnum

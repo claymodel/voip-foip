@@ -1,0 +1,221 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/!svn/ver/5396/callweaver/tags/rel/1.2.1
+END
+layout.lsb-romfs
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/layout.lsb-romfs
+END
+substitute.mak
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/substitute.mak
+END
+AUTHORS
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/AUTHORS
+END
+callweaver.sgml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/callweaver.sgml
+END
+bootstrap.sh
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/bootstrap.sh
+END
+compile
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/compile
+END
+mega_debug.sh
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/mega_debug.sh
+END
+safe_callweaver.in
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/safe_callweaver.in
+END
+safe_callweaver.8
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/safe_callweaver.8
+END
+callweaver.8
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/callweaver.8
+END
+layout.fhs
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/layout.fhs
+END
+CREDITS
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/CREDITS
+END
+mkpkgconfig
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/mkpkgconfig
+END
+BUGS
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/BUGS
+END
+InstallGuide.txt
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/InstallGuide.txt
+END
+configure.ac
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configure.ac
+END
+layout.openbsd
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/layout.openbsd
+END
+INSTALL
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/INSTALL
+END
+COPYING
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/COPYING
+END
+NEWS
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/NEWS
+END
+callweaver_cli.in
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/callweaver_cli.in
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/LICENSE
+END
+layout.freebsd
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/layout.freebsd
+END
+ChangeLog
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/ChangeLog
+END
+sounds.txt
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sounds.txt
+END
+sample.call
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sample.call
+END
+layout.oldsingledir
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/layout.oldsingledir
+END
+layout.lsb
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/layout.lsb
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/README
+END
+HARDWARE
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/HARDWARE
+END
+main.c
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/main.c
+END
+TODO
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/TODO
+END
+acinclude.m4
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/acinclude.m4
+END
+SECURITY
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/SECURITY
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/Makefile.am
+END
+layout.freebsd-romfs
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/layout.freebsd-romfs
+END

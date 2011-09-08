@@ -1,0 +1,16 @@
+This package was debianized by Gerd Flaig <gefla@im.schlund.de> on
+Tue, 22 Nov 2005 15:51:08 +0100.
+
+It was later modified and mantained by Massimo Cetra <devel@navynet.it>
+Then imported to Debian VoIP where it's maintained now.
+
+The version found in CallWeaver SVN trunk is still mantained by Massimo Cetra
+The version found in CallWeaver SVN trunk has been modified by Rico Gloeckner
+
+It was downloaded from http://www.callweaver.org
+
+
+License:
+
+This package may be redistributed under the terms of the GNU GPL, version
+2.0, found on Debian systems in the file /usr/share/common-licenses/GPL

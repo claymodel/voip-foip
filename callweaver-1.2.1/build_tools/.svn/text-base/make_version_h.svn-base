@@ -1,0 +1,10 @@
+#!/bin/sh
+cat << END
+/*
+ * version.h 
+ * Automatically generated
+ */
+#define CALLWEAVER_VERSION "${CALLWEAVERVERSION}"
+#define CALLWEAVER_VERSION_NUM ${CALLWEAVERVERSIONNUM}
+
+END

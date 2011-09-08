@@ -1,0 +1,110 @@
+#!/bin/sh
+# CallWeaver.org CLI wrapper - version 1.0 (transitional)
+#
+#  First release January 2007.
+#  This script is hereby released into the Public Domain.
+#  NOTE: THIS SOFTWARE COMES WITHOUT ANY WARRANTY WHATSOEVER.
+#
+# Description
+#  In preparation of separating daemon and CLI this script is
+#  provided as a CLI wrapper to invoke CallWeaver.org's CLI mode
+#  as if it was a separate CLI utility. Its purpose is to get
+#  users accustomed to the idea of a standalone CLI utility.
+
+# online help
+show_usage() {
+   echo ""
+   echo "CallWeaver.org CLI v.1.0 (transitional)"
+   echo ""
+   echo "Synopsis:"
+   echo " CallWeaver.org remote CLI"
+   echo ""
+   echo "Usage:"
+   echo " cwcli [options]"
+   echo ""
+   echo "Options:"
+   echo " -h   - online help"
+   echo " -n   - do not use color"
+   echo " -v   - set verbosity, multiple v increase level"
+   echo ""
+}
+# END show_usage
+
+# show help if -h is passed
+if test "$1" = "-h"; then
+    show_usage;
+    exit 0;
+fi
+
+# exit if more than two arguments are passed
+if test -n "$3"; then
+    echo "too many arguments" >&2;
+    show_usage;
+    exit 1;
+fi
+
+# remove leading dash from argument 1
+if test -n "$1"; then
+    arg1=`echo "X$1" | sed -e "s/^X-//g"`
+fi
+
+# remove leading dash from argument 2
+if test -n "$2"; then
+    arg2=`echo "X$2" | sed -e "s/^X-//g"`
+fi
+
+# exit if there are any more dashes
+filtered=`echo "X${arg1}${arg2}" | sed -e "s/-/Y/g; s/[^Y]//g"`
+if test -n "${filtered}"; then
+    echo "too many dashes" >&2;
+    show_usage;
+    exit 1;
+fi
+
+# check options in argument 1
+if test "X$arg1" != "X"; then
+    filtered=`echo "${arg1}" | grep "^[vn]*$"`
+    if test -z "${filtered}"; then
+        echo "invalid argument '$1'" >&2;
+        show_usage;
+        exit 1;
+    fi
+    # separate v and n options
+    v1=`echo "${filtered}" | sed -e "s/[^v]//g"`
+    n1=`echo "${filtered}" | sed -e "s/[^n]//g"`
+fi
+
+# check options in argument 2
+if test "X$arg2" != "X"; then
+    filtered=`echo "${arg2}" | grep "^[vn]*$"`
+    if test -z ${filtered}; then
+        echo "invalid argument '$2'" >&2;
+	show_usage;
+        exit 1;
+    fi
+    # separate v and n options
+    v2=`echo "${filtered}" | sed -e "s/[^v]//g"`
+    n2=`echo "${filtered}" | sed -e "s/[^n]//g"`
+fi
+
+# exit if there is more than one n option
+color="${n1}${n2}"
+valid=`echo "${color}" | grep -cv "nn"`
+if test ${valid} -eq 0; then
+    echo "too many n options" >&2;
+    show_usage;
+    exit 1;
+fi
+
+# combine v's of arg1 and arg2
+verbosity="${v1}${v2}"
+
+# invoke CLI mode
+options="${verbosity}${color}"
+if test -z "${options}"; then
+    @cwexecdir@/callweaver -r
+else
+    @cwexecdir@/callweaver -${options}r
+fi
+
+# END OF FILE

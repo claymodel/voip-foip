@@ -1,0 +1,77 @@
+Here are some quick notes on how to set up/use chan_fax.  These are
+based upon conversations on IRC with anthm.  I haven't yet tested a
+full setup (I don't have Hylafax set up).
+
+1) Get chan_fax compiled and installed.
+
+	* chan_fax requires SpanDSP and libtiff
+
+2) Create the config file /etc/callweaver/chan_fax.conf based on the sample in
+   configs/chan_fax.conf.sample
+
+3) Add to inittab:
+
+fax0:234:respawn:/usr/sbin/faxgetty /dev/FAX0
+    .
+    .
+faxN:234:respawn:/usr/sbin/faxgetty /dev/FAXN
+
+4) Create /var/spool/fax/etc/config.FAX<N> (N is 0 .. number of modems configured in chan_fax).
+
+Sample config file:
+
+CountryCode:1
+AreaCode:800
+FAXNumber:+1.800.555.1212
+LongDistancePrefix:1
+InternationalPrefix:011
+DialStringRules:etc/dialrules
+TracingMask:            0x11
+#ServerTracing:1
+ServerTracing: 0xDFFFF
+SessionTracing:0xFFF
+RecvFileMode:0600
+LogFileMode:0600
+DeviceMode:0600
+RingsBeforeAnswer:0
+SpeakerVolume:off
+GettyArgs:"-h %l dx_%s"
+LocalIdentifier:"chan_fax"
+TagLineFont:etc/lutRS18.pcf
+TagLineFormat:"From %%l|%c|Page %%P of %%T"
+MaxRecvPages:100
+#
+#
+# Modem-related stuff: should reflect modem command interface
+# and hardware connection/cabling (e.g. flow control).
+#
+ModemType:Class1# use this to supply a hint
+
+Class1TMConnectDelay:400# counteract quick CONNECT response
+#Class1RMQueryCmd:       "!24,48,72,96"  # V.17 fast-train recv doesn't work well
+
+CallIDPattern:          "NMBR="
+CallIDPattern:          "NAME="
+CallIDPattern:          "NDID="
+CallIDAnswerLength:4
+# Uncomment these if you really want them, but you probably don't.
+CallIDPattern:          "DATE="
+CallIDPattern:          "TIME="
+
+5) Common problems
+
+- if faxgetty does not answer your calls change RingsBeforeAnswer from 0 to 1
+- T38 is not supported by chan_fax please use RxFax()
+
+6) Dialplan example
+
+[faxserver]
+
+exten => s,1,NoOp(Entering Fax Server)
+exten => s,n,Set(CDR(userfield)=INCOMING FAX)
+exten => s,n,Dial(FAX/${CALLERID(num)},30,r)
+exten => s,n,Hangup
+
+exten => h,1,System(/usr/local/bin/new-fax-received.sh "${STRFTIME(${EPOCH},,%Y%m%d-%H%M%S)}" "${CALLERID(num)}" )
+exten => h,2,Hangup
+

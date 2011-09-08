@@ -1,0 +1,449 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/asterisk/!svn/ver/327251/branches/1.4/main
+END
+utils.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/asterisk/!svn/ver/310779/branches/1.4/main/utils.c
+END
+config.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/asterisk/!svn/ver/283834/branches/1.4/main/config.c
+END
+poll.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/asterisk/!svn/ver/285266/branches/1.4/main/poll.c
+END
+loader.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/asterisk/!svn/ver/275182/branches/1.4/main/loader.c
+END
+term.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/asterisk/!svn/ver/269334/branches/1.4/main/term.c
+END
+cdr.c
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/asterisk/!svn/ver/287114/branches/1.4/main/cdr.c
+END
+channel.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/asterisk/!svn/ver/313545/branches/1.4/main/channel.c
+END
+manager.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/asterisk/!svn/ver/323559/branches/1.4/main/manager.c
+END
+tdd.c
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/asterisk/!svn/ver/89042/branches/1.4/main/tdd.c
+END
+ast_expr2f.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/asterisk/!svn/ver/245496/branches/1.4/main/ast_expr2f.c
+END
+http.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/asterisk/!svn/ver/314607/branches/1.4/main/http.c
+END
+app.c
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/asterisk/!svn/ver/257544/branches/1.4/main/app.c
+END
+image.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/asterisk/!svn/ver/47051/branches/1.4/main/image.c
+END
+dns.c
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/asterisk/!svn/ver/159808/branches/1.4/main/dns.c
+END
+md5.c
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/asterisk/!svn/ver/43376/branches/1.4/main/md5.c
+END
+db.c
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/asterisk/!svn/ver/182449/branches/1.4/main/db.c
+END
+ast_expr2.fl
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/asterisk/!svn/ver/245496/branches/1.4/main/ast_expr2.fl
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/asterisk/!svn/ver/298905/branches/1.4/main/Makefile
+END
+slinfactory.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/asterisk/!svn/ver/200991/branches/1.4/main/slinfactory.c
+END
+translate.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/267539/branches/1.4/main/translate.c
+END
+jitterbuf.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/174583/branches/1.4/main/jitterbuf.c
+END
+aestab.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/asterisk/!svn/ver/43376/branches/1.4/main/aestab.c
+END
+acl.c
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/asterisk/!svn/ver/291263/branches/1.4/main/acl.c
+END
+rtp.c
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/asterisk/!svn/ver/289797/branches/1.4/main/rtp.c
+END
+chanvars.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/asterisk/!svn/ver/43376/branches/1.4/main/chanvars.c
+END
+ast_expr2.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/293194/branches/1.4/main/ast_expr2.c
+END
+coef_in.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/asterisk/!svn/ver/43376/branches/1.4/main/coef_in.h
+END
+coef_out.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/asterisk/!svn/ver/43376/branches/1.4/main/coef_out.h
+END
+ast_expr2.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/293194/branches/1.4/main/ast_expr2.h
+END
+abstract_jb.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/asterisk/!svn/ver/299002/branches/1.4/main/abstract_jb.c
+END
+fixedjitterbuf.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/43376/branches/1.4/main/fixedjitterbuf.c
+END
+test.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/asterisk/!svn/ver/286023/branches/1.4/main/test.c
+END
+astmm.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/asterisk/!svn/ver/203230/branches/1.4/main/astmm.c
+END
+fixedjitterbuf.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/135841/branches/1.4/main/fixedjitterbuf.h
+END
+alaw.c
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/asterisk/!svn/ver/80166/branches/1.4/main/alaw.c
+END
+asterisk.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/312285/branches/1.4/main/asterisk.c
+END
+dsp.c
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/asterisk/!svn/ver/263949/branches/1.4/main/dsp.c
+END
+udptl.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/asterisk/!svn/ver/308721/branches/1.4/main/udptl.c
+END
+autoservice.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/asterisk/!svn/ver/278167/branches/1.4/main/autoservice.c
+END
+frame.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/asterisk/!svn/ver/269960/branches/1.4/main/frame.c
+END
+say.c
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/asterisk/!svn/ver/296309/branches/1.4/main/say.c
+END
+sha1.c
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/asterisk/!svn/ver/43376/branches/1.4/main/sha1.c
+END
+threadstorage.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/164736/branches/1.4/main/threadstorage.c
+END
+ecdisa.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/asterisk/!svn/ver/43376/branches/1.4/main/ecdisa.h
+END
+ast_expr2.y
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/293194/branches/1.4/main/ast_expr2.y
+END
+devicestate.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/asterisk/!svn/ver/263639/branches/1.4/main/devicestate.c
+END
+astfd.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/asterisk/!svn/ver/228338/branches/1.4/main/astfd.c
+END
+indications.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/asterisk/!svn/ver/211528/branches/1.4/main/indications.c
+END
+enum.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/asterisk/!svn/ver/180532/branches/1.4/main/enum.c
+END
+astobj2.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/asterisk/!svn/ver/298345/branches/1.4/main/astobj2.c
+END
+fskmodem.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/asterisk/!svn/ver/77945/branches/1.4/main/fskmodem.c
+END
+io.c
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/asterisk/!svn/ver/182810/branches/1.4/main/io.c
+END
+asterisk.exports
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/288636/branches/1.4/main/asterisk.exports
+END
+cli.c
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/asterisk/!svn/ver/275290/branches/1.4/main/cli.c
+END
+ulaw.c
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/asterisk/!svn/ver/43376/branches/1.4/main/ulaw.c
+END
+dial.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/asterisk/!svn/ver/108961/branches/1.4/main/dial.c
+END
+buildinfo.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/43376/branches/1.4/main/buildinfo.c
+END
+strcompat.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/288636/branches/1.4/main/strcompat.c
+END
+plc.c
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/asterisk/!svn/ver/43376/branches/1.4/main/plc.c
+END
+logger.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/asterisk/!svn/ver/298905/branches/1.4/main/logger.c
+END
+sched.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/asterisk/!svn/ver/253631/branches/1.4/main/sched.c
+END
+pbx.c
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/asterisk/!svn/ver/303747/branches/1.4/main/pbx.c
+END
+dnsmgr.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/asterisk/!svn/ver/271123/branches/1.4/main/dnsmgr.c
+END
+aesopt.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/asterisk/!svn/ver/43376/branches/1.4/main/aesopt.h
+END
+netsock.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/asterisk/!svn/ver/222877/branches/1.4/main/netsock.c
+END
+srv.c
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/asterisk/!svn/ver/159808/branches/1.4/main/srv.c
+END
+privacy.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/asterisk/!svn/ver/43376/branches/1.4/main/privacy.c
+END
+cryptostub.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/43376/branches/1.4/main/cryptostub.c
+END
+file.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/asterisk/!svn/ver/286267/branches/1.4/main/file.c
+END
+callerid.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/310633/branches/1.4/main/callerid.c
+END
+aeskey.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/asterisk/!svn/ver/43376/branches/1.4/main/aeskey.c
+END
+audiohook.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/279945/branches/1.4/main/audiohook.c
+END
+global_datastores.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/asterisk/!svn/ver/172517/branches/1.4/main/global_datastores.c
+END
+aescrypt.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/asterisk/!svn/ver/43376/branches/1.4/main/aescrypt.c
+END

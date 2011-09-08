@@ -1,0 +1,43 @@
+#!/bin/bash
+PPATH=$1
+## Make sure we were called from Makefile
+
+if [ "x$CALLWEAVERVERSIONNUM" = "x" ]; then
+  echo " ** Do not call this script directly"
+  exit
+fi
+
+## Create a pkgconfig spec file for 3rd party modules (pkg-config callweaver --cflags)
+
+if [ ! -d $PPATH ]; then
+  exit
+fi
+
+## Clean out CFLAGS for the spec file.
+
+LOCAL_CFLAGS=`echo $CFLAGS | $(SED) -e 's/\s*-pipe\s*//g' | $(SED) -e 's/-[Wmp]\S*\s*//g' | \
+  $(SED) -r -e 's/-I(include|\.\.\/include) //g' | \
+  $(SED) -e 's/-DINSTALL_PREFIX=\S* //g' | \
+  $(SED) -r -e 's/-DCALLWEAVER_VERSION=\S* //g' | \
+  $(SED) -r -e 's/-DCWT(ETCDIR|LIBDIR|VARLIBDIR|VARRUNDIR|SPOOLDIR|LOGDIR|CONFPATH|MODDIR|OGIDIR)=\S* //g'`
+
+
+cat <<EOF > $PPATH/callweaver.pc
+install_prefix=$INSTALL_PREFIX
+version_number=$CALLWEAVERVERSIONNUM
+etcdir=$CWETCDIR
+libdir=$CWLIBDIR
+varlibdir=$CWVARLIBDIR
+varrundir=$CWVARRUNDIR
+spooldir=$CWSPOOLDIR
+logdir=$CWLOGDIR
+confpath=$CWCONFPATH
+moddir=$MODULES_DIR
+ogidir=$OGI_DIR
+
+Name: callweaver
+Description: Open Source PBX and telephony toolkit
+Version: $CALLWEAVERVERSION
+Libs: $LIBS
+Cflags: $LOCAL_CFLAGS
+EOF

@@ -1,0 +1,34 @@
+# vim:tw=80:ft=txt
+***********************************************************************************
+INSTALLING CALLWEAVER ON FREEBSD
+***********************************************************************************
+
+
+-----------------------------------------------------------------------------------
+BOOTSTRAPPING - thanks to Roy Sigurd Karlsbakk <roy@karlsbakk.net>
+-----------------------------------------------------------------------------------
+
+Due to a bug in aclocal, some files are placed under the wrong directory, so to
+./bootstrap.sh on FreeBSD, the following needs to be done as root:
+
+# cd /usr/local/share/aclocal19
+# ln -s ../aclocal/libtool.m4 .
+# ln -s ../aclocal/ltdl.m4 .
+
+Having this done, the ./bootstrap.sh works. Then, after installing libtiff,
+available under /usr/ports/graphics/tiff, you need to set a couple of variables
+to have spandsp and callweaver find libtiff.
+
+run this:
+
+# CFLAGS="-I/usr/local/include" LDFLAGS="-L/usr/local/lib" make all install
+
+and it'll quite possibly end up with a compile error since the porting process
+isn't quite finished... :)
+
+-----------------------------------------------------------------------------------
+COMPILING 
+-----------------------------------------------------------------------------------
+
+GNU Readline is required to compile callweaver.
+

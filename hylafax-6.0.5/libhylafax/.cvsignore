@@ -1,0 +1,8 @@
+.cdependtime
+.c++dependtime
+Makefile
+Makedepend
+*.so.*
+*.so
+pagesizes
+messages.po

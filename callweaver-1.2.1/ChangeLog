@@ -1,0 +1,39 @@
+* Added OGI argument to Queue() DP application.
+* Faster implentation of ChanSpy and MuxMon.
+* Added show agents [online|offline|like]
+
+Release 1.2.1 (2009-05-19)
+	* TCP/TLS and SRTP
+	* requires spandsp 0.0.6pre12
+	* bug fixes
+
+Release 1.2.0.1 (2008-05-26)
+	* sqlite3-embedded build issue fixed.
+	* Calls with peers using RTP payload type 2 for G.726 codec will silently fail and flood the log with rtp.c NOTICEs [#344]
+	* A few minor bug fixes as well.
+
+Release 1.2.0 (2008-05-22)
+	* Lots and lots of bug fixes.
+	* The first Offical Release!
+
+Release 1.2-RC3 (29 Dec 2006)
+	* Editline was replaced by GNU readline
+	* NConference replaces app_conference
+	* generic timer rewrite
+	* a lot of bug fixes, with particular reference to chan_sip
+	* better support for OSX (CLI issue should be fixed)
+	* initial support for ucLinux
+
+Release 1.2-RC2
+	* initial support for *BSD (NetNSD, FreeBSD 6.2 and7, OSX)
+	* lot's of bug fixes
+
+Release 1.2-RC1
+	* Built-in STUN support for SIP NAT traversal
+	* Full fax and T.38 fax over IP support
+	* Universal jitterbuffer for use with any channel type
+	* Uses POSIX timers which means there are fewer Zaptel timing dependencies
+	* Has much faster and more efficient dialplan execution because it uses hashing
+	* Cross-platform compatibility and is more reliable
+	* Evaluates correctness and integrity of configuration data
+	* Run well under a virtual machine such as Xen or VMware 

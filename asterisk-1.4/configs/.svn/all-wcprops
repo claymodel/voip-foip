@@ -1,0 +1,371 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/asterisk/!svn/ver/314607/branches/1.4/configs
+END
+extensions.ael.sample
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/asterisk/!svn/ver/252761/branches/1.4/configs/extensions.ael.sample
+END
+skinny.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/asterisk/!svn/ver/314607/branches/1.4/configs/skinny.conf.sample
+END
+meetme.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/asterisk/!svn/ver/55006/branches/1.4/configs/meetme.conf.sample
+END
+privacy.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/asterisk/!svn/ver/43376/branches/1.4/configs/privacy.conf.sample
+END
+cdr_pgsql.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/asterisk/!svn/ver/288265/branches/1.4/configs/cdr_pgsql.conf.sample
+END
+muted.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/asterisk/!svn/ver/44465/branches/1.4/configs/muted.conf.sample
+END
+telcordia-1.adsi
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/asterisk/!svn/ver/43376/branches/1.4/configs/telcordia-1.adsi
+END
+adsi.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/asterisk/!svn/ver/43376/branches/1.4/configs/adsi.conf.sample
+END
+alsa.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/asterisk/!svn/ver/43376/branches/1.4/configs/alsa.conf.sample
+END
+iax.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/asterisk/!svn/ver/233279/branches/1.4/configs/iax.conf.sample
+END
+sip_notify.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/asterisk/!svn/ver/271689/branches/1.4/configs/sip_notify.conf.sample
+END
+followme.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/asterisk/!svn/ver/81453/branches/1.4/configs/followme.conf.sample
+END
+mgcp.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/asterisk/!svn/ver/43376/branches/1.4/configs/mgcp.conf.sample
+END
+udptl.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/asterisk/!svn/ver/209131/branches/1.4/configs/udptl.conf.sample
+END
+sip.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/asterisk/!svn/ver/282729/branches/1.4/configs/sip.conf.sample
+END
+say.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/asterisk/!svn/ver/284316/branches/1.4/configs/say.conf.sample
+END
+cdr_odbc.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/asterisk/!svn/ver/43376/branches/1.4/configs/cdr_odbc.conf.sample
+END
+codecs.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/asterisk/!svn/ver/43376/branches/1.4/configs/codecs.conf.sample
+END
+osp.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/asterisk/!svn/ver/43376/branches/1.4/configs/osp.conf.sample
+END
+cdr_custom.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/asterisk/!svn/ver/221157/branches/1.4/configs/cdr_custom.conf.sample
+END
+cdr_manager.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/asterisk/!svn/ver/43376/branches/1.4/configs/cdr_manager.conf.sample
+END
+chan_dahdi.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/asterisk/!svn/ver/259270/branches/1.4/configs/chan_dahdi.conf.sample
+END
+dundi.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/asterisk/!svn/ver/43376/branches/1.4/configs/dundi.conf.sample
+END
+indications.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/asterisk/!svn/ver/311048/branches/1.4/configs/indications.conf.sample
+END
+enum.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/asterisk/!svn/ver/81379/branches/1.4/configs/enum.conf.sample
+END
+oss.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/asterisk/!svn/ver/43376/branches/1.4/configs/oss.conf.sample
+END
+adtranvofr.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/asterisk/!svn/ver/43376/branches/1.4/configs/adtranvofr.conf.sample
+END
+queues.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/asterisk/!svn/ver/304159/branches/1.4/configs/queues.conf.sample
+END
+cdr.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/asterisk/!svn/ver/250043/branches/1.4/configs/cdr.conf.sample
+END
+voicemail.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/asterisk/!svn/ver/276267/branches/1.4/configs/voicemail.conf.sample
+END
+manager.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/asterisk/!svn/ver/312761/branches/1.4/configs/manager.conf.sample
+END
+misdn.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/asterisk/!svn/ver/185121/branches/1.4/configs/misdn.conf.sample
+END
+festival.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/asterisk/!svn/ver/43376/branches/1.4/configs/festival.conf.sample
+END
+features.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/asterisk/!svn/ver/186174/branches/1.4/configs/features.conf.sample
+END
+http.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/asterisk/!svn/ver/314607/branches/1.4/configs/http.conf.sample
+END
+h323.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/asterisk/!svn/ver/43376/branches/1.4/configs/h323.conf.sample
+END
+logger.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/asterisk/!svn/ver/194764/branches/1.4/configs/logger.conf.sample
+END
+sla.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/asterisk/!svn/ver/130042/branches/1.4/configs/sla.conf.sample
+END
+res_odbc.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/asterisk/!svn/ver/170836/branches/1.4/configs/res_odbc.conf.sample
+END
+agents.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/asterisk/!svn/ver/149683/branches/1.4/configs/agents.conf.sample
+END
+alarmreceiver.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/asterisk/!svn/ver/43376/branches/1.4/configs/alarmreceiver.conf.sample
+END
+func_odbc.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/asterisk/!svn/ver/43376/branches/1.4/configs/func_odbc.conf.sample
+END
+cdr_tds.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/asterisk/!svn/ver/43376/branches/1.4/configs/cdr_tds.conf.sample
+END
+musiconhold.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/asterisk/!svn/ver/47279/branches/1.4/configs/musiconhold.conf.sample
+END
+jabber.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/asterisk/!svn/ver/289703/branches/1.4/configs/jabber.conf.sample
+END
+extconfig.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/asterisk/!svn/ver/168721/branches/1.4/configs/extconfig.conf.sample
+END
+res_snmp.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/asterisk/!svn/ver/43376/branches/1.4/configs/res_snmp.conf.sample
+END
+vpb.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/asterisk/!svn/ver/43376/branches/1.4/configs/vpb.conf.sample
+END
+iaxprov.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/asterisk/!svn/ver/114649/branches/1.4/configs/iaxprov.conf.sample
+END
+dnsmgr.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/asterisk/!svn/ver/43376/branches/1.4/configs/dnsmgr.conf.sample
+END
+smdi.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/asterisk/!svn/ver/130042/branches/1.4/configs/smdi.conf.sample
+END
+extensions.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/asterisk/!svn/ver/270979/branches/1.4/configs/extensions.conf.sample
+END
+res_pgsql.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/asterisk/!svn/ver/63329/branches/1.4/configs/res_pgsql.conf.sample
+END
+asterisk.adsi
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/43376/branches/1.4/configs/asterisk.adsi
+END
+amd.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/asterisk/!svn/ver/43376/branches/1.4/configs/amd.conf.sample
+END
+users.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/asterisk/!svn/ver/90098/branches/1.4/configs/users.conf.sample
+END
+gtalk.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/asterisk/!svn/ver/291938/branches/1.4/configs/gtalk.conf.sample
+END
+rpt.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/asterisk/!svn/ver/43376/branches/1.4/configs/rpt.conf.sample
+END
+rtp.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/asterisk/!svn/ver/43376/branches/1.4/configs/rtp.conf.sample
+END
+modules.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/asterisk/!svn/ver/97753/branches/1.4/configs/modules.conf.sample
+END
+phone.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/asterisk/!svn/ver/43376/branches/1.4/configs/phone.conf.sample
+END

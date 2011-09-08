@@ -1,0 +1,26 @@
+To: $SENDTO
+Subject: Pager către $DESTINATION eşuat
+From: HylaFAX Agent <$FROMADDR>
+Content-type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: Quoted-Printable
+
+Sesiunea către $number a eşuat pentru că:
+
+$faxstatus
+
+
+---- Urmează transcriptul sesiunii ----
+
+$SESSION_LOG
+
+---- Starea sesiunii netransmise ----
+Destinaţie:         $number
+JobID:              $jobid
+GroupID:            $groupid
+CommID:             $commid
+Modem:              $modem
+Expediat de:        $client
+Stare:              $faxstatus
+Dialoguri:          $tottries
+Formare numere:     $ndials
+Apeluri:            $totdials

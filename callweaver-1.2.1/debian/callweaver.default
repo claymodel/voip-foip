@@ -1,0 +1,24 @@
+# This file allows you to alter the configuration of the callweaver
+# init.d script
+#
+# RUNCALLWEAVER: run callweaver upon boot. Should be set to "yes" once you have
+#              setup your configuration.
+RUNCALLWEAVER=no
+#
+#
+# CALLWEAVER_REALTIME:if set to anything other than "no", callweaver will run in 
+#               real-time priority (pass '-p' to callweaver). un-rem the 
+#               following line to disable callweaver from running in real-time 
+#               priority
+#CALLWEAVER_REALTIME=yes
+#
+# PARAMS: exra parameters to pass to callweaver
+#         The example here may help you in debugging, but is not intended for
+#         production use.  When you give -G *only* that group will be used,
+#         else all groups of the callweaver user.
+#PARAMS="-g -vvv"
+#
+#
+# RUNCALLWEAVERSAFE: run safe_callweaver rather than callweaver (will auto-restart upon
+#             crash)
+#RUNCALLWEAVERSAFE=yes

@@ -1,0 +1,295 @@
+# File: faxalter/faxalter.c++, line: 242
+msgid "No job parameters specified for alteration."
+msgstr ""
+
+#
+# File: faxalter/faxalter.c++, line: 263
+#, c-format
+msgid "Job %s: duplicated as job %s.\n"
+msgstr ""
+
+#
+# File: faxalter/faxalter.c++, line: 290
+#, c-format
+msgid "Job %s: done.\n"
+msgstr ""
+
+#
+# File: faxalter/faxalter.c++, line: 316
+msgid ""
+"usage: faxalter [-C] [-h server-host] [-a time] [-d number] [-k time] [-m "
+"modem] [-n notify] [-P priority] [-t tries] [-A] [-g] [-p] [-r] [-v] [-DQR] "
+"jobID..."
+msgstr ""
+
+# File: faxcover/faxcover.c++, line: 187
+#, c-format
+msgid "Unknown page size \"%s\""
+msgstr ""
+
+#
+# File: faxcover/faxcover.c++, line: 204
+#, c-format
+msgid ""
+"usage: %s [-t to] [-c comments] [-p #pages] [-l to-location] [-m "
+"maxcomments] [-z maxlencomments] [-r regarding] [-v to-voice-number] [-x to-"
+"company] [-C template-file] [-D date-format] [-L from-location] [-M from-"
+"mail-address] [-N from-fax-number] [-V from-voice-number] [-X from-company] "
+"[-s pagesize] -f from -n fax-number"
+msgstr ""
+
+#
+# File: faxcover/faxcover.c++, line: 328
+#, c-format
+msgid "Could not locate prototype cover sheet \"%s\""
+msgstr ""
+
+#
+# File: faxcover/faxcover.c++, line: 462
+msgid "Can not figure out who you are."
+msgstr ""
+
+# File: faxmail/MIMEState.c++, line: 145
+msgid "Syntax error parsing MIME Content-Type: "
+msgstr ""
+
+#
+# File: faxmail/MIMEState.c++, line: 360
+#, c-format
+msgid "Internal error, unsupported Content-Transfer-Encoding %u"
+msgstr ""
+
+#
+# File: faxmail/MsgFmt.c++, line: 162
+#, c-format
+msgid "HEADER %s: %s\n"
+msgstr ""
+
+#
+# File: faxmail/MsgFmt.c++, line: 170
+#, c-format
+msgid "+HEADER %s: %s\n"
+msgstr ""
+
+#
+# File: faxmail/faxmail.c++, line: 135
+#, c-format
+msgid "Cannot create temp directory %s"
+msgstr ""
+
+#
+# File: faxmail/faxmail.c++, line: 267
+msgid "No Destination/Dialstring specified"
+msgstr ""
+
+#
+# File: faxmail/faxmail.c++, line: 277
+msgid "No From/Sender identity specified"
+msgstr ""
+
+#
+# File: faxmail/faxmail.c++, line: 396
+#, c-format
+msgid "faxmail: This is a MIME message\n"
+msgstr ""
+
+#
+# File: faxmail/faxmail.c++, line: 408
+#, c-format
+msgid "faxmail: This is not a MIME message\n"
+msgstr ""
+
+#
+# File: faxmail/faxmail.c++, line: 443
+#, c-format
+msgid ""
+"unable to process message:\n"
+"\t%s"
+msgstr ""
+
+#
+# File: faxmail/faxmail.c++, line: 542
+msgid "Badly formatted MIME; premature EOF"
+msgstr ""
+
+#
+# File: faxmail/faxmail.c++, line: 639
+#, c-format
+msgid "CONVERT: run %s\n"
+msgstr ""
+
+#
+# File: faxmail/faxmail.c++, line: 669
+#, c-format
+msgid "DISCARDED %s (%s/%s) GOES HERE\n"
+msgstr ""
+
+#
+# File: faxmail/faxmail.c++, line: 675
+#, c-format
+msgid "DISCARDED %s/%s GOES HERE\n"
+msgstr ""
+
+#
+# File: faxmail/faxmail.c++, line: 683
+#, c-format
+msgid "DISCARDED: %s (%s/%s)\n"
+msgstr ""
+
+#
+# File: faxmail/faxmail.c++, line: 688
+#, c-format
+msgid "DISCARDED: %s/%s\n"
+msgstr ""
+
+#
+# File: faxmail/faxmail.c++, line: 757
+#, c-format
+msgid "%s: write error: %s"
+msgstr ""
+
+# #-#-#-#-#  messages.po  #-#-#-#-#
+#
+# File: faxmail/faxmail.c++, line: 760
+# #-#-#-#-#  messages.po  #-#-#-#-#
+#
+# File: sendfax/sendfax.c++, line: 368
+# #-#-#-#-#  messages.po  #-#-#-#-#
+#
+# File: sendpage/sendpage.c++, line: 216
+#, c-format
+msgid "%s: Can not create temporary file"
+msgstr ""
+
+#
+# File: faxmail/faxmail.c++, line: 775
+#, c-format
+msgid "Couldn't open output file: %s"
+msgstr ""
+
+#
+# File: faxmail/faxmail.c++, line: 788
+#, c-format
+msgid "Error converting %s/%s; could not fork subprocess: %s"
+msgstr ""
+
+#
+# File: faxmail/faxmail.c++, line: 805
+#, c-format
+msgid "Error converting %s/%s; command was \"%s %s\"; exit status %x"
+msgstr ""
+
+#
+# File: faxmail/faxmail.c++, line: 972
+msgid ""
+"usage: faxmail [-b boldfont] [-H pageheight] [-i italicfont] [-f textfont] [-"
+"p pointsize] [-s pagesize] [-W pagewidth] [-M margins] [-C covertemplate] [-"
+"t notify] [-u user] [-12cnNrRTv]"
+msgstr ""
+
+# File: faxrm/faxrm.c++, line: 98
+#. translator: File %s has been removed.
+#, c-format
+msgid "%s removed.\n"
+msgstr ""
+
+#
+# File: faxrm/faxrm.c++, line: 112
+#, c-format
+msgid "Job %s removed.\n"
+msgstr ""
+
+#
+# File: faxrm/faxrm.c++, line: 117
+#, c-format
+msgid "Job %s removed (from doneq).\n"
+msgstr ""
+
+#
+# File: faxrm/faxrm.c++, line: 137
+msgid "usage: faxrm [-h server-host] [-adv] id..."
+msgstr ""
+
+# File: faxstat/faxstat.c++, line: 99
+msgid "usage: faxstat [-h server-host] [-adfgilrsv]"
+msgstr ""
+
+#
+# File: faxstat/faxstat.c++, line: 149
+#, c-format
+msgid "Data Connection: %s"
+msgstr ""
+
+# File: sendfax/sendfax.c++, line: 243
+#, c-format
+msgid "%s: No destination specified.\n"
+msgstr ""
+
+#
+# File: sendfax/sendfax.c++, line: 248
+#, c-format
+msgid "%s: Unused options after last destination.\n"
+msgstr ""
+
+#
+# File: sendfax/sendfax.c++, line: 268
+#, c-format
+msgid "can only wait for one job (right now), waiting for job %s."
+msgstr ""
+
+#
+# File: sendfax/sendfax.c++, line: 282
+#, c-format
+msgid ""
+"usage: %s [options] [files]\n"
+"(Read the manual page; it's too complicated)"
+msgstr ""
+
+#
+# File: sendfax/sendfax.c++, line: 322
+#, c-format
+msgid "Null destination for \"%s\""
+msgstr ""
+
+#
+# File: sendfax/sendfax.c++, line: 329
+msgid "ECM disabled, limiting job to 14400 bps."
+msgstr ""
+
+#
+# File: sendfax/sendfax.c++, line: 352
+#, c-format
+msgid "%s: no such file"
+msgstr ""
+
+#
+# File: sendfax/sendfax.c++, line: 375
+#, c-format
+msgid "%s: write error"
+msgstr ""
+
+#
+# File: sendfax/sendfax.c++, line: 383
+msgid "No input data; transmission aborted"
+msgstr ""
+
+# File: sendpage/sendpage.c++, line: 90
+#, c-format
+msgid "Invalid hold time \"%s\": %s"
+msgstr ""
+
+#
+# File: sendpage/sendpage.c++, line: 144
+#, c-format
+msgid "%s: No pager identification number (PIN) specified.\n"
+msgstr ""
+
+#
+# File: sendpage/sendpage.c++, line: 177
+#, c-format
+msgid ""
+"usage: %s -p PIN [-p PIN ...]\n"
+" [-a time-to-send] [-l service-level] [-s message-subject]\n"
+"     [-h host[:modem]] [-f from]\n"
+"     [-I retry-time] [-t max-tries] [-T max-dials] [-nqvDNR] [msgs ...]"
+msgstr ""

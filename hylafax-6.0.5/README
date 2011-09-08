@@ -1,0 +1,110 @@
+
+HylaFAX - The world's most advanced open source fax server
+========================================================================
+
+  HylaFAX(tm) is  a  system  for sending and receiving facsimile.  It
+  supports queued transmission and asynchronous reception of
+  facsimile.  Ancillary programs are invoked by the system for
+  flexibility and configurability.   HylaFAX  includes  client  and
+  server programs to support remote submission of jobs for transmission,
+  remote removal of queued jobs, and to remotely query the status of
+  jobs queued for transmission.
+
+  The latest version of this software may be obtained at:
+    http://ftp.hylafax.org/source/
+
+  For more information look at our web site located at:
+    http://www.hylafax.org/
+
+  Release notes for version 6.0 are available in:
+        doc/RELEASENOTES-6.0.txt
+
+HYLAFAX BINARY PACKAGES
+========================================================================
+
+  Binary packages for some operating systems and platforms are
+  available.  Please see:
+
+    ftp://ftp.hylafax.org/binary/
+    http://www.hylafax.org/content/Binary_Packages
+    http://www.hylafax.org/content/Handbook:Binary_Package_Install
+
+  If you are able and  willing to produce a binary package of HylaFAX
+  for general distribution, and one is not already available for your
+  platform/OS, then you are invited to add it to the Binary_Packages
+  wiki page at www.hylafax.org.
+
+
+SUPPORT
+========================================================================
+
+  HylaFAX has numerous public support resources available.  The user is
+  encouraged to utilize the manpage documentation before turning to
+  other support arenas.  However, if other support is desired, or if you
+  would like to actively take part in the HylaFAX community, you are
+  invited to:
+
+  * join and participate in a HylaFAX mailing list
+    See: http://www.hylafax.org/content/Mailing_Lists
+
+    When corresponding about this software, please always specify:
+    - what version of HylaFAX you have,
+    - what system you're running on (if it is Linux please name the
+      distribution)
+    - if the problem is modem-related, identify it and the firmware rev
+    For example: "HylaFAX 4.3.0 under CentOS 4.4 with gcc 3.4.6;
+    ZyXEL 1496E with 6.11a firmware."
+
+  * read the on-line documentation and resources
+    See: http://www.hylafax.org/content/Documentation
+
+  * review HylaFAX CVS
+    See: http://www.hylafax.org/content/Developers
+
+  * report confirmed bugs, feature requests, and submit patches
+    See: http://bugs.hylafax.org/
+
+========================================================================
+
+And now, a note from HylaFAX's original author ;-)
+
+  Silicon Graphics has seen fit to allow me to give this work away.  It
+  is free.  There is no support or guarantee of any sort as to its
+  operations, correctness, or whatever.  If you do anything useful with
+  all or parts of it you need to honor the copyright notices.   I would
+  also be interested in knowing about it and, hopefully, be
+  acknowledged.
+
+  Finally, note that this software is called ``HylaFAX'', not
+  ``Hylafax'', ``hylafax'', and certainly not ``FlexFAX'' (the old name
+  which someone else has a copyright on).  If you want to refer to this
+  software use ``HylaFAX (tm)'' and be sure to honor the Silicon
+  Graphics trademark.
+
+	Sam Leffler
+
+Use and Copyright
+-----------------
+
+Copyright (c) 1988-1996 Sam Leffler
+Copyright (c) 1991-1996 Silicon Graphics, Inc.
+HylaFAX is a trademark of Silicon Graphics
+
+    Permission to use, copy, modify, distribute, and sell this software and 
+    its documentation for any purpose is hereby granted without fee, provided
+    that (i) the above copyright notices and this permission notice appear in
+    all copies of the software and related documentation, and (ii) the names of
+    Sam Leffler and Silicon Graphics may not be used in any advertising or
+    publicity relating to the software without the specific, prior written
+    permission of Sam Leffler and Silicon Graphics.
+
+    THE SOFTWARE IS PROVIDED "AS-IS" AND WITHOUT WARRANTY OF ANY KIND, 
+    EXPRESS, IMPLIED OR OTHERWISE, INCLUDING WITHOUT LIMITATION, ANY 
+    WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.  
+
+    IN NO EVENT SHALL SAM LEFFLER OR SILICON GRAPHICS BE LIABLE FOR
+    ANY SPECIAL, INCIDENTAL, INDIRECT OR CONSEQUENTIAL DAMAGES OF ANY KIND,
+    OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
+    WHETHER OR NOT ADVISED OF THE POSSIBILITY OF DAMAGE, AND ON ANY THEORY OF 
+    LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE 
+    OF THIS SOFTWARE.

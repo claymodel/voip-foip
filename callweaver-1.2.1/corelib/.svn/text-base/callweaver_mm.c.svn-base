@@ -1,0 +1,500 @@
+/*
+ * CallWeaver -- An open source telephony toolkit.
+ *
+ * Copyright (C) 1999 - 2005, Digium, Inc.
+ *
+ * Mark Spencer <markster@digium.com>
+ *
+ * See http://www.callweaver.org for more information about
+ * the CallWeaver project. Please do not directly contact
+ * any of the maintainers of this project for assistance;
+ * the project provides a web site, mailing lists and IRC
+ * channels for your use.
+ *
+ * This program is free software, distributed under the terms of
+ * the GNU General Public License Version 2. See the LICENSE file
+ * at the top of the source tree.
+ */
+
+/*
+ *
+ * Memory Management
+ * 
+ */
+#ifdef HAVE_CONFIG_H
+#include "confdefs.h"
+#endif
+
+#ifdef __CW_DEBUG_MALLOC
+
+#include <stdio.h>
+#include <string.h>
+#include <time.h>
+
+#include "callweaver.h"
+
+CALLWEAVER_FILE_VERSION("$HeadURL$", "$Revision$")
+
+#include "callweaver/cli.h"
+#include "callweaver/logger.h"
+#include "callweaver/options.h"
+#include "callweaver/lock.h"
+#include "callweaver/strings.h"
+#include "callweaver/unaligned.h"
+
+#define SOME_PRIME      563
+
+enum func_type
+{
+    FUNC_CALLOC = 1,
+    FUNC_MALLOC,
+    FUNC_REALLOC,
+    FUNC_STRDUP,
+    FUNC_STRNDUP,
+    FUNC_VASPRINTF
+};
+
+/* Undefine all our macros */
+#undef malloc
+#undef calloc
+#undef realloc
+#undef strdup
+#undef strndup
+#undef free
+#undef vasprintf
+
+#define FENCE_MAGIC 0xdeadbeef
+
+static FILE *mmlog;
+
+struct cw_region
+{
+    struct cw_region *next;
+    char file[40];
+    char func[40];
+    unsigned int lineno;
+    enum func_type which;
+    unsigned int cache;		/* region was allocated as part of a cache pool */
+    size_t len;
+    unsigned int fence;
+    unsigned char data[0];
+};
+
+static struct cw_region *regions[SOME_PRIME];
+
+#define HASH(a) (((unsigned long)(a)) % SOME_PRIME)
+    
+CW_MUTEX_DEFINE_STATIC(reglock);
+CW_MUTEX_DEFINE_STATIC(showmemorylock);
+
+static inline void *__cw_alloc_region(size_t size, int which, const char *file, int lineno, const char *func)
+{
+    struct cw_region *reg;
+    void *ptr = NULL;
+    unsigned int *fence;
+    int hash;
+    
+    reg = malloc(size + sizeof(struct cw_region) + sizeof(unsigned int));
+    cw_mutex_lock(&reglock);
+    if (reg)
+    {
+        cw_copy_string(reg->file, file, sizeof(reg->file));
+        reg->file[sizeof(reg->file) - 1] = '\0';
+        cw_copy_string(reg->func, func, sizeof(reg->func));
+        reg->func[sizeof(reg->func) - 1] = '\0';
+        reg->lineno = lineno;
+        reg->len = size;
+        reg->which = which;
+        ptr = reg->data;
+        hash = HASH(ptr);
+        fence = (ptr + reg->len);
+        put_unaligned_uint32(fence, FENCE_MAGIC);
+
+        reg->next = regions[hash];
+        regions[hash] = reg;
+        reg->fence = FENCE_MAGIC;
+    }
+    cw_mutex_unlock(&reglock);
+    if (reg == NULL)
+    {
+        fprintf(stderr, "Out of memory :(\n");
+        if (mmlog)
+        {
+            fprintf(mmlog, "%ld - Out of memory\n", time(NULL));
+            fflush(mmlog);
+        }
+    }
+    return ptr;
+}
+
+static inline size_t __cw_sizeof_region(void *ptr)
+{
+    int hash = HASH(ptr);
+    struct cw_region *reg;
+    size_t len = 0;
+    
+    cw_mutex_lock(&reglock);
+    for (reg = regions[hash];  reg;  reg = reg->next)
+    {
+        if (reg->data == ptr)
+        {
+            len = reg->len;
+            break;
+        }
+    }
+    cw_mutex_unlock(&reglock);
+    return len;
+}
+
+static void __cw_free_region(void *ptr, const char *file, int lineno, const char *func)
+{
+    int hash = HASH(ptr);
+    struct cw_region *reg, *prev = NULL;
+    unsigned int *fence;
+
+    cw_mutex_lock(&reglock);
+    for (reg = regions[hash];  reg;  reg = reg->next)
+    {
+        if (reg->data == ptr)
+        {
+            if (prev)
+                prev->next = reg->next;
+            else
+                regions[hash] = reg->next;
+            break;
+        }
+        prev = reg;
+    }
+    cw_mutex_unlock(&reglock);
+    if (reg)
+    {
+        fence = (unsigned int *) (reg->data + reg->len);
+        if (reg->fence != FENCE_MAGIC)
+        {
+            fprintf(stderr, "WARNING: Low fence violation at %p, in %s of %s, line %d\n", reg->data, reg->func, reg->file, reg->lineno);
+            if (mmlog)
+            {
+                fprintf(mmlog, "%ld - WARNING: Low fence violation at %p, in %s of %s, line %d\n", time(NULL), reg->data, reg->func, reg->file, reg->lineno);
+                fflush(mmlog);
+            }
+        }
+        if (*fence != FENCE_MAGIC)
+        {
+            fprintf(stderr, "WARNING: High fence violation at %p, in %s of %s, line %d\n", reg->data, reg->func, reg->file, reg->lineno);
+            if (mmlog)
+            {
+                fprintf(mmlog, "%ld - WARNING: High fence violation at %p, in %s of %s, line %d\n", time(NULL), reg->data, reg->func, reg->file, reg->lineno);
+                fflush(mmlog);
+            }
+        }
+        free(reg);
+    }
+    else
+    {
+        fprintf(stderr, "WARNING: Freeing unused memory at %p, in %s of %s, line %d\n",    ptr, func, file, lineno);
+        if (mmlog)
+        {
+            fprintf(mmlog, "%ld - WARNING: Freeing unused memory at %p, in %s of %s, line %d\n", time(NULL), ptr, func, file, lineno);
+            fflush(mmlog);
+        }
+    }
+}
+
+void *__cw_calloc(size_t nmemb, size_t size, const char *file, int lineno, const char *func) 
+{
+    void *ptr;
+
+    ptr = __cw_alloc_region(size * nmemb, FUNC_CALLOC, file, lineno, func);
+    if (ptr) 
+        memset(ptr, 0, size * nmemb);
+    return ptr;
+}
+
+void *__cw_malloc(size_t size, const char *file, int lineno, const char *func) 
+{
+    return __cw_alloc_region(size, FUNC_MALLOC, file, lineno, func);
+}
+
+void __cw_free(void *ptr, const char *file, int lineno, const char *func) 
+{
+    __cw_free_region(ptr, file, lineno, func);
+}
+
+void *__cw_realloc(void *ptr, size_t size, const char *file, int lineno, const char *func) 
+{
+    void *tmp;
+    size_t len = 0;
+
+    if (ptr)
+    {
+        len = __cw_sizeof_region(ptr);
+        if (!len)
+        {
+            fprintf(stderr, "WARNING: Realloc of unalloced memory at %p, in %s of %s, line %d\n", ptr, func, file, lineno);
+            if (mmlog)
+            {
+                fprintf(mmlog, "%ld - WARNING: Realloc of unalloced memory at %p, in %s of %s, line %d\n", time(NULL), ptr, func, file, lineno);
+                fflush(mmlog);
+            }
+            return NULL;
+        }
+    }
+    tmp = __cw_alloc_region(size, FUNC_REALLOC, file, lineno, func);
+    if (tmp)
+    {
+        if (len > size)
+            len = size;
+        if (ptr)
+        {
+            memcpy(tmp, ptr, len);
+            __cw_free_region(ptr, file, lineno, func);
+        }
+    }
+    return tmp;
+}
+
+char *__cw_strdup(const char *s, const char *file, int lineno, const char *func) 
+{
+    size_t len;
+    void *ptr;
+
+    if (!s)
+        return NULL;
+    len = strlen(s) + 1;
+    ptr = __cw_alloc_region(len, FUNC_STRDUP, file, lineno, func);
+    if (ptr)
+        strcpy(ptr, s);
+    return ptr;
+}
+
+char *__cw_strndup(const char *s, size_t n, const char *file, int lineno, const char *func) 
+{
+    size_t len;
+    void *ptr;
+
+    if (!s)
+        return NULL;
+    len = strlen(s) + 1;
+    if (len > n)
+        len = n;
+    ptr = __cw_alloc_region(len, FUNC_STRNDUP, file, lineno, func);
+    if (ptr)
+        strcpy(ptr, s);
+    return ptr;
+}
+
+int __cw_vasprintf(char **strp, const char *fmt, va_list ap, const char *file, int lineno, const char *func) 
+{
+    int n;
+    int size = strlen(fmt) + 1;
+
+    if ((*strp = __cw_alloc_region(size, FUNC_VASPRINTF, file, lineno, func)) == NULL)
+        return -1; 
+    for (;;)
+    {
+        n = vsnprintf(*strp, size, fmt, ap);
+        if (n > -1  &&  n < size)
+            return n;
+        if (n > -1)
+        {
+            /* glibc 2.1 */
+            size = n + 1;
+        }
+        else
+        {
+            /* glibc 2.0 */
+            size *= 2;
+        }
+        if ((*strp = __cw_realloc(*strp, size, file, lineno, func)) == NULL)
+            return -1;
+    }
+}
+
+static int handle_show_memory(int fd, int argc, char *argv[])
+{
+    char *fn = NULL;
+    int x;
+    struct cw_region *reg;
+    unsigned int len = 0;
+    int count = 0;
+    unsigned int *fence;
+
+    if (argc > 3) 
+        fn = argv[3];
+
+    /* try to lock applications list ... */
+    cw_mutex_lock(&showmemorylock);
+
+    for (x = 0;  x < SOME_PRIME;  x++)
+    {
+        for (reg = regions[x];  reg;  reg = reg->next)
+        {
+            if (fn == NULL  ||  strcasecmp(fn, reg->file) == 0  ||  strcasecmp(fn, "anomolies") == 0)
+            {
+                fence = (unsigned int *) (reg->data + reg->len);
+                if (reg->fence != FENCE_MAGIC)
+                {
+                    fprintf(stderr, "WARNING: Low fence violation at %p, in %s of %s, line %d\n", reg->data, reg->func, reg->file, reg->lineno);
+                    if (mmlog)
+                    {
+                        fprintf(mmlog, "%ld - WARNING: Low fence violation at %p, in %s of %s, line %d\n", time(NULL), reg->data, reg->func, reg-> file, reg->lineno);
+                        fflush(mmlog);
+                    }
+                }
+                if (*fence != FENCE_MAGIC)
+                {
+                    fprintf(stderr, "WARNING: High fence violation at %p, in %s of %s, line %d\n", reg->data, reg->func, reg->file, reg->lineno);
+                    if (mmlog)
+                    {
+                        fprintf(mmlog, "%ld - WARNING: High fence violation at %p, in %s of %s, line %d\n", time(NULL), reg->data, reg->func, reg->file, reg->lineno);
+                        fflush(mmlog);
+                    }
+                }
+            }
+            if (fn == NULL  ||  strcasecmp(fn, reg->file) == 0)
+            {
+                cw_cli(fd, "%10d bytes allocated in %20s at line %5d of %s\n", (int) reg->len, reg->func, reg->lineno, reg->file);
+                len += reg->len;
+                count++;
+            }
+        }
+    }
+    cw_cli(fd, "%d bytes allocated %d units total\n", len, count);
+    cw_mutex_unlock(&showmemorylock);
+    return RESULT_SUCCESS;
+}
+
+struct file_summary
+{
+    char fn[80];
+    int len;
+    int cache_len;
+    int count;
+    struct file_summary *next;
+};
+
+static int handle_show_memory_summary(int fd, int argc, char *argv[])
+{
+    char *fn = NULL;
+    int x;
+    struct cw_region *reg;
+    unsigned int len = 0;
+    unsigned int cache_len = 0;
+    int count = 0;
+    struct file_summary *list = NULL;
+    struct file_summary *cur;
+    
+    if (argc > 3) 
+        fn = argv[3];
+
+    /* Try to lock applications list ... */
+    cw_mutex_lock(&reglock);
+
+    for (x = 0;  x < SOME_PRIME;  x++)
+    {
+        for (reg = regions[x];  reg;  reg = reg->next)
+        {
+            if (fn  &&  strcasecmp(fn, reg->file))
+                continue;
+            for (cur = list;  cur;  cur = cur->next)
+            {
+                if ((fn == NULL  &&  strcmp(cur->fn, reg->file) == 0)  ||  (fn  &&  strcmp(cur->fn, reg->func) == 0))
+                    break;
+            }
+            if (cur == NULL)
+            {
+                cur = alloca(sizeof(*cur));
+                memset(cur, 0, sizeof(*cur));
+                cw_copy_string(cur->fn, (fn)  ?  reg->func  :  reg->file, sizeof(cur->fn));
+                cur->next = list;
+                list = cur;
+            }
+            cur->len += reg->len;
+            if (reg->cache)
+                cur->cache_len += reg->len;
+            cur->count++;
+        }
+    }
+    cw_mutex_unlock(&reglock);
+    
+    /* Dump the whole list */
+    for (cur = list;  cur;  cur = cur->next)
+    {
+        len += list->len;
+        cache_len += cur->cache_len;
+        count += list->count;
+        if (cur->cache_len)
+        {
+            if (fn)
+            {
+                cw_cli(fd, "%10d bytes (%10d cache) in %d allocations in function '%s' of '%s'\n", 
+                    cur->len, cur->cache_len, cur->count, cur->fn, fn);
+            }
+            else
+            {
+                cw_cli(fd, "%10d bytes (%10d cache) in %d allocations in file '%s'\n", 
+                    cur->len, cur->cache_len, cur->count, cur->fn);
+            }
+        }
+        else
+        {
+            if (fn)
+            {
+                cw_cli(fd, "%10d bytes in %d allocations in function '%s' of '%s'\n", 
+                    cur->len, cur->count, cur->fn, fn);
+            }
+            else
+            {
+                cw_cli(fd, "%10d bytes in %d allocations in file '%s'\n", 
+                    cur->len, cur->count, cur->fn);
+            }
+        }
+    }
+    if (cache_len)
+        cw_cli(fd, "%d bytes allocated (%d in caches) in %d allocations\n", len, cache_len, count);
+    else
+        cw_cli(fd, "%d bytes allocated in %d allocations\n", len, count);
+    return RESULT_SUCCESS;
+}
+
+static char show_memory_help[] = 
+"Usage: show memory allocations [<file>]\n"
+"       Dumps a list of all segments of allocated memory, optionally\n"
+"limited to those from a specific file\n";
+
+static char show_memory_summary_help[] = 
+"Usage: show memory summary [<file>]\n"
+"       Summarizes heap memory allocations by file, or optionally\n"
+"by function, if a file is specified\n";
+
+static struct cw_cli_entry show_memory_allocations_cli = 
+{
+    { "show", "memory", "allocations", NULL }, 
+    handle_show_memory, "Display outstanding memory allocations",
+    show_memory_help
+};
+
+static struct cw_cli_entry show_memory_summary_cli = 
+{
+    { "show", "memory", "summary", NULL }, 
+    handle_show_memory_summary, "Summarize outstanding memory allocations",
+    show_memory_summary_help
+};
+
+void __cw_mm_init(void)
+{
+    char filename[80] = "";
+    cw_cli_register(&show_memory_allocations_cli);
+    cw_cli_register(&show_memory_summary_cli);
+    
+    snprintf(filename, sizeof(filename), "%s/mmlog", (char *) cw_config_CW_LOG_DIR);
+    mmlog = fopen(filename, "a+");
+    if (option_verbose)
+        cw_verbose("CallWeaver Malloc Debugger Started (see %s))\n", filename);
+    if (mmlog)
+    {
+        fprintf(mmlog, "%ld - New session\n", time(NULL));
+        fflush(mmlog);
+    }
+}
+#endif

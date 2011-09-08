@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+                      "http://www.docbook.org/xml/4.4/docbookx.dtd" [
+<!ENTITY % globalents SYSTEM "../libs/global.ent">
+%globalents;
+]>
+<book>
+	<title>Frequently Asked Questions</title>
+	<bookinfo>
+		<authorgroup>
+			<author>
+				<firstname>Sean</firstname>
+				<surname>Wheller</surname>
+			</author>
+			</authorgroup>
+			<abstract>
+				<para>...</para>
+			</abstract>
+		&copyright; 
+		&legalnotice;
+		&publisher;
+	</bookinfo>
+	<chapter>
+		<title>Chapter Title</title>
+		<qandaset>
+			<qandaentry>
+				<question>
+					<para>Question</para>
+				</question>
+				<answer>
+					<para>Answer</para>
+				</answer>
+			</qandaentry>
+		</qandaset>
+	</chapter>
+	<chapter>
+		<title>Chapter Title</title>
+		<qandaset>
+			<qandaentry>
+				<question>
+					<para>Question</para>
+				</question>
+				<answer>
+					<para>Answer</para>
+				</answer>
+			</qandaentry>
+		</qandaset>
+	</chapter>
+	</book>
+					

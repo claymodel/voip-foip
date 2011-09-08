@@ -1,0 +1,34 @@
+To: $SENDTO
+Subject: trabajo fax $JOBINFO a $DESTINATION falló
+From: Servidor de Fax HylaFAX <$FROMADDR>
+Content-type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: Quoted-Printable
+
+Su trabajo fax para $number no fue enviado porque la conversión
+del documento para fax ha fallado.  El mensaje del programa de
+conversión fué:
+
+$faxstatus
+
+Compruebe si él documento de PostScript para saber si hay fuentes
+no estándar y construcciones inválidas
+------- Unsent job status -------
+                     Destino: $number
+                   IDTrabajo: $jobid
+                     IDGrupo: $groupid
+                   Remitente: $sender
+                   Dirección: $mailaddr
+                       IDCom: $commid
+                       Módem: $modem
+                 Sometido De: $client
+                     Anchura: $pagewidth  (mm)
+                    Longitud: $pagelength (mm)
+                  Resolución: $resolution (lpi)
+                      Estado: $faxstatus
+                    Diálogos: $tottries
+                 Marcaciones: $ndials
+                    Llamadas: $totdials
+                     Páginas: $npages
+                 PáginasPara: $totpages
+                  Tentativas: $ntries
+                      NumDir: $dirnum

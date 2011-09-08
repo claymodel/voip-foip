@@ -1,0 +1,473 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver
+END
+options.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/options.h
+END
+utils.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/utils.h
+END
+ring10.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/ring10.h
+END
+config.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/config.h
+END
+unaligned.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/unaligned.h
+END
+term.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/term.h
+END
+channel.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/channel.h
+END
+cdr.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/cdr.h
+END
+manager.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/manager.h
+END
+features.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/features.h
+END
+app.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/app.h
+END
+res_odbc.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/res_odbc.h
+END
+image.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/image.h
+END
+dns.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/dns.h
+END
+linkedlists.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/linkedlists.h
+END
+phone_no_utils.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/phone_no_utils.h
+END
+generator.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/generator.h
+END
+generic_jb.h
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/generic_jb.h
+END
+ael_structs.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/ael_structs.h
+END
+udp.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/udp.h
+END
+callweaver_db.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/callweaver_db.h
+END
+slinfactory.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/slinfactory.h
+END
+translate.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/translate.h
+END
+time.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/time.h
+END
+acl.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/acl.h
+END
+rtp.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/rtp.h
+END
+chanvars.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/chanvars.h
+END
+dlfcn-compat.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/dlfcn-compat.h
+END
+aes.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/aes.h
+END
+xlaw.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/xlaw.h
+END
+resonator.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/resonator.h
+END
+callweaver_keywords.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/callweaver_keywords.h
+END
+alaw.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/alaw.h
+END
+module.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/module.h
+END
+dsp.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/dsp.h
+END
+monitor.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/monitor.h
+END
+poll-compat.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/poll-compat.h
+END
+udptl.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/udptl.h
+END
+frame.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/frame.h
+END
+say.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/say.h
+END
+devicestate.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/devicestate.h
+END
+dundi.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/dundi.h
+END
+cwobj.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/cwobj.h
+END
+enum.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/enum.h
+END
+indications.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/indications.h
+END
+chan_capi.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/chan_capi.h
+END
+cli.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/cli.h
+END
+io.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/io.h
+END
+ulaw.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/ulaw.h
+END
+transcap.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/transcap.h
+END
+callweaver_mm.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/callweaver_mm.h
+END
+udpfromto.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/udpfromto.h
+END
+logger.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/logger.h
+END
+musiconhold.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/musiconhold.h
+END
+sched.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/sched.h
+END
+callweaver_hash.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/callweaver_hash.h
+END
+lock.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/lock.h
+END
+stun.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/stun.h
+END
+strings.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/strings.h
+END
+pbx.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/pbx.h
+END
+dnsmgr.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/dnsmgr.h
+END
+chan_capi_rtp.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/chan_capi_rtp.h
+END
+netsock.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/netsock.h
+END
+inline_api.h
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/inline_api.h
+END
+chan_capi20.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/chan_capi20.h
+END
+localtime.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/localtime.h
+END
+compiler.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/compiler.h
+END
+srv.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/srv.h
+END
+privacy.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/privacy.h
+END
+ogi.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/ogi.h
+END
+file.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/file.h
+END
+callerid.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/callerid.h
+END
+adsi.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/adsi.h
+END
+crypto.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/crypto.h
+END
+doxyref.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/doxyref.h
+END
+causes.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/causes.h
+END
+callweaver_expr.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/callweaver_expr.h
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/include/callweaver/Makefile.am
+END

@@ -1,0 +1,16 @@
+Template: hylafax-server/start_now
+Type: boolean
+Default: true
+_Description: Start the HylaFAX daemon now?
+ Hylafax is already configured and may be started now. If you specify to
+ start it later manually, remember to change the value of RUN_HYLAFAX
+ in /etc/default/hylafax.
+
+Template: hylafax-server/setup_failed
+Type: error
+_Description: Hylafax setup failed
+ While installing hylafax a script called 'faxsetup' failed.
+ This can be caused by many reasons and cannot be fixed automatically
+ so the hylafax-server package is now unconfigured. Please fix the
+ problem, run 'faxsetup -server' as root and reconfigure hylafax-server
+ manually.

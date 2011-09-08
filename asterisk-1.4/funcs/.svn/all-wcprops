@@ -1,0 +1,155 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/asterisk/!svn/ver/327251/branches/1.4/funcs
+END
+func_language.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/61681/branches/1.4/funcs/func_language.c
+END
+func_moh.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/61681/branches/1.4/funcs/func_moh.c
+END
+func_base64.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/asterisk/!svn/ver/228378/branches/1.4/funcs/func_base64.c
+END
+func_rand.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/asterisk/!svn/ver/211528/branches/1.4/funcs/func_rand.c
+END
+func_db.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/asterisk/!svn/ver/43376/branches/1.4/funcs/func_db.c
+END
+func_md5.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/43376/branches/1.4/funcs/func_md5.c
+END
+func_timeout.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/146799/branches/1.4/funcs/func_timeout.c
+END
+func_env.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/95470/branches/1.4/funcs/func_env.c
+END
+func_math.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/asterisk/!svn/ver/241765/branches/1.4/funcs/func_math.c
+END
+func_strings.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/221303/branches/1.4/funcs/func_strings.c
+END
+func_cut.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/211528/branches/1.4/funcs/func_cut.c
+END
+func_sha1.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/43376/branches/1.4/funcs/func_sha1.c
+END
+func_logic.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/asterisk/!svn/ver/168546/branches/1.4/funcs/func_logic.c
+END
+func_uri.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/47625/branches/1.4/funcs/func_uri.c
+END
+func_global.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/asterisk/!svn/ver/43376/branches/1.4/funcs/func_global.c
+END
+func_realtime.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/206807/branches/1.4/funcs/func_realtime.c
+END
+func_enum.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/asterisk/!svn/ver/153337/branches/1.4/funcs/func_enum.c
+END
+func_groupcount.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/asterisk/!svn/ver/232268/branches/1.4/funcs/func_groupcount.c
+END
+func_curl.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/asterisk/!svn/ver/146799/branches/1.4/funcs/func_curl.c
+END
+func_audiohookinherit.c
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/asterisk/!svn/ver/229669/branches/1.4/funcs/func_audiohookinherit.c
+END
+func_odbc.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/asterisk/!svn/ver/204170/branches/1.4/funcs/func_odbc.c
+END
+func_channel.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/286059/branches/1.4/funcs/func_channel.c
+END
+func_cdr.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/238230/branches/1.4/funcs/func_cdr.c
+END
+func_callerid.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/280811/branches/1.4/funcs/func_callerid.c
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/asterisk/!svn/ver/93183/branches/1.4/funcs/Makefile
+END

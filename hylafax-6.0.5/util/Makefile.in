@@ -1,0 +1,169 @@
+#! smake
+#	$Id$
+#
+# @WARNING@
+#
+# HylaFAX Facsimile Software
+#
+# Copyright (c) 1990-1996 Sam Leffler
+# Copyright (c) 1991-1996 Silicon Graphics, Inc.
+# HylaFAX is a trademark of Silicon Graphics
+# 
+# Permission to use, copy, modify, distribute, and sell this software and 
+# its documentation for any purpose is hereby granted without fee, provided
+# that (i) the above copyright notices and this permission notice appear in
+# all copies of the software and related documentation, and (ii) the names of
+# Sam Leffler and Silicon Graphics may not be used in any advertising or
+# publicity relating to the software without the specific, prior written
+# permission of Sam Leffler and Silicon Graphics.
+# 
+# THE SOFTWARE IS PROVIDED "AS-IS" AND WITHOUT WARRANTY OF ANY KIND, 
+# EXPRESS, IMPLIED OR OTHERWISE, INCLUDING WITHOUT LIMITATION, ANY 
+# WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.  
+# 
+# IN NO EVENT SHALL SAM LEFFLER OR SILICON GRAPHICS BE LIABLE FOR
+# ANY SPECIAL, INCIDENTAL, INDIRECT OR CONSEQUENTIAL DAMAGES OF ANY KIND,
+# OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
+# WHETHER OR NOT ADVISED OF THE POSSIBILITY OF DAMAGE, AND ON ANY THEORY OF 
+# LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE 
+# OF THIS SOFTWARE.
+#
+
+#
+# VERSION:	@VERSION@
+# DATE:		@DATE@
+# TARGET:	@TARGET@
+# CCOMPILER:	@CCOMPILER@
+# CXXCOMPILER:	@CXXCOMPILER@
+#
+DEPTH=..
+SUBDIR=util
+@MAKEINCLUDE@ @MAKELQUOTE@${DEPTH}/defs@MAKERQUOTE@
+
+TARGETS=faxmsg faxmodem faxadduser faxconfig faxdeluser \
+    faxstate faxinfo faxwatch textfmt dialtest typetest tiffcheck
+
+LC++INCS=${ZLIBINC}			# for FaxClient.c++
+
+default all::
+	@${MAKE} incdepend
+	@${MAKE} targets
+
+targets: $(TARGETS)
+
+CFILES = faxadduser.c \
+         faxconfig.c \
+         faxdeluser.c \
+         faxmodem.c \
+         faxmsg.c \
+         faxstate.c
+
+C++FILES=checkat.c++ \
+         dialtest.c++ \
+         faxfetch.c++ \
+         faxinfo.c++ \
+         faxwatch.c++ \
+         textfmt.c++ \
+         tiffcheck.c++ \
+         typetest.c++
+
+@MAKEINCLUDE@ @MAKELQUOTE@${COMMONRULES}@MAKERQUOTE@
+
+faxmsg: ${SRCDIR}/faxmsg.c ${LIBS}
+	${CCF} -o $@ ${SRCDIR}/faxmsg.c ${LDFLAGS}
+faxstate: ${SRCDIR}/faxstate.c ${LIBS}
+	${CCF} -o $@ ${SRCDIR}/faxstate.c ${LDFLAGS}
+faxmodem: ${SRCDIR}/faxmodem.c ${LIBS}
+	${CCF} -o $@ ${SRCDIR}/faxmodem.c ${LDFLAGS}
+faxadduser: ${SRCDIR}/faxadduser.c ${LIBS}
+	${CCF} -o $@ ${SRCDIR}/faxadduser.c ${LIBCRYPT} ${LDFLAGS}
+faxconfig: ${SRCDIR}/faxconfig.c ${LIBS}
+	${CCF} -o $@ ${SRCDIR}/faxconfig.c ${LDFLAGS}
+faxdeluser: ${SRCDIR}/faxdeluser.c ${LIBS}
+	${CCF} -o $@ ${SRCDIR}/faxdeluser.c ${LDFLAGS}
+tiffcheck.o: ${SRCDIR}/tiffcheck.c++
+	${C++F} -c ${C++FILE} ${SRCDIR}/tiffcheck.c++@MAKECXXOVERRIDE@
+tiffcheck: tiffcheck.o ${LIBS}
+	${C++F} -o $@ tiffcheck.o ${LDFLAGS}
+textfmt.o: ${SRCDIR}/textfmt.c++
+	${C++F} -c ${C++FILE} ${SRCDIR}/textfmt.c++@MAKECXXOVERRIDE@
+textfmt: textfmt.o ${LIBS}
+	${C++F} -o $@ textfmt.o ${LDFLAGS}
+dialtest.o: ${SRCDIR}/dialtest.c++
+	${C++F} -c ${C++FILE} ${SRCDIR}/dialtest.c++@MAKECXXOVERRIDE@
+dialtest: dialtest.o ${LIBS}
+	${C++F} -o $@ dialtest.o ${LDFLAGS}
+typetest.o: ${SRCDIR}/typetest.c++
+	${C++F} -c ${C++FILE} ${SRCDIR}/typetest.c++@MAKECXXOVERRIDE@
+typetest: typetest.o ${LIBS}
+	${C++F} -o $@ typetest.o ${LDFLAGS}
+faxinfo.o: ${SRCDIR}/faxinfo.c++
+	${C++F} -c ${C++FILE} ${SRCDIR}/faxinfo.c++@MAKECXXOVERRIDE@
+faxinfo: faxinfo.o ${LIBS}
+	${C++F} -o $@ faxinfo.o ${LDFLAGS}
+faxwatch.o: ${SRCDIR}/faxwatch.c++
+	${C++F} -c ${C++FILE} ${SRCDIR}/faxwatch.c++@MAKECXXOVERRIDE@
+faxwatch: faxwatch.o ${LIBS}
+	${C++F} -o $@ faxwatch.o ${LDFLAGS}
+faxfetch: faxfetch.o ${LIBS}
+	${C++F} -o $@ faxfetch.o ${LDFLAGS}
+
+LDIRT=	checkat libfaxutil*
+checkat.o: ${SRCDIR}/checkat.c++
+	${C++F} -c ${C++FILE} ${SRCDIR}/checkat.c++@MAKECXXOVERRIDE@
+checkat: checkat.o ${LIBS}
+	${C++F} -o $@ checkat.o ${LDFLAGS}
+
+PUTCLIENT	= ${INSTALL} -idb ${PRODUCT}.sw.client
+PUTSERVER	= ${INSTALL} -idb ${PRODUCT}.sw.server
+PUTSERV		= ${PUTSERVER} -m 755
+PUTSUPD		= ${PUTSERVER} -F ${SPOOL}/bin -idb "config(update)"
+PUTSBIN		= ${PUTSERVER} -F ${SBIN}
+
+installClient: default
+	${PUTCLIENT} -F ${LIBEXEC} -m 755 -O textfmt
+	${PUTCLIENT} -F ${LIBEXEC} -m 755 -O typetest
+
+install: installClient
+	${PUTSBIN} -m 755 -O faxmsg faxadduser faxconfig faxdeluser faxmodem \
+        faxstate faxwatch faxinfo tiffcheck
+	${PUTSBIN} -idb ${PRODUCT}.sw.server \
+	    -ln ${SBIN}/faxmsg -O faxabort faxanswer faxquit faxlock
+	${PUTSBIN} -m 755 -O dialtest typetest
+	${PUTSBIN} -m 755 -src xferfaxstats.sh -O xferfaxstats
+	${PUTSBIN} -m 755 -src recvstats.sh -O recvstats
+	${PUTSBIN} -m 755 -idb "config(update)" -src faxcron.sh -O faxcron
+	${PUTSUPD} -m 755 -src ps2fax.gs.sh -O ps2fax.gs
+	${PUTSUPD} -m 755 -src ps2fax.dps.sh -O ps2fax.dps
+	${PUTSUPD} -m 755 -src ps2fax.imp.sh -O ps2fax.imp
+	${PUTSUPD} -m 755 -src pdf2fax.gs.sh -O pdf2fax.gs
+	${PUTSUPD} -m 755 -src pcl2fax.sh -O pcl2fax
+	${PUTSUPD} -m 755 -src tiff2fax.sh -O tiff2fax
+	${PUTSUPD} -m 755 -src tiff2pdf.sh -O tiff2pdf
+	${PUTSUPD} -m 755 -src notify.sh -O notify
+	${PUTSUPD} -m 755 -src notify-4.1.sh -O notify-4.1
+	${PUTSUPD} -m 755 -src notify-4.2.sh -O notify-4.2
+	${PUTSUPD} -m 444 -src ${SRCDIR}/notify.awk -O notify.awk
+	${PUTSUPD} -m 444 -src ${SRCDIR}/qp-encode.awk -O qp-encode.awk
+	${PUTSUPD} -m 444 -src ${SRCDIR}/b64-encode.awk -O b64-encode.awk
+	${PUTSUPD} -m 755 -src archive.sh -O archive
+	${PUTSUPD} -m 755 -src common-functions.sh -O common-functions
+	${PUTSUPD} -m 755 -src dictionary.sh -O dictionary
+	${PUTSUPD} -m 755 -src faxrcvd.sh -O faxrcvd
+	${PUTSUPD} -m 755 -src pollrcvd.sh -O pollrcvd
+	${PUTSUPD} -m 755 -src mkcover.sh -O mkcover
+	${PUTSUPD} -m 755 -src wedged.sh -O wedged
+	${PUTSERVER} -F ${SPOOL}/etc -m 444 -idb "config(update)" \
+	    -src ${SRCDIR}/dpsprinter.ps -O dpsprinter.ps
+	${PUTSERVER} -F ${SPOOL}/etc -idb "config(suggest)" \
+	    -m 444 -src ${SRCDIR}/cover.templ -O cover.templ
+
+#
+# These targets are created during the configuration procedure.
+#
+clobberconfig:
+	-${RM} -f pagesizes xferfaxstats.sh recvstats.sh faxcron.sh dictionary.sh \
+		faxrcvd.sh mkcover.sh notify-4.1.sh notify-4.2.sh notify.sh pcl2fax.sh pollrcvd.sh \
+		ps2fax.dps.sh ps2fax.gs.sh ps2fax.imp.sh tiff2fax.sh \
+		tiff2pdf.sh wedged.sh archive.sh pdf2fax.gs.sh common-functions.sh
+

@@ -1,0 +1,157 @@
+#!/usr/bin/perl
+
+my $cwdir = $ENV{CWSRC} || "/usr/src/callweaver";
+
+
+sub esystem($) {
+  my $cmd = shift;
+  print "$cmd\n";
+  system($cmd);
+}
+sub usage($) {
+  my $str = shift;
+  print "\n$str\n\n";
+  print "Usage $0 [ <module.c> [-set=<varname>:<value>] [-append=<varname>:<value>] [-install] ] | [-help]  \n\n";
+
+  print "varnames of interest:
+===============================================================================
+'INCLUDES' 'CWLIBDIR' 'OGI_DIR' 'CWVARRUNDIR' 'CC' 'CWETCDIR' 'EXTOBJ'
+'CWSPOOLDIR' 'CWLOGDIR' 'MODULES_DIR' 'CWSBINDIR' 'CWHEADERDIR' 'LDFLAGS'
+'CWVARLIBDIR' 'CWBINDIR' 'INSTALL_PREFIX' 'CWCONFPATH' 'CWSRC' 'CFLAGS'
+===============================================================================
+";
+
+  exit;
+
+}
+
+
+my %avars = ();
+my %svars = ();
+my %vars = ();
+
+
+
+
+my %args = ();
+
+
+foreach(@ARGV) {
+
+  if(/^\-set=([^\:]+):(.*)/) {
+    $svars{$1} = $2;
+  }
+  elsif(/^\-append=([^\:]+):(.*)/) {
+    $avars{$1} .= " $2";
+  }
+  elsif(/^\-([^\=]+)=(.*)/) {
+    $args{$1} = $2;
+  }
+  elsif(/^\-([^\=]+)$/) {
+    $args{$1}++;
+  }
+  else {
+    push(@{$args{plain}},$_);
+  }
+}
+
+if($args{help} or $args{h}) {
+  usage "Help";
+}
+
+
+my $pwd = `/bin/pwd`;
+chomp($pwd);
+
+$vars{cwdir} ||= $cwdir;
+
+chdir($vars{cwdir});
+my $type = $args{type} || "apps";
+my $env = `make ${type}_env`;
+chdir($pwd);
+
+foreach(split("\n",$env)) {
+    my($var,$val) = /([^\=]+)\=(.*)/;
+    $vars{$var} = $val;
+}
+
+
+
+
+foreach(keys %svars) {
+    $vars{$_} = $svars{$_};
+}
+
+foreach(keys %avars) {
+    $vars{$_} .= $avars{$_};
+}
+
+
+if($args{print}) {
+    print "$vars{$args{print}}";
+    exit;
+}
+
+
+my($base,$ext);
+my $cfile = $args{plain}->[0];
+
+
+if($cfile =~ /http:\/\/.*?\/([^\/]+)$/) {
+
+  my $f = $1;
+  if(! -d "/tmp/cwbld") {
+    mkdir("/tmp/cwbld");
+  }
+  my $pwd = `pwd`;
+  chomp $pwd;
+  chdir("/tmp/cwbld");
+  system("/bin/rm $f");
+  system("wget $cfile");
+  chdir($pwd);
+  $cfile = "/tmp/cwbld/$f";
+
+
+}
+
+
+
+if($cfile) {
+  ($base,$ext) = $cfile =~ /^([^\.]+)\.(.+)/;
+}
+
+if($ext eq "so") {
+  unless($args{linkonly}) {
+    $args{installonly}++;
+  }
+} elsif($ext ne "c") {
+  usage "Bad Input File";
+}
+
+
+my $bad=0;
+
+$bad = esystem("$vars{CC} -I${cwdir} -I${cwdir}/include $vars{CFLAGS} -c ${base}.c -o ${base}.o") unless($args{linkonly} or $args{installonly});
+exit -1 if($bad);
+exit if($args{nolink});
+
+
+
+$vars{MAINOBJ} ||= "$base.o";
+$bad = esystem("$vars{CC} $vars{SOLINK} -o ${base}.so $vars{LDFLAGS} $vars{MAINOBJ} $vars{EXTOBJ}") if(!$bad and !$args{installonly});
+exit -1 if($bad);
+
+if(($args{install} or $args{installonly}) and $vars{MODULES_DIR}) {
+  my $file = "${base}.so";
+  my ($mod) = $file =~ /([^\/]*)$/;
+
+  if($args{autoload}) {
+    $bad = esystem("/opt/callweaver.org/sbin/callweaver -rx 'unload $mod'");
+  }
+  $bad = esystem("/bin/cp -p ${base}.so $vars{MODULES_DIR}") if(!$bad);
+  
+  if($args{autoload}) {
+    $bad = esystem("/opt/callweaver.org/sbin/callweaver -rx 'load $mod'");
+  }
+}
+

@@ -1,0 +1,22 @@
+;
+; chan_fax T.31 (class 1) modem driver
+;
+; Sample configuration file
+;
+; $Id$
+;
+[settings]
+
+modems = 2
+context = chan_fax
+vblevel = 2
+
+; Change the prefix for the modem-devices from /dev/FAX to something else
+device-prefix = /dev/fax/
+
+; Change the ring strategy, default is 'first-free'
+; ring-strategy = first-free
+; ring-strategy = roundrobin
+
+;timeout-ms = 30
+;trap-seg = true

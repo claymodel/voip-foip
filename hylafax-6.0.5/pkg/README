@@ -1,0 +1,21 @@
+# $Id$
+
+	Tim Rice	Tue Oct 28 20:36:21 PST 1997
+
+	Modify the depend file as necessary. man depend(4)
+	
+	I like to keep all the HylaFAX files in a seperate directory
+	like /opt/HylaFAX so I created the scripts 
+	make.links and remove.links to setup symbolic links to the
+	user programs and man pages
+
+	If you want to include them in your package edit these next two
+	lines as necessary and add them to your proto.local file.
+ 
+f none /opt/HylaFAX/make.links=./make.links 0644 bin sys
+l none /opt/HylaFAX/remove.links=/opt/HylaFAX/make.links
+
+	Next edit postinstall and preremove to uncomment the lines
+	that run the make.links and remove.links scripts
+
+	Now run make package

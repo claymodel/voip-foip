@@ -1,0 +1,34 @@
+K 14
+fisheye.access
+V 5
+allow
+K 25
+sc:bug-fix-release-branch
+V 3
+1.2
+K 10
+svn:ignore
+V 221
+Makefile
+Makefile.in
+.deps
+.libs
+config.log
+config.status
+openpbx
+autom4te.cache
+libtool
+aclocal.m4
+libltdl
+config.guess
+config.sub
+configure
+ltmain.sh
+install-sh
+missing
+depcomp
+callweaver
+callweaver_cli
+safe_callweaver
+
+END

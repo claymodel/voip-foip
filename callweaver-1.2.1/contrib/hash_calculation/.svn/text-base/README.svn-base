@@ -1,0 +1,6 @@
+First compile calc_hash with gcc calc_hash.c -o calc_hash.
+
+Use calc_hash to obtain a hash value for a string to be used in
+callweaver/include/callweaver/callweaver_keywords.h
+
+Example: ./calc_hash ACCOUNTCODE

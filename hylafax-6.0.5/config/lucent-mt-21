@@ -1,0 +1,55 @@
+# $Id$
+#
+# prototype config file for MultiTech MT5634ZBA-V.92-NAM
+#
+
+#
+# CONFIG: CLASS2.1:"Multi-Tech Systems"-"MT5634ZBA"-*
+# CONFIG: CLASS2.1:"Multi-Tech Systems"-"MT5634ZPX"-*
+# CONFIG: CLASS2.1:*-"ISI5634PCI"-*
+# CONFIG: CLASS2.1:*-"MT5634SMI-V92"-*
+#
+# BEGIN-SERVER
+# END-SERVER
+#
+
+ModemType:		Class2.1
+ModemRate:		57600		# for V.34 faxing
+ModemNoFlowCmd:		AT&K0
+ModemSoftFlowCmd:	AT&K4
+ModemHardFlowCmd:	AT&K3
+
+Class2APCmd:		AT+FAP=1,1,1
+Class2BUGCmd:		AT+FBU=0	# early firmware is buggy
+Class2SendRTC:		yes
+Class2UseHex:		yes
+
+# Some firmwares do not report copy quality correction, although it
+# is present and cannot be disabled.  Thus modem-based CQ must be used.
+Class2CQQueryCmd:	"!(00-02),(00-02)"
+Class2CQCmd:		AT+FCQ=1,0
+
+# versions that respond to AT+FFC=? with non-zero data support RTFCC
+# Class2RTFCC:		yes
+
+# Some firmware revisions (i.e. 1.25) report MMR support but corrupt the data.
+# Some firmware revisions (i.e. 1.25 and 1.28) report extended resolution support but
+# have trouble with 300x300 and 400x400 resolutions and corrupt DIS for inch resolutions.
+# Enabling the following lines should work around these things.
+# Compare this against the modem's AT+FCC=? response.
+# Class2DCCQueryCmd:	"!(03),(00-05),(00-02),(00-02),(00-01),(00-01),(00),(00-07)"
+# ModemAnswerCmd:	AT+FCC=03,,,,1,,,,0;A
+# ModemDialCmd:		AT+FCC=03,,,,1,,,,0;DT%s
+
+# If your modem supports ECM you may want to do something like this 
+# Class2Cmd:		AT+FCLASS=2.1;+FRY=4
+
+# If your line supports Caller-ID, you may want to uncomment this...
+# ModemResetCmds:	AT+VCID=1
+# CallIDPattern:	"NMBR="
+# CallIDPattern:	"NAME="
+
+# Or with the MT5634ZBA-DID you'll probably need something like...
+# ModemReadyCmds:	AT*DS1*DD0*DF1*DN4	# enable DTMF-DID, wink-start, 4 digits
+# CallIDPattern:	"DTMF"		# format of AT*DF1
+# CallIDAnswerLength:	4		# four DTMF-DID digits then ATA

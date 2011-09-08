@@ -1,0 +1,13 @@
+K 10
+svn:ignore
+V 75
+*.o
+config.h
+config.log
+config.status
+libmxml.a
+mxml.list
+mxml.pc
+Makefile
+
+END

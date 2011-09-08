@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/codecs
+END
+codec_a_mu.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/codecs/codec_a_mu.c
+END
+codec_g722.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/codecs/codec_g722.c
+END
+codec_alaw.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/codecs/codec_alaw.c
+END
+codec_g722_16k_8k.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/codecs/codec_g722_16k_8k.c
+END
+codec_speex.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/codecs/codec_speex.c
+END
+codec_g726.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/codecs/codec_g726.c
+END
+codec_dvi_adpcm.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/codecs/codec_dvi_adpcm.c
+END
+codec_gsm.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/codecs/codec_gsm.c
+END
+codec_oki_adpcm.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/codecs/codec_oki_adpcm.c
+END
+codec_ulaw.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/codecs/codec_ulaw.c
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/codecs/Makefile.am
+END
+codec_lpc10.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/codecs/codec_lpc10.c
+END

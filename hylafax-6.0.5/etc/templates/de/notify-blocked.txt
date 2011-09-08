@@ -1,0 +1,11 @@
+To: $SENDTO
+Subject: Fax Auftrag $JOBINFO an $DESTINATION blockiert
+From: HylaFAX Empfang <$FROMADDR>
+Content-type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: Quoted-Printable
+
+Ihr Fax Auftrag an $number ist verzögert im Verarbeitungswarteschlange weil:
+
+$faxstatus
+
+Der Auftrag so schnell wie möglich bearbeitet.

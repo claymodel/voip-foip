@@ -1,0 +1,215 @@
+#! @SCRIPT_SH@
+#	$Id$
+#
+# HylaFAX Facsimile Software
+#
+# Copyright (c) 1994-1996 Sam Leffler
+# Copyright (c) 1994-1996 Silicon Graphics, Inc.
+# HylaFAX is a trademark of Silicon Graphics
+# 
+# Permission to use, copy, modify, distribute, and sell this software and 
+# its documentation for any purpose is hereby granted without fee, provided
+# that (i) the above copyright notices and this permission notice appear in
+# all copies of the software and related documentation, and (ii) the names of
+# Sam Leffler and Silicon Graphics may not be used in any advertising or
+# publicity relating to the software without the specific, prior written
+# permission of Sam Leffler and Silicon Graphics.
+# 
+# THE SOFTWARE IS PROVIDED "AS-IS" AND WITHOUT WARRANTY OF ANY KIND, 
+# EXPRESS, IMPLIED OR OTHERWISE, INCLUDING WITHOUT LIMITATION, ANY 
+# WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.  
+# 
+# IN NO EVENT SHALL SAM LEFFLER OR SILICON GRAPHICS BE LIABLE FOR
+# ANY SPECIAL, INCIDENTAL, INDIRECT OR CONSEQUENTIAL DAMAGES OF ANY KIND,
+# OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
+# WHETHER OR NOT ADVISED OF THE POSSIBILITY OF DAMAGE, AND ON ANY THEORY OF 
+# LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE 
+# OF THIS SOFTWARE.
+#
+
+#
+# wedged deviceID device 
+#
+# Do something when a modem looks irretrievably wedged.
+#
+if [ $# != 2 ]; then
+    echo "Usage: $0 deviceID device"
+    exit 1
+fi
+
+test -f etc/setup.cache || {
+    SPOOL=`pwd`
+    cat<<EOF
+
+FATAL ERROR: $SPOOL/etc/setup.cache is missing!
+
+The file $SPOOL/etc/setup.cache is not present.  This
+probably means the machine has not been setup using the faxsetup(@MANNUM1_8@)
+command.  Read the documentation on setting up HylaFAX before you
+startup a server system.
+
+EOF
+    exit 1
+}
+. etc/setup.cache
+
+#
+# Redirect errors to a tty, if possible, rather than
+# dev-nulling them or allowing them to creep into
+# the mail.
+#
+if $TTYCMD >/dev/null 2>&1; then
+    ERRORSTO=`$TTYCMD`
+else
+    ERRORSTO=/dev/null
+fi   
+#
+# Command line params
+#
+devID=$1
+device=$2
+
+#
+# Variables customizable through etc/FaxDispatch
+#
+TOADDR=FaxMaster
+FROMADDR=fax
+WEDGED_EMAIL_INTERVAL=5		# minutes: at most 1 wedged email every X mins
+WEDGED_DISABLE_FAXGETTY=	# if set, faxgetty disabled from inittab
+
+if [ -f etc/FaxDispatch ]; then
+    . etc/FaxDispatch	
+fi
+
+#
+# Internal variables
+#
+
+# unix secs since epoch for systems without GNU date +%s extension
+unixtime() {
+    TZ=GMT date "+%Y %j %H %M %S" | $SED 's/ 0*/ /g' | {
+    read year yday hour min sec
+    expr  $sec + $min \* 60 + $hour \* 3600 \
+	+ \(  \( $year - 1969 \) / 4 \
+	    - \( $year / 100 - 19 \) \
+	    + \( $year / 400 - 4  \) \
+	    + $yday - 1 \
+	   \) \* 86400 \
+	+ \( $year - 1970 \) \* 31536000
+    }
+}
+
+tty=`basename $device`
+wedged_last_time=0		# seconds: unix timestamp
+wedged_interval=0		# minutes
+wedged_log_file="tmp/${devID}_last_wedged_email"
+wedged_current_time=`date +%s`	# seconds: unix timestamp
+# If it's not a number (no GNU date), fallback to internal function
+wedged_current_time=`expr "$wedged_current_time" + 0 2>/dev/null || unixtime`
+
+
+#
+# Read last time 'wedged modem' email was sent
+#
+if [ -r $wedged_log_file ]; then
+    # read stored timestamp
+    read wedged_last_time < $wedged_log_file 2>/dev/null
+    # Set it to 0 if it's not a number
+    wedged_last_time=`expr "$wedged_last_time" + 0 2>/dev/null || echo 0`
+    # shouldn't happen, just in case...
+    if [ $wedged_last_time -gt $wedged_current_time ]; then
+	wedged_last_time=0
+    fi
+fi
+
+#
+# Minutes since last 'wedged modem' email was sent
+#
+wedged_interval=`expr \( $wedged_current_time - $wedged_last_time \) / 60`
+
+#
+# Send 'wedged modem' email if either is true:
+# 1. there's no log file (email was never sent before or someone deleted it)
+# 2. email was sent longer than WEDGED_EMAIL_INTERVAL minutes ago
+# Cases like 'modem was wedged 1 year ago, and is now again wedged for the
+# first time', fall into #1 if someone deleted the log file, into #2 if
+# log file was left in place.
+#
+if [ ! -r $wedged_log_file \
+	-o $wedged_interval -gt $WEDGED_EMAIL_INTERVAL ]; then
+
+    #
+    # Write current timestamp into logfile under tmp/
+    #
+    if [ $wedged_current_time -gt 0 ]; then
+	$RM -f $wedged_log_file # symlink? :-)
+	$CAT<<EOF > $wedged_log_file
+$wedged_current_time
+
+This is a temp file written and read by bin/wedged to rate-limit
+the emails it sends about the wedged status of device $device.
+
+The first line contains a timestamp for when the last email was sent.
+
+This file is never deleted automatically, there's no need to do it
+and it may be useful to know when/if a device had last a problem.
+However, you can safely delete it at any time if you wish, it will
+be recreated when needed.
+
+last modified: `date`
+
+EOF
+    fi
+
+    #
+    # Send 'modem is wedged' email
+    #
+    ($CAT<<EOF
+To: $TOADDR
+From: The HylaFAX Receive Agent <$FROMADDR>
+Subject: modem on $device appears wedged
+
+The HylaFAX software thinks that there is a problem with the modem
+on device $device that needs attention; repeated attempts to
+initialize the modem have failed.
+
+Consult the server trace logs for more information on what is happening.
+
+You will be notified again after $WEDGED_EMAIL_INTERVAL minutes if the problem persists.
+
+EOF
+    if [ -x etc/resetmodem ]; then
+	echo "An attempt to reset the modem has been made."
+	etc/resetmodem $device
+    fi
+
+    #
+    # Disable faxgetty
+    # NB: this is for an System V-style system.
+    #
+    if [ -f /etc/inittab ] && [ -n "$WEDGED_DISABLE_FAXGETTY" ]; then
+	ed - /etc/inittab<<EOF
+/^[^#].*:respawn:.*faxgetty .*$tty/s/respawn/off/
+w
+q
+EOF
+	#
+	# ed doesn't appear to have consistent exit
+	# status under SysV-style systems (does under BSD);
+	# this means checking if the above succeeded is
+	# problematic.
+	#
+	if [ $? -ne 0 ] && /bin/kill -1 1; then
+	    cat<<EOF
+
+The $tty entry in /etc/inittab that spawns faxgetty on $device has
+been disabled.  After you have figured out what is wrong you may
+want to restart this process.
+EOF
+	fi
+    fi
+
+    ) 2>$ERRORSTO | $SENDMAIL -f$FROMADDR -oi $TOADDR
+fi
+
+exit 0

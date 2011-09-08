@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/test
+END
+license.txt
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/test/license.txt
+END
+dummy_opbx.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/test/dummy_opbx.c
+END
+make-tests.sh
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/test/make-tests.sh
+END
+test_icd_all.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/test/test_icd_all.c
+END
+CuTest.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/test/CuTest.c
+END
+CuTestTest.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/test/CuTestTest.c
+END
+test_icd_list.c
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/test/test_icd_list.c
+END
+AllTests.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/test/AllTests.c
+END
+CuTest.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/test/CuTest.h
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/test/README
+END

@@ -1,0 +1,14 @@
+# vim:tw=80:ft=txt
+
+2007-06-10 18:26
+
+Debian helper scripts. Added by Roy Sigurd Karlsbakk <roy@karlsbakk.net>. These
+are primarily written for Debian Etch 4.0, but may be compatible with other
+versions of Debian or even Ubuntu
+
+2008-02-27 17.22
+
+Added a script, apt-get.callweaver, to install needed packages for CallWeaver
+with optional MySQL and Sangoma.
+
+roy

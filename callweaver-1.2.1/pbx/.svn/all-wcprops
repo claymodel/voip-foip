@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/pbx
+END
+pbx_config.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/pbx/pbx_config.c
+END
+dundi-parser.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/pbx/dundi-parser.h
+END
+pbx_loopback.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/pbx/pbx_loopback.c
+END
+pbx_spool.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/pbx/pbx_spool.c
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/pbx/Makefile.am
+END
+pbx_ael.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/pbx/pbx_ael.c
+END
+pbx_realtime.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/pbx/pbx_realtime.c
+END
+pbx_dundi.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/pbx/pbx_dundi.c
+END
+dundi-parser.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/pbx/dundi-parser.c
+END

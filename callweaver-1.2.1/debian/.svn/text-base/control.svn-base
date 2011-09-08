@@ -1,0 +1,57 @@
+Source: callweaver
+Priority: optional
+Section: comm
+Maintainer: Massimo Cetra <devel@navynet.it>
+Build-Depends: debhelper (>= 4.1.0), dpatch, libcap-dev, pkg-config, libspandsp-dev (>= 0.0.4~), libssl-dev, libncurses-dev, libsndfile1-dev, libpq-dev,libmysqlclient15-dev, libspeex-dev, libcurl3-dev | libcurl4-openssl-dev, libcapi20-dev, zaptel-source, libreadline-dev, libbluetooth2-dev, libtool, automake, flex, libtonezone-dev
+Standards-Version: 3.6.2
+
+Package: callweaver
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, callweaver-sounds, libspeex1
+Suggests: gnomemeeting, ekiga, ohphone, kphone, callweaver-doc, callweaver-dev
+Description: Open Source Private Branch Exchange (PBX), forked from Asterisk
+ CallWeaver is an Open Source PBX and telephony toolkit. It is, in a
+ sense, middleware between Internet and telephony channels on the bottom,
+ and Internet and telephony applications at the top.  The CallWeaver fork of
+ asterisk is community driven and intended to be easy to use and easy to
+ deploy.  CallWeaver has previously also known as OpenPBX.
+ .
+ CallWeaver can be used with Voice over IP (SIP, H.323, IAX) standards, or the 
+ Public Switched Telephone Network (PSTN) through Supported Hardware.
+ .
+ This Debian package includes the sample configuration, with demonstration
+ extensions, etc
+ .
+ Website: http://www.callweaver.org
+
+Package: callweaver-dev
+Section: devel
+Architecture: any
+Description: Development files for CallWeaver
+ CallWeaver is an Open Source PBX and telephony toolkit.
+ .
+ This package contains the include files used if you wish to compile a
+ package which requires OpenPBX source file headers.
+
+Package: callweaver-doc
+Recommends: callweaver
+Section: doc
+Architecture: all
+Description: documentation for CallWeaver
+ CallWeaver is an Open Source PBX and telephony toolkit.
+ .
+ This package contains the source documentation needed if you wish to
+ extend the callweaver package.
+
+Package: callweaver-zaptel
+Depends: callweaver
+Section: comm
+Architecture: all
+Description: zaptel module for CallWeaver
+ CallWeaver is an Open Source PBX and telephony toolkit
+ .
+ This Package contains the CallWeaver zaptel Module, which is needed to
+ let CallWeaver talk to zaptel kernelmodules.
+ You will also need kernel support, which can be achieved by running
+ module-assistant install zaptel
+

@@ -1,0 +1,14 @@
+K 10
+svn:ignore
+V 59
+*.d
+*.a
+*.s
+*.i
+*.so
+*.c
+*.h
+rfc3951.txt
+extract-cfile.awk
+
+END

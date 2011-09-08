@@ -1,0 +1,25 @@
+#!/bin/sh
+g=`nireport / /groups gid | sort -n | tail -n 1`; \
+g=`echo $g + 1 | bc`; \
+if [ $g -lt 250 ]; then 
+	g=250
+fi
+echo group $g
+u=`nireport / /users uid | sort -n | tail -n 1`
+u=`echo $u + 1 | bc`
+echo user $u
+if [ $u -lt 250 ]; then 
+	u=250
+fi
+if [ "`nireport / /groups name gid | grep ${CWRUNGROUP}`" = "" ]; then 
+	niutil -create / /groups/${CWRUNGROUP}; \
+	niutil -createprop / /groups/${CWRUNGROUP} gid $g; \
+else
+	g=`nireport / /groups name gid | grep ${CWRUNGROUP} | awk '{print $2}'`
+fi
+if [ "`nireport / /users name uid  |grep ${CWRUNUSER}`" = "" ]; then \
+	niutil -create / /users/${CWRUNUSER}; \
+	niutil -createprop / /users/${CWRUNUSER} gid $g; \
+	niutil -createprop / /users/${CWRUNUSER} uid $u; \
+	niutil -createprop / /users/${CWRUNUSER} home ${INSTALL_PATH}${CWVARRUNDIR}; \
+fi

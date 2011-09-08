@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/asterisk/!svn/ver/43376/branches/1.4/include/solaris-compat/sys
+END
+cdefs.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/asterisk/!svn/ver/43376/branches/1.4/include/solaris-compat/sys/cdefs.h
+END
+queue.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/asterisk/!svn/ver/43376/branches/1.4/include/solaris-compat/sys/queue.h
+END

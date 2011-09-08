@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/asterisk/!svn/ver/50782/branches/1.4/main/db1-ast/include
+END
+ndbm.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/asterisk/!svn/ver/50782/branches/1.4/main/db1-ast/include/ndbm.h
+END
+circ-queue.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/asterisk/!svn/ver/43376/branches/1.4/main/db1-ast/include/circ-queue.h
+END
+compat.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/asterisk/!svn/ver/43376/branches/1.4/main/db1-ast/include/compat.h
+END
+db.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/asterisk/!svn/ver/43376/branches/1.4/main/db1-ast/include/db.h
+END
+mpool.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/asterisk/!svn/ver/43376/branches/1.4/main/db1-ast/include/mpool.h
+END

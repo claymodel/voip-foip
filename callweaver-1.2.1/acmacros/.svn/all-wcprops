@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/acmacros
+END
+openssl.m4
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/acmacros/openssl.m4
+END
+curl.m4
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/acmacros/curl.m4
+END
+pkg_check_modules.m4
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/acmacros/pkg_check_modules.m4
+END
+perl_sharpbang.m4
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/acmacros/perl_sharpbang.m4
+END
+sqlite3-threadsafe.m4
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/acmacros/sqlite3-threadsafe.m4
+END
+ct_postgresql.m4
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/acmacros/ct_postgresql.m4
+END
+snmp.m4
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/acmacros/snmp.m4
+END

@@ -1,0 +1,23 @@
+K 10
+svn:ignore
+V 153
+*.o
+*.d
+*.s
+*.i
+astman
+smsq
+stereorize
+check_expr
+streamplayer
+aelparse
+muted
+strcompat.c
+ast_expr2f.c
+md5.c
+ast_expr2.c
+pbx_ael.c
+aelbison.c
+aelparse.c
+
+END

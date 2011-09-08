@@ -1,0 +1,16 @@
+To: $SENDTO
+Subject: Message à $DESTINATION complété
+From: HylaFAX <$FROMADDR>
+Content-type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: Quoted-Printable
+
+Votre message à $number a été envoyé avec succès.
+          Dialogues: $tottries (échanges avec l'équipement distant)
+             Appels: $totdials (nombre d'appels téléphoniques placés)
+              Modem: $modem
+         Provenance: $client
+        Nº de tâche: $jobid
+       Nº de groupe: $groupid
+Nº de communication: c$commid
+
+Le temps de traitement a été de $JTIME.

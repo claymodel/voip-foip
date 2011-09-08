@@ -1,0 +1,40 @@
+ ==========================================================================
+ Directory layouts are defined in separate layout profiles:
+ --------------------------------------------------------------------------
+ profile     filename          description
+ --------------------------------------------------------------------------
+  bsd         layout.bsd        follow convention used by BSD ports system
+  bsd-romfs   layout.bsd-romfs  BSD embedded devices with ROM filesystems
+  fhs         layout.fhs        follow Filesystem Hierarchy Standard (FHS)
+  lsb         layout.lsb        follow Linux Standards Base (LSB) standard
+  lsb-romfs   layout.lsb-romfs  Linux embedded devices with ROM filesystems
+  singledir   built-in          install everything under a single directory
+ --------------------------------------------------------------------------
+
+ The default directory layout is OS dependent:
+ --------------------------------------------------------------------------
+ OS type     default profile
+ --------------------------------------------------------------------------
+  BSD         bsd
+  Linux       lsb
+  Solaris     singledir, using prefix /opt/csw/callweaver.org
+  any other   singledir, using prefix /opt/callweaver.org
+ --------------------------------------------------------------------------
+
+ Directory layout profiles contain a list of key=value pairs, *without* any
+ spaces or tabs, one pair per line. The following keys are defined:
+  cwprefix, cwexecdir, cwutilsdir, cwconfdir, cwlibdir,
+  cwvardir, cwlogdir, cwrundir, cwspooldir, cwdatadir,
+  cwmandir and  cwdocdir
+
+ Values are the full pathnames for the respective directories *without* any
+ quotation marks. Any lines with a leading # character and lines containing
+ pairs with invalid keys are ignored.
+ --------------------------------------------------------------------------
+
+ Before the introduction of layout profiles, the built-in singledir layout
+ placed directories 'log' and 'run' at the top level. They have since been
+ moved into the 'var' directory. However, the old singledir layout is still
+ available as a profile called 'oldsingledir'. In order to use it, specify
+ option --with-directory-layout=oldsingledir when running configure.
+ ==========================================================================

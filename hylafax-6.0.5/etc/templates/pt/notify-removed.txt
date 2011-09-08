@@ -1,0 +1,7 @@
+To: $SENDTO
+Subject: fax $JOBINFO para $DESTINATION removido da memória
+From: Servidor de fax HylaFAX <$FROMADDR>
+Content-type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: Quoted-Printable
+
+O seu fax para $number foi removido.

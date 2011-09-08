@@ -1,0 +1,304 @@
+Index: apps/app_pickup2.c
+===================================================================
+--- apps/app_pickup2.c	(revision 0)
++++ apps/app_pickup2.c	(revision 0)
+@@ -0,0 +1,262 @@
++/*
++ * Asterisk -- A telephony toolkit for Linux.
++ *
++ * Pickup, channel independent call pickup
++ *
++ * Copyright (C) 2005-2007, Thorsten Knabe <ast@thorsten-knabe.de>
++ * 
++ * Copyright (C) 2004, Junghanns.NET GmbH
++ *
++ * Klaus-Peter Junghanns <kpj@junghanns.net>
++ *
++ * Copyright (C) 2004, Florian Overkamp <florian@obsimref.com>
++ *
++ * This program is free software, distributed under the terms of
++ * the GNU General Public License
++ */
++
++#ifdef HAVE_CONFIG_H
++#include "confdefs.h"
++#endif
++
++#include <stdlib.h>
++#include <unistd.h>
++#include <string.h>
++#include <stdio.h>
++#include <signal.h>
++#include <pthread.h>
++
++#include "callweaver.h"
++
++#include "callweaver/file.h"
++#include "callweaver/logger.h"
++#include "callweaver/channel.h"
++#include "callweaver/pbx.h"
++#include "callweaver/module.h"
++#include "callweaver/adsi.h"
++#include "callweaver/musiconhold.h"
++#include "callweaver/features.h"
++#include "callweaver/options.h"
++#include "callweaver/utils.h"
++#include "callweaver/lock.h"
++
++static const char *tdesc = "Alternative Call Pickup Application";
++
++static void *pickup2_app;
++static const char *pickup2_name = "Pickup2";
++static const char *pickup2_syntax = "PickUp2(Technology/resource[&Technology2/resource2&...])";
++static const char *pickup2_synopsis = "Pickup any channel.";
++static const char *pickup2_descrip = 
++"Matches the list of prefixes in the parameter list against channels in\n"
++"state RINGING. If a match is found the channel is picked up and\n"
++"PICKUP_CHANNEL is set to the picked up channel name. If no matching\n"
++"channel is found PICKUP_CHANNEL is empty.\n";
++
++static void *pickdown2_app;
++static const char *pickdown2_name = "PickDown2";
++static const char *pickdown2_syntax = "PickDown2(Technology/resource[&Technology2/resource2&...])";
++static const char *pickdown2_synopsis = "Hangup ringing channel.";
++static const char *pickdown2_descrip = 
++"Matches the list of prefixes in the parameter list against channels in\n"
++"state RINGING. If a match is found the channel is hung up and\n"
++"PICKDOWN_CHANNEL is set to the hung up channel name. If no matching\n"
++"channel is found PICKDOWN_CHANNEL is empty.\n";
++
++static void *steal2_app;
++static const char *steal2_name = "Steal2";
++static const char *steal2_synopsis = "Steal a connected channel.";
++static const char *steal2_syntax = "Steal2(Technology/resource[&Technology2/resource2&...])";
++static const char *steal2_descrip = 
++"Matches the list of prefixes in the parameter list against channels in\n"
++"state UP. If a match is found the channel is stolen and\n"
++"STEAL_CHANNEL is set to the stolen channel name. If no matching\n"
++"channel is found STEAL_CHANNEL is empty.\n";
++
++
++STANDARD_LOCAL_USER;
++
++LOCAL_USER_DECL;
++
++/* Find channel matching given pattern and state, skipping our own channel.
++ * Returns locked channel, which has to be unlocked using cw_mutex_unlock().
++ * Returns NULL when no matching channel is found.
++ */
++static struct cw_channel *find_matching_channel(struct cw_channel *chan,
++	void *pattern, int chanstate)
++{
++	struct cw_channel *cur;
++	char *pat = NULL;
++	char *next_pat = NULL;
++
++	/* copy original pattern or use empty pattern if no pattern has been given*/
++	if (pattern) {
++		pat = alloca(strlen(pattern) + 1);
++		strcpy(pat, pattern);
++	} else {
++		pat = "";
++	}
++	cw_verbose(VERBOSE_PREFIX_4 
++		"find_matching_channel: pattern='%s' state=%d\n",
++		(char *)pattern, chanstate);
++
++	/* Iterate over each part of the pattern */
++	while (pat) {
++		/* find pattern for next iteration, terminate current pattern */
++		for (next_pat = pat; *next_pat && *next_pat != '&'; next_pat++);
++		if (*next_pat == '&') {
++			*next_pat = 0;
++			next_pat++;
++		} else
++			next_pat = NULL;
++		/* Iterate over all channels */
++		cur = cw_channel_walk_locked(NULL);
++		while (cur) {
++			cw_verbose(VERBOSE_PREFIX_4 
++				"find_matching_channel: trying channel='%s' "
++				"state=%d pattern='%s'\n",
++				cur->name, cur->_state, pat);
++			if ((cur != chan) && (cur->_state == chanstate) &&
++					!strncmp(pat, cur->name, strlen(pat))) {
++				cw_verbose(VERBOSE_PREFIX_4
++						"find_matching_channel: "
++						"found channel='%s'\n",
++						cur->name);
++				return(cur);
++			}
++			cw_mutex_unlock(&cur->lock);
++			cur = cw_channel_walk_locked(cur);
++		}
++		pat = next_pat;
++	}
++	return(NULL);
++}
++
++//static int pickup2_exec(struct cw_channel *chan, void *pattern)
++static int pickup2_exec(struct cw_channel *chan, int argc, char **argv)
++{
++	int ret = 0;
++	struct localuser *u;
++	struct cw_channel *cur;
++	LOCAL_USER_ADD(u);
++//	u = cw_module_user_add(chan);
++	char *pattern = argv[0];
++	cur = find_matching_channel(chan, pattern, CW_STATE_RINGING);
++	if (cur) {
++		cw_verbose(VERBOSE_PREFIX_3 
++			"Channel %s picked up ringing channel %s\n",
++			chan->name, cur->name);
++		pbx_builtin_setvar_helper(chan, "PICKUP_CHANNEL", cur->name);
++		if (chan->_state != CW_STATE_UP) {
++			cw_answer(chan);
++		}
++		if (cw_channel_masquerade(cur, chan)) {
++			cw_log(LOG_ERROR, "unable to masquerade\n");
++			ret = -1;
++		}
++		cw_mutex_unlock(&cur->lock);
++		cw_mutex_unlock(&chan->lock);
++	} else {
++		pbx_builtin_setvar_helper(chan, "PICKUP_CHANNEL", "");
++	}
++	LOCAL_USER_REMOVE(u);
++//	cw_module_user_remove(u);
++	return(ret);
++}
++
++//static int pickdown_channel(struct cw_channel *chan, void *pattern)
++static int pickdown2_exec(struct cw_channel *chan, int argc, char **argv)
++{
++	int ret = 0;
++	struct localuser *u;
++//struct cw_module_user *u;
++	struct cw_channel *cur;
++	LOCAL_USER_ADD(u);
++//	u = cw_module_user_add(chan);
++	char *pattern = argv[0];
++	cur = find_matching_channel(chan, pattern, CW_STATE_RINGING);
++	if (cur) {
++                cw_verbose(VERBOSE_PREFIX_3 
++			"Channel %s hung up ringing channel %s\n",
++			chan->name, cur->name);
++		pbx_builtin_setvar_helper(chan, "PICKDOWN_CHANNEL", cur->name);
++		cw_softhangup_nolock(cur, CW_SOFTHANGUP_DEV);
++		cw_mutex_unlock(&cur->lock);
++	} else {
++		pbx_builtin_setvar_helper(chan, "PICKDOWN_CHANNEL", "");
++	}
++	LOCAL_USER_REMOVE(u);
++//	cw_module_user_remove(u);
++	return(ret);
++}
++
++//static int steal_channel(struct cw_channel *chan, void *pattern)
++static int steal2_exec(struct cw_channel *chan, int argc, char **argv)
++{
++	int ret = 0;
++	struct localuser *u;
++//struct cw_module_user *u;
++	struct cw_channel *cur;
++	LOCAL_USER_ADD(u);
++//	u = cw_module_user_add(chan);
++	char *pattern = argv[0];
++	cur = find_matching_channel(chan, pattern, CW_STATE_UP);
++	if (cur) {
++		cw_verbose(VERBOSE_PREFIX_3 
++			"Channel %s stole channel %s\n",
++			chan->name, cur->name);
++		pbx_builtin_setvar_helper(chan, "STEAL_CHANNEL", cur->name);
++		if (chan->_state != CW_STATE_UP) {
++			cw_answer(chan);
++		}
++		if (cur->_bridge) {
++			if (!cw_mutex_lock(&cur->_bridge->lock)) {
++				cw_moh_stop(cur->_bridge);
++				cw_mutex_unlock(&cur->_bridge->lock);
++			}
++		}
++			
++		if (cw_channel_masquerade(cur, chan)) {
++			cw_log(LOG_ERROR, "unable to masquerade\n");
++			ret = -1;
++		}
++		cw_mutex_unlock(&cur->lock);
++		cw_mutex_unlock(&chan->lock);
++	} else {
++		pbx_builtin_setvar_helper(chan, "STEAL_CHANNEL", "");
++	}
++	LOCAL_USER_REMOVE(u);
++//	cw_module_user_remove(u);
++	return(ret);
++}
++
++int unload_module(void)
++{
++	STANDARD_HANGUP_LOCALUSERS;
++	int res = 0;
++	res |= cw_unregister_application(steal2_app);
++	res |= cw_unregister_application(pickdown2_app);
++	res |= cw_unregister_application(pickup2_app);
++//	cw_module_user_hangup_all();
++	return res;
++}
++
++int load_module(void)
++{
++	pickup2_app   = cw_register_application(pickup2_name,   pickup2_exec,   pickup2_synopsis,   pickup2_syntax,   pickup2_descrip);
++	pickdown2_app = cw_register_application(pickdown2_name, pickdown2_exec, pickdown2_synopsis, pickdown2_syntax, pickdown2_descrip);
++	steal2_app    = cw_register_application(steal2_name,    steal2_exec,    steal2_synopsis,    steal2_syntax,    steal2_descrip);
++	return 0;
++}
++
++char *description(void)
++{
++	return (char *) tdesc;
++}
++
++int usecount(void)
++{
++	int res;
++	STANDARD_USECOUNT(res);
++	return res;
++}
++
+Index: apps/Makefile.am
+===================================================================
+--- apps/Makefile.am	(revision 4021)
++++ apps/Makefile.am	(working copy)
+@@ -103,6 +103,13 @@
+ app_directed_pickup_la_LIBADD		= ${top_builddir}/corelib/libcallweaver.la
+ endif WANT_APP_DIRECTED_PICKUP
+ 
++if WANT_APP_PICKUP2
++cwmod_LTLIBRARIES			+= app_pickup2.la
++app_pickup2_la_SOURCES			= app_pickup2.c
++app_pickup2_la_LDFLAGS			= -module -avoid-version -no-undefined
++app_pickup2_la_LIBADD			= ${top_builddir}/corelib/libcallweaver.la
++endif WANT_APP_PICKUP2
++
+ if WANT_APP_DIRECTORY
+ cwmod_LTLIBRARIES			+= app_directory.la
+ app_directory_la_SOURCES		= app_directory.c
+Index: configure.ac
+===================================================================
+--- configure.ac	(revision 4021)
++++ configure.ac	(working copy)
+@@ -1228,6 +1228,14 @@
+ 
+ dnl ###########################################################################
+ 
++AC_ARG_WITH([app_pickup2],
++	[AC_HELP_STRING([--with-app_pickup2],[Build and install app_pickup2 (default=yes)])],,
++	[with_app_pickup2="yes"])
++
++AM_CONDITIONAL([WANT_APP_PICKUP2],[test "${with_app_pickup2}" = "yes"])
++
++dnl ###########################################################################
++
+ AC_ARG_WITH([app_directory],
+ 	[AC_HELP_STRING([--with-app_directory],[Build and install app_directory (default=yes)])],,
+ 	[with_app_directory="yes"])

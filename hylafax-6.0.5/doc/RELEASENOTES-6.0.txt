@@ -1,0 +1,396 @@
+HylaFAX 6.0.5
+
+Overview
+-----------------------------------------------------------------------------
+  HylaFAX 6.0 introduces several new features for HylaFAX:
+
+  There are many additional features available:
+  * PCL Support
+  * hfaxd Can sort list output arbitrarily for clients
+  * I18n: HylaFAX client strings are now translated and available in
+    different languages
+  * IPv6 support
+  * New permissions in hfaxd to allow for more admin control on who can
+    see/modify jobs/faxes (see PublicJobQ/JobProtection/PublicRecvQ)
+  * Powerful page range handling capabilities
+  * Better faxq/notify integration
+  * Numerous fax modem/protocol fixes and enhancements
+
+  In addition, the aging support for the unused "old protocol" has been
+  removed.
+
+
+Upgrade to 6.0 from previous 4.4 releases
+-----------------------------------------------------------------------------
+
+  There are 3 differences to note during the upgrade process, probably
+  none of which affect most people.
+
+  HylaFAX now supports IPv6.  This means that the default bind for hfaxd
+  may change depending on what your system defaults are configured as.
+  Some systems (such as FreeBSD 6/7) come configured with IPv6 as the
+  system default, but set to not allow IPv4 connections.  On systems such
+  as these, you may need specify a bind address with -l if you want to
+  over-ride the system default:
+      hfaxd -l 0.0.0.0 -i hylafax
+      hfaxd -l 0.0.0.0 -i hylafax -l ::0 -i hylafax
+
+  If you have clients that still use the old protocol (not the common
+  FTP style protocol), they will no longer work with a new hfaxd daemon.
+
+  The notification email machanism no longer sends "blocked" emails by
+  default, as the jobs re not being requeued, or done.  To continue
+  receiving them, you'll need to configure it in FaxNotify.
+
+Changes for HylaFAX 6.0.0
+-----------------------------------------------------------------------------
+* faxmail: don't submit an empty postscript file if no formatting was
+  done (17 Aug 2007)
+* faxmail: fix suppression of empty postscript formatting file (18 Aug 2007)
+* fix status/statuscode parsing of the job qfile which showed artifacts
+  in the notify emails (20 Aug 2007)
+* faxaddmodem doesn't fuser -k by default, allowing iaxmodem to be
+  detected by faxaddmodem (20 Aug 2007)
+* Fix faxq handling of large formatter output (21 Aug 2007)
+* faxmail: Fixed RFC 822 comment handling (14 Sep 2007, 21 Aug 2007)
+* Fix configure GCC version detection for Gentoo (22 Aug 2007)
+* hfaxd: fix double 550 error code on access permisions (14 Sep 2007)
+* faxq: Fixed multiple trigger issues (14 Sep 2007)
+* faxq: Suppress blocked notifies if job is already blocked (7 Sep 2007)
+* faxq: reduce copius scheduler logging (7 Sep 2007)
+* man pages: fix mulitple typos (17 Sep 2007)
+* Bug 864: fix huge SESSION_LOG bash problems (24 Sep 2007)
+* Digis: Disable MMR (2007-09-26)
+* Class2: Fix EOFB when using LSB2MSB (2007-09-26)
+* Add Prototype config support fo ZyXEL Omni56K Plus (2007-09-26)
+* Class1: Adjust time we wait after MCF (2007-09-26)
+* Class1: Don't look for Phase C again after EOP (2007-09-26)
+* Class1: Improve handling of DCN in Phase B (2007-09-26)
+* faxaddmodem: Clean up after failure to decude DTE-DCE speed. (2007-09-26)
+* Class 2.0: Implement Phase C debugging and +FDB=1 support for Multitech (2007-09-26)
+* Class1: Don't repeat DCN if they don't DCN in response to ours (2007-09-26)
+* Class1: Add Class1HookSensitivity (2007-09-26)
+* Eicon:  document some reset strings: (2007-09-26)
+* Class1: Adjust timing of DCN reception to improve hearing it. (2007-09-26)
+* Class2: Fix Class2RTFCC (2007-09-26)
+* Class1: Add missing error message (2007-09-26)
+* NSF: Add another Samsung (2007-09-26)
+* faxgetty: fix units error in ModemAnsweResponseTimeout (2007-09-26)
+* faxgetty: retry answer command if modem doesn't respond (2007-09-26)
+* Modem: Handle repeated BUSY in response to commands as error. (2007-09-26)
+* Class1: Handle CRP at Phase C reception (2007-09-26)
+* Class1: Stop fast looping while receiving ECM data. (2007-09-26)
+* Modems: Handle DLE+ETX noise after dialing (2007-09-26)
+* Modem: Log NSS, SUB, and PWD signals as we get them. (2007-09-26)
+* Class1: Handle DCN as done when trying to train (2007-09-26)
+* Eicon: add Call ID pattern defaults in the config templates (2007-09-26)
+* Class1: Cope with echo of FTT or CFR (2007-09-26)
+* Class1: Handle CTR echo (2007-09-26)
+* Add ModemNoAutoAnswerCmdDelay to handle spurious data during initialization (2007-09-26)
+* Add MinAcceptedLineCount to prevent confirming receipt of short pages (2007-09-26)
+* Class1: Fix error message (2007-09-26)
+* Class1: Update lastMCF timer when repeating lastMCF. (2007-09-26)
+* Class1: Handle T.31 protocol properly (2007-09-26)
+* Class1: Extend ECM timeout (2007-09-26)
+* Class1: Add Class1TCFMinRunECMMod config option to allow higher speeds with ECM (2007-09-26)
+* Class1: Handle NO CARRIER result during data transmition (2007-09-26)
+* Class1: Use switchingPause before sending DCN (2007-09-26)
+* Class1: Abort on timeout waiting for carrier drop in ECM (2007-09-26)
+* Class1: Timer in prologue is T1, not T2 (2007-09-26)
+* Class1: Be more resiliant handling post-page messages (2007-09-26)
+* Update release notes to follow HylaFAX 4.4.2 (2007-10-22)
+* Add missing sendq fields to parseQFile (2007-10-23)
+* Update release notes (2007-10-23)
+* setSleep must be called before sending the notification if we want the
+  right time to be passed to notify. (2007-10-23)
+* Add a "DebugLeaveTmp" config which makes faxmail leave it's temporary
+  files around (2007-10-23)
+* faxmail: debugLeaveTmp condition was reversed (2007-10-23)
+* faxmail: use mimeconverters to preprocess/discard mime parts
+  (2007-10-31)
+* Add default prototype support for Mainpine IQ modems (2007-11-01)
+* Class1: Switching pause only if not doing V.34 (2007-11-01)
+* faxmail: Update man page/options to match again (2007-11-06)
+* dialtest: Clean up compiler warnings (2007-11-08)
+* dialtest:  Add "quiet" mode (2007-11-08)
+* Updating ignore files for recently added generated files. (2007-11-09)
+* String markups for i18N (gettext) support. (2007-11-09)
+* Actual NLS support in client programs (2007-11-09)
+* Initial pot file and filelist for i18n (gettext) support. (2007-11-09)
+* prototype configs: typo in MT5600ZDX (2007-11-09)
+* Compiler warning cleanups (2007-11-13)
+* Bug 875: faxsetup and faxaddmodem may forget locks and temporary files
+  when exiting (2007-11-13)
+* man: Fix Makefile rules to allow parallel build (2007-11-14)
+* hfaxd: Remove PAM debug logging (2007-11-15)
+* TypeRules: fix istring addition (2007-11-15)
+* xferfaxlog: Update man pages (2007-11-21)
+* Class1: reconfirm PPS on retransmitted block (2007-11-26)
+* Class1: Don't confirm a PPM with no image data (2007-11-26)
+* Class1: Improve ECM synchronization timeout handling: (2007-11-26)
+* Modem noise: +A8 (2007-11-26)
+* Class1: Attempt to send training at least 3 times (2007-11-26)
+* Intel Satisfaxion doesn't support +FRS/+FTS (2007-11-26)
+* Support full path device names (2007-11-26)
+* Mainpine Class2/2.1 can disable V17 (2007-11-26)
+* Class1: Fix protocol when we exceed MaxRecvPages (2007-11-26)
+* Class1: Handle echo of MCF when in non-ECM reception (2007-11-26)
+* Class1: Fix occasional incorrect EOFB formatting on sending MMR data
+  (2007-11-26)
+* man/faxcron: Clarify files removed from recvq (2007-11-26)
+* Class2: Wait for OK folowing an +FHS (2007-11-26)
+* Try to handle Eicon Class2 better (2007-11-26)
+* Adjust config template for Motorola RC288DPi modems (2007-11-26)
+* Class2: Handle subparameters when modem supports JP but doesn't show
+  it (2007-11-26)
+* Class2Params: Fix array index causing faxinfo segfault: (2007-11-26)
+* faxinfo: Improve handling whe FAXDCS not present (2007-11-26)
+* Add passive support into libfaxutil for all client programs.
+  (2007-11-26)
+* faxaddmodem: Default to CountryCode/AreaCode given during faxsetup
+  (2007-11-26)
+* IAXModem config: Enable V.17 (2007-11-26)
+* typerules: Example using pdftk to auto-rotate pages to portrait
+  (2007-11-26)
+* Add variant voice mode with DTMF dectection for some USR modems
+  (2007-11-26)
+* Make fmtTime() always include hours (2007-11-26)
+* Error codes: E111 more accurate (2007-11-26)
+* Add another Samsung NSF (2007-11-26)
+* Cleanup CONTRIBUTORS (2007-11-26)
+* Revert the fuser "behaviour reversal" (2007-11-26)
+* configure: handle darwin9 (Mac OSX 10.5) as darwin8 POSIX priority
+  scheduling (2007-11-26)
+* faxq: Don't allow pending jobs with future TTS to block current jobs
+  (2007-12-11)
+* Remove patterns from man/Makefile (2007-12-11)
+* configure: libintl checks require args (2007-12-28)
+* debian/patches: 604 (2008-01-04)
+* Rename "libfaxutil" to "libhylafax" (2008-01-11)
+* Rework DSO support (2008-01-11)
+* Fix faxq modem Triggers (2008-01-16)
+* faxmail: Remove double-quotes, etc (2008-01-22)
+* faxmail: Use X-Fax-To for coverpage name (2008-01-22)
+* FaxClient: Quote any " in the string before passing it to server
+  (2008-01-22)
+* Solaris/SunWSPro:  Don't use empty array definitions (2008-01-23)
+* Solaris DSO: fixups after the DSO work (2008-01-23)
+* Solaris:  Needs some support for new code (2008-01-23)
+* Bug 883: faxmail error with newline in headers (2008-01-24)
+* Quiet compiler warnings (2008-01-24)
+* AFM fonts were removed a long time ago (2008-01-29)
+* Add missing modem config entries (2008-01-30)
+* man/callid.4f has been gone almost 2 years (2008-01-31)
+* fallout from libhylafax reorg (2008-01-31)
+* Remove DestControls cruft.  OK Patrice. (2008-02-03)
+* hfaxd lockJob() - don't blindly O_CREAT job we're trying to lock
+  (2008-02-22)
+* hfaxd: Don't update job's last modified time unless it's actually
+  successful (2008-02-22)
+* Protocol: add SITE LOCKWAIT command (2008-02-22)
+* hfaxd: Compile fixup (2008-02-22)
+* SCO Fixups (2008-02-27)
+* configure: Fix an always true typo (2008-02-28)
+* i18n: Change NLS interface a bit - libhylafax *is* a C++ library
+  (2008-02-28)
+* i18n: Build infrastructure (2008-02-28)
+* i18n: Add built .pot infrastructure (2008-02-28)
+* i18n: Add NL and ES translations (2008-02-28)
+* configure: LIBINTL to find libraries needed for gettext (2008-02-28)
+* i18n: Install the language specifec catalog files (2008-02-28)
+* Debian: Add rules to include i18n support (2008-02-29)
+* i18n: Missed some changes of _() to NLS::TEXT() (2008-02-29)
+* i18n: fixed typos in template header (2008-02-29)
+* i18n: Missing translatable strings from .pot files (2008-02-29)
+* i18n: Regenerated pot templates to include the previously missing
+  strings (2008-02-29)
+* i18n: Updated cvsignore for nls generated files (2008-02-29)
+* configure: Be more careful about replacing generated files
+  (2008-03-10)
+* Add Vietnamese PO translation (2008-03-20)
+* NLS:  Some fixups for when NLS is disabled (2008-04-28)
+* Class1: Don't train if we are seeing adequate progress (2008-04-28)
+* Class1: Add another needed pause (2008-04-28)
+* Class1: Initialize blockNumber (2008-04-28)
+* Add Class 1.0 for Multitech 5656ZDX (2008-04-28)
+* Add support for VCON in waitfor escape (2008-04-28)
+* Protocol Clients: Initialize FORM to UNKNOWN (2008-04-28)
+* Class1: Be more lax in our timeouts wrating for Phase C (2008-04-28)
+* faxmail: print an error message when a part is discarded (2008-04-28)
+* fixup: faxmail error discard (2008-04-28)
+* tiffcheck: Check for black-on-white (2008-04-28)
+* fixup: tiffcheck black-on-white (2008-04-28)
+* man pages: Fix up incorrect docs (2008-04-28)
+* faxaddmodem: Prefer Class 1.0 (2008-04-28)
+* faxq: Don't take STDERR as STDOUT (2008-04-28)
+* fixup: faxq: STDERR/STDOUT - runConverter() (2008-04-28)
+* faxcover: Add from-mail-address feature (2008-04-28)
+* Class1: prevent infinite looping in recvFrame (2008-04-28)
+* libhylafax: Don't tryncate commands at 100 characters at 100
+  characters (2008-04-28)
+* faxq: Cleanup timeout accounting (2008-04-28)
+* faxgetty/faxsend: Remove extra forks (2008-04-28)
+* Don't write info file unless it has a name (2008-04-28)
+* man: Fix NotifyCmd reference (2008-04-28)
+* xferfaxlog: Add recvq fax filename to RECV records (2008-04-28)
+* fixup: man/xferfaxlog merge (2008-04-28)
+* Complete PCL support in the server. (2008-04-28)
+* fixup: hfaxd PCL (2008-04-28)
+* faxsend/faxgetty: SaveRawImage (2008-04-28)
+* hfaxd: Remove old protocol support (2008-04-28)
+* fixup: Remove old protocol - don't remove formats (2008-04-28)
+* fixup: hfaxd old protocol - man pages (2008-04-28)
+* Time formats: Make them concistantly *always* HH:MM:SS (2008-04-28)
+* man pages: Small fixups (2008-04-28)
+* PollLockPokeModem: check on modem when lock file is polled
+  (2008-04-28)
+* faxcron: Be more explicit in last 7 days (2008-04-28)
+* configure: HP-UX fixes (2008-04-28)
+* Class1: Be more lenient on handling NO CARRIER response (2008-04-28)
+* Add "Restart" enhancement to init script (2008-04-28)
+* CallID: Initialize answerlength on deprecated CIDName/CIDNumber config
+  options (2008-04-28)
+* faxq: Be more careful in choosing jobs to batch (2008-04-28)
+* hfaxd: Cleanup FIFO removal (2008-04-28)
+* hfaxd: Fix RECV_START, RECV_PAGE, RECV_DOC triggers (2008-04-28)
+* configure: Detect darwin for broken FD_ISSET (2008-04-28)
+* Makefiles: SUBDIR support in defs.in (2008-05-02)
+* po: update po files (2008-05-02)
+* Add fxStackBuffer interface to Job/Modem/Recv *printf functions
+  (2008-05-02)
+* hfaxd sorting based on the *SortFormat variables (2008-05-02)
+* man page: fix up strange alignment in hfaxd.1m (2008-05-02)
+* README: Remove unused hyphenation (2008-05-07)
+* hfaxd: sorting fixups (2008-05-08)
+* debian: DIR_LOCALE needs to be set, not LOCALEDIR (2008-05-08)
+* Some grep and awk calls were not using the configured values of $GREP
+  and $AWK (2008-05-30)
+* common-functions: enhancements to parseQfile (2008-05-30)
+* Updated POT template header (2008-05-30)
+* Use traps to make sure cleanup is done on exit (2008-06-13)
+* Re-visited tmpdir creation (2008-06-13)
+* Now use hfExit and SetupPrivateTmp in util scripts (2008-06-13)
+* TMPDIR was not exported for external programs usage (2008-06-13)
+* notify: have faxq *always* run notify (2008-06-19)
+* Allow for colons to appear in the value part of a qfile field
+  (2008-07-18)
+* faxgetty/faxsend: Correct Include config file parsing (2008-07-22)
+* configure:  Modern C++ compilers no-longer support the STL <file.h> syntax (2008-09-05)
+* Debugging: cleanup and additions (2008-09-08)
+* mkhash: Berstien hash, collision free (2008-09-15)
+* Reading booleans from config should alow the full boolean range (2008-09-16)
+* Bug 887: Impossible to configure lowercase modem commands (2008-09-16)
+* Bug 891: No waiting for DCN after a control channel retrain after the last MCF is sent. (2008-09-16)
+* faxmail: application/postscript attachments were sill going inline (2008-09-17)
+* JPARM PAGERANGE [<page range spec>] (2008-09-22)
+* faxq & faxsend: Page range handling (2008-09-22)
+* sendfax: -Z <page range spec> support (2008-09-22)
+* faxalter: Add support for -Z <page range spec> (2008-09-22)
+* ModemConfig: Clean up setConfigItem(...) (2008-09-22)
+* hfaxd: Move JobProtection to be default file permissions for sendq/doneq files (2008-09-22)
+* hfaxd: small code refactoring for checkFileRights (2008-09-22)
+* hfaxd:  Adds PrivateJobQ setting to allow for jobq protection (2008-09-22)
+* hfaxd: PrivateRecvQ to allow private recvq listing (2008-09-22)
+* hfaxd: Allow others (same uid) to operate on jobs (2008-09-22)
+* hfaxd documentation: Update for PublicRecvQ/PublicJobQ (2008-09-22)
+* faxsetup: Make sure to quote a potentially empty variable (2008-09-22)
+* Move the HylaFAX Version string from config.h to an extern variable (2008-09-23)
+* notify: Use SENDTO properly as the address for emails (2008-09-23)
+* Cleanup pagehandling/skip in faxq (2008-10-01)
+* Track cover pages in page range handling (2008-10-01)
+* Track skipped pages and cover pages (2008-10-01)
+* faxsend: Don't count skipped pages as transmitted in xferfaxlog accounting (2008-10-01)
+* Abort receive session on error writing to file (2008-11-21)
+* Added translator comments for many unclear translatable strings (2008-11-28)
+* Add Indonesian translation (2008-12-04)
+* Don't change output language during po/mo building (2008-12-19)
+* Create the locale install directory if needed (2009-01-16)
+* libhylafax: IPv6 infrastructure (2009-01-16)
+* hfaxd - IPv6 (AF_INET6) socket support (2009-01-16)
+* hfaxd: EPRT support (RFC 2428) (2009-01-16)
+* hfaxd: EPSV support (RFC 2428) (2009-01-16)
+* libhylafax: ipv6 support (2009-01-16)
+* libhylafax: Passive mode IPv6 (2009-01-16)
+* Allows quoting of : (as \:) in hosts.hfaxd file for IPv6 addresses (2009-01-16)
+* getaddrinfo AI_* hints are not always available (2009-01-20)
+* configure: UnixWare use of variadic macros (2009-01-20)
+* configure: Add define for s6_addr32 if needed on SVR5 systems. (2009-01-21)
+* b64-encode.awk: Fix bug on old SCO awk (2009-01-30)
+* Bug 902: Fix non-void function without a return (2009-02-02)
+* Bug 901: mimeencoding bug in templates handling (2009-02-06)
+* faxrcvd: Add multiple receipient/message capability (2009-02-07)
+* notify: Add back NOTIFY_FAXMASTER support (2009-02-07)
+* notify: Fix man page discrepancies (2009-02-07)
+* Bug 903: faxrcvd script SENDTO handling (2009-02-13)
+* configure: Allow compiler to be specified with the path (2009-02-17)
+* IPV6 on SunOS (2009-02-27)
+* Rework NLS slightly for old SunOS (2009-02-27)
+* Use ABI_VERSION in libfaxserver (2009-02-27)
+* notifyPageSent() fixup (2009-02-27)
+* Multiple clode cleanups and warning elimination (2009-02-27)
+* POSIX constants can be set to -1 if the functionnality is unavailable (2009-03-20)
+* Make sure B encoded strings stay withing the RFC length limits and
+  never separate UTF-8 characters in multiple encoded words (2009-03-20)
+* Adds Q encoding possibility (2009-03-20)
+* Select between Q and B encoding according to data to encode (2009-03-20)
+* notify: Don't send blocked notifications as "requeued" (2009-03-27)
+* configure/build: Multiple cleanups for portablity and simplicity (2009-04-23)
+
+CHANGES for 6.0.1
+-----------------------------------------------------------------------------
+* Cleanup distrules (2009-05-15)
+* Adds RPM building right from tarball (2009-05-15)
+* templates: Update Polish translation (2009-05-15)
+
+CHANGES for 6.0.2
+-----------------------------------------------------------------------------
+* distrules: Add rpm patches (2009-05-19)
+* RPM spec:  Don't try and force all client programs to $BIN (2009-05-19)
+* Socket.h:  OpenBSD portability (2009-05-19)
+* FaxClient: Apparently <modem>@ is used and common (2009-05-22)
+* Have RPM patched faxsetup check for the right -server package name to detect
+  server installation. (2009-05-22)
+* Socket fixes for BSD 4.4 sockets (2009-05-23)
+
+CHANGES for 6.0.3
+-----------------------------------------------------------------------------
+* Remove debugging statements (2009-06-04)
+* More debug statements need to be removed (2009-06-04)
+* Signal handlers need to be careful with errno (2009-07-03)
+
+CHANGES for 6.0.4
+-----------------------------------------------------------------------------
+* Page sent protocol trace fixes (2009-07-24)
+* Don't duplicate any file in a release tarball (2009-08-07)
+* IPv6: Rework initial bind (2009-08-07)
+* Some CVS-GIT cleanups/release notes (2009-08-14)
+* pagesend: Fix broken switch statement (2009-08-14)
+* hfaxd:  Cleanup uid initizliaztion and theoretical overflow (2009-08-14)
+* nls: Add German translation (2009-09-14)
+* PageHandling:  Fix handling of large blank areas (2009-09-18)
+* Add support for libtiff 3.9 (2007-11-21)
+* faxq: Don't assert on bad FIFO messages (2009-09-21)
+* Updated RPM dependencies (2009-09-25)
+* Str::vformat()  Don't reuse va_args (2009-10-07)
+* faxmail: Fix broken to address/name parsing (2009-10-29)
+* Update releasenotes and documentation re IPv6 support (2009-11-13)
+* hfaxd: log what address(es) we're listing on when starting (2009-11-13)
+* faxsend: Class1 1 ECM when skipping pages needs to be more careful (2009-11-13)
+* Class1: ECM page and block count should be sent as modulus. (2009-11-13)
+
+CHANGES for 6.0.5
+-----------------------------------------------------------------------------
+* Typo in CONFIG_UNIXTRANSPORT define checks (2009-11-06)
+* Allow "any" as answer method for FIFO messages (2010-01-22)
+* Updates LibTIFF homepage URLs (2010-02-05)
+* Updated ftp site address in setup error message (2010-03-05)
+* Correctly check for long lines when checking for the last match (2010-02-05)
+* Fix calls to pdf2fax/ps2fax in ConvertFile (2010-04-02)
+* notify: FaxMaster notifications wildcard fixups (2010-05-05)
+* manpages: Updates from debian (2010-05-05)
+* pdf2fax/ps2fax: Use -dMaxStripSize=0 (2010-05-05)
+* Bug 928: issues with installClient target of Hylafax (2010-05-05)
+* Fixes compilation on some platforms (2010-06-24)
+* faxq: better capturing of failed conversion output (2010-08-10)
+* Class2: Fix hangup cause handling (2010-08-30)
+* Compiler warning cleanup (2010-08-30)

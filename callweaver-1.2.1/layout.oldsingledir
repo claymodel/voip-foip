@@ -1,0 +1,14 @@
+# old singledir directory layout
+helpstring="use the old singledir layout"
+cwprefix=/opt/callweaver
+cwexecdir=${prefix}/sbin
+cwutilsdir=${prefix}/bin
+cwconfdir=${prefix}/etc
+cwlibdir=${prefix}/lib
+cwvardir=${prefix}/var
+cwdatadir=${prefix}/var/data
+cwlogdir=${prefix}/var/log
+cwrundir=${prefix}/var/run
+cwspooldir=${prefix}/var/spool
+cwmandir=${prefix}/share/man
+cwdocdir=${prefix}/doc

@@ -1,0 +1,161 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/asterisk/!svn/ver/327251/branches/1.4/codecs
+END
+slin_ulaw_ex.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/slin_ulaw_ex.h
+END
+ulaw_slin_ex.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/ulaw_slin_ex.h
+END
+ilbc_slin_ex.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/ilbc_slin_ex.h
+END
+slin_ilbc_ex.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/slin_ilbc_ex.h
+END
+codec_ulaw.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/asterisk/!svn/ver/267539/branches/1.4/codecs/codec_ulaw.c
+END
+lpc10_slin_ex.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/lpc10_slin_ex.h
+END
+slin_lpc10_ex.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/slin_lpc10_ex.h
+END
+codec_ilbc.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/asterisk/!svn/ver/228418/branches/1.4/codecs/codec_ilbc.c
+END
+codec_dahdi.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/293968/branches/1.4/codecs/codec_dahdi.c
+END
+adpcm_slin_ex.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/adpcm_slin_ex.h
+END
+slin_adpcm_ex.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/slin_adpcm_ex.h
+END
+slin_speex_ex.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/slin_speex_ex.h
+END
+speex_slin_ex.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/speex_slin_ex.h
+END
+slin_g726_ex.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/slin_g726_ex.h
+END
+g726_slin_ex.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/g726_slin_ex.h
+END
+gsm_slin_ex.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/gsm_slin_ex.h
+END
+codec_lpc10.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/267539/branches/1.4/codecs/codec_lpc10.c
+END
+slin_gsm_ex.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/slin_gsm_ex.h
+END
+codec_a_mu.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/codec_a_mu.c
+END
+codec_speex.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/211528/branches/1.4/codecs/codec_speex.c
+END
+codec_alaw.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/asterisk/!svn/ver/267539/branches/1.4/codecs/codec_alaw.c
+END
+codec_adpcm.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/267539/branches/1.4/codecs/codec_adpcm.c
+END
+codec_g726.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/asterisk/!svn/ver/267539/branches/1.4/codecs/codec_g726.c
+END
+codec_gsm.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/asterisk/!svn/ver/267539/branches/1.4/codecs/codec_gsm.c
+END
+log2comp.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/asterisk/!svn/ver/109648/branches/1.4/codecs/log2comp.h
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/207647/branches/1.4/codecs/Makefile
+END

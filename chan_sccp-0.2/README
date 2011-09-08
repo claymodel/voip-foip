@@ -1,0 +1,32 @@
+SCCP (Skinny Client Control Protocol) for Asterisk.
+  -- By Zozo.
+
+INSTALL
+-------
+
+To install, edit Makefile, and change the ASTERISK_SOURCE= line to point to
+the root of your asterisk source.  You may need to change some of the other
+options, if you don't know how or why, you probably don't need to :)
+
+then:
+
+  make
+  make install
+
+You'll need to point your cisco phone (in call manager mode) to a tftp server,
+which contains the conf/XMLDefault.cnf.xml file in this source in the root.
+
+Change <processNodeName> to the IP of your asterisk server.
+
+You can send calls to *lines* using SCCP/linename.
+
+In your extensions.conf, you can also use the SetCalledParty application if you wish:
+
+exten => 1001,1,SetCalledParty("Zozo" <1001>)
+exten => 1001,2,Dial(SCCP/theo)
+exten => 1001,3,Hangup()
+
+This will set the display on the calling phone to indicate you are calling "Zozo", on ext 1001,
+providing it is an SCCP device.
+
+ ~ Zozo

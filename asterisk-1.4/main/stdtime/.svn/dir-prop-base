@@ -1,0 +1,10 @@
+K 10
+svn:ignore
+V 25
+*.o
+.depend
+*.a
+*.so
+*.i
+
+END

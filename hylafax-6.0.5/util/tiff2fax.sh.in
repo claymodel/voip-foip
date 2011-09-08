@@ -1,0 +1,190 @@
+#! @SCRIPT_SH@
+#	$Id$
+#
+# HylaFAX Facsimile Software
+#
+# Copyright (c) 1990-1996 Sam Leffler
+# Copyright (c) 1991-1996 Silicon Graphics, Inc.
+# HylaFAX is a trademark of Silicon Graphics
+# 
+# Permission to use, copy, modify, distribute, and sell this software and 
+# its documentation for any purpose is hereby granted without fee, provided
+# that (i) the above copyright notices and this permission notice appear in
+# all copies of the software and related documentation, and (ii) the names of
+# Sam Leffler and Silicon Graphics may not be used in any advertising or
+# publicity relating to the software without the specific, prior written
+# permission of Sam Leffler and Silicon Graphics.
+# 
+# THE SOFTWARE IS PROVIDED "AS-IS" AND WITHOUT WARRANTY OF ANY KIND, 
+# EXPRESS, IMPLIED OR OTHERWISE, INCLUDING WITHOUT LIMITATION, ANY 
+# WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.  
+# 
+# IN NO EVENT SHALL SAM LEFFLER OR SILICON GRAPHICS BE LIABLE FOR
+# ANY SPECIAL, INCIDENTAL, INDIRECT OR CONSEQUENTIAL DAMAGES OF ANY KIND,
+# OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
+# WHETHER OR NOT ADVISED OF THE POSSIBILITY OF DAMAGE, AND ON ANY THEORY OF 
+# LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE 
+# OF THIS SOFTWARE.
+#
+
+#
+# Convert TIFF to fax as needed.
+#
+# tiff2fax [-o output] [-l pagelength] [-w pagewidth]
+#	[-r resolution] [-m maxpages] [-1] [-2] [-3] file ...
+#
+# NB: This script uses the tiffcp program from the TIFF
+#     software distribution to do certain format conversions.
+#     The TIFF distribution is available by ftp at
+#     ftp://ftp.sgi.com/graphics/tiff/; be sure to get
+#     v3.4beta016 or later.
+#
+
+test -f etc/setup.cache || {
+    SPOOL=`pwd`
+    cat<<EOF
+
+FATAL ERROR: $SPOOL/etc/setup.cache is missing!
+
+The file $SPOOL/etc/setup.cache is not present.  This
+probably means the machine has not been setup using the faxsetup(@MANNUM1_8@)
+command.  Read the documentation on setting up HylaFAX before you
+startup a server system.
+
+EOF
+    exit 1
+}
+. etc/setup.cache
+
+CHECK=$SBIN/tiffcheck			# program to check acceptability
+PS2FAX=bin/ps2fax			# for hard conversions
+TIFFCP=$TIFFBIN/tiffcp			# part of the TIFF distribution
+TIFF2PS=$TIFFBIN/tiff2ps		# ditto
+TIFFINFO=$TIFFBIN/tiffinfo		# ditto
+
+out=foo.tif				# default output filename
+df=1d					# default output is 1D-encoded
+fil=
+opt=
+while test $# != 0
+do case "$1" in
+    -o)	shift; out=$1 ;;
+    -l)	shift; opt="$opt -l $1" ;;
+    -w)	shift; opt="$opt -w $1" ;;
+    -r)	shift; opt="$opt -r $1" ;;
+    -1) opt="$opt $1"; df="g3:1d" ;;
+    -2) opt="$opt $1"; df="g3:2d" ;;
+    -3) opt="$opt $1"; df=g4 ;;
+    -m) shift;;				# NB: not implemented
+    -U) opt="$opt $1" ;;
+    *)	fil="$fil $1" ;;
+    esac
+    shift
+done
+test -z "$fil" && {
+    echo "$0: No input file specified."
+    exit 255
+}
+
+#
+# Apply customizations such as watermarking.   
+#
+if [ -f etc/FaxModify ]; then
+    . etc/FaxModify
+fi
+
+#
+# tiffcheck looks over a TIFF document and prints out a string
+# that describes what's needed (if anything) to make the file
+# suitable for transmission with the specified parameters (page
+# width, page length, resolution, encoding).  This string may
+# be followed by explanatory messages that can be returned to
+# the user.  The possible actions are:
+#
+# OK		document is ok
+# REJECT	something is very wrong (e.g. not valid TIFF)
+# REFORMAT	data must be re-encoded
+# REVRES	reformat to change vertical resolution
+# RESIZE	scale or truncate the pages
+# REIMAGE	image is not 1-channel bilevel data
+#
+# Note that these actions may be combined with "+";
+# e.g. REFORMAT+RESIZE.  If we cannnot do the necessary work
+# to prepare the document then we reject it here.
+#
+RESULT=`$CHECK $opt $fil 2>/dev/null`
+
+ACTIONS=`echo "$RESULT" | $SED 1q`
+case "$ACTIONS" in
+OK)				# no conversion needed
+    #
+    # 1) We don't use hard links because it screws up faxqclean
+    #    logic that assumes the only hard links are used 
+    #    temporarily when document files are being created during
+    #    the job submission process.
+    # 2) We don't use symbolic links because the links get broken
+    #    when the source document is shared between jobs and
+    #    faxq removes the source document before all jobs complete.
+    #
+    # If we ever encounter problems where the client submits corrupt
+    # TIFF and we need to clean it up before transmission, then we
+    # can simply merge OK with REFORMAT.  For now we use $CP instead
+    # of $TIFFCP, however, to provide the client some control.
+    #
+    $CP -f $fil $out
+    exit 0			# successful conversion
+    ;;
+*REJECT*)			# document rejected out of hand
+    echo "$RESULT" | $SED 1d
+    exit 254			# reject document
+    ;;
+REFORMAT)			# only need format conversion (e.g. g4->g3)
+    rowsperstrip="-r 9999"
+    if [ -n "`$TIFFINFO $fil | $GREP 'Compression Scheme: ISO JBIG'`" ]; then
+	rowsperstrip=""
+    fi
+    $TIFFCP -i -c $df -f lsb2msb $rowsperstrip $fil $out
+
+    # libtiff 3.5.7 gives exit status 9 when there are unknown tags...
+    if [ $? != 0 ] && [ $? != 9 ]; then {
+	$CAT<<EOF
+Unexpected failure converting TIFF document; the command
+
+    $TIFFCP -i -c $df -f lsb2msb $rowsperstrip $fil $out
+
+failed with exit status $?.  This conversion was done because:
+
+EOF
+	echo "$RESULT" | $SED 1d; exit 254
+    }
+    fi
+    exit 0
+    ;;
+#
+# REVRES|REFORMAT+REVRES	adjust vertical resolution (should optimize)
+# *RESIZE			page size must be adjusted (should optimize)
+# *REIMAGE			maybe should reject (XXX)
+#
+*REVRES|*RESIZE|*REIMAGE)
+    ($TIFF2PS -a $fil | $PS2FAX -o $out $opt) || {
+	$CAT<<EOF
+Unexpected failure converting TIFF document; the command
+
+    $TIFF2PS -a $fil | $PS2FAX $opt
+
+failed with exit status $?.  This conversion was done because
+
+EOF
+	echo "$RESULT" | $SED 1d; exit 254
+    }
+    exit 0
+    ;;
+*)				# something went wrong
+    echo "Unexpected failure in the TIFF format checker;"
+    echo "the output of $CHECK was:"
+    echo ""
+    echo "$RESULT"
+    echo ""
+    exit 254			# no formatter
+    ;;
+esac

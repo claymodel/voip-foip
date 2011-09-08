@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/asterisk/!svn/ver/316006/branches/1.4/include
+END
+jitterbuf.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/asterisk/!svn/ver/159808/branches/1.4/include/jitterbuf.h
+END
+asterisk.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/asterisk/!svn/ver/294384/branches/1.4/include/asterisk.h
+END

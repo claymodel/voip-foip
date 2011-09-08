@@ -1,0 +1,7 @@
+To: $SENDTO
+Subject: fax $JOBINFO per $DESTINATION rimosso dalla coda
+From: Server fax HylaFAX <$FROMADDR>
+Content-type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: Quoted-Printable
+
+Il fax per $number è stato cancellato dalla coda.

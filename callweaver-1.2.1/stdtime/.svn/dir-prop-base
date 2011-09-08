@@ -1,0 +1,11 @@
+K 10
+svn:ignore
+V 48
+Makefile
+Makefile.in
+.deps
+.libs
+libtime.a
+test
+
+END

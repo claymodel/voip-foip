@@ -1,0 +1,22 @@
+From: HylaFAX Empfang <$FROMADDR>
+To: $TOADDR
+Subject: Fax empfangen von $SENDER
+Content-type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: Quoted-Printable
+
+$FILE (ftp://$HOSTNAME:$PORT/$FILE):
+                     Sender: $SENDER
+                     Seiten: $PAGES
+                   Qualität: $QUALITY
+                     Grösse: $PAGE
+                  Empfangen: $RECEIVED
+          Verarbeitungszeit: $TIMETORECV
+Übertragungsgeschwindigkeit: $SIGNALRATE
+                Datenformat: $DATAFORMAT
+            FehlerKorrektur: $ERRCORRECT
+                Anrufe ID 1: $CALLID1
+                Anrufe ID 2: $CALLID2
+                EmpfangenAn: $DEVICE
+           KommunikationsID: $COMMID (ftp://$HOSTNAME:$PORT/log/c$COMMID)
+
+Das Fax wurde automatisch weitergeleitet an: $SENDTO.

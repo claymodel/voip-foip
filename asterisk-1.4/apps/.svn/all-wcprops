@@ -1,0 +1,485 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/asterisk/!svn/ver/327251/branches/1.4/apps
+END
+leave.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/asterisk/!svn/ver/43376/branches/1.4/apps/leave.h
+END
+app_settransfercapability.c
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/asterisk/!svn/ver/58939/branches/1.4/apps/app_settransfercapability.c
+END
+app_stack.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/85687/branches/1.4/apps/app_stack.c
+END
+app_chanspy.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/asterisk/!svn/ver/284881/branches/1.4/apps/app_chanspy.c
+END
+app_cdr.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/asterisk/!svn/ver/61136/branches/1.4/apps/app_cdr.c
+END
+app_adsiprog.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/asterisk/!svn/ver/211528/branches/1.4/apps/app_adsiprog.c
+END
+app_read.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/168561/branches/1.4/apps/app_read.c
+END
+app_dictate.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/asterisk/!svn/ver/68527/branches/1.4/apps/app_dictate.c
+END
+app_festival.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/asterisk/!svn/ver/172438/branches/1.4/apps/app_festival.c
+END
+app_softhangup.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/215270/branches/1.4/apps/app_softhangup.c
+END
+app_dahdiscan.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/165991/branches/1.4/apps/app_dahdiscan.c
+END
+app_alarmreceiver.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/asterisk/!svn/ver/211528/branches/1.4/apps/app_alarmreceiver.c
+END
+app_image.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/43376/branches/1.4/apps/app_image.c
+END
+app_getcpeid.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/asterisk/!svn/ver/122314/branches/1.4/apps/app_getcpeid.c
+END
+app_talkdetect.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/211528/branches/1.4/apps/app_talkdetect.c
+END
+app_db.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/asterisk/!svn/ver/47782/branches/1.4/apps/app_db.c
+END
+app_setcdruserfield.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/asterisk/!svn/ver/58939/branches/1.4/apps/app_setcdruserfield.c
+END
+app_controlplayback.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/asterisk/!svn/ver/86754/branches/1.4/apps/app_controlplayback.c
+END
+app_voicemail.exports
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/asterisk/!svn/ver/213283/branches/1.4/apps/app_voicemail.exports
+END
+app_setcallerid.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/asterisk/!svn/ver/211528/branches/1.4/apps/app_setcallerid.c
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/asterisk/!svn/ver/127895/branches/1.4/apps/Makefile
+END
+app_mp3.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/asterisk/!svn/ver/238009/branches/1.4/apps/app_mp3.c
+END
+app_zapateller.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/80878/branches/1.4/apps/app_zapateller.c
+END
+app_senddtmf.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/asterisk/!svn/ver/184078/branches/1.4/apps/app_senddtmf.c
+END
+app_rpt.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/asterisk/!svn/ver/299002/branches/1.4/apps/app_rpt.c
+END
+app_mixmonitor.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/309856/branches/1.4/apps/app_mixmonitor.c
+END
+app_ivrdemo.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/asterisk/!svn/ver/43376/branches/1.4/apps/app_ivrdemo.c
+END
+app_milliwatt.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/209838/branches/1.4/apps/app_milliwatt.c
+END
+app_parkandannounce.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/asterisk/!svn/ver/251410/branches/1.4/apps/app_parkandannounce.c
+END
+app_readfile.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/asterisk/!svn/ver/211528/branches/1.4/apps/app_readfile.c
+END
+app_meetme.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/asterisk/!svn/ver/320235/branches/1.4/apps/app_meetme.c
+END
+app_test.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/184388/branches/1.4/apps/app_test.c
+END
+app_morsecode.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/211528/branches/1.4/apps/app_morsecode.c
+END
+app_ices.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/172438/branches/1.4/apps/app_ices.c
+END
+app_exec.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/107582/branches/1.4/apps/app_exec.c
+END
+app_lookupcidname.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/asterisk/!svn/ver/56922/branches/1.4/apps/app_lookupcidname.c
+END
+app_channelredirect.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/asterisk/!svn/ver/172030/branches/1.4/apps/app_channelredirect.c
+END
+app_forkcdr.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/asterisk/!svn/ver/124540/branches/1.4/apps/app_forkcdr.c
+END
+app_skel.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/135847/branches/1.4/apps/app_skel.c
+END
+app_directed_pickup.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/asterisk/!svn/ver/318734/branches/1.4/apps/app_directed_pickup.c
+END
+app_dumpchan.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/asterisk/!svn/ver/43376/branches/1.4/apps/app_dumpchan.c
+END
+app_macro.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/295790/branches/1.4/apps/app_macro.c
+END
+app_sms.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/asterisk/!svn/ver/289424/branches/1.4/apps/app_sms.c
+END
+app_verbose.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/asterisk/!svn/ver/211528/branches/1.4/apps/app_verbose.c
+END
+app_voicemail.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/316707/branches/1.4/apps/app_voicemail.c
+END
+app_dial.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/319527/branches/1.4/apps/app_dial.c
+END
+app_nbscat.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/asterisk/!svn/ver/182810/branches/1.4/apps/app_nbscat.c
+END
+app_page.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/170979/branches/1.4/apps/app_page.c
+END
+app_echo.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/249946/branches/1.4/apps/app_echo.c
+END
+app_hasnewvoicemail.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/asterisk/!svn/ver/85850/branches/1.4/apps/app_hasnewvoicemail.c
+END
+app_waitforsilence.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/asterisk/!svn/ver/239718/branches/1.4/apps/app_waitforsilence.c
+END
+app_sayunixtime.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/43376/branches/1.4/apps/app_sayunixtime.c
+END
+app_dahdiras.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/asterisk/!svn/ver/178266/branches/1.4/apps/app_dahdiras.c
+END
+app_disa.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/220288/branches/1.4/apps/app_disa.c
+END
+app_userevent.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/253349/branches/1.4/apps/app_userevent.c
+END
+app_chanisavail.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/asterisk/!svn/ver/229965/branches/1.4/apps/app_chanisavail.c
+END
+enter.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/asterisk/!svn/ver/43376/branches/1.4/apps/enter.h
+END
+app_system.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/83179/branches/1.4/apps/app_system.c
+END
+app_transfer.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/asterisk/!svn/ver/43376/branches/1.4/apps/app_transfer.c
+END
+app_playback.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/asterisk/!svn/ver/220288/branches/1.4/apps/app_playback.c
+END
+app_speech_utils.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/asterisk/!svn/ver/264334/branches/1.4/apps/app_speech_utils.c
+END
+app_osplookup.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/211528/branches/1.4/apps/app_osplookup.c
+END
+app_sendtext.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/asterisk/!svn/ver/305888/branches/1.4/apps/app_sendtext.c
+END
+app_amd.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/asterisk/!svn/ver/277182/branches/1.4/apps/app_amd.c
+END
+app_realtime.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/asterisk/!svn/ver/165255/branches/1.4/apps/app_realtime.c
+END
+app_lookupblacklist.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/asterisk/!svn/ver/56922/branches/1.4/apps/app_lookupblacklist.c
+END
+app_url.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/asterisk/!svn/ver/43445/branches/1.4/apps/app_url.c
+END
+app_externalivr.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/asterisk/!svn/ver/309947/branches/1.4/apps/app_externalivr.c
+END
+app_directory.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/263769/branches/1.4/apps/app_directory.c
+END
+app_while.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/156755/branches/1.4/apps/app_while.c
+END
+app_dahdibarge.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/211528/branches/1.4/apps/app_dahdibarge.c
+END
+app_privacy.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/asterisk/!svn/ver/211528/branches/1.4/apps/app_privacy.c
+END
+app_record.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/asterisk/!svn/ver/211528/branches/1.4/apps/app_record.c
+END
+app_authenticate.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/asterisk/!svn/ver/153337/branches/1.4/apps/app_authenticate.c
+END
+app_random.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/asterisk/!svn/ver/211528/branches/1.4/apps/app_random.c
+END
+rpt_flow.pdf
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/43376/branches/1.4/apps/rpt_flow.pdf
+END
+app_queue.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/317574/branches/1.4/apps/app_queue.c
+END
+app_followme.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/asterisk/!svn/ver/297689/branches/1.4/apps/app_followme.c
+END
+app_waitforring.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/asterisk/!svn/ver/239718/branches/1.4/apps/app_waitforring.c
+END
+app_flash.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/182652/branches/1.4/apps/app_flash.c
+END

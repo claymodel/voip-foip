@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/contrib/init.d
+END
+rc.gentoo.callweaver
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/contrib/init.d/rc.gentoo.callweaver
+END
+rc.mandrake.zaptel
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/contrib/init.d/rc.mandrake.zaptel
+END
+rc.slackware.callweaver
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/contrib/init.d/rc.slackware.callweaver
+END
+rc.suse.callweaver
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/contrib/init.d/rc.suse.callweaver
+END
+rc.debian.callweaver
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/contrib/init.d/rc.debian.callweaver
+END
+rc.mandrake.callweaver
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/contrib/init.d/rc.mandrake.callweaver
+END
+rc.redhat.callweaver
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/contrib/init.d/rc.redhat.callweaver
+END

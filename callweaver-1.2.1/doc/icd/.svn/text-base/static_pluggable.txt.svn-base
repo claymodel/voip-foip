@@ -1,0 +1,74 @@
+/* a macro STANDARD_PLUGGABLE_IMLEMENTATION = a perfectly filled out standard func list */
+
+/* delcare all your unique combo of pluggable funct as static structs */
+static icd_plugable_fn example1 = STANDARD_PLUGGABLE_IMLEMENTATION;
+static icd_plugable_fn example2 = STANDARD_PLUGGABLE_IMLEMENTATION;
+static icd_plugable_fn example3 = STANDARD_PLUGGABLE_IMLEMENTATION;
+
+
+/* all your custom pluggable functions */
+
+static int my_get_channels1(icd_event *that, void *extra) {
+
+	/* get_channels implementation 1......*/
+}    
+
+
+static int my_get_channels2(icd_event *that, void *extra) {
+	/* get_channels implementation 2......*/
+}    
+
+static icd_plugable_fn *my_get_pluggable(icd_caller *that) {
+	/* examine caller and dist and pick which of the 2 example is best 
+	   .......
+
+	   somewhere else in the code like where member is added to queue do
+	   something like this 
+	   icd_caller__set_pluggable(that,icd_distributor__get_function_finder());
+	 */
+
+	return (some_condition()) ? &example1 : &example2;
+}
+
+icd_plugable__set_state_get_channels_fn(&example1,my_get_channels1,NULL);
+icd_plugable__set_state_get_channels_fn(&example2,my_get_channels2,NULL);
+icd_plugable__set_state_get_channels_fn(&example3,my_get_channels1,NULL);
+
+
+
+static icd_status init_icd_distributor_psuedo(icd_distributor *that, char *name, icd_config *data) {
+	assert(that != NULL);
+    assert(data != NULL);
+    strncpy(that->name,name,sizeof(that->name));
+    icd_distributor__set_config_params(that, data);
+    icd_distributor__create_lists(that, data);
+
+	/* install a pointer to the private get_pluggable implementation in the dist 
+	   so the subsequent callers can inherit/use it when they are in the dist
+	 */
+	icd_distributor_set_function_finder(that,my_get_pluggable);
+
+
+	icd_distributor__create_thread(that);
+    return ICD_SUCCESS;
+}
+
+
+
+int icd_module_load(icd_config_registry *registry) {
+
+    assert(registry != NULL);
+    cw_verbose("Mod  Psuedocode Loaded!\n");
+    return 0;
+}
+
+int icd_module_unload(void) {
+
+    cw_verbose("Mod Psuedocode  Unloaded!\n");
+    return 0;
+
+}
+
+
+
+

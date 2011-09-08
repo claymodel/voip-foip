@@ -1,0 +1,371 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs
+END
+extensions.ael.sample
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/extensions.ael.sample
+END
+chan_visdn.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/chan_visdn.conf.sample
+END
+meetme.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/meetme.conf.sample
+END
+privacy.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/privacy.conf.sample
+END
+cdr_pgsql.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/cdr_pgsql.conf.sample
+END
+muted.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/muted.conf.sample
+END
+res_mysql.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/res_mysql.conf.sample
+END
+telcordia-1.adsi
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/telcordia-1.adsi
+END
+adsi.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/adsi.conf.sample
+END
+alsa.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/alsa.conf.sample
+END
+callweaver.adsi.sample
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/callweaver.adsi.sample
+END
+iax.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/iax.conf.sample
+END
+sip_notify.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/sip_notify.conf.sample
+END
+logger.conf.sample.in
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/logger.conf.sample.in
+END
+mgcp.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/mgcp.conf.sample
+END
+udptl.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/udptl.conf.sample
+END
+sccp.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/sccp.conf.sample
+END
+db-memcached.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/db-memcached.conf.sample
+END
+sip.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/sip.conf.sample
+END
+cdr_mysql.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/cdr_mysql.conf.sample
+END
+chan_bluetooth.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/chan_bluetooth.conf.sample
+END
+cdr_odbc.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/cdr_odbc.conf.sample
+END
+codecs.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/codecs.conf.sample
+END
+osp.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/osp.conf.sample
+END
+cdr_manager.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/cdr_manager.conf.sample
+END
+cdr_custom.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/cdr_custom.conf.sample
+END
+chan_dahdi.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/chan_dahdi.conf.sample
+END
+dundi.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/dundi.conf.sample
+END
+indications.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/indications.conf.sample
+END
+enum.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/enum.conf.sample
+END
+adtranvofr.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/adtranvofr.conf.sample
+END
+chan_fax.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/chan_fax.conf.sample
+END
+queues.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/queues.conf.sample
+END
+cdr.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/cdr.conf.sample
+END
+voicemail.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/voicemail.conf.sample
+END
+woomera.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/woomera.conf.sample
+END
+manager.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/manager.conf.sample
+END
+misdn.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/misdn.conf.sample
+END
+res_sqlite.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/res_sqlite.conf.sample
+END
+capi.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/capi.conf.sample
+END
+features.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/features.conf.sample
+END
+ldap.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/ldap.conf.sample
+END
+res_odbc.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/res_odbc.conf.sample
+END
+agents.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/agents.conf.sample
+END
+cdr_tds.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/cdr_tds.conf.sample
+END
+extconfig.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/extconfig.conf.sample
+END
+res_snmp.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/res_snmp.conf.sample
+END
+unicall.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/unicall.conf.sample
+END
+musiconhold.conf.sample.in
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/musiconhold.conf.sample.in
+END
+dnsmgr.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/dnsmgr.conf.sample
+END
+callweaver.conf.sample.in
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/callweaver.conf.sample.in
+END
+res_jabber.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/res_jabber.conf.sample
+END
+extensions.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/extensions.conf.sample
+END
+res_pgsql.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/res_pgsql.conf.sample
+END
+amd.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/amd.conf.sample
+END
+modem.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/modem.conf.sample
+END
+curl.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/curl.conf.sample
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/Makefile.am
+END
+rtp.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/rtp.conf.sample
+END
+cdr_pgsql_custom.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/cdr_pgsql_custom.conf.sample
+END
+modules.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/configs/modules.conf.sample
+END

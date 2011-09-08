@@ -1,0 +1,17 @@
+#!/sbin/runscript
+
+depend() {
+	need net logger
+}
+
+start() {
+	ebegin "Starting CallWeaver"
+	/usr/sbin/callweaver
+	eend $? "Failed to start CallWeaver"
+}
+
+stop() {
+	ebegin "Stopping CallWeaver"
+	kill $(cat /var/run/callweaver.pid)
+	eend $? "Failed to stop CallWeaver"
+}

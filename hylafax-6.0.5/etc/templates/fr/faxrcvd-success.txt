@@ -1,0 +1,21 @@
+From: HylaFAX <$FROMADDR>
+To: $SENDTO
+Subject: Télécopie reçue de "$SENDER"
+Content-type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: Quoted-Printable
+
+$FILE (ftp://$HOSTNAME:$PORT/$FILE):
+             Expéditeur: $SENDER
+                  Pages: $PAGES
+                Qualité: $QUALITY
+                 Taille: $PAGE
+                Reçu le: $RECEIVED
+     Temps de réception: $TIMETORECV
+Vitesse de transmission: $SIGNALRATE
+     Format des données: $DATAFORMAT
+   Correction d'erreurs: $ERRCORRECT
+                CallID1: $CALLID1
+                CallID2: $CALLID2
+               Reçu sur: $DEVICE
+    Nº de communication: $COMMID (ftp://$HOSTNAME:$PORT/log/c$COMMID)
+

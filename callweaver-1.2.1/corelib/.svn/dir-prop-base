@@ -1,0 +1,10 @@
+K 10
+svn:ignore
+V 44
+Makefile
+Makefile.in
+.deps
+.libs
+defaults.h
+
+END

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE set PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+                      "http://www.docbook.org/xml/4.4/docbookx.dtd" [
+<!ENTITY % globalents SYSTEM "libs/global.ent">
+%globalents;
+]>
+<set>
+	<title>CallWeaver</title>
+	<setinfo>
+		<authorgroup>
+			<author>
+				<firstname>Sean Wheller</firstname>
+				<surname>Sean Wheller</surname>
+			</author>
+			</authorgroup>
+			<abstract>
+				<para>...</para>
+			</abstract>
+		&copyright;
+		&legalnotice;
+		&publisher;
+	</setinfo>
+	&prep-guide;
+	&inst-guide;
+	&comm-guide;
+	&prov-guide;
+	&oper-guide;
+	&faq-guide;
+</set>

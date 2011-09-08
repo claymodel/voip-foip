@@ -1,0 +1,34 @@
+To: $SENDTO
+Subject: Fax Auftrag $JOBINFO an $DESTINATION fehlgeschlagen
+From: HylaFAX Empfang <$FROMADDR>
+Content-type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: Quoted-Printable
+
+Ihr Fax Auftrag an $number wurde nicht gesendet, weil die
+Dokumentenkonvertierung zum Fax fehlgeschlagen ist.
+Die Ausgabe des Konvertierungsprogrammes war:
+
+$faxstatus
+
+Überprüfen Sie jedes PostScript Dokument auf nicht standard
+konforme Fonts und invalide Konstruktionen
+------- Unsent job status -------
+                        Ziel: $number
+                       JobID: $jobid
+                   GruppenID: $groupid
+                      Sender: $sender
+                Mailaddresse: $mailaddr
+            KommunikationsID: $commid
+                       Modem: $modem
+               Geschickt von: $client
+               Seiten Breite: $pagewidth  (mm)
+                Seiten Länge: $pagelength (mm)
+                   Auflösung: $resolution (lpi)
+                      Status: $faxstatus
+                     Dialoge: $tottries
+                Wählversuche: $ndials
+                      Anrufe: $totdials
+                      Seiten: $npages
+                    TotPages: $totpages
+                    Versuche: $ntries
+                      Dirnum: $dirnum

@@ -1,0 +1,5 @@
+callweaver (1.2.0-1) unstable; urgency=low
+
+  * SVN checkout build for callweaver RC branch
+  
+ -- Massimo Cetra <devel@navynet.it>  Sun,  6 May 2007 16:28:16 +0100

@@ -1,0 +1,49 @@
+#!/bin/bash
+#
+# chkconfig: - 99 15
+# description: Open source PBX 
+# processname: callweaver
+
+# source function library
+. /etc/rc.d/init.d/functions
+
+RETVAL=0
+
+case "$1" in
+  start)
+	mkdir -p /dev/fax &>/dev/null && chown callweaver.callweaver /dev/fax
+	echo -n $"Starting CallWeaver: "
+	daemon /usr/sbin/callweaver
+	RETVAL=$?
+	echo
+	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/callweaver
+	;;
+  stop)
+	echo -n $"Stopping CallWeaver: "
+	killproc callweaver
+	RETVAL=$?
+
+	echo
+	[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/callweaver
+	;;
+  restart)
+	$0 stop
+	$0 start
+	RETVAL=$?
+	;;
+  reload)
+	killproc callweaver -HUP
+	status callweaver
+	RETVAL=$?
+	;;
+  status)
+	status callweaver
+	RETVAL=$?
+	;;
+  *)
+	echo "Usage: callweaver {start|stop|status|restart|reload}"
+	exit 1
+esac
+
+exit $RETVAL
+

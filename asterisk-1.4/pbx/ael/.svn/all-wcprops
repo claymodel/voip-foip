@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/asterisk/!svn/ver/327251/branches/1.4/pbx/ael
+END
+ael.tab.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/asterisk/!svn/ver/189462/branches/1.4/pbx/ael/ael.tab.c
+END
+ael.y
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/asterisk/!svn/ver/189462/branches/1.4/pbx/ael/ael.y
+END
+ael_lex.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/asterisk/!svn/ver/242520/branches/1.4/pbx/ael/ael_lex.c
+END
+ael.tab.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/asterisk/!svn/ver/153337/branches/1.4/pbx/ael/ael.tab.h
+END
+ael.flex
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/162671/branches/1.4/pbx/ael/ael.flex
+END

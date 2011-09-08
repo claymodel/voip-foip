@@ -1,0 +1,29 @@
+To: $SENDTO
+Subject: Message à $DESTINATION a échoué
+From: HylaFAX <$FROMADDR>
+Content-type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: Quoted-Printable
+
+Votre message à $number a échoué pour la raison suivante :
+
+$faxstatus
+
+
+    ---- La transcription de la session ----
+
+$SESSION_LOG
+
+------- État de la tâche -------
+        Destination: $number
+        Nº de tâche: $jobid
+       Nº de groupe: $groupid
+         Expéditeur: $sender
+   Adresse Courriel: $mailaddr
+Nº de communication: c$commid
+              Modem: $modem
+         Provenance: $client
+               État: $faxstatus
+          Dialogues: $tottries
+       Compositions: $ndials
+             Appels: $totdials
+         Tentatives: $ntries

@@ -1,0 +1,26 @@
+To: $SENDTO
+Subject: Télécopie travail $JOBINFO à $DESTINATION complétée
+From: HylaFAX <$FROMADDR>
+Content-type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: Quoted-Printable
+
+Votre télécopie à $number a été envoyée avec succès.
+
+                  Pages: $npages
+              Récepteur: $csi
+                Qualité: $resolution
+        Largeur de page: $pagewidth (mm)
+        Hauteur de page: $pagelength
+Vitesse de transmission: $signalrate
+         Format données: dataformat
+     Équipement distant: $equipment
+       Station distante: $station
+              Dialogues: $tottries (échanges avec l'équipement distant)
+                 Appels: $totdials (nombre d'appels téléphoniques placés)
+                  Modem: $modem
+             Provenance: $client
+            Nº de tâche: $jobid
+           Nº de groupe: $groupid
+    Nº de communication: c$commid
+
+Le temps de traitement a été de $JTIME.

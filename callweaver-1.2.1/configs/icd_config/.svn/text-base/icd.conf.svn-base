@@ -1,0 +1,15 @@
+;start of the general conf file for icd to control various system level config items
+[general]
+;optional delimiter for icd lists of options
+;icd_delimiter=,
+;
+;default settings for debug verbosity flag
+icd_debug=no
+icd_verbose=1
+
+[events]
+module_mask = APP_ICD|ICD_Queue|ICD_Distributor|ICD_Distributor_List|ICD_Caller|ICD_Caller_List|ICD_Agent|ICD_Customer|ICD_Member|ICD_Member_List|ICD_Bridge|ICD_Conference|ICD_Listeners|CD_Event|ICD_Fieldset|ICD_Config|ICD_List|ICD_Meta_List|ICD_PlugableFN|ICD_PlugableFN_List|ICD_Last_Standard 
+
+event_mask =StateChange
+
+;event_mask = Create|Initialize|Clear|Destroy|Push|Pop|Fire|Pushback|StateChange|Add|Remove|Ready|ChannelUp|GetChannels|GotChannels|Distribute|Distributed|Link|Unlink|Bridge|Bridged|BridgeFailed|ChannelFailed|AssociateFailed|BridgeEnded|Suspend|SetField|Authenticate|Assign|Conference

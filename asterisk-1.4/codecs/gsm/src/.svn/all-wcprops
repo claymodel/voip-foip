@@ -1,0 +1,125 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/asterisk/!svn/ver/327251/branches/1.4/codecs/gsm/src
+END
+gsm_implode.c
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/gsm/src/gsm_implode.c
+END
+gsm_destroy.c
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/gsm/src/gsm_destroy.c
+END
+gsm_print.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/gsm/src/gsm_print.c
+END
+gsm_encode.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/gsm/src/gsm_encode.c
+END
+gsm_explode.c
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/gsm/src/gsm_explode.c
+END
+k6opt.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/gsm/src/k6opt.h
+END
+gsm_create.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/gsm/src/gsm_create.c
+END
+code.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/gsm/src/code.c
+END
+lpc.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/asterisk/!svn/ver/82265/branches/1.4/codecs/gsm/src/lpc.c
+END
+gsm_option.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/gsm/src/gsm_option.c
+END
+k6opt.s
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/gsm/src/k6opt.s
+END
+decode.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/gsm/src/decode.c
+END
+preprocess.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/gsm/src/preprocess.c
+END
+long_term.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/asterisk/!svn/ver/82265/branches/1.4/codecs/gsm/src/long_term.c
+END
+debug.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/gsm/src/debug.c
+END
+rpe.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/gsm/src/rpe.c
+END
+short_term.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/gsm/src/short_term.c
+END
+table.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/gsm/src/table.c
+END
+add.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/gsm/src/add.c
+END
+gsm_decode.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/gsm/src/gsm_decode.c
+END

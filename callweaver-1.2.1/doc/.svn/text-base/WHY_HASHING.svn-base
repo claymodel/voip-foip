@@ -1,0 +1,229 @@
+Hashing - Why?!
+
+Everytime I see all those strcmp()'s and strcasecmp()'s in the Max Specter
+sources I am asking myself:
+
+"Has this been written by a 12 year old on a Commodore VIC-20 in BASIC-70?"
+
+Not only is this an incredible waste of CPU cycles, it also smacks of total
+ignorance of software development techniques developed since the 1950s and
+is therefore utmost unprofessional. It has got to be thrown out.
+
+Whenever the pbx execution engine evaluates a line of code in the dialplan,
+it calls strcmp() or strcasecmp() to compare each keyword, application,
+variable, context or extension to the names of all other keywords, variables,
+applications, contexts and extensions respectively, one by one, and each one
+character by character. This is an incredible waste of resources.
+
+The workload thereby increases with the number of concurrent calls times the
+average number of applications, variables, contexts and extensions times the
+average length of identifiers. The use of case insensitive application names
+and variable has the effect of doubling the average length of application
+names and variables and thereby increases the workload further.
+
+Worse still, each call to strcmp() and strcasecmp() involves a context switch
+which is computationally expensive and in this case totally unneccessary.
+
+This is all the more puzzling when considering that the avoidance of context
+switches for performance reasons is the most common justification why the
+sources lack abstraction and feature so many monstrous spaghetti functions.
+
+Even early 1960s BASIC interpreters did not use string comparisons while
+executing a program. They tokenized all identifiers and only compared the
+token codes during execution. Tokenizing and hashing are well known and
+firmly established techniques which have been in use in interpreters and
+compilers since the early 1950s.
+
+With a hash based approach, a hash value is calculated for each identifier
+found and the hash value is then compared against known hash codes in order
+to recognise the identifier. A single integer comparison replaces the 
+strcmp() or strcasecmp() function call which is not only faster but also
+avoids the context switch associated with a function call.
+
+This is not a matter of style. A software project that doesn't employ these
+time proven techniques in script execution engines cannot possibly claim any
+credibility for itself and no self respecting software professional would
+write code the way pbx.c looks like. There can be no argument about it.
+
+To their credit, the original author seem to have at least been aware of the
+impact on performance as the following comment in the original code shows ...
+
+/*
+ * I M P O R T A N T :
+ *
+ * The speed of extension handling will likely be among the most important
+ * aspects of this PBX.  The switching scheme as it exists right now isn't
+ * terribly bad (it's O(N+M), where N is the # of extensions and M is the
+ * avg # of priorities, but a constant search time here would be great ;-)
+ *
+ */
+
+For some reason though the author didn't seem to have done anything about it.
+Maybe their skillset was insufficient, maybe they have never heard of hashes,
+maybe they didn't pay attention when the subject matter of hashing came up in
+class, maybe they were too lazy to do their homework and forgot all about it.
+
+Whatever the reason may have been, it could not possibly serve as an excuse.
+
+There is also no excuse not to fix this problem. So, I have made a start
+towards replacing all the strcmp() and strcasecmp() calls in pbx.c with hash
+comparisons by providing this hashing API and hash codes for keywords used in
+there. This comprises the following files ...
+
+cw_hash.h -- header file of the hashing API
+cw_hash.c -- implementation of the hashing API
+cw_keywords.h -- hash values for keywords found in pbx.c
+
+Eventually, everything should be hashed, contexts, extensions, variables etc.
+
+
+The following is a description of the main steps of the conversion to a hash
+based approach, using hash comparison instead of strcmp() and strcasecmp(),
+but not yet using hashtables for storage (this is the next step, though).
+
+In pbx.c the structs cw_app and cw_builtin got an additional member ...
+
+unsigned int hash;
+
+Function pbx_findapp() changed to ...
+
+unsigned int hash = cw_hash_string(app);
+
+alternatively, ...
+
+unsigned int hash = cw_hash_string_toupper(app);
+
+... in case you want to retain case insensitivity. Note, that this is
+slightly more expensive, computationally.
+
+Function pbx_findapp() also changed to ...
+
+while(tmp) {
+                // The proper way ...
+                if (hash == tmp->hash)
+                        break;
+                // The silly way ...
+                /*
+                if (!strcasecmp(tmp->name, app))
+                        break;
+                */
+                tmp = tmp->next;
+        }
+
+and this illustrates very well how hashes save many CPU cycles:
+
+First, there is no function call to check the application name for a match in
+every turn of the loop. Context switches are rather expensive and we avoid
+them altogether by not calling strcasecmp() anymore. Secondly, instead of one
+test per character in the application name, we now have only one single test
+per application entry to test the hash code.
+
+The result is that application search performance becomes linear instead of
+logarithmic. One integer comparison per registered application, instead of one
+context switch plus average number of characters in an application name times
+the number of registered applications.
+
+Now, in order to get the hash codes for arbitrary applications into the
+cw_app struct in the first place, the following code was added to function
+cw_register_application() ...
+
+unsigned int hash = cw_hash_string(app);
+
+or, again, for retaining case insensitivity ...
+
+unsigned int hash = cw_hash_string_toupper(app);
+
+Then, ...
+
+        while(tmp) {
+                if (hash == tmp->hash) {
+                        // replaced code: (!strcasecmp(app, tmp->name)) {
+
+and ...
+
+        if (tmp) {
+                memset(tmp, 0, sizeof(struct cw_app));
+                strncpy(tmp->name, app, sizeof(tmp->name)-1);
+                tmp->hash = hash;
+
+Function cw_unregister_application() has also been modified accordingly.
+
+
+Finally, all the strcmp()'s for builtin keyword checks were replaced by ...
+
+if (c && (hash == CW_KEYWORD_CALLERIDNUM)) {
+                // replaced code: (c && !strcmp(var, "CALLERIDNUM")) {
+
+etc etc
+
+
+Eventually, I will replace the linked list storage and linear search with a
+hashtable storage library so CallWeaver can store arbitrary objects in a hash
+table from where they can be retrieved much faster than the current method
+using linear searches on linked lists and arrays.
+
+benjk, August 2006
+
+
+
+
+
+***************************************************************************
+         PERFORMANCE NOTICE - PLEASE READ WHEN BENCHMARKING
+***************************************************************************
+
+In pbx.c file, exactly in function
+
+static int pbx_builtin_noop(struct cw_channel *chan, void *data)
+
+we have added a call to usleep(1);
+
+This means that every time that a NoOp() application is executed in 
+the dialplan, a microsecond sleep is added to the execution time.
+
+This wouldn't be a major performance problem and surely it isn't.
+
+Let's take a sample dialplan for doing tests (thanks to Royk):
+
+[proc-speedtest]
+exten => s,1,Answer
+exten => s,n,PlayTones(ring)
+exten => s,n,Wait(1)
+exten => s,n,Set(iterations=$[ 100000 ])
+exten => s,n,Set(i=1)
+exten => s,n,Verbose(Begin-of-speedtest)
+exten => s,n,Wait(2)
+exten => s,n,Set(time1=${EPOCH})
+
+exten => s,n(iterate),GotoIf($[ ${i}<${iterations} ]?next:last)
+exten => s,n(next),Set(i=$[ ${i}+1 ])
+;exten => s,n,NoOp()
+exten => s,n,Goto(iterate)
+
+exten => s,n(last),Set(time2=${EPOCH})
+exten => s,n,Verbose(Finish-of-speedtest)
+exten => s,n,Verbose(The time diff is $[${time2} - ${time1} ] seconds)
+exten => s,n,Verbose(Which means that the priorities/sec = $[ 4 * ${iterations} / (${time2} - ${time1}) ] )
+exten => s,n,Wait(1)
+exten => s,n,SayNumber($[ 4 * ${iterations} / (${time2} - ${time1}) ] )
+exten => s,n,Hangup
+
+Without the NoOp() call, it would execute on my PC at about 60k iterations per second.
+The drawback is that the playtone isn't played at all because all the CPU is dedicated to
+the dialplan loop.
+
+Adding the call to the NoOp(), performance tests would fall down to about 2000 ips.
+This is dued to the fact that when usleep is called, the other threads are allowed 
+to wake up and execute and it's likely to take more than 1 microsecond.
+
+Fortunately, under load, the usleep() call will allow all the threads to run smoothly 
+without any particular issue.
+We are more interested in smooth RTP streams than dialplan performance. 
+
+Please note that this big performance reduction, so if you want to
+compare the dialplan execution, don't use NoOp() or comment out the usleep() in it;
+
+With this small mod, we have managed to find a useful way to use NoOp which should
+be inserted in tight loops. 
+
+CtRiX, November 2006

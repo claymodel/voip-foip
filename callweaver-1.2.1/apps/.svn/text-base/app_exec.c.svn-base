@@ -1,0 +1,124 @@
+/*
+ * CallWeaver -- An open source telephony toolkit.
+ *
+ * Copyright (c) 2004 - 2005, Tilghman Lesher.  All rights reserved.
+ *
+ * Tilghman Lesher <app_exec__v001@the-tilghman.com>
+ *
+ * This code is released by the author with no restrictions on usage.
+ *
+ * See http://www.callweaver.org for more information about
+ * the CallWeaver project. Please do not directly contact
+ * any of the maintainers of this project for assistance;
+ * the project provides a web site, mailing lists and IRC
+ * channels for your use.
+ *
+ */
+
+/*! \file
+ *
+ * \brief Exec application
+ *
+ * \author Tilghman Lesher <app_exec__v001 at the-tilghman.com>
+ */
+#ifdef HAVE_CONFIG_H
+#include "confdefs.h"
+#endif
+
+#include <stdio.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+
+#include "callweaver.h"
+
+CALLWEAVER_FILE_VERSION("$HeadURL$", "$Revision$")
+
+#include "callweaver/file.h"
+#include "callweaver/logger.h"
+#include "callweaver/options.h"
+#include "callweaver/channel.h"
+#include "callweaver/pbx.h"
+#include "callweaver/module.h"
+
+/* Maximum length of any variable */
+#define MAXRESULT	1024
+
+static char *tdesc = "Executes applications";
+
+static void *exec_app;
+static char *name_exec = "Exec";
+static char *exec_synopsis = "Executes internal application";
+static char *exec_syntax = "Exec(appname(arguments))";
+static char *exec_descrip =
+"Allows an arbitrary application to be invoked even when not\n"
+"hardcoded into the dialplan. To invoke external applications\n"
+"see the application System. Returns whatever value the\n"
+"app returns or a non-zero value if the app cannot be found.\n";
+
+STANDARD_LOCAL_USER;
+
+LOCAL_USER_DECL;
+
+static int exec_exec(struct cw_channel *chan, int argc, char **argv)
+{
+	int res=0;
+	struct localuser *u;
+	char *s, *appname, *endargs, args[MAXRESULT];
+	struct cw_app *app;
+
+	LOCAL_USER_ADD(u);
+
+	/* Check and parse arguments */
+	if (argc > 0) {
+		s = cw_strdupa(argv[0]);
+		appname = strsep(&s, "(");
+		if (s) {
+			endargs = strrchr(s, ')');
+			if (endargs)
+				*endargs = '\0';
+			pbx_substitute_variables_helper(chan, s, args, sizeof(args));
+		}
+		if (appname) {
+			app = pbx_findapp(appname);
+			if (app) {
+				res = pbx_exec(chan, app, args);
+			} else {
+				cw_log(LOG_WARNING, "Could not find application (%s)\n", appname);
+				res = -1;
+			}
+		}
+	}
+
+	LOCAL_USER_REMOVE(u);
+	return res;
+}
+
+int unload_module(void)
+{
+	int res = 0;
+	STANDARD_HANGUP_LOCALUSERS;
+	res |= cw_unregister_application(exec_app);
+	return res;
+}
+
+int load_module(void)
+{
+	exec_app = cw_register_application(name_exec, exec_exec, exec_synopsis, exec_syntax, exec_descrip);
+	return 0;
+}
+
+char *description(void)
+{
+	return tdesc;
+}
+
+int usecount(void)
+{
+	int res;
+	STANDARD_USECOUNT(res);
+	return res;
+}
+
+

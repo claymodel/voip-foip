@@ -1,0 +1,32 @@
+ogi-cli, @2007 by Antonio Gallo (AGX)  - www.badpenguin.org
+
+There is an ongoing discussion about removing the CLI from inside the main 
+program because it give so some problems.
+
+So to give an alternative ready as soon as possible i'm going to deliver some
+utility first using Perl and the evaluating to make ti a compiled version for 
+perfomance.
+
+The utility will be:
+- rcallweaver.pl	compatible with rcallweaver and callweaver -r ;
+- eventwatcher.pl	connect and pretty printing of what is going on into 
+			the PBX; no user input, just for watching;
+- managergui.pl		combination of the two, maybe splitting the screen
+			into more windows using newt or curses for managing
+			different views of what is going on.
+
+Requirements:
+- managergui.pl		required libnewt-perl
+
+Actual state:
+- rcallweaver.pl	it works, check the TODO inside the source code for
+			missing features;
+- eventwatcher.pl	it print the events, need to finish it;
+- managergui.pl		not started yet, need to finish the two before;
+- rcallweaver		porintg of rcallweaver in C since this is a very small
+			program should not be difficult to convert from perl.
+
+**********************************************************************************
+This is the 1.2 version of ogi-cli, please download "trunk" for an updated version
+**********************************************************************************
+

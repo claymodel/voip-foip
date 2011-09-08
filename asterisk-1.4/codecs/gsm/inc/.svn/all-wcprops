@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/asterisk/!svn/ver/111856/branches/1.4/codecs/gsm/inc
+END
+private.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/asterisk/!svn/ver/111856/branches/1.4/codecs/gsm/inc/private.h
+END
+proto.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/gsm/inc/proto.h
+END
+config.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/gsm/inc/config.h
+END
+gsm.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/gsm/inc/gsm.h
+END
+unproto.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/asterisk/!svn/ver/43376/branches/1.4/codecs/gsm/inc/unproto.h
+END

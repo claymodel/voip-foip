@@ -1,0 +1,155 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/sccp
+END
+sccp_line.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/sccp/sccp_line.c
+END
+sccp_socket.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/sccp/sccp_socket.c
+END
+sccp_pbx.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/sccp/sccp_pbx.c
+END
+sccp_line.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/sccp/sccp_line.h
+END
+sccp_socket.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/sccp/sccp_socket.h
+END
+sccp_pbx.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/sccp/sccp_pbx.h
+END
+sccp_device.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/sccp/sccp_device.c
+END
+sccp_utils.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/sccp/sccp_utils.c
+END
+sccp_actions.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/sccp/sccp_actions.c
+END
+sccp_device.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/sccp/sccp_device.h
+END
+sccp_utils.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/sccp/sccp_utils.h
+END
+sccp_actions.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/sccp/sccp_actions.h
+END
+sccp_protocol.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/sccp/sccp_protocol.h
+END
+sccp_softkeys.c
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/sccp/sccp_softkeys.c
+END
+sccp_cli.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/sccp/sccp_cli.c
+END
+sccp_labels.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/sccp/sccp_labels.h
+END
+sccp_channel.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/sccp/sccp_channel.c
+END
+chan_sccp.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/sccp/chan_sccp.c
+END
+sccp_cli.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/sccp/sccp_cli.h
+END
+sccp_softkeys.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/sccp/sccp_softkeys.h
+END
+sccp_channel.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/sccp/sccp_channel.h
+END
+chan_sccp.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/sccp/chan_sccp.h
+END
+sccp_indicate.c
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/sccp/sccp_indicate.c
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/sccp/Makefile.am
+END
+sccp_indicate.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/channels/sccp/sccp_indicate.h
+END

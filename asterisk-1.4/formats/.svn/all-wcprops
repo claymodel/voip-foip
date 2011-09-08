@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/asterisk/!svn/ver/327251/branches/1.4/formats
+END
+format_gsm.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/233782/branches/1.4/formats/format_gsm.c
+END
+format_g729.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/233782/branches/1.4/formats/format_g729.c
+END
+format_sln.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/233782/branches/1.4/formats/format_sln.c
+END
+format_wav.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/315257/branches/1.4/formats/format_wav.c
+END
+format_ogg_vorbis.c
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/asterisk/!svn/ver/233782/branches/1.4/formats/format_ogg_vorbis.c
+END
+format_wav_gsm.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/asterisk/!svn/ver/233782/branches/1.4/formats/format_wav_gsm.c
+END
+format_ilbc.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/233782/branches/1.4/formats/format_ilbc.c
+END
+format_vox.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/233782/branches/1.4/formats/format_vox.c
+END
+format_pcm.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/233782/branches/1.4/formats/format_pcm.c
+END
+format_h263.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/233782/branches/1.4/formats/format_h263.c
+END
+format_g723.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/233782/branches/1.4/formats/format_g723.c
+END
+msgsm.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/asterisk/!svn/ver/43376/branches/1.4/formats/msgsm.h
+END
+format_h264.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/233782/branches/1.4/formats/format_h264.c
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/93183/branches/1.4/formats/Makefile
+END
+format_jpeg.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/233782/branches/1.4/formats/format_jpeg.c
+END
+format_g726.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/233782/branches/1.4/formats/format_g726.c
+END

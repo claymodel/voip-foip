@@ -1,0 +1,17 @@
+To: $SENDTO
+Subject: pager per $DESTINATION completato
+From: Server fax HylaFAX <$FROMADDR>
+Content-type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: Quoted-Printable
+
+Il pager per $number è stato completato con successo.
+
+                 Dialoghi: $tottries (connessioni stabilite con il dispositivo remoto)
+                 Chiamate: $totdials (totale chiamate telefoniche effettuate)
+                    Modem: $modem
+               Inviato da: $client
+                    JobID: $jobid
+                  GroupID: $groupid
+                   CommID: c$commid
+
+Il tempo di elaborazione è stato $JTIME.

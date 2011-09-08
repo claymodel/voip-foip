@@ -1,0 +1,202 @@
+#! /bin/sh
+#	$Id$
+#
+# chkconfig: 2345 97 05
+#
+# description: HylaFAX(tm) is a sophisticated enterprise-strength fax
+#              package for class 1 and 2 fax modems on unix systems.
+#              This init script is the preferred way to start HylaFAX,
+#              but does not, by default, activate any modems. Consult
+#              the faxgetty(8) and faxmodem(8) man pages for more info.
+#
+# @WARNING@
+#
+# HylaFAX Facsimile Software
+#
+# Copyright (c) 1990-1996 Sam Leffler
+# Copyright (c) 1991-1996 Silicon Graphics, Inc.
+# HylaFAX is a trademark of Silicon Graphics
+# 
+# Permission to use, copy, modify, distribute, and sell this software and 
+# its documentation for any purpose is hereby granted without fee, provided
+# that (i) the above copyright notices and this permission notice appear in
+# all copies of the software and related documentation, and (ii) the names of
+# Sam Leffler and Silicon Graphics may not be used in any advertising or
+# publicity relating to the software without the specific, prior written
+# permission of Sam Leffler and Silicon Graphics.
+# 
+# THE SOFTWARE IS PROVIDED "AS-IS" AND WITHOUT WARRANTY OF ANY KIND, 
+# EXPRESS, IMPLIED OR OTHERWISE, INCLUDING WITHOUT LIMITATION, ANY 
+# WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.  
+# 
+# IN NO EVENT SHALL SAM LEFFLER OR SILICON GRAPHICS BE LIABLE FOR
+# ANY SPECIAL, INCIDENTAL, INDIRECT OR CONSEQUENTIAL DAMAGES OF ANY KIND,
+# OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
+# WHETHER OR NOT ADVISED OF THE POSSIBILITY OF DAMAGE, AND ON ANY THEORY OF 
+# LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE 
+# OF THIS SOFTWARE.
+
+#
+# VERSION:	@VERSION@
+# DATE:		@DATE@
+# TARGET:	@TARGET@
+#
+
+#
+# fax server control
+#
+# NB: This script assumes faxgetty processes are managed by init
+#
+SPOOL=@SPOOL@
+
+test -f $SPOOL/etc/setup.cache || {
+    cat<<EOF
+
+FATAL ERROR: $SPOOL/etc/setup.cache is missing!
+
+The file $SPOOL/etc/setup.cache is not present.  This
+probably means the machine has not been setup using the faxsetup(@MANNUM1_8@)
+command.  Read the documentation on setting up HylaFAX before you
+startup a server system.
+
+EOF
+    exit 1
+}
+. $SPOOL/etc/setup.cache
+
+# Just in case these are not in setup.cache yet
+if [ -z "$HFAXD_SERVER" ]; then
+    HFAXD_SERVER=@HFAXD_SERVER@
+fi
+if [ -z "$FAXQ_SERVER" ]; then
+    FAXQ_SERVER=@FAXQ_SERVER@
+fi
+if [ -z "$HFAXD_SNPP_SERVER" ]; then
+    HFAXD_SNPP_SERVER=@HFAXD_SNPP_SERVER@
+fi
+
+IS_ON=/etc/chkconfig		# NB: chkconfig is IRIX- and Linux-specific
+FAXQ=$SBIN/faxq
+HFAXD=$LIBEXEC/hfaxd
+FAXQUIT=$SBIN/faxquit
+FAXPORT=hylafax			# designated port for new protocol
+SNPPPORT=444			# official port for SNPP
+
+if test ! -x $IS_ON ; then
+    IS_ON=true
+fi
+
+if $IS_ON verbose ; then
+    ECHO=echo
+else		# For a quiet startup and shutdown
+    ECHO=:
+fi
+
+#
+# Figure out which brand of echo we have and define prompt
+# and printf shell functions accordingly.  Note that we
+# assume that if the System V-style echo is not present,
+# then the BSD printf program is available.  These functions
+# are defined here so that they can be tailored on a per-site,
+# etc. basis.
+#
+if [ `echo foo\\\c`@ = "foo@" ]; then
+    # System V-style echo supports \r
+    # and \c which is all that we need
+    printf()
+    {
+       $ECHO "$*\\c"
+    }
+elif [ "`echo -n foo`@" = "foo@" ]; then
+    # BSD-style echo; use echo -n to get
+    # a line without the trailing newline
+    printf()
+    {
+       $ECHO -n "$*"
+    }
+else
+    # something else; do without
+    printf()
+    {
+	$ECHO "$*"
+    }
+fi
+
+#
+#
+# killall -SIGNAL process-name
+#
+# Emulate the necessary functionality of the
+# killall program
+#
+killall()
+{
+	# NB: ps ax should give an error on System V, so we try it first!
+	pid="`ps ax 2>/dev/null | $AWK \"\
+		/[\/ (]$2[ )]/	{print \\$1;}
+		/[\/ ]$2\$/	{print \\$1;}\"`"
+	test "$pid" ||
+	    pid="`ps -e 2>/dev/null | $AWK \"/ $2[ ]*\$/ {print \\$1;}\"`"
+	test "$pid" && kill $1 $pid; return
+}
+
+do_start()
+{
+	if $IS_ON fax && test -x $FAXQ; then
+	    if test $FAXQ_SERVER = yes ; then
+		killall -15 faxq
+	    fi
+	    if test $HFAXD_SERVER = yes ; then
+		killall -15 hfaxd
+	    fi
+	    printf "HylaFAX:"
+            if test $FAXQ_SERVER = yes ; then
+	        $FAXQ; printf " faxq"
+            fi
+            if test $HFAXD_SERVER = yes ; then
+	        HFAXD="$HFAXD -i $FAXPORT"
+		HFAXMSG=" hfaxd"
+		if [ $HFAXD_SNPP_SERVER = yes ]; then
+	    	    HFAXD="$HFAXD -s $SNPPPORT"
+		    HFAXMSG="$HFAXMSG (with SNPP support)"
+		else
+		    HFAXMSG="$HFAXMSG (without SNPP support)"
+		fi
+		$HFAXD ; printf "$HFAXMSG"
+            fi
+	    if test $FAXQ_SERVER != yes && test $HFAXD_SERVER != yes ; then
+		printf " not started (script disabled by configure)"
+	    fi
+	    $ECHO "."
+	fi
+}
+
+do_stop ()
+{
+    $ECHO "Stopping HylaFAX Servers."
+    $FAXQUIT >/dev/null 2>&1
+    killall -15 hfaxd
+}
+
+case $1 in
+'start')
+	do_start
+	;;
+'stop')
+	do_stop
+	;;
+'restart')
+	do_stop
+	sleep 2 #wait some time...
+	do_start
+	;;
+'start_msg')
+	$ECHO "Starting HylaFAX Servers."
+	;;
+'stop_msg')
+	$ECHO "Stopping HylaFAX Servers."
+	;;
+*)
+	$ECHO "usage: hylafax {start|stop|restart|start_msg|stop_msg}"
+	;;
+esac

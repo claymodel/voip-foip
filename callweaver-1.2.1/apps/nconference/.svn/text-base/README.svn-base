@@ -1,0 +1,147 @@
+
+**************************************************************
+
+NConference is a channel independent conference 
+
+It is distributed under GPL V2.
+
+It was written by Massimo "CtRiX" Cetra - 
+Navynet SRL - Firenze, Italy - http://www.navynet.it
+
+Inspiration was taken from app_conference and some (small)
+parts of the code were re-used.
+
+**************************************************************
+
+
+ ********************
+  CHANNEL VARIABLES
+ ********************
+
+  Nconference accepts 3 channel variables which, if present (like in
+the following example) will set the outbound features of the application.
+All of them are optional.
+
+exten => 1234,1,Answer
+; Then context where outbound calls will take place
+exten => 1234,n,Set(NCONF_OUTBOUND_CONTEXT=internal)
+; The default option parameters for the called member
+exten => 1234,n,Set(NCONF_OUTBOUND_PARAMS=S)
+; The default timeout before giving up the call
+exten => 1234,n,Set(NCONF_OUTBOUND_TIMEOUT=5)
+; Caller id Name and Num
+exten => 1234,n,Set(NCONF_OUTBOUND_CID_NAME=Nconf)
+exten => 1234,n,Set(NCONF_OUTBOUND_CID_NUM=9999)
+; Here we are ! :-)
+exten => 1234,n,NConference(12345/MV/1111)
+
+NCONF_OUTBOUND_CONTEXT: The context where to put the outgoing call to.
+
+NCONF_OUTBOUND_PARAMS : Parameters to invoke the conference application
+			in the outbound channel.
+
+NCONF_OUTBOUND_TIMEOUT (seconds) : The timeout before hangup, if no answer.
+
+
+ ********************
+  KEYBOARD FUNCTIONS
+ ********************
+
+     Normal mode
+ (all type of users)
+     -----------
+
+    +---+---+---+
+    | 1 | 2 | 3 |
+    +---+---+---+
+    | 4 | 5 | 6 |
+    +---+---+---+
+    | 7 | 8 | 9 |
+    +---+---+---+
+    | * | 0 | # |
+    +---+---+---+
+
+1 - Talk volume DOWN
+2 - Hold this channel - Talk Mute and switch on MOH (on/off)
+3 - Talk volume UP
+4 - VAD On/Off if support is compiled in
+5 - Talk Mute ON/OFF
+6 - Enable/Disable sounds for this member (override conference main settings)
+    (a beep is played when sounds are enabled)
+7 - 
+8 -
+9 - Asks for pin to become a moderator member (terminated by #)
+0 - Says the number of the members in the conference 
+* - Enable admin mode (if the member is a Moderator, otherwise do nothing)
+# - Hangup 
+
+
+ ********************
+  KEYBOARD FUNCTIONS
+ ********************
+
+     Admin mode
+  (Moderators only)
+     ----------
+
+    +---+---+---+
+    | 1 | 2 | 3 |
+    +---+---+---+
+    | 4 | 5 | 6 |
+    +---+---+---+
+    | 7 | 8 | 9 |
+    +---+---+---+
+    | * | 0 | # |
+    +---+---+---+
+
+1 - Considers the following digits (up to #) as an extension 
+    to be called and added to the conference.
+    The extension is looked up in the same context of the 
+    conference and is started for a SPEAKER vith VAD (if compiled in) 
+    and DTMF tones commands activated.
+
+2 - 
+3 - 
+
+4 - Enable/Disable sounds for ALL members of the conference.
+ 0- Disable
+ 1 Enable
+
+5 - Mute/Unmute all members except the one who has typed the command
+ 0- Unmute
+ 1- Mute
+
+6 - Start/Stop playing MOH for all members of the conference.
+ 0- Stop
+ 1- Start
+
+7 - Lock/Unlock the conference (No one will be able to join unless it's moderator)
+ 0- Unlock
+ 1- Lock
+
+8 -
+
+9 - Sets the following digits (up to #) as the conference PIN.
+    Plays the PIN when set.
+    (Throws manager event)
+
+0 - Hangup 
+ 0- Quit gracefully all users except the member entering the command
+ 1- Kicks last user entered
+ 2- Kicks all users except the member entering the command
+* - Exits admin mode
+# - (for some commands) Command is over: execute it
+
+
+
+ ********************
+    MANAGER EVENTS
+ ********************
+
+Manager events are generated on:
+ * DTMF Received
+ * Speaking state change detected
+ * Setting the PIN of a conference
+ * Joins/Leave events
+ * Conference Creation/Deletion
+

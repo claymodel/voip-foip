@@ -1,0 +1,107 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/asterisk/!svn/ver/268053/branches/1.4/channels/h323
+END
+cisco-h225.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/asterisk/!svn/ver/177160/branches/1.4/channels/h323/cisco-h225.cxx
+END
+Makefile.in
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/asterisk/!svn/ver/268053/branches/1.4/channels/h323/Makefile.in
+END
+compat_h323.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/asterisk/!svn/ver/182963/branches/1.4/channels/h323/compat_h323.cxx
+END
+caps_h323.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/asterisk/!svn/ver/177160/branches/1.4/channels/h323/caps_h323.cxx
+END
+ast_h323.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/asterisk/!svn/ver/191220/branches/1.4/channels/h323/ast_h323.cxx
+END
+ChangeLog
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/asterisk/!svn/ver/43376/branches/1.4/channels/h323/ChangeLog
+END
+noexport.map
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/asterisk/!svn/ver/43376/branches/1.4/channels/h323/noexport.map
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/asterisk/!svn/ver/43376/branches/1.4/channels/h323/README
+END
+cisco-h225.asn
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/asterisk/!svn/ver/43635/branches/1.4/channels/h323/cisco-h225.asn
+END
+chan_h323.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/asterisk/!svn/ver/189991/branches/1.4/channels/h323/chan_h323.h
+END
+cisco-h225.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/asterisk/!svn/ver/177160/branches/1.4/channels/h323/cisco-h225.h
+END
+TODO
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/asterisk/!svn/ver/43376/branches/1.4/channels/h323/TODO
+END
+INSTALL.openh323
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/asterisk/!svn/ver/43376/branches/1.4/channels/h323/INSTALL.openh323
+END
+ast_ptlib.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/asterisk/!svn/ver/177160/branches/1.4/channels/h323/ast_ptlib.h
+END
+compat_h323.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/asterisk/!svn/ver/182963/branches/1.4/channels/h323/compat_h323.h
+END
+caps_h323.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/asterisk/!svn/ver/177160/branches/1.4/channels/h323/caps_h323.h
+END
+ast_h323.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/asterisk/!svn/ver/182963/branches/1.4/channels/h323/ast_h323.h
+END

@@ -1,0 +1,33 @@
+#!/bin/sh
+# Packages required for CallWeaver
+# By Roy Sigurd Karlsbakk <roy@karlsbakk.net>
+# Please set the two variables below to either 0 or 1.
+
+# Set this to 1 if using Sangoma Wanpipe
+USING_WANPIPE=0
+
+# Set this to 1 if using MySQL
+USING_MYSQL=0
+
+# Set this to 1 if 'recommended' packages should be included
+USING_RECOMMENDED_PACKAGES=1
+
+# Comment out this line after configuring
+echo "Please edit this script to configure your options first"; exit;
+
+##############################################################################
+######################## DON'T TOUCH THE STUFF BELOW #########################
+##############################################################################
+
+BASE_PACKAGES="libtool autoconf automake gcc make libtool autoconf automake memcached libltdl3-dev libreadline5-dev libtiff-dev libcap-dev libssl-dev"
+RECOMMENDED_PACKAGES="memcached"
+MYSQL_PACKAGES="libmysqlclient15-dev"
+SANGOMA_PACKAGES="flex bison libncurses5-dev cpp g++"
+
+PACKAGES=$BASE_PACKAGES
+[[ $USING_WANPIPE -gt 0 ]] && PACKAGES+=" $SANGOMA_PACKAGES"
+[[ $USING_MYSQL -gt 0 ]] && PACKAGES+=" $WANPIPE_PACKAGES"
+[[ $USING_RECOMMENDED_PACKAGES -gt 0 ]] && PACKAGES+=" $RECOMMENDED_PACKAGES"
+
+apt-get install $PACKAGES
+

@@ -1,0 +1,30 @@
+[general]
+;user to run callweaver (this can not be root/UID 0)
+cwrunuser => @cwrunuser@
+;group to run callweaver (this can not be root wheel or GID 0)
+cwrungroup => @cwrunuser@
+
+[directories]
+cwetcdir => @cwconfdir@
+cwmoddir => @cwmoddir@
+cwvarlibdir => @cwvardir@
+cwdbdir => @cwdbdir@
+cwogidir => @cwogidir@
+cwspooldir => @cwspooldir@
+cwrundir => @cwrundir@
+cwlogdir => @cwlogdir@
+cwsoundsdir => @cwsoundsdir@
+cwkeydir => @cwkeydir@
+
+[options]
+systemname => mycallweaverbox
+enablespaghetticode => no
+
+; Changing the following lines may compromise your security.
+;[files]
+;cwctlpermissions = 0660
+;cwctlowner = root
+;cwctlgroup = apache
+;cwctl = callweaver.ctl
+;cwdb = @cwdbfile@
+;cwclihistory = .callweaver_history

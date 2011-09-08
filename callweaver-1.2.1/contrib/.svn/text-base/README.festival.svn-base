@@ -1,0 +1,47 @@
+
+app_festival is an application that allows one to send text-to-speech commands
+to a background festival server, and to obtain the resulting waveform which
+gets sent down to the respective channel. app_festival also employs a waveform 
+cache, so invariant text-to-speech strings ("Please press 1 for instructions") 
+do not need to be dynamically generated all the time. 
+
+You need : 
+
+1) festival, patched to produce 8khz waveforms on output. Patch for Festival
+1.4.2 RELEASE are included. The patch adds a new command to festival 
+(callweaver_tts). 
+
+It is possible to run Festival without patches in the source-code. Just
+add this to your /etc/festival.scm or /usr/share/festival/festival/scm:
+
+    (define (tts_textcallweaver string mode)
+    "(tts_textcallweaver STRING MODE)
+    Apply tts to STRING. This function is specifically designed for
+    use in server mode so a single function call may synthesize the string.
+    This function name may be added to the server safe functions."
+    (let ((wholeutt (utt.synth (eval (list 'Utterance 'Text string)))))
+    (utt.wave.resample wholeutt 8000)
+    (utt.wave.rescale wholeutt 5)
+    (utt.send.wave.client wholeutt)))
+
+[See the comment with subject "Using Debian
+ festival >= 1.4.3-15 (no recompiling needed!)" on
+ http://www.voip-info.org/wiki-CallWeaver+festival+installation for the
+ original mentioning of it]
+
+2) You may wish to obtain and install the callweaver-perl
+module by James Golovich <james@gnuinter.net>, from 
+either CPAN, or his site: http://callweaver.gnuinter.net,
+as this contains a good example of how variable text
+can be tts'd via callweaver, namely the examples/tts-*.ogi
+files there. It has been noted that the current expression
+evaluation capabilities of callweaver are not best suited
+for the generation and manipulation of text. OGI scripting
+can be ideal for these sorts of needs. For simpler usage,
+fixed, pre-recorded messages may be more amenable for your
+purposes.
+
+3) Before running callweaver, you have to run festival-server with a command 
+like : 
+
+/usr/local/festival/bin/festival --server > /dev/null 2>&1 &

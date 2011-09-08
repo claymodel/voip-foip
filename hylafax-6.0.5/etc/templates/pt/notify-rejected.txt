@@ -1,0 +1,30 @@
+To: $SENDTO
+Subject: fax $jobid para $DESTINATION falhou
+From: Servidor de fax HylaFAX <$FROMADDR>
+Content-type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: Quoted-Printable
+
+O seu fax para $number foi rejeitado, causa:
+
+$faxstatus
+
+------- Unsent job status -------
+              Destinatário: $number
+                   IDEnvio: $jobid
+                   IDGrupo: $groupid
+                 Remetente: $sender
+                     Email: $mailaddr
+                     IDCom: $commid
+                     Modem: $modem
+                Enviado De: $client
+                   Largura: $pagewidth  (mm)
+               Comprimento: $pagelength (mm)
+                 Resolução: $resolution (lpi)
+                    Estado: $faxstatus
+                   Sessões: $tottries
+                 Marcações: $ndials
+                  Chamadas: $totdials
+                   Páginas: $npages
+              TotalPáginas: $totpages
+                Tentativas: $ntries
+                    NumDir: $dirnum

@@ -1,0 +1,9 @@
+[settings]
+master = res_jabber@jabber.mydomain.com/controller
+event_master = res_jabber@jabber.mydomain.com/controller
+server = jabber.mydomain.com
+login = res_jabber
+passwd = mypass
+resource = master_thread
+media_ip = 127.0.0.1
+

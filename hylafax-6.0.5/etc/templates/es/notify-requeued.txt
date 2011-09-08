@@ -1,0 +1,11 @@
+To: $SENDTO
+Subject: trabajo fax $JOBINFO a $DESTINATION ha sido puesto em memoria
+From: Servidor de Fax HylaFAX <$FROMADDR>
+Content-type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: Quoted-Printable
+
+Su trabajo fax para $number no fue enviado porque:
+
+$faxstatus
+
+El trabajo será enviado nuevamente en $NEXT

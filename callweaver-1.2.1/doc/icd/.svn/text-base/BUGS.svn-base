@@ -1,0 +1,10 @@
+Bug List
+-- August 11th, 2004 Michael Bielicki
+- CallerID does not get sent to agents and changes randomly on each ringing of an agent
+- ICD load queue does not delete and recreate queue definitions but adds new config entries without deleting the old ones
+- The examples had wrong options for prompts and chimes definition - FIXED
+- ICD does not work correctly with latest CVS caused by some threading changes in asterisk lock.h
+
+- added some descriptions for icd_agent and icd_customers
+- will setup a bugtracker and a mailing list for icd
+

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+# Copyright 2005, In Words - Technical Documentation Services and Solutions
+#
+# Author: Sean Wheller   sean.at.inwords.co.za   http://www.inwords.co.za
+#
+# THIS SOFTWARE IS PROVIDED BY THE AUTHOR "AS IS" AND ANY EXPRESS OR
+# IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+# DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTI
+# GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+# NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+# This program is free software; you can redistribute it and/or modify 
+# it under the terms of the GNU General Public License as published by 
+# the Free Software Foundation; either version 2 of the License, or 
+# (at your  option) any later version.  This program is distributed in 
+# the hope that it will be useful, but WITHOUT ANY WARRANTY; without 
+# even the implied warranty of MERCHANTABILITY or FITNESS FOR A 
+# PARTICULAR PURPOSE.
+#
+# See the GNU General Public License for more details.
+# http://www.gnu.org/copyleft/gpl.html
+#
+##############
+# A list of project entities
+##############
+-->
+
+
+<!--
+Project Entities
+-->
+<!ENTITY project-name 'CallWeaver.org'>
+<!--
+Common
+-->
+<!ENTITY publisher SYSTEM '../common/publisher.xml'>
+<!ENTITY legalnotice SYSTEM '../common/legalnotice.xml'>
+<!ENTITY copyright SYSTEM '../common/copyright.xml'>
+<!--
+Modules
+-->
+<!ENTITY prep-guide SYSTEM '../prep/prep-guide.xml'>
+<!ENTITY inst-guide SYSTEM '../inst/inst-guide.xml'>
+<!ENTITY comm-guide SYSTEM '../comm/comm-guide.xml'>
+<!ENTITY prov-guide SYSTEM '../prov/prov-guide.xml'>
+<!ENTITY oper-guide SYSTEM '../oper/oper-guide.xml'>
+<!ENTITY faq-guide SYSTEM '../faq/faq-guide.xml'>

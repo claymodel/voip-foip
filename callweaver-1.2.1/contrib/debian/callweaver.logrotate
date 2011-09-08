@@ -1,0 +1,26 @@
+# vim:ts=4:sw=4
+#
+# Possible file names include anything, but these ones are examples of common names
+#
+# /var/log/callweaver/debug
+# /var/log/callweaver/event_log
+# /var/log/callweaver/full
+# /var/log/callweaver/messages
+# /var/log/callweaver/mmlog
+# /var/log/callweaver/queue_log
+# /var/log/callweaver/verbose
+#
+# See logrotate(8) for more info
+#
+/var/log/callweaver/debug /var/log/callweaver/event_log /var/log/callweaver/full /var/log/callweaver/messages /var/log/callweaver/mmlog /var/log/callweaver/queue_log /var/log/callweaver/verbose {
+	daily
+	rotate 14
+	nocreate
+	sharedscripts
+	compress
+	delaycompress
+	missingok
+	postrotate
+		/usr/sbin/callweaver -rx 'logger reload'
+	endscript
+}

@@ -1,0 +1,33 @@
+[general]
+; Channel we listen on as a HS (Headset)
+rfchannel_hs = 2
+; Channel we listen on as an AG (AudioGateway)
+rfchannel_ag = 3
+; hci interface to use (number - e.g '0')
+interface = 0
+
+;; A HBH-500 Handsfree Kit
+;[00:0A:D9:A1:AA:D2]
+; Any name to use, this is what we use to send calls to (BLT/<name>).
+;name        = HBH-500
+; IS this a HS or AG?
+;type        = HS
+;
+;
+; RFCOMM channel to connect to.  For a HandsSet:
+;    sdptool search --bdaddr xx:xx:xx:xx:xx:xx 0x111E
+; or,for an AudioGateway (Phone):
+;    sdptool search --bdaddr xx:xx:xx:xx:xx:xx 0x111F
+;
+; Find the 'channel' value under RFCOMM.
+;
+;channel     = 2
+; Automatically conenct?
+;autoconnect = yes
+
+;; A Nokia 6310i
+;[00:60:57:1C:00:99]
+;name        = Neil
+;type        = AG
+;channel     = 13
+;autoconnect = yes

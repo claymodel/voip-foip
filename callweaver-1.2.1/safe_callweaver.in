@@ -1,0 +1,103 @@
+#!/bin/sh
+CALLWEAVER_CLIARGS="$*"		# Grab any args passed to safe_callweaver
+CALLWEAVER_TTY=9			# CALLWEAVER_TTY (if you want one) for CallWeaver to run on
+CALLWEAVER_CONSOLE=yes		# Whether or not you want a console
+#CALLWEAVER_NOTIFY=ben@alkaloid.net	# Who to notify about crashes
+CALLWEAVER_MACHINE=`hostname`      # To specify which machine has crashed when getting the mail
+CWSBINDIR=@sbindir@
+CWVARDIR=@cwvardir@
+
+[ -r /etc/sysconfig/callweaver ] && . /etc/sysconfig/callweaver
+[ -r /etc/default/callweaver ] && . /etc/default/callweaver
+
+logmsg()
+{
+	msg="$*"
+	echo "callweaver: $msg"
+	if [ -x /usr/bin/logger ]; then
+		logger -p daemon.info "callweaver: $msg"
+	fi
+}
+
+mvcore()
+{
+	if [ "`echo ${CWVARDIR}/core/core*`" != "${CWVARDIR}/core/core*" ]; then
+		COREDIR="${CWVARDIR}/core/`date '+%Y-%m-%d-%H:%M:%S'`"
+		mkdir ${COREDIR}
+		mv ${CWVARDIR}/core/core* ${COREDIR} && logmsg "Found and moved core dumps to $COREDIR"
+	fi
+}
+
+#
+# Don't fork when running "safely"
+#
+CWARGS=""
+if [ "$CALLWEAVER_TTY" != "" ]; then
+	if [ -c /dev/tty${CALLWEAVER_TTY} -a -w /dev/tty${CALLWEAVER_TTY} ]; then
+		CALLWEAVER_TTY=tty${CALLWEAVER_TTY}
+	elif [ -c /dev/vc/${CALLWEAVER_TTY} -a -w /dev/vc/${CALLWEAVER_TTY} ]; then
+		CALLWEAVER_TTY=vc/${CALLWEAVER_TTY}
+	else
+		logmsg "Cannot find your CALLWEAVER_TTY (${CALLWEAVER_TTY})" >&2
+		exit 1
+	fi
+	CWARGS="${CWARGS} -vvvg"
+	if [ "$CALLWEAVER_CONSOLE" != "no" ]; then
+		CWARGS="${CWARGS} -c"
+	else
+		CWARGS="${CWARGS} -f"
+	fi
+else
+	CWARGS="${CWARGS} -f"
+fi
+
+if [ ! -w ${CWVARDIR}/core ]; then	
+	logmsg "Cannot write to ${CWVARDIR}/core/" >&2
+	exit 1
+fi
+
+#
+# Let CallWeaver dump core
+#
+ulimit -c unlimited
+
+run_callweaver()
+{
+	while :; do 
+
+		cd ${CWVARDIR}/core
+		if [ "$CALLWEAVER_TTY" != "" ]; then
+			stty sane < /dev/${CALLWEAVER_TTY}
+			${CWSBINDIR}/callweaver ${CALLWEAVER_CLIARGS} ${CWARGS} > /dev/${CALLWEAVER_TTY} 2>&1 < /dev/${CALLWEAVER_TTY}
+		else
+			${CWSBINDIR}/callweaver ${CALLWEAVER_CLIARGS} ${CWARGS}
+		fi
+		EXITSTATUS=$?
+		logmsg "CallWeaver ended with exit status $EXITSTATUS"
+		if [ "$EXITSTATUS" = "0" ]; then
+			# Properly shutdown....
+			logmsg "CallWeaver shutdown normally."
+			exit 0
+		elif [ $EXITSTATUS -gt 128 ]; then
+			let EXITSIGNAL=EXITSTATUS-128
+			logmsg "CallWeaver exited on signal $EXITSIGNAL."
+			if [ "$CALLWEAVER_NOTIFY" != "" ]; then
+				logmsg "CallWeaver on $CALLWEAVER_MACHINE exited on signal $EXITSIGNAL.  Might want to take a peek." | \
+				mail -s "CallWeaver Died (signal $EXITSIGNAL)" $CALLWEAVER_NOTIFY
+			fi
+			mvcore
+		else
+			if [ "${EXITSTATUS}" = "0" ]; then
+				logmsg "CallWeaver ended normally.  Aborting."
+				exit 0
+			else
+				logmsg "CallWeaver died with code $EXITSTATUS."
+				mvcore
+			fi
+		fi
+		logmsg "Automatically restarting CallWeaver."
+		sleep 4
+	done
+}
+
+run_callweaver &

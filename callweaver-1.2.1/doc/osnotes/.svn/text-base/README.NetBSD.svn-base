@@ -1,0 +1,50 @@
+************************************************************
+ How to build CallWeaver.org on NetBSD
+************************************************************
+
+(Initial note: the same instructions applies to SpanDSP)
+
+To configure, please use something like the following:
+
+CFLAGS="-I/usr/local/include -gstabs" \
+LDFLAGS="-L/usr/local/lib" \
+\
+./configure \
+    **INSERT HERE YOUR CONFIGURE OPTIONS** \
+    --enable-internal_libedit
+
+
+Please note that -gstabs is only needed if you want to debug.
+It's, anyway, always a good flag to add.
+
+------------------------------------------------------------
+
+After configuring what you need, you'll need to compile.
+Don't use make.
+Use gmake or things will not work.
+
+#gmake
+#gmake install 
+
+and enjoy !!
+
+************************************************************
+
+Additional notice:
+NetBSD has posix timers with 10ms resolution.
+If you know how to improve, please drop a note on the ML so that
+we can add some more informations.
+
+Attitional notice #2:
+if you experience something like:
+ callweaver: Error detected by libpthread: Invalid condition variable.
+and a following crash, ee are interested in a backtrace of 
+the fault in order to dig around to find the cause.
+
+To solve the problem (temporarily), try to set the env 
+variable PTHREAD_DIAGASSERT=AE and run callweaver.
+
+
+Written by Massimo "CtRiX" Cetra
+Thanks to Navynet SRL - http://www.navynet.it
+

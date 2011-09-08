@@ -1,0 +1,25 @@
+#!/bin/sh
+cat << END
+/*
+ * defaults.h 
+ * Automatically generated
+ */
+#define CW_CONFIG_DIR "${INSTALL_PATH}${CWETCDIR}"
+#define CW_RUN_DIR    "${INSTALL_PATH}${CWVARRUNDIR}"
+#define CW_SOCKET     "${INSTALL_PATH}${CWVARRUNDIR}/callweaver.ctl"
+#define CW_PID        "${INSTALL_PATH}${CWVARRUNDIR}/callweaver.pid"
+#define CW_MODULE_DIR "${INSTALL_PATH}${MODULES_DIR}"
+#define CW_SPOOL_DIR  "${INSTALL_PATH}${CWSPOOLDIR}"
+#define CW_VAR_DIR    "${INSTALL_PATH}${CWVARLIBDIR}"
+#define CW_LOG_DIR    "${INSTALL_PATH}${CWLOGDIR}"
+#define CW_OGI_DIR    "${INSTALL_PATH}${OGI_DIR}"
+#define CW_KEY_DIR    "${INSTALL_PATH}${CWVARLIBDIR}/keys"
+#define CW_DB         "${INSTALL_PATH}${CWVARLIBDIR}/cwdb"
+#define CW_TMP_DIR    "${INSTALL_PATH}${CWSPOOLDIR}/tmp"
+
+#define CW_CONFIG_FILE "${INSTALL_PATH}${CWCONFPATH}"
+
+#define CW_SOUNDS     "${INSTALL_PATH}${CWVARLIBDIR}/sounds"
+#define CW_IMAGES     "${INSTALL_PATH}${CWVARLIBDIR}/images"
+
+END

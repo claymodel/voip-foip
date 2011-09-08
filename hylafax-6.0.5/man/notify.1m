@@ -1,0 +1,165 @@
+.\"	$Id$
+.\"
+.\" HylaFAX Facsimile Software
+.\"
+.\" Copyright (c) 1993-1996 Sam Leffler
+.\" Copyright (c) 1993-1996 Silicon Graphics, Inc.
+.\" HylaFAX is a trademark of Silicon Graphics
+.\" 
+.\" Permission to use, copy, modify, distribute, and sell this software and 
+.\" its documentation for any purpose is hereby granted without fee, provided
+.\" that (i) the above copyright notices and this permission notice appear in
+.\" all copies of the software and related documentation, and (ii) the names of
+.\" Sam Leffler and Silicon Graphics may not be used in any advertising or
+.\" publicity relating to the software without the specific, prior written
+.\" permission of Sam Leffler and Silicon Graphics.
+.\" 
+.\" THE SOFTWARE IS PROVIDED "AS-IS" AND WITHOUT WARRANTY OF ANY KIND, 
+.\" EXPRESS, IMPLIED OR OTHERWISE, INCLUDING WITHOUT LIMITATION, ANY 
+.\" WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.  
+.\" 
+.\" IN NO EVENT SHALL SAM LEFFLER OR SILICON GRAPHICS BE LIABLE FOR
+.\" ANY SPECIAL, INCIDENTAL, INDIRECT OR CONSEQUENTIAL DAMAGES OF ANY KIND,
+.\" OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
+.\" WHETHER OR NOT ADVISED OF THE POSSIBILITY OF DAMAGE, AND ON ANY THEORY OF 
+.\" LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE 
+.\" OF THIS SOFTWARE.
+.\"
+.if n .po 0
+.ds Fx \fIHyla\s-1FAX\s+1\fP
+.ds Ps P\s-2OST\s+2S\s-2CRIPT\s+2
+.TH NOTIFY ${MANNUM1_8} "May 8, 1996"
+.SH NAME
+notify \- \*(Fx user notification script
+.SH SYNOPSIS
+.B ${SPOOL}/bin/notify
+.I qfile
+.I why
+.I jobtime
+[
+.I nextTry
+]
+.SH DESCRIPTION
+.B bin/notify
+is the command script invoked by the facsimile server to notify a
+user about the status of an outbound job.
+The default notification script sends the user
+electronic mail describing the event or action.
+The arguments are:
+.TP 10
+.B qfile
+the pathname of the job description file.
+.TP
+.B why
+a string that specifies why the user is being notified; one of:
+.sp .5
+.nf
+.ta  +\w'poll_no_document    'u +\w'Notes    'u
+\fBWhy\fP	\fBNotes\fP	\fBMeaning\fP
+\fIdone\fP	\(S1	job was completed successfully
+\fIfailed\fP	\(S1\(S2	job was not completed
+\fIrejected\fP	\(S1	job was rejected for specified reasons
+\fIrequeued\fP	\(S2	job was not completed, but was requeued for retry
+\fIremoved\fP	\(S1	job was deleted from the queue
+\fIkilled\fP	\(S1	job was deleted from the queue
+\fItimedout\fP	\(S1	job could not be sent before kill time expired
+\fIformat_failed\fP	\(S1	document conversion failed
+\fIno_formatter\fP	\(S1	the document conversion program was not found
+\fIpoll_rejected\fP	\(S1\(S2	a polling request was rejected by the remote side
+\fIpoll_no_document\fP	\(S1\(S2	a polling request failed because nothing was available
+\fIpoll_failed\fP	\(S1\(S2	a polling request failed for an unknown reason
+\fIblocked\fP	\(S3	job is blocked by concurrent jobs
+.sp .5
+.fi
+.br
+\(S1 A final job state
+.br
+\(S2 A transcript of the failed communication is returned
+to the sender.
+.br
+\(S3 No emails are sent for the block state, the job has been neither requeued nor done, but remains waiting
+in the queue for the ability to be sent.
+.TP
+.B jobtime
+the total transmission time of a successful job or the connect
+time of a failed request (passed as a string).
+.TP
+.B nextTry
+the time (passed as a string) at which the next attempt will be
+made to complete the job.
+This parameter is passed only if
+.B why
+is ``requeued''.
+.SH NOTES
+The behavior of
+.B notify
+is intended to be customizable via the
+.B etc/FaxNotify
+script, if present.  FaxNotify is sourced after the q-file is parsed and
+all default values are preset.  Useful settings for FaxNotify are:
+.TP
+.I WHY
+is identical to
+.B why
+mentioned above and can be useful in determining under what conditions
+various settings should take effect.  For example,
+.sp
+.nf
+.ft C
+if [ "$WHY" != "done" ]; then
+    RETURNFILETYPE=pdf;
+fi
+.ft R
+.fi
+.sp
+This would only set
+.B RETURNFILETYPE
+when the job did not complete successfully.
+.TP
+.I RETURNFILETYPE
+can be set to ``tif'', ``pdf'', ``ps'', or ``original''.  If set,
+this causes
+.B notify
+to return a copy of the submitted documents to the
+.B SENDER
+address along with the notification message.  The ``original'' setting
+uses the format type that was used in the submission.
+Multiple values may be specified by separating them with
+whitespace. In that case a separate attachment is created
+for each filetype.
+.TP
+.I NOTIFY_FAXMASTER
+is used to deliver a notification message to
+.B TOADDR
+(which defaults to ``FaxMaster'') that contains technical information
+about the job.  This is useful in allowing the administrator to be aware of
+any problems before those problems are reported by the users.
+Possible settings are ``yes'', ``always'', ``no'', ``never'', and ``errors''.
+If ``errors'' is used then the notification message is only sent to FaxMaster
+when the job experienced an error.  The default is ``no''.
+.P
+The settings of the user in
+.B $notify
+(read from the
+.B sendq
+job file) controls whether the user will get the notification email.  If you want to force
+notification emails, irregardless of the users selection, or force a blocked notification (which is
+not sent by default), you can set
+.sp
+.nf
+.ft C
+notify="always"
+.ft R
+.fi
+.sp
+which will force the notify script to send the email.
+.SH FILES
+.nf
+.ta \w'${SENDMAIL}    'u
+${SPOOL}	spooling area
+${SENDMAIL}	for delivering mail
+.fi
+.SH "SEE ALSO"
+.IR faxq (${MANNUM1_8}),
+.IR hylafax-server (${MANNUM4_5}),
+.IR sendq (${MANNUM4_5})

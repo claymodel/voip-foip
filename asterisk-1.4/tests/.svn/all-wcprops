@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/asterisk/!svn/ver/295031/branches/1.4/tests
+END
+test_astobj2.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/272881/branches/1.4/tests/test_astobj2.c
+END
+test_poll.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/asterisk/!svn/ver/285889/branches/1.4/tests/test_poll.c
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/asterisk/!svn/ver/272878/branches/1.4/tests/Makefile
+END
+test_expr.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/asterisk/!svn/ver/295031/branches/1.4/tests/test_expr.c
+END
+test_skel.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/asterisk/!svn/ver/272878/branches/1.4/tests/test_skel.c
+END

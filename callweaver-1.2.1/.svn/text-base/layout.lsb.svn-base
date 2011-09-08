@@ -1,0 +1,14 @@
+# LSB directory layout
+helpstring="follow the Linux Standard Base (LSB) standard"
+cwprefix=/usr/local
+cwexecdir=${sbindir}
+cwutilsdir=${sbindir}
+cwconfdir=${sysconfdir}/callweaver
+cwlibdir=${libdir}/callweaver
+cwvardir=${localstatedir}/lib/callweaver
+cwdatadir=${datadir}/callweaver
+cwlogdir=${localstatedir}/log/callweaver
+cwrundir=${localstatedir}/run/callweaver
+cwspooldir=${localstatedir}/spool/callweaver
+cwmandir=${mandir}
+cwdocdir=${cwdatadir}/doc

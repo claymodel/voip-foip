@@ -1,0 +1,185 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd
+END
+icd_mod_event_cwmgr.c
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/icd_mod_event_cwmgr.c
+END
+app_icd.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/app_icd.c
+END
+icd_mod_external.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/icd_mod_external.c
+END
+icd_event.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/icd_event.c
+END
+icd_metalist.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/icd_metalist.c
+END
+icd_apr.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/icd_apr.c
+END
+icd_queue.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/icd_queue.c
+END
+voidhash.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/voidhash.c
+END
+icd_bridge.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/icd_bridge.c
+END
+icd_mod_agent_priority_groups.c
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/icd_mod_agent_priority_groups.c
+END
+icd_caller_list.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/icd_caller_list.c
+END
+icd_agent.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/icd_agent.c
+END
+icd_fieldset.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/icd_fieldset.c
+END
+icd_customer.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/icd_customer.c
+END
+icd_member_list.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/icd_member_list.c
+END
+icd_caller.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/icd_caller.c
+END
+icd_distributor_list.c
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/icd_distributor_list.c
+END
+icd_config.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/icd_config.c
+END
+icd_conference.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/icd_conference.c
+END
+icd_member.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/icd_member.c
+END
+icd_mod_event_cli.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/icd_mod_event_cli.c
+END
+icd_listeners.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/icd_listeners.c
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/Makefile.am
+END
+icd_plugable_fn_list.c
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/icd_plugable_fn_list.c
+END
+icd_distributor.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/icd_distributor.c
+END
+icd_mod_matchagent.c
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/icd_mod_matchagent.c
+END
+icd_list.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/icd_list.c
+END
+icd_command.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/icd_command.c
+END
+icd_module_api.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/icd_module_api.c
+END
+icd_plugable_fn.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/apps/icd/icd_plugable_fn.c
+END

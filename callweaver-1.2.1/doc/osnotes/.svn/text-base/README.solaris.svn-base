@@ -1,0 +1,10 @@
+Till now we are developing only on the Solaris-x86 platform, utilising Solaris10
+Tools used are:
+
+the freeware that comes with SOlaris 10, to be found in /usr/sfw/bin and /opt/sfw/bin
+
+all apps in /usr/sfw/bin are fully supported by SUN
+
+subversion from www.sunfreeware.org, to be found in /opt/csw/bin
+
+More ntoes soon ..

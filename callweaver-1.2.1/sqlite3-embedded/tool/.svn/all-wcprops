@@ -1,0 +1,107 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/tool
+END
+memleak3.tcl
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/tool/memleak3.tcl
+END
+opcodeDoc.awk
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/tool/opcodeDoc.awk
+END
+speedtest.tcl
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/tool/speedtest.tcl
+END
+omittest.tcl
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/tool/omittest.tcl
+END
+lemon.c
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/tool/lemon.c
+END
+memleak.awk
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/tool/memleak.awk
+END
+showjournal.c
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/tool/showjournal.c
+END
+space_used.tcl
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/tool/space_used.tcl
+END
+mkopts.tcl
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/tool/mkopts.tcl
+END
+diffdb.c
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/tool/diffdb.c
+END
+lempar.c
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/tool/lempar.c
+END
+mkkeywordhash.c
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/tool/mkkeywordhash.c
+END
+speedtest2.tcl
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/tool/speedtest2.tcl
+END
+showdb.c
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/tool/showdb.c
+END
+spaceanal.tcl
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/tool/spaceanal.tcl
+END
+report1.txt
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/tool/report1.txt
+END
+memleak2.awk
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/sqlite3-embedded/tool/memleak2.awk
+END

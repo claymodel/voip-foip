@@ -1,0 +1,62 @@
+.TH SAFE_CALLWEAVER 8 "Jun 30th, 2005" "CallWeaver" "Linux Programmer's Manual"
+.SH NAME
+.B safe_callweaver
+\(em A wrapper to run the callweaver executable in a loop
+.SH SYNOPSIS
+.PP 
+.B safe_callweaver
+.I [ callweaver_params ]
+
+.SH DESCRIPTION
+.B safe_callweaver 
+is a script that runs callweaver in a loop, which can be useful if you 
+fear callweaver may crash.
+
+The script does not run in the background like a standard service. Rather, 
+it runs in its own linux virtual console (9, by default).
+It also uses the option '-c' of callweaver(8) to avoid detaching callweaver 
+from that terminal.
+
+safe_callweaver also runs callweaver with unlimited core file size, and thus 
+callweaver will dump core in case of a crash.
+
+To get a "picture" of console 9, from another terminal (e.g: from a 
+remote shell session) you can use:
+
+  screendump 9
+
+The init script of the Debian package should be able to run safe_callweaver 
+as the callweaver service, if so configured. See coments in 
+/etc/default/callweaver
+
+.SH FILES
+.B /tmp
+.RS
+safe_callweaver runs in that directory, rather than in / as usual.
+.RE
+
+.B /tmp/core
+.RS
+If core files were generated there, they may be 
+.RE
+
+.SH BUGS
+While showing the output on a console is useful, using screen(1) as 
+the terminal may be better.
+
+The script does not read configuration from standard location under /etc
+
+It uses fixed locations under /tmp , and thus may be exposed to a 
+symlink attacks.
+
+.SH SEE ALSO
+callweaver(8), screendump(9)
+
+.SH "AUTHOR" 
+This manual page was written by Tzafrir Cohen <tzafrir.cohen@xorcom.com> 
+Permission is granted to copy, distribute and/or modify this document under 
+the terms of the GNU General Public License, Version 2 any  
+later version published by the Free Software Foundation. 
+
+On Debian systems, the complete text of the GNU General Public 
+License can be found in /usr/share/common-licenses/GPL. 

@@ -1,0 +1,28 @@
+From: Serwer faxów HylaFAX <$FROMADDR>
+To: $SENDTO
+Subject: Odebrano fax od $SENDER
+Content-type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: Quoted-Printable
+
+$FILE (ftp://$HOSTNAME:$PORT/$FILE):
+           Nadawca: $SENDER
+             Stron: $PAGES
+            Jakość: $QUALITY
+           Rozmiar: $PAGE
+         Otrzymano: $RECEIVED
+Długość transmisji: $TIMETORECV
+            Sygnał: $SIGNALRATE
+     Format danych: $DATAFORMAT
+   Korekcja błędów: $ERRCORRECT
+    Połączenie ID1: $CALLID1
+    Połączenie ID2: $CALLID2
+         Otrzymano: $DEVICE
+
+Nie odebrano całości dokumentu, ponieważ:
+
+   $MSG
+
+    ---- Transkrypcja sesji ----
+
+$SESSION_LOG
+

@@ -1,0 +1,21 @@
+# Possible names include anything, but these ones are examples although dtmf and
+# full aren't that common
+#
+#	/var/log/callweaver/*log
+#	/var/log/callweaver/messages
+#	/var/log/callweaver/debug
+#	/var/log/callweaver/notice
+#	/var/log/callweaver/warning
+#	/var/log/callweaver/error
+#	/var/log/callweaver/verbose
+#	/var/log/callweaver/dtmf
+#
+
+/var/log/callweaver/*log /var/log/callweaver/messages /var/log/callweaver/notice /var/log/callweaver/warning /var/log/callweaver/error /var/log/callweaver/verbose {
+  sharedscripts
+  missingok
+#  notifempty
+  postrotate
+	/usr/sbin/callweaver -rx 'logger reload' &>/dev/null || :
+  endscript
+}

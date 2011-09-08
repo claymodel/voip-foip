@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/cdr
+END
+cdr_pgsql.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/cdr/cdr_pgsql.c
+END
+cdr_odbc.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/cdr/cdr_odbc.c
+END
+cdr_custom.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/cdr/cdr_custom.c
+END
+cdr_manager.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/cdr/cdr_manager.c
+END
+cdr_csv.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/cdr/cdr_csv.c
+END
+cdr_sqlite3_custom.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/cdr/cdr_sqlite3_custom.c
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/cdr/Makefile.am
+END
+cdr_pgsql_custom.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/cdr/cdr_pgsql_custom.c
+END
+cdr_sqlite3.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/cdr/cdr_sqlite3.c
+END
+cdr_mysql.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/5396/callweaver/tags/rel/1.2.1/cdr/cdr_mysql.c
+END

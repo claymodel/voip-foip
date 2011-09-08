@@ -1,0 +1,29 @@
+# $Id$
+#
+# prototype config for Eicon Diva
+#
+
+# CONFIG:CLASS1:Eicon*:.*:.*: Manufacturer=Eicon Model=Diva
+#
+# BEGIN-SERVER
+# END-SERVER
+
+ModemType:		Class1		# use this to supply a hint
+
+#
+# Make sure the modem gives us Caller*ID in a legible way.
+#
+ModemResetCmds:         AT#CID=14
+
+#
+# Eicon recommends initializing with AT+iQ=a1 where "1" is
+# the controller number.  This command binds the tty to that
+# controller and bypasses the "channel pool" approach.
+#
+#ModemResetCmds:         AT#CID=14+iQ=a1
+
+#
+# These should match the modem responses for DID and Caller*ID.
+#
+CallIDPattern:		"DAD: "
+CallIDPattern:		"CID: "

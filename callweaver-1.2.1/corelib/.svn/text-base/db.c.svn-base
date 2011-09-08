@@ -1,0 +1,1327 @@
+/*
+ * CallWeaver -- An open source telephony toolkit.
+ *
+ *
+ * Memcached features, improvements and speedups
+ *
+ * Copyright (C) 2008, Massimo Cetra
+ *
+ *
+ * SQLite DB Functionality
+ * 
+ * Copyright (C) 2004, Anthony Minessale II
+ *
+ * Anthony Minessale II <anthmct@cylynx.com>
+ *
+ * Original Function Prototypes
+ * Copyright (C) 1999 - 2005, Digium, Inc.
+ *
+ * Mark Spencer <markster@digium.com>
+ *
+ * See http://www.callweaver.org for more information about
+ * the CallWeaver project. Please do not directly contact
+ * any of the maintainers of this project for assistance;
+ * the project provides a web site, mailing lists and IRC
+ * channels for your use.
+ *
+ * This program is free software, distributed under the terms of
+ * the GNU General Public License Version 2. See the LICENSE file
+ * at the top of the source tree.
+ */
+
+/*! \file
+ *
+ * \brief SQLite Management
+ */
+
+
+#ifdef HAVE_CONFIG_H
+#include "confdefs.h"
+#endif
+
+#include <stdio.h>
+#include <assert.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/time.h>
+#include <signal.h>
+#include <errno.h>
+#include <unistd.h>
+#include <dirent.h>
+#include "callweaver.h"
+
+#ifdef HAVE_MEMCACHE
+#include "memcache.h"
+#endif
+
+CALLWEAVER_FILE_VERSION("$HeadURL$", "$Revision$")
+
+#include "callweaver/channel.h"
+#include "callweaver/file.h"
+#include "callweaver/app.h"
+#include "callweaver/dsp.h"
+#include "callweaver/logger.h"
+#include "callweaver/options.h"
+#include "callweaver/callweaver_db.h"
+#include "callweaver/cli.h"
+#include "callweaver/utils.h"
+#include "callweaver/lock.h"
+#include "callweaver/manager.h"
+#include "sqlite3.h"
+
+#define SQL_MAX_RETRIES 5
+#define SQL_RETRY_USEC  500000
+
+CW_MUTEX_DEFINE_STATIC(dblock);
+
+static char *create_odb_sql = 
+"create table odb (\n"
+"	 family varchar(255),\n"
+"	 keys varchar(255) not null,\n"
+"	 value varchar(255) not null\n"
+"	 );\n\n"
+"CREATE INDEX odb_index_0 ON odb(family,keys);\n"
+"CREATE INDEX odb_index_1 ON odb(family);\n"
+"CREATE INDEX odb_index_2 ON odb(keys);\n"
+"CREATE INDEX odb_index_3 ON odb(value);\n";
+
+static int loaded = 0;
+
+static struct {
+	char *dbdir;
+	char *dbfile;
+	char *dbname;
+	char *tablename;
+} globals;
+
+struct cw_db_data {
+	char *data;
+	int datalen;
+	int rownum;
+};
+
+
+#ifdef HAVE_MEMCACHE
+
+#define CACHE_COMMIT_INTERVAL 1         // ATTENTION - Find a suitable Value
+
+typedef struct db_list_s db_list_t;
+
+struct db_list_s {
+    char        *sql;
+    db_list_t   *prev;
+    db_list_t   *next;
+};
+
+static db_list_t        *db_list_head = NULL;
+static db_list_t        *db_list_tail = NULL;
+static pthread_t 	db_thread;
+static cw_cond_t      db_condition_save;
+
+CW_MUTEX_DEFINE_STATIC(db_condition_lock);
+CW_MUTEX_DEFINE_STATIC(db_list_lock);
+CW_MUTEX_DEFINE_STATIC(db_init_lock);
+
+static char             *db_server_host;
+static char             *db_server_port;
+static int              db_cache_lifetime = 0;
+
+static struct {
+    struct memcache             *mc;
+    uint8_t                     active;
+    struct memcache_ctxt       *ctx;
+
+    int                         has_error;
+} memcached_data;
+
+#endif
+
+static int dbinit(void);
+static void sqlite_pick_path(char *dbname, char *buf, size_t size);
+static sqlite3 *sqlite_open_db(char *filename);
+static void sqlite_check_table_exists(char *dbfile, char *test_sql, char *create_sql);
+static int get_callback(void *pArg, int argc, char **argv, char **columnNames);
+static int tree_callback(void *pArg, int argc, char **argv, char **columnNames);
+static int show_callback(void *pArg, int argc, char **argv, char **columnNames);
+static int database_show(int fd, int argc, char *argv[]);
+static int database_put(int fd, int argc, char *argv[]);
+static int database_get(int fd, int argc, char *argv[]);
+static int database_del(int fd, int argc, char *argv[]);
+static int database_deltree(int fd, int argc, char *argv[]);
+
+/*****************************************************************************
+
+ *****************************************************************************/
+
+static int sanity_check(void)
+{
+	if (!loaded) {
+		cw_log(LOG_ERROR, "NICE RACE CONDITION WE HAVE HERE! PUTTING THE CART BEFORE THE HORSE EH? >=0\n");
+		dbinit();
+	}
+	return 0;
+}
+
+
+/*****************************************************************************
+
+ *****************************************************************************/
+
+#ifdef HAVE_MEMCACHE
+
+static int32_t database_cache_error_handler(MCM_ERR_FUNC_ARGS) {
+
+    const struct memcache_ctxt          *ctxt;
+    struct memcache_err_ctxt            *ectxt;
+    const char                          *errno_str;
+    char                                buf[256];
+
+    MCM_ERR_INIT_CTXT(ctxt, ectxt);
+
+    if (ectxt->errnum != 0)
+        errno_str = strerror(ectxt->errnum);
+    else
+        errno_str = NULL;
+
+    /* The following IF statement is the core stuff to 
+       TRAP fatal errors and avoid libmemcache to abort() */
+
+    if (ectxt->cont == 'a' || ectxt->cont == 'n'){ 
+        ectxt->cont = 'y'; 
+        memcached_data.has_error = 1;
+    }
+
+  /*
+   * Quick explaination of the various bits of text:
+   *
+   * ectxt->errmsg - per error message passed along via one of the MCM_*_MSG() macros (optional)
+   * ectxt->errstr - memcache(3) error string (optional, though almost always set)
+   * errno_str - errno error string (optional)
+   */
+
+    if      (ectxt->errmsg != NULL && errno_str != NULL && ectxt->errmsg != NULL)
+        snprintf(buf, sizeof(buf)-1, "%s():%u: %s: %s: %.*s\n",      ectxt->funcname, ectxt->lineno, ectxt->errstr, errno_str, (int)ectxt->errlen, ectxt->errmsg);
+
+    else if (ectxt->errmsg == NULL && errno_str != NULL && ectxt->errmsg != NULL)
+        snprintf(buf, sizeof(buf)-1, "%s():%u: %s: %.*s\n",          ectxt->funcname, ectxt->lineno, errno_str, (int)ectxt->errlen, ectxt->errmsg);
+
+    else if (ectxt->errmsg != NULL && errno_str == NULL && ectxt->errmsg != NULL)
+        snprintf(buf, sizeof(buf)-1, "%s():%u: %s: %.*s\n",          ectxt->funcname, ectxt->lineno, ectxt->errstr, (int)ectxt->errlen, ectxt->errmsg);
+
+    else if (ectxt->errmsg != NULL && errno_str != NULL && ectxt->errmsg == NULL)
+        snprintf(buf, sizeof(buf)-1, "%s():%u: %s: %s\n",            ectxt->funcname, ectxt->lineno, errno_str, ectxt->errstr);
+
+    else if (ectxt->errmsg == NULL && errno_str == NULL && ectxt->errmsg != NULL)
+        snprintf(buf, sizeof(buf)-1, "%s():%u: %.*s\n",              ectxt->funcname, ectxt->lineno, (int)ectxt->errlen, ectxt->errmsg);
+
+    else if (ectxt->errmsg == NULL && errno_str != NULL && ectxt->errmsg == NULL)
+        snprintf(buf, sizeof(buf)-1, "%s():%u: %s\n",                ectxt->funcname, ectxt->lineno, errno_str);
+
+    else if (ectxt->errmsg != NULL && errno_str == NULL && ectxt->errmsg == NULL)
+        snprintf(buf, sizeof(buf)-1, "%s():%u: %s\n",                ectxt->funcname, ectxt->lineno, ectxt->errmsg);
+
+    else
+        snprintf(buf, sizeof(buf)-1, "%s():%u\n",                    ectxt->funcname, ectxt->lineno);
+
+
+    switch (ectxt->severity) {
+        case MCM_ERR_LVL_INFO:
+            cw_log(LOG_DEBUG,"%s",buf);
+            break;
+        case MCM_ERR_LVL_NOTICE:
+            cw_log(LOG_NOTICE,"%s",buf);
+            break;
+        case MCM_ERR_LVL_WARN:
+            cw_log(LOG_WARNING,"%s",buf);
+            break;
+        case MCM_ERR_LVL_ERR:
+            cw_log(LOG_ERROR,"%s",buf);
+            break;
+        case MCM_ERR_LVL_FATAL:
+            cw_log(LOG_ERROR,"** %s",buf);
+            break;
+         default:
+            cw_log(LOG_NOTICE,"%s",buf);
+            break;
+    }
+
+
+
+    return 0;
+}
+
+static int database_flush_cache(void) {
+    int err = 0;
+    db_list_t *tmplist, *item, *tmpitem;
+
+    char *zErr = 0;
+    int res = 0;
+    sqlite3 *db;
+    int retry=0;
+
+    sanity_check();
+
+    if (!(db = sqlite_open_db(globals.dbfile))) {
+	return -1;
+    }
+
+    sqlite3_exec(db,"BEGIN",NULL,NULL,0);
+
+    cw_mutex_lock(&db_list_lock);
+    item = tmplist = db_list_head;
+    db_list_head = NULL;
+    db_list_tail = NULL;
+    cw_mutex_unlock(&db_list_lock);
+
+    while ( item && !err ) {
+
+retry_0:
+	cw_log(LOG_DEBUG, "SQL [%s]\n", item->sql);
+	res = sqlite3_exec(db,
+			   item->sql,
+			   NULL,
+			   NULL,
+			   &zErr
+			   );
+
+	if (zErr) {
+            if (retry >= SQL_MAX_RETRIES) {
+		cw_log(LOG_ERROR, "SQL ERR Query: [%s] Error: [%s] Retries: %d Max: %d\n", 
+                         item->sql, zErr, retry, SQL_MAX_RETRIES);
+	    	sqlite3_free(zErr);
+	    } else {
+		cw_log(LOG_DEBUG, "SQL ERR Query: %s Error: [%s] Retries %d\n", 
+                         item->sql, zErr, ++retry);
+		sqlite3_free(zErr);
+		usleep(SQL_RETRY_USEC);
+		goto retry_0;
+	    }
+	    err++;
+	}
+
+        item = item->next;
+    }
+
+
+    if ( err ) {
+        // Requeue EVERYTHING
+        // find the tail of our tmpqueue
+        item = tmplist;
+        while ( item->next ) item = item->next;
+
+        cw_mutex_lock(&db_list_lock);
+        //Put the actual queue at our end and restore the old queue
+        item->next = db_list_head;
+        db_list_head = tmplist;
+        cw_mutex_unlock(&db_list_lock);
+
+        sqlite3_exec(db,"ROLLBACK",NULL,NULL,0);
+        cw_log(LOG_DEBUG,"Rollback\n");
+        res = -1;
+    }
+    else
+    {
+        // Unqueue all items and FREE
+        item = tmplist;
+        while ( item ) {
+            tmpitem = item;
+            item = item->next;
+            free ( tmpitem->sql );
+            free ( tmpitem );
+        }
+        sqlite3_exec(db,"COMMIT",NULL,NULL,0);
+        cw_log(LOG_DEBUG,"Commit\n");
+        res = 0;
+    }
+
+    sqlite3_close(db);
+
+    return res;
+}
+
+
+static void *database_queue_thread_main(void *data) {
+
+    cw_mutex_lock(&db_condition_lock);
+
+    for ( ;; ) {
+
+        if ( db_list_head ) {
+            //cw_log(LOG_ERROR,"DB DO SAVE OUR LIST\n");
+            database_flush_cache();
+            sleep( CACHE_COMMIT_INTERVAL );
+        }
+        else
+        {
+	    cw_cond_wait(&db_condition_save, &db_condition_lock);
+/*
+            //cw_log(LOG_ERROR,"DB SAVE CONDITION RECEIVED\n");
+            db_list_t *e = db_list_head;
+            cw_log(LOG_ERROR,"QUEUE NOW IS:\n");
+            while ( e ) {
+                if ( e->sql )
+                    cw_log(LOG_ERROR,"ITEM: %s\n",e->sql);
+                e = e->next;
+            }
+*/
+        }
+    }
+
+    cw_mutex_unlock(&db_condition_lock);
+
+    return NULL;
+}
+
+static int database_queue_thread_start(void) {
+	pthread_attr_t  attr;
+
+	cw_cond_init(&db_condition_save, NULL);
+	pthread_attr_init(&attr);
+	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
+	if (cw_pthread_create(&db_thread, &attr, database_queue_thread_main, NULL) < 0) {
+		cw_log(LOG_ERROR, "Unable to start database queue thread. Using standard (non cached mode).\n");
+		return -1;
+	}
+
+	return 0;
+}
+
+static int database_sql_queue(char *sql) {
+    db_list_t   *entry = NULL, *last;
+
+    assert ( sql != NULL );
+
+    if ( (entry=malloc(sizeof(db_list_t)))!=NULL ) {
+        entry->sql = strdup(sql);
+        entry->next = NULL;
+        entry->prev = NULL;
+    }
+    else
+    {
+        return -1;
+    }
+
+    cw_mutex_lock(&db_list_lock);
+
+    last = db_list_tail;
+    if ( last ) {
+        db_list_tail = entry;
+        last->next = entry;
+        entry->prev = last;
+    }
+    else
+    {
+        db_list_head = entry;
+        db_list_tail = entry;
+    }
+
+    cw_mutex_unlock(&db_list_lock);
+
+    cw_cond_signal(&db_condition_save);
+
+    //cw_log(LOG_ERROR,"QUEING %s\n",sql);
+
+    return 0;
+}
+
+static void database_cache_try_connect(void) {
+
+        memset( &memcached_data, 0, sizeof(memcached_data) );
+
+        memcached_data.mc = mc_new();
+
+        if ( memcached_data.mc ) {
+            if ( !mc_server_add(memcached_data.mc, db_server_host, db_server_port) ) {
+                memcached_data.active = 1;
+            }
+        }
+
+        if ( memcached_data.active==0 ) {
+            cw_log(LOG_WARNING,"Cannot initialize memcache for server %s:%s.\n", db_server_host, db_server_port);
+            if ( memcached_data.mc )
+                mc_free(memcached_data.mc);
+        }
+        else
+        {
+            cw_log(LOG_NOTICE,"Memcache INITIALIZED\n");
+        }
+
+
+        memcached_data.ctx = mc_global_ctxt();
+        mcm_err_filter_del(memcached_data.ctx, MCM_ERR_LVL_INFO);
+        mcm_err_filter_del(memcached_data.ctx, MCM_ERR_LVL_NOTICE);
+        
+        memcached_data.ctx->mcErr = database_cache_error_handler;
+        //ctxt->mcHashKey = hash_key;
+        //ctxt->mcServerFind = server_find;
+
+        memcached_data.has_error = 0;
+
+}
+
+static void database_cache_retry_connect(void) {
+
+    /* Prevent races when multiple threads try to reconnect to the cache */
+    cw_mutex_lock(&db_init_lock);
+
+    if ( !memcached_data.has_error ) {
+        cw_mutex_unlock(&db_init_lock);
+        return;
+    }
+
+    if ( memcached_data.active ) {
+        mc_free(memcached_data.mc);
+    }
+    database_cache_try_connect();
+
+    cw_mutex_unlock(&db_init_lock);
+}
+
+
+#endif
+
+/*****************************************************************************
+
+ *****************************************************************************/
+
+int cw_db_put(const char *family, const char *keys, char *value)
+{
+	char *sql = NULL;
+	char *zErr = 0;
+	int res = 0;
+	sqlite3 *db;
+	int retry=0;
+
+	if (!family || cw_strlen_zero(family)) {
+		family = "_undef_";
+	}
+
+	if ( !(sql = sqlite3_mprintf("insert into %q values('%q','%q','%q')", globals.tablename, family, keys, value)) ) {
+		cw_log(LOG_ERROR, "Memory Error!\n");
+		res = -1;	/* Return an error */
+	}
+
+	cw_db_del(family, keys);
+
+#ifdef HAVE_MEMCACHE
+        if ( memcached_data.active )  
+        {
+            if ( memcached_data.has_error ) 
+                database_cache_retry_connect();
+
+            //cw_log(LOG_ERROR,"MEMCACHE PUT Family %s : %s => %s (%d) \n", family, keys, value, strlen(value) );
+            int fullkeylen;
+	    char fullkey[256] = "";
+	    fullkeylen = snprintf(fullkey, sizeof(fullkey), "/%s/%s", family, keys);
+
+            mc_delete( memcached_data.mc, fullkey, fullkeylen, 0);
+            if ( mc_set(memcached_data.mc, fullkey, fullkeylen, value, (size_t) strlen(value) , db_cache_lifetime, 0) == 0) {
+                // ADD THE SQL TO THE QUEUE TO BE EXECUTED ASYNCRONOUSLY
+                if ( !database_sql_queue(sql) ) {
+                    sqlite3_free(sql);
+                    return 0;
+                }
+            }
+            else
+            {
+                //DIDN'T WORK
+                // So store as we did before...
+            }
+        }
+#endif
+
+	sanity_check();
+
+	if (!(db = sqlite_open_db(globals.dbfile))) {
+		return -1;
+	}
+
+
+retry_0:
+	if ( sql ) {
+		cw_log(LOG_DEBUG, "SQL [%s]\n", sql);
+
+		res = sqlite3_exec(db,
+				   sql,
+				   NULL,
+				   NULL,
+				   &zErr
+				   );
+
+		if (zErr) {
+			if (retry >= SQL_MAX_RETRIES) {
+				cw_log(LOG_ERROR, "SQL ERR Query: [%s] Error: [%s] Retries: %d Max: %d\n", sql, zErr, retry, SQL_MAX_RETRIES);
+				sqlite3_free(zErr);
+			} else {
+				cw_log(LOG_DEBUG, "SQL ERR Query: %s Error: [%s] Retries %d\n", sql, zErr, ++retry);
+				sqlite3_free(zErr);
+				usleep(SQL_RETRY_USEC);
+				goto retry_0;
+			}
+			res = -1;
+		} else {
+			res = 0;
+		}
+	}
+
+	if (sql) {
+		sqlite3_free(sql);
+		sql = NULL;
+	}
+	sqlite3_close(db);
+
+	return res;
+}
+
+static int get_callback(void *pArg, int argc, char **argv, char **columnNames) 
+{
+	struct cw_db_data *result = pArg;
+
+	cw_copy_string(result->data, argv[0], result->datalen);
+	result->rownum++;
+	return 0;
+}
+
+int cw_db_get(const char *family, const char *keys, char *value, int valuelen)
+{
+
+	char *sql;
+	char *zErr = 0;
+	int res = 0;
+	struct cw_db_data result;
+	sqlite3 *db;
+	int retry=0;
+
+	if (!family || cw_strlen_zero(family)) {
+		family = "_undef_";
+	}
+
+#ifdef HAVE_MEMCACHE
+        int fullkeylen;
+        char fullkey[256] = "";
+        fullkeylen = snprintf(fullkey, sizeof(fullkey), "/%s/%s", family, keys);
+
+        if ( memcached_data.active )  
+        {
+    
+            if ( memcached_data.has_error ) 
+                database_cache_retry_connect();
+
+            //cw_log(LOG_ERROR,"MEMCACHE GET Family %s : %s \n", family, keys);
+            memset(value,0,valuelen);
+            struct memcache_req *mreq;
+            struct memcache_res *mres;
+            mreq = mc_req_new();
+            mres = mc_req_add(mreq, fullkey, fullkeylen);
+            mc_res_free_on_delete(mres, 0);
+            mres->size = valuelen;
+            mres->val  = value;
+            mc_get(memcached_data.mc, mreq);
+            if ( mres->bytes ) {
+                // FOUND
+                //cw_log(LOG_WARNING,"MEMCACHE GET FOUND for %s: (%d) %s\n", fullkey, mres->size,(char *) mres->val);
+                //value = mres->val;
+                mc_req_free(mreq);
+                return 0;
+            }
+            mc_req_free(mreq);
+        }
+#endif
+
+
+	sanity_check();
+
+	if (!(db = sqlite_open_db(globals.dbfile))) {
+		return -1;
+	}
+
+	result.data = value;
+	result.datalen = valuelen;
+	result.rownum = 0;
+
+retry_1:
+	if ((sql = sqlite3_mprintf("select value from %q where family='%q' and keys='%q'", globals.tablename, family, keys))) {
+		cw_log(LOG_DEBUG, "SQL [%s]\n", sql);
+		res = sqlite3_exec(db,
+						   sql,
+						   get_callback,
+						   &result,
+						   &zErr
+						   );
+		
+		if (zErr) {
+			if (retry >= SQL_MAX_RETRIES) {
+				cw_log(LOG_ERROR, "SQL ERR Query: [%s] Error: [%s] Retries: %d Max: %d\n", sql, zErr, retry, SQL_MAX_RETRIES);
+				sqlite3_free(zErr);
+			} else {
+				cw_log(LOG_DEBUG, "SQL ERR Query: %s Error: [%s] Retries %d\n", sql, zErr, ++retry);
+				sqlite3_free(zErr);
+				usleep(SQL_RETRY_USEC);
+				goto retry_1;
+			}
+			res = -1;
+		} else {
+			if (result.rownum)
+				res = 0;
+			else
+				res = -1;
+		}
+	} else {
+		cw_log(LOG_ERROR, "Memory Error!\n");
+		res = -1;   /* Return an error */
+	}
+
+	if (sql) {
+		sqlite3_free(sql);
+		sql = NULL;
+	}
+
+        
+	sqlite3_close(db);
+
+#if defined(HAVE_MEMCACHE)
+        // We got a value out of the cache.
+        // Store it back to the cache to improve performance.
+        if ( !res && memcached_data.active ) {
+            if ( memcached_data.has_error ) 
+                database_cache_retry_connect();
+
+            //cw_log(LOG_ERROR,"DB GET STANDARD RETURNING AND CACHING %s\n", value);
+            mc_set(memcached_data.mc, fullkey, fullkeylen, value, (size_t)MCM_CSTRLEN(value), db_cache_lifetime, 0);
+        }
+#endif
+	return res;
+}
+
+static int cw_db_del_main(const char *family, const char *keys, int like, const char *value, int use_memcache )
+{
+	char *sql;
+	char *zErr = 0;
+	int res = 0;
+	sqlite3 *db;
+	char *op = "=";
+	char *pct = "";
+	int retry=0;
+
+	if (!family || cw_strlen_zero(family)) {
+		family = "_undef_";
+	}
+
+	if (like) {
+		op = "like";
+		pct = "%";
+	}
+
+	if (family && keys && value) {
+		sql = sqlite3_mprintf("delete from %q where family %s '%q%s' and keys %s '%q%s' AND value %s '%q%s' ", 
+                                        globals.tablename, op, family, pct, op, keys, pct, op, value, pct );
+	} else if (family && keys) {
+		sql = sqlite3_mprintf("delete from %q where family %s '%q%s' and keys %s '%q%s'", globals.tablename, op, family, pct, op, keys, pct);
+	} else if (family) {
+		sql = sqlite3_mprintf("delete from %q where family %s '%q%s'", globals.tablename, op, family, pct);
+	} else {
+		sql = sqlite3_mprintf("delete from %q", globals.tablename);
+	}
+
+        if ( !sql ) {
+		cw_log(LOG_ERROR, "Memory Error!\n");
+		return -1;   /* Return an error */
+	}
+
+#ifdef HAVE_MEMCACHE
+        if ( memcached_data.active && use_memcache )  
+        {
+            //cw_log(LOG_ERROR,"MEMCACHE DEL Family %s : %s => %s (%d)\n", family, keys, value, like);
+
+            if ( memcached_data.has_error ) 
+                database_cache_retry_connect();
+
+            if ( !like && !value ) {
+                int fullkeylen;
+	        char fullkey[256] = "";
+	        fullkeylen = snprintf(fullkey, sizeof(fullkey), "/%s/%s", family, keys);
+                mc_delete( memcached_data.mc, fullkey, fullkeylen, 0);
+                if ( !database_sql_queue(sql) ) {
+                    sqlite3_free(sql);
+                    return 0;
+                }
+            }
+            else
+            {
+                // If it's a deltree or we're dropping a specific value.
+                // then we shouldn't do anything.
+                // The best way here is to force the flush of all the QUEUE 
+                // to the DB, clear all the cache and go on as usual.
+//TODO check it
+                database_flush_cache();
+            }
+        }
+#endif
+
+	sanity_check();
+	if (!(db = sqlite_open_db(globals.dbfile))) {
+		return -1;
+	}
+
+	if (sql) {
+retry_2:
+		if (retry > 0)
+			cw_log(LOG_DEBUG, "SQL Query: [%s] (retry %d)\n", sql, retry);
+		else
+			cw_log(LOG_DEBUG, "SQL [%s]\n", sql);
+		res = sqlite3_exec(db,
+						   sql,
+						   NULL,
+						   NULL,
+						   &zErr
+						   );
+
+		if (zErr) {
+			if (retry >= SQL_MAX_RETRIES) {
+				cw_log(LOG_ERROR, "SQL ERR Query: [%s] Error: [%s] Retries: %d Max: %d\n", sql, zErr, retry, SQL_MAX_RETRIES);
+				sqlite3_free(zErr);
+			} else {
+				cw_log(LOG_DEBUG, "SQL ERR Query: %s Error: [%s] Retries %d\n", sql, zErr, ++retry);
+				sqlite3_free(zErr);
+				usleep(SQL_RETRY_USEC);
+				goto retry_2;
+			}
+			res = -1;
+		} else {
+			if (!sqlite3_changes(db))
+				res = -1;
+			else
+				res = 0;
+		}
+	}
+
+	if (sql) {
+		sqlite3_free(sql);
+		sql = NULL;
+	}
+
+	sqlite3_close(db);
+	return res;
+}
+
+
+
+int cw_db_del(const char *family, const char *keys)
+{
+	return cw_db_del_main(family, keys, 0, NULL, 1);
+}
+
+int cw_db_deltree(const char *family, const char *keytree)
+{
+	return cw_db_del_main(family, keytree, 1, NULL, 1);
+}
+
+int cw_db_deltree_with_value(const char *family, const char *keytree, const char *value)
+{
+	return cw_db_del_main(family, keytree, 1, value, 1);
+}
+
+
+
+static int tree_callback(void *pArg, int argc, char **argv, char **columnNames) 
+{
+	int x = 0;
+	char *keys, *values;
+	struct cw_db_entry **treeptr = pArg,
+		*cur = NULL,
+		*ret = NULL;
+
+	for(x=0; x < argc; x++) {
+		keys = argv[0];
+		values = argv[1];
+
+		cur = malloc(sizeof(struct cw_db_entry) + strlen(keys) + strlen(values) + 2);
+		if (cur) {
+			cur->next = NULL;
+			cur->key = cur->data + strlen(values) + 1;
+			strcpy(cur->data, values);
+			strcpy(cur->key, keys);
+			if (*treeptr) {
+				cur->next = *treeptr;
+			}
+			ret = cur;
+		}
+	}
+
+	*treeptr = ret;
+	return 0;
+}
+
+struct cw_db_entry *cw_db_gettree(const char *family, const char *keytree)
+{
+	char *sql;
+	char *zErr = 0;
+	int res = 0;
+	struct cw_db_entry *tree = NULL;
+	sqlite3 *db;
+	int retry=0;
+
+#ifdef HAVE_MEMCACHE
+        database_flush_cache();
+#endif
+
+	sanity_check();
+	if (!(db = sqlite_open_db(globals.dbfile))) {
+		return NULL;
+	}
+
+	if (!family || cw_strlen_zero(family)) {
+		family = "_undef_";
+	}
+
+	if (family && keytree && !cw_strlen_zero(keytree)) {
+		sql = sqlite3_mprintf("select keys,value from %q where family='%q' and keys like '%q%%'", globals.tablename, family, keytree);
+	} else if(family) {
+		sql = sqlite3_mprintf("select keys,value from %q where family='%q'", globals.tablename, family);
+	} else {
+		cw_log(LOG_ERROR, "No parameters supplied.\n");
+		return NULL;
+	}
+
+	if (sql) {
+retry_3:
+		if (retry)
+			cw_log(LOG_DEBUG, "SQL [%s] (retry %d)\n", sql, retry);
+		else
+			cw_log(LOG_DEBUG, "SQL [%s]\n", sql);
+		res = sqlite3_exec(db,
+						   sql,
+						   tree_callback,
+						   &tree,
+						   &zErr
+						   );
+		
+		if (zErr) {
+			if (retry >= SQL_MAX_RETRIES) {
+				cw_log(LOG_ERROR, "SQL ERR Query: [%s] Error: [%s] Retries: %d Max: %d\n", sql, zErr, retry, SQL_MAX_RETRIES);
+				sqlite3_free(zErr);
+			} else {
+				cw_log(LOG_DEBUG, "SQL ERR Query: %s Error: [%s] Retries %d\n", sql, zErr, ++retry);
+				sqlite3_free(zErr);
+				usleep(SQL_RETRY_USEC);
+				goto retry_3;
+			}
+			res = -1;
+		} else {
+			res = 0;
+		}
+	} else {
+		cw_log(LOG_ERROR, "Memory Error!\n");
+		res = -1;   /* Return an error */
+	}
+
+	if (sql) {
+		sqlite3_free(sql);
+		sql = NULL;
+	}
+
+	sqlite3_close(db);
+	return tree;
+
+}
+
+void cw_db_freetree(struct cw_db_entry *dbe)
+{
+	struct cw_db_entry *last;
+
+	while (dbe) {
+		last = dbe;
+		dbe = dbe->next;
+		free(last);
+	}
+}
+
+
+/*****************************************************************************
+                             CLI FUNCTIONS
+ *****************************************************************************/
+
+
+static int show_callback(void *pArg, int argc, char **argv, char **columnNames) 
+{
+	int *fdp = pArg;
+	int fd = *fdp;
+
+	cw_cli(fd, "/%s/%-50s: %-25s\n", argv[0], argv[1], argv[2]);
+
+	return 0;
+}
+
+static int database_show(int fd, int argc, char *argv[])
+{
+	char *prefix, *family;
+	char *sql;
+	char *zErr = 0;
+	int res = 0;
+	sqlite3 *db;
+
+#ifdef HAVE_MEMCACHE
+        database_flush_cache();
+#endif
+
+	sanity_check();
+	if (!(db = sqlite_open_db(globals.dbfile))) {
+		return -1;
+	}
+
+	if (argc == 4) {
+		/* Family and key tree */
+		prefix = argv[3];
+		family = argv[2];
+	} else if (argc == 3) {
+		/* Family only */
+		family = argv[2];
+		prefix = NULL;
+	} else if (argc == 2) {
+		/* Neither */
+		prefix = family = NULL;
+	} else {
+		return RESULT_SHOWUSAGE;
+	}
+
+	if (family && prefix) {
+		sql = sqlite3_mprintf("select * from %q where family='%q' and keys='%q'", globals.tablename, family, prefix);
+	} else if (family) {
+		sql = sqlite3_mprintf("select * from %q where family='%q'", globals.tablename, family);
+	} else {
+		sql = sqlite3_mprintf("select * from %q", globals.tablename);
+	}
+
+	if (sql) {
+		cw_log(LOG_DEBUG, "SQL [%s]\n", sql);
+		res = sqlite3_exec(db,
+						   sql,
+						   show_callback,
+						   &fd,
+						   &zErr
+						   );
+		
+		if (zErr) {
+			cw_log(LOG_ERROR, "SQL ERR [%s] [%s]\n", sql, zErr);
+			res = -1;
+			sqlite3_free(zErr);
+		} else {
+			res = 0;
+		}
+	} else {
+		cw_log(LOG_ERROR, "Memory Error!\n");
+		res = -1;   /* Return an error */
+	}
+
+	if (sql) {
+		sqlite3_free(sql);
+		sql = NULL;
+	}
+
+	sqlite3_close(db);
+	return RESULT_SUCCESS;	
+}
+
+
+
+static int database_put(int fd, int argc, char *argv[])
+{
+	int res;
+	if (argc != 5)
+		return RESULT_SHOWUSAGE;
+	res = cw_db_put(argv[2], argv[3], argv[4]);
+	if (res)  {
+		cw_cli(fd, "Failed to update entry\n");
+	} else {
+		cw_cli(fd, "Updated database successfully\n");
+	}
+	return RESULT_SUCCESS;
+}
+
+static int database_get(int fd, int argc, char *argv[])
+{
+	int res;
+	char tmp[256];
+	if (argc != 4)
+		return RESULT_SHOWUSAGE;
+	res = cw_db_get(argv[2], argv[3], tmp, sizeof(tmp));
+	if (res) {
+		cw_cli(fd, "Database entry not found.\n");
+	} else {
+		cw_cli(fd, "Value: %s\n", tmp);
+	}
+	return RESULT_SUCCESS;
+}
+
+static int database_del(int fd, int argc, char *argv[])
+{
+	int res;
+	if (argc != 4)
+		return RESULT_SHOWUSAGE;
+	res = cw_db_del(argv[2], argv[3]);
+	if (res) {
+		cw_cli(fd, "Database entry does not exist.\n");
+	} else {
+		cw_cli(fd, "Database entry removed.\n");
+	}
+	return RESULT_SUCCESS;
+}
+
+static int database_deltree(int fd, int argc, char *argv[])
+{
+	int res;
+	if ((argc < 3) || (argc > 4))
+		return RESULT_SHOWUSAGE;
+	if (argc == 4) {
+		res = cw_db_deltree(argv[2], argv[3]);
+	} else {
+		res = cw_db_deltree(argv[2], NULL);
+	}
+	if (res) {
+		cw_cli(fd, "Database entries do not exist.\n");
+	} else {
+		cw_cli(fd, "Database entries removed.\n");
+	}
+	return RESULT_SUCCESS;
+}
+
+
+static char database_show_usage[] =
+"Usage: database show [family [keytree]]\n"
+"       Shows CallWeaver database contents, optionally restricted\n"
+"to a given family, or family and keytree.\n";
+
+static char database_put_usage[] =
+"Usage: database put <family> <key> <value>\n"
+"       Adds or updates an entry in the CallWeaver database for\n"
+"a given family, key, and value.\n";
+
+static char database_get_usage[] =
+"Usage: database get <family> <key>\n"
+"       Retrieves an entry in the CallWeaver database for a given\n"
+"family and key.\n";
+
+static char database_del_usage[] =
+"Usage: database del <family> <key>\n"
+"       Deletes an entry in the CallWeaver database for a given\n"
+"family and key.\n";
+
+static char database_deltree_usage[] =
+"Usage: database deltree <family> [keytree]\n"
+"       Deletes a family or specific keytree within a family\n"
+"in the CallWeaver database.\n";
+
+struct cw_cli_entry cli_database_show =
+{ { "database", "show", NULL }, database_show, "Shows database contents", database_show_usage };
+
+struct cw_cli_entry cli_database_get =
+{ { "database", "get", NULL }, database_get, "Gets database value", database_get_usage };
+
+struct cw_cli_entry cli_database_put =
+{ { "database", "put", NULL }, database_put, "Adds/updates database value", database_put_usage };
+
+struct cw_cli_entry cli_database_del =
+{ { "database", "del", NULL }, database_del, "Removes database key/value", database_del_usage };
+
+struct cw_cli_entry cli_database_deltree =
+{ { "database", "deltree", NULL }, database_deltree, "Removes database keytree/values", database_deltree_usage };
+
+
+/*****************************************************************************
+                    DATABASE INITIALIZATION
+ *****************************************************************************/
+
+static int dbinit(void)
+{
+	char *sql;
+
+#ifdef HAVE_MEMCACHE
+        // TODO Parse a config file to retrieve the server/port pairs
+
+        if ( db_server_host && db_server_port )
+            database_cache_try_connect();
+        else
+            memcached_data.active = 0;
+
+        if ( memcached_data.active ) {
+            if ( database_queue_thread_start()!=0 ) 
+            {
+                memcached_data.active = 0;
+                if ( memcached_data.mc )
+                    mc_free(memcached_data.mc);
+                cw_log(LOG_WARNING,"DISABLING Memcache - Cannot start thread\n");
+            }
+        }
+#endif
+
+
+	cw_mutex_lock(&dblock);
+ 	globals.dbdir = cw_config_CW_DB_DIR;
+	globals.dbfile = cw_config_CW_DB;
+	globals.tablename = "odb";
+	
+	
+	if ((sql = sqlite3_mprintf("select count(*) from %q limit 1", globals.tablename))) {
+		sqlite_check_table_exists(globals.dbfile, sql, create_odb_sql);
+		sqlite3_free(sql);
+		sql = NULL;
+		loaded = 1;
+	}
+
+	cw_mutex_unlock(&dblock);
+
+	return loaded ? 0 : -1;
+}
+
+
+static void sqlite_pick_path(char *dbname, char *buf, size_t size) 
+{
+
+	memset(buf, 0, size);
+	if (strchr(dbname, '/')) {
+		strncpy(buf, dbname, size);
+	} else {
+		snprintf(buf, size, "%s/%s", globals.dbdir, dbname);
+	}
+}
+
+static sqlite3 *sqlite_open_db(char *filename) 
+{
+	sqlite3 *db;
+	char path[1024];
+	
+	sqlite_pick_path(filename, path, sizeof(path));
+	if (sqlite3_open(path, &db)) {
+		cw_log(LOG_WARNING, "SQL ERR [%s]\n", sqlite3_errmsg(db));
+		sqlite3_close(db);
+		db=NULL;
+	}
+	return db;
+}
+
+
+static void sqlite_check_table_exists(char *dbfile, char *test_sql, char *create_sql) 
+{
+	sqlite3 *db;
+	char *errmsg;
+
+
+	if ((db = sqlite_open_db(dbfile))) {
+		if (test_sql) {
+			sqlite3_exec(
+						 db,
+						 test_sql,
+						 NULL,
+						 NULL,
+						 &errmsg
+						 );
+
+			if (errmsg) {
+				cw_log(LOG_WARNING,"SQL ERR [%s]\n[%s]\nAuto Repairing!\n",errmsg,test_sql);
+				sqlite3_free(errmsg);
+				errmsg = NULL;
+				sqlite3_exec(
+							 db,
+							 create_sql,
+							 NULL,
+							 NULL,
+							 &errmsg
+							 );
+				if (errmsg) {
+					cw_log(LOG_WARNING,"SQL ERR [%s]\n[%s]\n",errmsg,create_sql);
+					sqlite3_free(errmsg);
+					errmsg = NULL;
+				}
+			}
+			sqlite3_close(db);
+		}
+	}
+
+}
+
+static void cw_db_load_config(void)
+{
+#ifdef HAVE_MEMCACHE
+    struct cw_config *cfg;
+    char *s;
+    int disabled = 0;
+
+    db_server_host = NULL;
+    db_server_port = NULL;
+    db_cache_lifetime = 0;
+
+    if ((cfg = cw_config_load("db-memcached.conf")))
+    {
+
+        if ((s = cw_variable_retrieve(cfg, "memcache", "enabled")))
+        {
+            if (cw_false(s)) {
+                cw_log(LOG_DEBUG,"Memcache server is disabled by configuration.\n");
+                disabled = 1;
+                return;
+            }
+        }
+
+        if ((s = cw_variable_retrieve(cfg, "memcache", "server_host")))
+        {
+            cw_log(LOG_DEBUG,"Memcache server host is %s\n",s);
+            db_server_host = strdup(s);
+        }
+
+        if ((s = cw_variable_retrieve(cfg, "memcache", "server_port")))
+        {
+            cw_log(LOG_DEBUG,"Memcache server port is %s\n",s);
+            db_server_port = strdup(s);
+        }
+
+        if ((s = cw_variable_retrieve(cfg, "memcache", "cache_lifetime")))
+        {
+            cw_log(LOG_DEBUG,"Memcache server cache lifetime is %s\n",s);
+            db_cache_lifetime = atoi(s);
+        }
+
+        cw_config_destroy(cfg);
+    }
+#endif
+}
+
+int cwdb_init(void)
+{
+        int res  = 0;
+
+        cw_db_load_config();
+
+	res = dbinit();
+	if (res == 0) {
+		cw_cli_register(&cli_database_show);
+		cw_cli_register(&cli_database_get);
+		cw_cli_register(&cli_database_put);
+		cw_cli_register(&cli_database_del);
+		cw_cli_register(&cli_database_deltree);
+	}
+	return res;
+}
+
+int cwdb_shutdown(void) {
+
+#ifdef HAVE_MEMCACHE
+    if ( memcached_data.mc ) {
+        cw_log(LOG_DEBUG,"Database shutting down.\n");
+        database_flush_cache();
+        mc_free(memcached_data.mc);
+        memcached_data.mc = NULL;
+        memcached_data.active = 0;
+    }
+    if ( db_server_port ) {
+        free(db_server_port);
+        db_server_port = NULL;
+    }
+    if ( db_server_host ) {
+        free(db_server_host);
+        db_server_host = NULL;
+    }
+#endif
+
+    return 0;
+}
+

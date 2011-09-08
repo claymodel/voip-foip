@@ -1,0 +1,137 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/317102/branches/1.4/contrib/scripts
+END
+astcli
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/asterisk/!svn/ver/280944/branches/1.4/contrib/scripts/astcli
+END
+retrieve_extensions_from_sql.pl
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/asterisk/!svn/ver/43376/branches/1.4/contrib/scripts/retrieve_extensions_from_sql.pl
+END
+safe_asterisk
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/asterisk/!svn/ver/317102/branches/1.4/contrib/scripts/safe_asterisk
+END
+retrieve_extensions_from_mysql.pl
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/asterisk/!svn/ver/43376/branches/1.4/contrib/scripts/retrieve_extensions_from_mysql.pl
+END
+managerproxy.pl
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/asterisk/!svn/ver/43376/branches/1.4/contrib/scripts/managerproxy.pl
+END
+retrieve_sip_conf_from_mysql.pl
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/asterisk/!svn/ver/43376/branches/1.4/contrib/scripts/retrieve_sip_conf_from_mysql.pl
+END
+safe_asterisk_restart
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/asterisk/!svn/ver/43376/branches/1.4/contrib/scripts/safe_asterisk_restart
+END
+safe_asterisk.8
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/asterisk/!svn/ver/43376/branches/1.4/contrib/scripts/safe_asterisk.8
+END
+astgenkey
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/asterisk/!svn/ver/43376/branches/1.4/contrib/scripts/astgenkey
+END
+ast_grab_core
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/asterisk/!svn/ver/77844/branches/1.4/contrib/scripts/ast_grab_core
+END
+README.messages-expire
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/asterisk/!svn/ver/43376/branches/1.4/contrib/scripts/README.messages-expire
+END
+loadtest.tcl
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/asterisk/!svn/ver/43376/branches/1.4/contrib/scripts/loadtest.tcl
+END
+astgenkey.8
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/asterisk/!svn/ver/113399/branches/1.4/contrib/scripts/astgenkey.8
+END
+get_ilbc_source.sh
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/asterisk/!svn/ver/189849/branches/1.4/contrib/scripts/get_ilbc_source.sh
+END
+qview.pl
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/asterisk/!svn/ver/43376/branches/1.4/contrib/scripts/qview.pl
+END
+autosupport
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/asterisk/!svn/ver/300428/branches/1.4/contrib/scripts/autosupport
+END
+live_ast
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/asterisk/!svn/ver/280088/branches/1.4/contrib/scripts/live_ast
+END
+agents.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/asterisk/!svn/ver/43376/branches/1.4/contrib/scripts/agents.php
+END
+lookup.agi
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/asterisk/!svn/ver/43376/branches/1.4/contrib/scripts/lookup.agi
+END
+vmail.cgi
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/asterisk/!svn/ver/143736/branches/1.4/contrib/scripts/vmail.cgi
+END
+messages-expire.pl
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/asterisk/!svn/ver/43376/branches/1.4/contrib/scripts/messages-expire.pl
+END
+autosupport.8
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/asterisk/!svn/ver/300428/branches/1.4/contrib/scripts/autosupport.8
+END

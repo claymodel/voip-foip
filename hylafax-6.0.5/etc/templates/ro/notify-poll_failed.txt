@@ -1,0 +1,11 @@
+To: $SENDTO
+Subject: Notă despre fax
+From: HylaFAX Agent <$FROMADDR>
+Content-type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: Quoted-Printable
+
+O incercare de aşezare în coadă către $number nu poate
+fi finalizată pentru că a apărut o problemă neprevăzută.
+
+Durata de procesare a fost $JTIME.
+

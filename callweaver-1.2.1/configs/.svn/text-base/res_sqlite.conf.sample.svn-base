@@ -1,0 +1,19 @@
+[general]
+reload = no
+
+[config]
+table = cw_config
+dbfile = config
+
+
+[cdr]
+table = cw_cdr
+dbfile = cw_cdr
+
+
+[switch]
+table = dialplan
+dbfile = callweaver
+
+[cli]
+dbfile = callweaver

@@ -1,0 +1,154 @@
+/*
+ * CallWeaver -- An open source telephony toolkit.
+ *
+ * Copyright (C) 1999 - 2005, Digium, Inc.
+ *
+ * Mark Spencer <markster@digium.com>
+ *
+ * See http://www.callweaver.org for more information about
+ * the CallWeaver project. Please do not directly contact
+ * any of the maintainers of this project for assistance;
+ * the project provides a web site, mailing lists and IRC
+ * channels for your use.
+ *
+ * This program is free software, distributed under the terms of
+ * the GNU General Public License Version 2. See the LICENSE file
+ * at the top of the source tree.
+ */
+
+/*! \file
+ *
+ * \brief Wait for Ring Application
+ * 
+ */
+#ifdef HAVE_CONFIG_H
+#include "confdefs.h"
+#endif
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <ctype.h>
+
+#include "callweaver.h"
+
+CALLWEAVER_FILE_VERSION("$HeadURL$", "$Revision$")
+
+#include "callweaver/file.h"
+#include "callweaver/logger.h"
+#include "callweaver/channel.h"
+#include "callweaver/pbx.h"
+#include "callweaver/module.h"
+#include "callweaver/options.h"
+#include "callweaver/lock.h"
+
+static char *tdesc = "Waits until first ring after time";
+
+static void *waitforring_app;
+static const char *waitforring_name = "WaitForRing";
+static const char *waitforring_synopsis = "Wait for Ring Application";
+static const char *waitforring_syntax = "WaitForRing(timeout)";
+static const char *waitforring_descrip =
+"Returns 0 after waiting at least timeout seconds. and\n"
+"only after the next ring has completed.  Returns 0 on\n"
+"success or -1 on hangup\n";
+
+
+STANDARD_LOCAL_USER;
+
+LOCAL_USER_DECL;
+
+static int waitforring_exec(struct cw_channel *chan, int argc, char **argv)
+{
+	struct localuser *u;
+	struct cw_frame *f;
+	int res = 0;
+	int ms;
+
+	if (argc != 1 || !isdigit(argv[0][0])) {
+                cw_log(LOG_ERROR, "Syntax: %s\n", waitforring_syntax);
+		return 0;
+	}
+
+	LOCAL_USER_ADD(u);
+
+	ms = atoi(argv[0]) * 1000;
+	while (ms > 0) {
+		ms = cw_waitfor(chan, ms);
+		if (ms < 0) {
+			res = ms;
+			break;
+		}
+		if (ms > 0) {
+			f = cw_read(chan);
+			if (!f) {
+				res = -1;
+				break;
+			}
+			if ((f->frametype == CW_FRAME_CONTROL) && (f->subclass == CW_CONTROL_RING)) {
+				if (option_verbose > 2)
+					cw_verbose(VERBOSE_PREFIX_3 "Got a ring but still waiting for timeout\n");
+			}
+			cw_fr_free(f);
+		}
+	}
+	/* Now we're really ready for the ring */
+	if (!res) {
+		ms = 99999999;
+		while(ms > 0) {
+			ms = cw_waitfor(chan, ms);
+			if (ms < 0) {
+				res = ms;
+				break;
+			}
+			if (ms > 0) {
+				f = cw_read(chan);
+				if (!f) {
+					res = -1;
+					break;
+				}
+				if ((f->frametype == CW_FRAME_CONTROL) && (f->subclass == CW_CONTROL_RING)) {
+					if (option_verbose > 2)
+						cw_verbose(VERBOSE_PREFIX_3 "Got a ring after the timeout\n");
+					cw_fr_free(f);
+					break;
+				}
+				cw_fr_free(f);
+			}
+		}
+	}
+	LOCAL_USER_REMOVE(u);
+
+	return res;
+}
+
+int unload_module(void)
+{
+	int res = 0;
+	STANDARD_HANGUP_LOCALUSERS;
+	res |= cw_unregister_application(waitforring_app);
+	return res;
+}
+
+int load_module(void)
+{
+	waitforring_app = cw_register_application(waitforring_name, waitforring_exec, waitforring_synopsis, waitforring_syntax, waitforring_descrip);
+	return 0;
+}
+
+char *description(void)
+{
+	return tdesc;
+}
+
+int usecount(void)
+{
+	int res;
+	STANDARD_USECOUNT(res);
+	return res;
+}
+
+

@@ -1,0 +1,44 @@
+SIP Messages
+============
+
+@2007 by Antonio Gallo (AGX) - www.badpenguin.org
+
+SIP is a very wide standard, between his many specs its allow instant 
+and non-instant messages to be exchanged between SIP clients.
+
+The original SendText() application released with Asterisk 1.2.0 was 
+just a generic implementation of sending text between different
+technologies: for instance an ISDN phone can display things like a
+SIP phone.
+
+With CallWeaver 1.2 i've introduced a SIP specific application called
+SIPOSD(). This application can display messages onto the telephone
+screen during a call (OSD = On Screen Display).
+
+The application requires that the channel has to be already answered.
+
+It has been tested sucessfully with:
+- GrandStream GXP 2000
+- Snom 300, 320, 360
+
+This is an example of dialplan that i use to test if a new SIP client
+support the MESSAGE feature:
+	exten => *9004,1,Answer
+	exten => *9004,n,Playback(beep)
+	exten => *9004,n,SIPOSD(This is a SIP OSD message)
+	exten => *9004,n,Wait(3)
+	; this will clear the screen
+	exten => *9004,n,Playback(beep)
+	exten => *9004,n,SIPOSD
+	exten => *9004,n,Wait(3)
+	exten => *9004,n,Proc(fine)
+
+Example of its use is to display the user progress information or
+wich outgoing line is it going to use for his calls. You can find
+more funny use for this yourself.
+
+If you want to send a message to the phone without Answering the call
+or without using the dialplan or the PBX there is an external utility
+that does the job: "sipsak". This utility has nothing to do with SIPOSD
+and its not part of the CallWeaver project but you can find it usefull.
+

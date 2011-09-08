@@ -1,0 +1,94 @@
+DO NOT DELETE THE CONTENTS IN THIS FOLDER
+
+This folder contains:
+* Documentation Framework
+* Documentation
+
+To avoid interdependency during build times, CallWeaver documentation sources have
+been engineered to use as separate build process. This does not mean that CallWeaver documentation build 
+will not or cannot be integrated with the main software build.
+
+--------------------------
+License
+--------------------------
+CallWeaver is distributed under GNU GPL
+[http://www.fsf.org/licensing/licenses/gpl.html]
+
+CallWeaver Documentation is distributed under CC-BY-SA 2.5
+[http://creativecommons.org/licenses/by-sa/2.5/]
+
+NOTE: GNU FDL is not GPL compatible.
+
+--------------------------
+Documentation Framework
+--------------------------
+The documentation framework is comprised of two components:
+* Toolchain
+* Information Architecture
+
+Toolchain
+----------------------
+* GNU Make
+* Docbook XML
+* Docbook XSL
+* SunJava
+* Saxon
+* Apache FOP
+
+Reference Materials
+----------------------
+Following is list of reference materials:
+* Docbook - The Definitive Guide [http://www.docbook.org/tdg/en/html/docbook.html]
+* Docbook - The Complete Guide [http://www.sagehill.net/docbookxsl/index.html]
+
+Information Architecture
+----------------------
+The information architecture is based on the concept of modular architecture and can be extend. 
+At time of writing the architecture comprised the following files and folders:
+.
+..
+comm/			Commissioning Guide
+common/		Common Reusable Objects
+faq/ 			Frequently Asked Questions
+images/		Graphic Sources and Images
+inst/			Installation Guide
+libs/			Customization Layers and other files for processing
+oper/			Operation Guide
+prep/			Preparation Guide
+prov/			Provisioning Guide
+Makefile		GNU Makefile
+callweaver-docs.xml	Documentation Set container document
+
+
+
+--------------------------
+Documentation
+--------------------------
+
+Document Types
+--------------------------
+Information is currently organized into the following document types:
+* Preparation Guide	Covers preparation for installation requirements.
+* Installation Guide	Covers software installation
+* Commissioning Guide	Covers configuration (hardware)
+* Provisioning Guide	Covers configuration (services)
+* Operation Guide	Covers administration procedures
+* FAQ Guide		Covers FAQ
+
+--------------------------
+Building Documents
+--------------------------
+Output of make build process is to build/ directory. The directory will be automatically created relative to the Makefile.
+There are a number of make targets. See Makefile for descriptions of each. For each document type Make targets output the following formats:
+* Single Page HTML
+* Chunked HTML
+* PDF
+
+To build all books do 'make books'
+To build a single book so 'make {targetname}'
+
+---------------------------
+Nightly Build
+---------------------------
+
+TBD

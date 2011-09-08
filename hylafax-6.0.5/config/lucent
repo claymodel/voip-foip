@@ -1,0 +1,65 @@
+# $Id$
+#
+# HylaFAX Facsimile Software
+#
+# Copyright (c) 1990-1996 Sam Leffler
+# Copyright (c) 1991-1996 Silicon Graphics, Inc.
+# HylaFAX is a trademark of Silicon Graphics, Inc.
+# 
+# Permission to use, copy, modify, distribute, and sell this software and 
+# its documentation for any purpose is hereby granted without fee, provided
+# that (i) the above copyright notices and this permission notice appear in
+# all copies of the software and related documentation, and (ii) the names of
+# Sam Leffler and Silicon Graphics may not be used in any advertising or
+# publicity relating to the software without the specific, prior written
+# permission of Sam Leffler and Silicon Graphics.
+# 
+# THE SOFTWARE IS PROVIDED "AS-IS" AND WITHOUT WARRANTY OF ANY KIND, 
+# EXPRESS, IMPLIED OR OTHERWISE, INCLUDING WITHOUT LIMITATION, ANY 
+# WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.  
+# 
+# IN NO EVENT SHALL SAM LEFFLER OR SILICON GRAPHICS BE LIABLE FOR
+# ANY SPECIAL, INCIDENTAL, INDIRECT OR CONSEQUENTIAL DAMAGES OF ANY KIND,
+# OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
+# WHETHER OR NOT ADVISED OF THE POSSIBILITY OF DAMAGE, AND ON ANY THEORY OF 
+# LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE 
+# OF THIS SOFTWARE.
+#
+
+#
+# prototype config for Lucent LT Winmodem using ltmodem.o driver,
+# as well as many other Lucent chipset modems.
+# (They work well with all default Class 1 configs.)
+#
+
+# CONFIG:CLASS1:LT V.90 Data+Fax*:.*:.*: Manufacturer=Lucent Model='LT Winmodem'
+# CONFIG:CLASS1:LT V.92 Data+Fax*:.*:.*: Manufacturer=Lucent Model='LT Winmodem'
+# CONFIG:CLASS1:LT V.90 1.0 MT5634ZPX-PCI*:.*:.*: Manufacturer=MultiTech Model=MT5634ZPX-PCI
+# CONFIG:CLASS1:LT V.92 1.0 MT5634ZPX-PCI*:.*:.*: Manufacturer=MultiTech Model=MT5634ZPX-PCI-V92
+# CONFIG:CLASS1:LT V.90 1.0 MT5634ZBA*:.*:.*: Manufacturer=MultiTech Model=MT5634ZBA
+# CONFIG:CLASS1:LT V.92 1.0 MT5634ZBA*:.*:.*: Manufacturer=MultiTech Model=MT5634ZBA
+# CONFIG:CLASS1:LT V.90 1.0 ISI5634PCI*:.*:.*: Manufacturer=MultiTech Model=ISI5634PCI
+# CONFIG:CLASS1:LT V.92 1.0 ISI5634PCI*:.*:.*: Manufacturer=MultiTech Model=ISI5634PCI
+# CONFIG:CLASS1:LT V.92 1.0 MT5634SMI*:.*:.*: Manufacturer=MultiTech Model=MT5634SMI
+# CONFIG:CLASS1:Zoom V.90 PCI*:.*:.*: Manufacturer=Zoom Model=2920
+# CONFIG:CLASS1:Zoom V.90 USB*:.*:.*: Manufacturer=Zoom Model=2980
+# CONFIG:CLASS1:EFM560 VER*:.*:.*: Manufacturer=AboCom Model=EFM560
+# CONFIG:CLASS1:Mainpine Venus V.92*:.*:.*: Manufacturer=Mainpine Model=RockForce
+#
+# BEGIN-SERVER
+# END-SERVER
+
+ModemType:		Class1		# use this to supply a hint
+ModemFlowControl:	rtscts		# many firmwares have broken software flow control
+Class1TMConnectDelay:	400		# counteract quick CONNECT response
+Class1HasRHConnectBug:	yes		# cope with +FRH=3 CONNECT errors
+
+# If your line supports Caller-ID, you may want to uncomment this...
+# ModemResetCmds:	AT+VCID=1
+# CallIDPattern:	"NMBR="
+# CallIDPattern:	"NAME="
+
+# Or with the MT5634ZBA-DID you'll probably need something like...
+# ModemReadyCmds:	AT*DS1*DD0*DF1*DN4	# enable DTMF-DID, wink-start, 4 digits
+# CallIDPattern:	"DTMF"		# format of AT*DF1
+# CallIDAnswerLength:	4		# four DTMF-DID digits then ATA

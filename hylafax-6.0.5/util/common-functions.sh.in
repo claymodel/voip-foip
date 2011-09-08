@@ -1,0 +1,711 @@
+#
+#    $Id$
+
+#
+# This holds various functions that are common to the
+# various bin scripts.
+#
+
+#
+# tolower(string)
+# Convert string to lowercase.
+#
+tolower()
+{
+    echo "`echo $1 | $SED -e 'y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/'`"
+}
+
+length()
+{
+    expr length "$1"
+}
+
+#
+# For getting all of the "faxinfo" items to line up.
+#
+setInfoSize()
+{
+    INFOSIZE=0
+    for ITEM in DICTSENDER DICTPAGES DICTQUALITY DICTSIZE DICTRECEIVED \
+		DICTTIMETORECV DICTSIGNALRATE DICTDATAFORMAT DICTERRCORRECT \
+		DICTCALLID1 DICTCALLID2 DICTCALLID3 DICTCALLID4 DICTCALLID \
+		DICTCALLID6 DICTCALLID7 DICTRECEIVEDON DICTCOMMID; do
+	THISLEN="`eval echo "$"$ITEM | wc -m | $SED 's/ //g'`"
+	if [ $THISLEN -gt $INFOSIZE ]; then INFOSIZE=$THISLEN; fi
+    done
+}
+
+#
+# For getting all of the notify job items to line up.
+#
+setItemSize()
+{
+    ITEMSIZE=0
+    for ITEM in DICTDESTINATION DICTJOBID DICTGROUPID DICTSENDER DICTMAILADDR \
+		DICTCOMMID DICTMODEM DICTSUBMITTEDFROM DICTPAGEWIDTH \
+		DICTPAGELENGTH DICTRES DICTSTATUS DICTDIALOGS DICTDIALS \
+		DICTCALLS DICTPAGES DICTATTEMPTS DICTDIRNUM DICTRECEIVER DICTQUALITY \
+		DICTPAGEWIDTH DICTPAGELENGTH DICTDATAFORMAT DICTREMOTEEQUIPMENT \
+		DICTREMOTESTATION DICTSIGNALRATE; do
+	THISLEN="`eval echo "$"$ITEM | wc -m | $SED 's/ //g'`"
+	if [ $THISLEN -gt $ITEMSIZE ]; then ITEMSIZE=$THISLEN; fi
+    done
+}
+
+faxInfo()
+{
+    $INFO -n $1 | $SED -e "s/^ *Sender:/`printf %$INFOSIZE\s "$DICTSENDER"`:/g" \
+		-e "s/^ *Pages:/`printf %$INFOSIZE\s "$DICTPAGES"`:/g" \
+		-e "s/^ *Quality:/`printf %$INFOSIZE\s "$DICTQUALITY"`:/g" \
+		-e "s/^ *Page:/`printf %$INFOSIZE\s "$DICTSIZE"`:/g" \
+		-e "s/^ *Received:/`printf %$INFOSIZE\s "$DICTRECEIVED"`:/g" \
+		-e "s/^ *TimeToRecv:/`printf %$INFOSIZE\s "$DICTTIMETORECV"`:/g" \
+		-e "s/^ *SignalRate:/`printf %$INFOSIZE\s "$DICTSIGNALRATE"`:/g" \
+		-e "s/^ *DataFormat:/`printf %$INFOSIZE\s "$DICTDATAFORMAT"`:/g" \
+		-e "s/^ *ErrCorrect:/`printf %$INFOSIZE\s "$DICTERRCORRECT"`:/g" \
+		-e "s/^ *CallID1:/`printf %$INFOSIZE\s "$DICTCALLID1"`:/g" \
+		-e "s/^ *CallID2:/`printf %$INFOSIZE\s "$DICTCALLID2"`:/g" \
+		-e "s/^ *CallID3:/`printf %$INFOSIZE\s "$DICTCALLID3"`:/g" \
+		-e "s/^ *CallID4:/`printf %$INFOSIZE\s "$DICTCALLID4"`:/g" \
+		-e "s/^ *CallID5:/`printf %$INFOSIZE\s "$DICTCALLID5"`:/g" \
+		-e "s/^ *CallID6:/`printf %$INFOSIZE\s "$DICTCALLID6"`:/g" \
+		-e "s/^ *CallID7:/`printf %$INFOSIZE\s "$DICTCALLID7"`:/g" \
+		-e "s/ Yes$/ $DICTYES/g" \
+		-e "s/ No$/ $DICTNO/g" \
+		-e "s/ Normal$/ $DICTNORMAL/g" \
+		-e "s/ Fine$/ $DICTFINE/g"
+}
+
+#
+# Export qfile content to environment
+# parseQfile(prefix, filename)
+# Both parameters can be omitted. Defaults to no prefix and $QFILE.
+#
+parseQfile()
+{
+    # In shell scripts, there are no special characters in hard-quoted
+    # strings (quoted with (')). Single-quotes can't even be escaped
+    # inside such strings and must be put outside of them. We thus replace
+    # (') with ('\'') which terminates the current string, adds a single
+    # quote and starts a new string.
+    #
+    # We no longer escape newlines, because we don't eval
+    #
+    # print out variable name and value so we can eval it in the shell
+    #
+    VAR_PREFIX="$1"
+    if [ -n "$2" ] ; then
+        FILENAME=$2;
+    else
+        FILENAME=$QFILE;
+    fi
+    if [ ! -f "$FILENAME" ] ; then
+        return # cannot do much more without a file
+    fi
+    $AWK -F: '
+    function p(varname,val)
+    {
+        gsub(/\047/, "\047\\\047\047", val);
+        # mawk sees 047 as decimal 47 rather than octal, so we use the decimal
+        # value of the quote character: 39.
+        printf "%s%s=%c%s%c\n",var_prefix,varname,39,val,39
+        printf "export %s%s\n",var_prefix,varname
+    }
+    BEGIN {
+        var_prefix="'"$VAR_PREFIX"'";
+        nfiles = 0;
+        npins = 0;
+    }
+    /^nsf/	{ p("equipment", $3); p("station", $5); next; }
+    /^external/    { p("number", $2); next; }      # override unprocessed number
+    /^regarding/    { regarding = $0; sub("regarding:", "", regarding); p("regarding", regarding); next; }
+    /^jobtag/    { jobtag = $0; sub("jobtag:", "", jobtag); p("jobtag", jobtag); next; }
+    # status needs to be used in the shell as faxstatus since status is reserved word
+    /^status:/    { status = $0; sub("status:", "", status);
+              while ($0 ~ /\\\\$/ && getline > 0) {
+                  sub(/\\\\$/, "\\n", status);
+                  status = status $0;
+              } p("faxstatus", status);
+              next;
+            }
+    /^[!]*post/    { p("files_"++nfiles, $4); p("filetype_"nfiles, "PostScript"); next; }
+    /^[!]*tiff/    { p("files_"++nfiles, $4); p("filetype_"nfiles, "TIFF"); next; }
+    /^[!]*pdf/    { p("files_"++nfiles, $4); p("filetype_"nfiles, "PDF"); next; }
+    /^[!]*pcl/    { p("files_"++nfiles, $4); p("filetype_"nfiles, "PCL"); next; }
+    /^page:/    { p("pins_"++npins, $4); next; }
+    /^data:/    { p("files_"++nfiles, $4); next; }
+    /^poll/        { p("poll", " -p"); next; }
+    # Only parse remaining valid lines and allows for colons to appear in the value part
+    /^[a-z]+:/     { str = $0; sub($1":", "", str); p($1, str); next; }
+    {printf "# Invalid line> %s\n", $0;}
+    END { p("nfiles", nfiles); p("npins", npins) } ' $FILENAME > $TMPDIR/qfile-awk.sh
+    . $TMPDIR/qfile-awk.sh
+
+}
+
+parseFaxInfo()
+{
+    # We use the same basic stuff as parseQfile(), but just to straight assignment
+    AWK_OUTPUT=`$INFO -S '' -s '%s=!=!=!=!=!=!=!=!=' $1 | $AWK -F'=!=!=!=!=!=!=!=!=' '
+    function p(varname,val)
+    {
+        gsub(/\\047/, "\047\\\\\047\047", val);
+        printf "%s=\\047%s\\047\n",varname,val
+        printf "export %s\n",varname
+    }
+    { p(toupper($1),$2); }
+    '`
+    eval "$AWK_OUTPUT"
+}
+
+programOfCommand()
+{
+	echo "$*" | $SED -e 's/^ *//' -e 's/ .*$//'
+}
+
+#
+# Produce mailable encoding for binary files.
+# mimeEncode(filename, encoding)
+# If encoding is not set, will default to $ENCODING.
+#
+mimeEncode()
+{
+    if [ ! -f "$1" ] ; then
+        return # cannot do much more without a file
+    fi
+    if [ -n "$2" ] ; then
+        encoding=$2;
+    else
+        encoding=$ENCODING;
+    fi
+    encoding=`tolower $encoding`
+
+    # rather than separate $BASE64ENCODE and $QPENCODE
+    case "$encoding" in
+        base64)
+	    if [ -n "$BASE64ENCODE" ]; then
+
+		# $BASE64ENCODE may contain parameters
+		cmd=`programOfCommand $BASE64ENCODE`
+		if [ -x "$cmd" ]; then
+		    (eval $BASE64ENCODE) < $1 2>$ERRORSTO
+		else
+		    c $AWK -f bin/b64-encode.awk < $1 2>$ERRORSTO
+		fi
+	    else
+		c $AWK -f bin/b64-encode.awk < $1 2>$ERRORSTO
+	    fi;;
+        quoted-printable)
+	    if [ -n "$QPENCODE" ]; then
+		# $QPENCODE may contain parameters
+		cmd=`programOfCommand $QPENCODE`
+		if [ -x "$cmd" ]; then
+		    (eval $QPENCODE) < $1 2>$ERRORSTO
+		else
+		    c $AWK -f bin/qp-encode.awk < $1 2>$ERRORSTO
+		fi
+	    else
+		c $AWK -f bin/qp-encode.awk < $1 2>$ERRORSTO
+	    fi;;
+        *uue*)
+	    if [ -x "$UUENCODE" ]; then
+		($UUENCODE ==== < $1 | $GREP -v "====$") 2>$ERRORSTO
+	    fi;;
+        *) cat $1;; # 7bit, 8bit, binary
+    esac
+}
+
+#
+# Check if $string matches the regular expression $regex
+# matchRegEx(string, regex)
+# Returns 1 on success, 0 otherwise.
+matchRegEx()
+{
+  string=$1
+  regex=$2
+
+  # Awk grep and sed ranges can't be trusted to gives the same result
+  # on all platforms and locale. :( (Even for digit ranges...
+  # fractions can be included in the 0-1 range.)
+  # Using C locale should be enough to fix this.
+  echo $string | c $AWK -F=!=!=!=!=!=!=!=!= '
+    '$regex' {print 1; exit;}
+    {print 0;}'
+
+}
+
+#
+# Produce mailable encoding for mail headers.
+# headerEncode(string, position)
+# position is one of "phrase", "comment" or "text".
+# Default position is "text".
+#
+headerEncode()
+{
+    if [ -n "$1" ] ; then
+        string=$1
+    else
+        # Nothing to encode
+        return
+    fi
+    if [ -n "$2" ] ; then
+        position=$2
+    else
+        position="text"
+    fi
+
+    must_encode=false
+    encoded=$string
+
+    case $position in 
+        phrase)
+            if [ `matchRegEx "$string" '/^[\0-\177]*$/'` = 1 ]; then
+                echo $string | c $AWK -F=!=!=!=!=!=!=!=!= '
+                function simple_quote(text)
+                {
+                    gsub(/[\0-\37\177\\\"]/, "\\\\&", text);
+                    if (text ~ /[^A-Za-z0-9!#$%&'\''*+\/=?^_`{|}~ -]/)
+                        text = "\"" text "\"";
+                    print text;
+                }
+                BEGIN {
+                }
+                simple_quote($0);
+                END {
+                }'
+                return
+            fi
+
+            must_encode=true
+            ;;
+        comment)
+            if [ `matchRegEx "$string" '/[^\40\41\43-\47\52-\176]/'` = 1 ]; then
+                must_encode=true
+            fi
+            ;;
+        text)
+            if [ `matchRegEx "$string" '/[^\40-\176]/'` = 1 ]; then
+                must_encode=true
+            fi
+            ;;
+    esac
+
+    if [ $must_encode = true ]; then
+        # Use the shorter encoded string
+        q_encoded="`echo $string | c $AWK -v ENCODING=Q -v POSITION=$position -f bin/qp-encode.awk 2>$ERRORSTO`"
+        b_encoded="`echo $string | c $AWK -v ENCODING=B -f bin/b64-encode.awk 2>$ERRORSTO`"
+        if [ `length "$q_encoded"` -lt `length "$b_encoded"` ]; then
+            echo $q_encoded;
+        else
+            echo $b_encoded;
+        fi
+    else
+        echo $string
+    fi
+}
+
+## headersEncode()
+## Check each header line and encode those which need it
+headersEncode()
+{
+    cat - | 
+        while read line;
+        do
+            type=`echo $line | $SED -e 's/:.*$//'`
+            content=`echo $line | $SED -e 's/[^:]*: *//'`
+            # Only encode subject, to and from for now.
+            case `tolower $type` in
+              subject)
+                encoded=`headerEncode "$content"`
+                line="$type: $encoded"
+                ;;
+              DISABLED_to|DISABLED_from)
+                if [ `matchRegEx "$content" '/<.*>/'` = 1 ]; then
+                  name=`echo $content | $SED -e 's/<[^<>]*>//'`
+                  address=`echo $content | $SED -e 's/.*\(<[^<>]*>\).*/\1/'`
+                  name=`headerEncode "$name" phrase`
+                  line="$type: $name $address"
+                fi
+                ;;
+            esac
+            echo $line
+        done
+}
+
+#
+# "Template" STDIN, by subsituting $... with the actual environment
+# variable $..., writing to STDOUT, using $AWK
+template ()
+{
+        cat - | $AWK '
+
+	function include_file (file, __local, i,buf,paths,p)
+	{
+	    split(TEMPLATE_PATH, paths, ":");
+
+	    p = file;
+	    i = getline buf < p;
+	    if (i < 0)
+	    {
+		for (d in paths)
+		{
+		    p = paths[d] "/" file;
+		    i = getline buf < p;
+		    if (i > 0) 
+			break;
+		}
+	    }
+	    
+	    if (i > 0)
+	    {
+		template_line(buf);
+		while (getline buf <p)
+		{
+		    template_line(buf);
+		}
+		close(p);
+	    }
+
+	}
+
+	function template_line (line,   tmp,var,p)
+        {
+                while (match(line, /[$][A-Za-z0-9_]+/))
+                {
+			if (substr(line,RSTART-1,1) == "\\")
+			{
+				tmp = substr(line, 1, RSTART-2);
+				var = substr(line, RSTART+1, RLENGTH-1);
+				printf "%s$%s", tmp, var
+			} else
+			{
+				tmp = substr(line, 1, RSTART-1);
+				var = substr(line, RSTART+1, RLENGTH-1);
+                                if (var == "SESSION_LOG")
+                                {
+                                        p = "log/c" ENVIRON["COMMID"];
+                                        while ((getline buf < p) > 0)
+                                        {
+                                                print buf;
+                                        }
+                                        close(p);
+                                } else
+                                {
+                                        printf "%s%s", tmp, ENVIRON[var];
+                                }
+			}
+			line = substr(line,RSTART+RLENGTH)
+                }
+		if (match(line, /^[#]INCLUDE /))
+		{
+			include_file(substr(line,10));
+			return
+		}
+                print line;
+        }
+
+	BEGIN { TEMPLATE_PATH=""; }
+        {
+                template_line($0);
+        }' TEMPLATE_PATH="$1" 
+}
+
+#
+# CreateMailMessage <template> [<attach1> <type1> <name1> <desciption1> 
+#		[<attach2> <type2> <name2> <description2> 
+#			...] ]
+#
+# This creates a mail message based on <template>, and attaches
+# The given files as MIME attachments
+#
+# The "template" section takes it's Content-* lines right from the
+# template, so whoever is doing the templates can control the
+# content-type and encoding directly
+
+# The files are all attached with the following:
+#	Content-type: <type>; name=<name>
+#	Content-Description: <description>
+#	Content-Disposition: attachment; filename="<name>"
+#	Content-encoding: $ENCODING
+CreateMailMessage ()
+{
+    # First we take the top part of the e-mail for headers
+    # Excluding any "Content-" lines, which need to stay with
+    # the actual template content
+    TEMPLATE_PATH=`dirname $1`
+    $SED -n -e '/^$/q;p' $1			\
+    	| $GREP -v "^Content"		\
+	| template "$TEMPLATE_PATH" 	\
+	| headersEncode
+
+    # If there are attachments, we are a multipart/mixed
+    echo "Mime-Version: 1.0"
+    if [ -n "$2" ]; then
+	echo "Content-Type: Multipart/Mixed; Boundary=\"$MIMEBOUNDARY\""
+	echo ""
+	echo "--$MIMEBOUNDARY"
+    fi
+
+    # Now print the Content-* headers for the template
+    $SED -n -e '/^$/q;p' $1			\
+    	| $GREP "^Content"		\
+	| template "$TEMPLATE_PATH"
+
+    echo ""
+    body_encoding=`$SED -n -e '/^$/q;p' $1		\
+    	| $GREP -i "^Content-Transfer-Encoding"		\
+	| template "$TEMPLATE_PATH" 			\
+    	| $SED -e 's/^[^ ]*: *//'`;
+    test "$body_encoding" || body_encoding=7bit;
+
+    $SED -n -e '1,/^$/d;p' $1 | template "$TEMPLATE_PATH" > $TMPDIR/body.txt
+    mimeEncode $TMPDIR/body.txt $body_encoding
+
+    if [ -n "$2" ]; then
+	shift
+	while [ -n "$1" ]
+	do
+	    echo "--$MIMEBOUNDARY"
+	    echo "Content-Type: $2; name=\"$3\""
+	    echo "Content-Description: $4"
+	    echo "Content-Disposition: attachment; filename=\"$3\""
+	    echo "Content-Transfer-Encoding: $ENCODING"
+	    echo ""
+	    mimeEncode $1
+	    shift; shift; shift; shift;
+	done
+	echo "--$MIMEBOUNDARY--"
+    fi
+}
+
+##
+## BuildAttachArgs <returnfiletype>
+##
+## Build the list of arguments to be passed on to the 
+## Functions which do the actual mailing/attaching
+##
+## It will convert to the requested <returnfiletype>
+##
+## The result is formatted like:
+## "file1" "type1" "name1" "description1" \
+##  ["file2" "type2" "name2" "description2"  [...] ]
+BuildAttachArgs ()
+{
+    case $1 in
+	PostScript|Postscript|PS|ps)
+	    a_type="application/postscript"
+	    a_desc="FAX Document (PostScript)"
+	    ;;
+	PDF|pdf)
+	    a_type="application/pdf"
+	    a_desc="FAX Document (PDF)"
+	    ;;
+	TIFF|tiff|TIF|tif)
+	    a_type="image/tiff"
+	    a_desc="FAX Document (TIFF)"
+	    ;;
+    esac
+
+    for i in `LocalSequence 1 $nfiles`
+    do
+	eval filename="$"files_"$i"
+	TraceLog "FILE $i: $filename"
+	if [ -f "$filename" ]; then
+	    eval filetype="$"filetype_"$i"
+	    if [ "$1" = "raw" ] || [ "$1" = "original" ]; then
+		a_file=$filename;
+		a_name=`basename $filename`;
+		a_desc="FAX Document"
+		case "$filetype" in
+		    PostScript)
+			TraceLog "Attaching $file in PostScript format"
+			a_type="application/postscript"
+			;;
+		    PDF)
+			TraceLog "Attaching $file in PDF format"
+			a_type="application/pdf"
+			;;
+		    TIFF)
+			TraceLog "Attaching $file in TIFF format"
+			a_type="image/tiff"
+			;;
+		    *)
+		    TraceLog "Attaching $file in unknown[$filetype] format"
+			a_type="application/unknown"
+			;;
+		esac
+	    else
+		a_file=`ConvertFile "$filename" "$filetype" "$1"`
+		a_name=`basename $a_file`
+	    fi
+
+	fi
+	if [ -f "$a_file" ]
+	then
+	    ARGS="$ARGS"" \"$a_file\" \"$a_type\" \"$a_name\" \"$a_desc\""
+	fi
+    done
+    printf '%s' "$ARGS"
+}
+
+## A Simple function to trace stuff
+## to STDERR, not STDOUT
+TraceLog ()
+{
+    echo $* 1>&2
+}
+
+## ConvertFile <file> <oldtype> <newtype>
+## Convert $1 from $2 to type $3
+##
+## This will (possibly) create a tempoary file
+## in the Private $TMPDIR area for the new file
+## If the original file is in the proper form, no
+## new file will be created
+##
+## It prints the file name of the converted
+## file to stdout
+ConvertFile ()
+{
+    case "$3" in
+	PostScript|postscript|PS|ps)
+	    TraceLog "Converting $1 to Postscript"
+	    case $2 in
+		PostScript|Postscript|PS|ps)
+		    TraceLog "No conversion"
+		    echo "$1"
+		    ;;
+		PDF|pdf)
+		    TraceLog "pdf2ps necessary"
+		    name="`basename $1 .pdf`"
+		    $PDF2PS $1 $TMPDIR/$name.ps
+		    echo "$TMPDIR/$name.ps"
+		    ;;
+	    	TIFF|tiff|TIF|tif)
+		    TraceLog "tiff2ps necessary"
+		    name="`basename $1 .tif`"
+		    $TIFF2PS -a $1 > $TMPDIR/$name.ps
+		    echo "$TMPDIR/$name.ps"
+		    ;;
+	    esac
+	    ;;
+	PDF|pdf)
+	    TraceLog "Converting $1 to PDF"
+	    case $2 in
+	    	PostScript|Postscript|PS|ps)
+		    TraceLog "Using ps2pdf"
+		    name="`basename $1 .ps`"
+		    $PS2PDF $1 $TMPDIR/$name.pdf >/dev/null 2>&1
+		    echo "$TMPDIR/$name.pdf"
+		    ;;
+		PDF|pdf)
+		    TraceLog "Nothing necessary"
+		    echo "$1"
+		    ;;
+		TIFF|tiff|TIF|tif)
+		    TraceLog "Using tiff2pdf"
+		    name="`basename $1 .tif`"
+		    $TIFF2PDF  -o $TMPDIR/$name.pdf $1
+		    echo "$TMPDIR/$name.pdf"
+	    esac
+	    ;;
+	TIFF|TIF|tif|tiff)
+	    TraceLog "Converting $1 to TIFF"
+	    case $2 in 
+	    	PostScript|Postscript|PS|ps)
+		    TraceLog "Using ps2fax"
+		    name="`basename $1 .ps`"
+		    $PS2FAX -r $resolution -o $TMPDIR/$name.tif $1
+		    echo "$TMPDIR/$name.tif"
+		    ;;
+	    	PDF|pdf)
+		    TraceLog "Using pdf2fax"
+		    name="`basename $1 .pdf`"
+		    $PDF2FAX -r $resolution -o $TMPDIR/$name.tif $1
+		    echo "$TMPDIR/$name.tif"
+		    ;;
+		TIFF|tiff|TIF|tif)
+		    TraceLog "Nothing neccessary"
+		    echo "$1"
+		    ;;
+	    esac
+	    ;;
+	*)
+	    TraceLog "Ignoring $1 to \"$3\""
+	    ;;
+    esac
+
+}
+
+LocalSequence ()
+{
+    if [ $1 -gt $2 ]; then
+	    return
+    fi
+    COUNT=$1
+    while [ $COUNT -le $2 ]
+    do
+	echo $COUNT
+	COUNT=`expr $COUNT + 1`
+    done
+}
+
+SetupPrivateTmp()
+{
+    if [ -d "$HYLAFAX_TMPDIR" ]; then
+        # Private temp area already created.
+        return
+    fi
+
+    # Would have liked to use -t, but older mktemp don't support it.
+    if [ -z "$TMPDIR" ]; then
+        TMPDIR="/tmp"
+    fi
+    HYLAFAX_TMPDIR=`mktemp -d $TMPDIR/hylafaxtmp-XXXXXXXX 2>/dev/null` || {
+        HYLAFAX_TMPDIR="$TMPDIR/hylafaxtmp-$RANDOM-$RANDOM-$RANDOM-$$"
+        mkdir -m 0700 "$HYLAFAX_TMPDIR"
+    }
+    if [ $? != 0 ]
+    then
+	echo "Couldn't setup private temp area - exiting!" 1>&2
+	exit 1
+    fi
+    # We want any called programs to use our tmp dir.
+    TMPDIR=$HYLAFAX_TMPDIR
+    export TMPDIR
+
+    trap cleanupExit 0
+    trap "hfExit 1" 1 2 15
+}
+
+CleanupPrivateTmp ()
+{
+    if [ -d "$HYLAFAX_TMPDIR" ]
+    then
+	rm -Rf "$HYLAFAX_TMPDIR"
+    fi
+}
+
+cleanupExit ()
+{
+    trap - 0 1 2 15
+    CleanupPrivateTmp
+}
+
+hfExit ()
+{
+    cleanupExit
+    exit $1
+}
+
+# Basic function for running utilitis with C locale
+c ()
+{
+        LC_ALL=C "$@"
+}
+
+# And some common variables for things using our functions
+if [ -z "$TEMPLATE" ]
+then
+	TEMPLATE=en
+fi

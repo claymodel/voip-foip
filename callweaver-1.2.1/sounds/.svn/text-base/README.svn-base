@@ -1,0 +1,6 @@
+Sounds files are not included in the source tar ball. Either grab the tar ball
+from http://karlsbakk.net/callweaver/sounds/gsm-sounds.tar.gz, or checkout the
+source files in 44100Hz format and transcode them to fill you needs. To check
+them out from the subversion repository, run
+
+svn co http://roy@svn.callweaver.org/callweaver-sounds

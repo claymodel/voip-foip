@@ -1,0 +1,127 @@
+States
+=======
+ 1. ICD_CALLER_STATE_CREATED - on creation but not initialization of caller
+ 2. ICD_CALLER_STATE_INITIALIZED - after caller is initialized
+ 3. ICD_CALLER_STATE_READY - Caller can be distributed
+ 4. ICD_CALLER_STATE_DISTRIBUTING - Distributor has selected caller
+ 5. ICD_CALLER_STATE_GET_CHANNELS_AND_BRIDGE
+ 6. ICD_CALLER_STATE_BRIDGED - Call is in progress native bridge
+ 7. ICD_CALLER_STATE_CONFERENCED -  conference bridge 
+ 8. ICD_CALLER_STATE_CALL_END - Call is 
+ 9. ICD_CALLER_STATE_SUSPEND
+10. ICD_CALLER_STATE_CLEARED - Caller object has freed allocated memory and reset
+11. ICD_CALLER_STATE_DESTROYED - Caller object itself has been freed
+
+
+    ICD_CALLER_STATE_CHANNEL_FAILED
+    ICD_CALLER_STATE_BRIDGE_FAILED, 
+    ICD_CALLER_STATE_ASSOCIATE_FAILED
+   ,
+
+
+Transitions
+============
+
+All start from state 1. icd_caller__set_state() should enforce this.
+
+ICD_CALLER_STATE_CREATED:
+                => ICD_CALLER_STATE_INITIALIZED:
+                => ICD_CALLER_STATE_DESTROYED:
+
+ICD_CALLER_STATE_INITIALIZED:
+                => ICD_CALLER_STATE_READY:
+                => ICD_CALLER_STATE_CONFERENCED:
+                => ICD_CALLER_STATE_CLEARED:
+ICD_CALLER_STATE_READY:
+                => ICD_CALLER_STATE_CALL_END:
+                => ICD_CALLER_STATE_DISTRIBUTING:
+                => ICD_CALLER_STATE_CLEARED:
+                => ICD_CALLER_STATE_SUSPEND:
+ICD_CALLER_STATE_DISTRIBUTING:
+                => ICD_CALLER_STATE_CALL_END: /* we can hangup while in state distributing */
+                => ICD_CALLER_STATE_GET_CHANNELS_AND_BRIDGE:
+                => ICD_CALLER_STATE_BRIDGED:
+                => ICD_CALLER_STATE_CONFERENCED:
+                => ICD_CALLER_STATE_READY:
+                => ICD_CALLER_STATE_CLEARED:
+ICD_CALLER_STATE_GET_CHANNELS_AND_BRIDGE:
+                => ICD_CALLER_STATE_CALL_END: /* we can hangup while in state bridge */
+                => ICD_CALLER_STATE_BRIDGED:
+                => ICD_CALLER_STATE_BRIDGE_FAILED:
+                => ICD_CALLER_STATE_ASSOCIATE_FAILED:
+                => ICD_CALLER_STATE_CHANNEL_FAILED:
+                => ICD_CALLER_STATE_CLEARED:
+                => ICD_CALLER_STATE_CONFERENCED:
+ICD_CALLER_STATE_CONFERENCED:
+                => ICD_CALLER_STATE_CALL_END:
+                => ICD_CALLER_STATE_BRIDGE_FAILED:
+ICD_CALLER_STATE_BRIDGED:
+                => ICDD_CALLER_STATE_BRIDGE_FAILED:
+                => ICD_CALLER_STATE_CALL_END:
+                => ICD_CALLER_STATE_CLEARED:
+ICD_CALLER_STATE_BRIDGE_FAILED:
+                => ICD_CALLER_STATE_READY:
+                => ICD_CALLER_STATE_CLEARED:
+                => ICD_CALLER_STATE_SUSPEND:
+ICD_CALLER_STATE_CHANNEL_FAILED:
+                => ICD_CALLER_STATE_READY:
+                => ICD_CALLER_STATE_CLEARED:
+                => ICD_CALLER_STATE_SUSPEND:
+ICD_CALLER_STATE_ASSOCIATE_FAILED:
+                => ICD_CALLER_STATE_READY:
+                => ICD_CALLER_STATE_CLEARED:
+                => ICD_CALLER_STATE_SUSPEND:
+ICD_CALLER_STATE_CALL_END:
+                => ICD_CALLER_STATE_READY:
+                => ICD_CALLER_STATE_CLEARED:
+                => ICD_CALLER_STATE_SUSPEND:
+	            => ICD_CALLER_STATE_CONFERENCED:
+ICD_CALLER_STATE_SUSPEND:
+                => ICD_CALLER_STATE_READY:
+                =>ICD_CALLER_STATE_CLEARED:
+                => ICD_CALLER_STATE_CLEARED:
+ICD_CALLER_STATE_DESTROYED:
+
+Actions
+=========
+
+These are performed in the running thread when the state changes to this.
+
+ 1. ICD_CALLER_STATE_CREATED
+    -create the caller object & resources. mem alocation etc
+ 2. ICD_CALLER_STATE_INITIALIZED - 
+    -set the object to a know state, read config files for defaults
+ 3. ICD_CALLER_STATE_READY 
+    - Caller can be distributed, different action if agent or customer
+ 4. ICD_CALLER_STATE_DISTRIBUTING 
+    - Distributor has selected caller transition state to prevent other
+      interaction with this caller
+ 5. ICD_CALLER_STATE_GET_CHANNELS_AND_BRIDGE
+    - bring the channel on the technology to a UP state
+ 6. ICD_CALLER_STATE_BRIDGED - 
+    -thread info state no actions required
+ 7. ICD_CALLER_STATE_CONFERENCED 
+    -thread info state no actions required
+ 8. ICD_CALLER_STATE_CALL_END 
+    - Call is done actions vary based on caller roles an flags
+    but basically go back and take more calls, get supsned or destroyed
+ 9. ICD_CALLER_STATE_SUSPEND
+    -a few house keeping actions 
+    -a holding pend for agents that do not want to play any more
+10. ICD_CALLER_STATE_CLEARED - 
+    Caller object is freed allocated memory and reset
+11. ICD_CALLER_STATE_DESTROYED 
+    Caller object itself has been freed and thread dies
+
+Fail states
+    actions are role and business rules specfic
+    standard rules are stuff back into q & try again, till reach default
+    retry attempts is done
+    ICD_CALLER_STATE_CHANNEL_FAILED
+    ICD_CALLER_STATE_BRIDGE_FAILED
+    ICD_CALLER_STATE_ASSOCIATE_FAILED
+
+
+
+
+

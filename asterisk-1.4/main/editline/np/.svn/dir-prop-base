@@ -1,0 +1,9 @@
+K 10
+svn:ignore
+V 52
+vis.o_a
+unvis.o_a
+strlcpy.o_a
+strlcat.o_a
+fgetln.o_a
+END

@@ -1,0 +1,71 @@
+;
+; Music on Hold -- Sample Configuration
+;
+
+;
+; File-based (native) music on hold
+;
+; This plays files directly from the specified directory, no external
+; processes are required. Files are played in normal sorting order
+; (same as a sorted directory listing), and no volume or other
+; sound adjustments are available. If the file is available in
+; the same format as the channel's codec, then it will be played
+; without transcoding (same as Playback would do in the dialplan).
+; Files can be present in as many formats as you wish, and the
+; 'best' format will be chosen at playback time.
+;
+; NOTE:
+; If you are not using "autoload" in modules.conf, then you
+; must ensure that the format modules for any formats you wish
+; to use are loaded _before_ res_musiconhold. If you do not do
+; this, res_musiconhold will skip the files it is not able to
+; understand when it loads.
+;
+
+;[default]
+;mode=files
+;directory=@cwdatadir@/moh
+;
+;[default-random]
+;mode=files
+;directory=@cwdatadir@/moh
+;random=yes 	; Play the files in a random order
+
+;[ulawstream]
+;mode=custom
+; Note that with mode=custom, a directory is not required, such as when reading
+; from a stream.
+;application=/usr/bin/streamplayer 192.168.100.52 888
+;format=ulaw
+
+; The following examples *require* mpg123 v0.59r and *not* the mpg321
+; that is more commonly available.  However, mpg123 has *serious*
+; security flaws so we *do not* recommend that you use these MOH
+; classes.  These examples are kept here only for backwards
+; compatibility.  We recommend that you convert your MP3s to file
+; types that are supported by the native file MOH above.  See the
+; CallWeaver.org Wiki for tips on how to convert your sound files.
+
+;[mp3stream]
+;mode=custom
+;directory=@cwdatadir@/moh
+;application=/usr/bin/mpg123 -q -s --mono -r 8000 -f 8192
+;format=slin
+;
+;[mp3nbstream]
+;mode=custom
+;directory=@cwdatadir@/moh
+;application=/usr/bin/mpg123 -q -s --mono -r 8000 -b 2048 -f 8192
+;format=slin
+;
+;[quietmp3stream]
+;mode=custom
+;directory=@cwdatadir@/moh
+;application=/usr/bin/mpg123 -q -s --mono -r 8000 -f 4096
+;format=slin
+;
+;[quietmp3nbstream]
+;mode=custom
+;directory=@cwdatadir@/moh
+;application=/usr/bin/mpg123 -q -s --mono -r 8000 -b 2048 -f 4096
+;format=slin

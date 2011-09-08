@@ -1,0 +1,42 @@
+#!/bin/sh
+#
+# Start/stop/restart CallWeaver
+#
+# Version: 1.0 - Paul Belanger <pabelanger@gmail.com>
+#
+# 03.29.2005 - Initial Version
+#
+
+callweaver_start() {
+   if [ -x /usr/sbin/callweaver ]; then
+      echo "Starting CallWeaver   /usr/sbin/callweaver"
+      /usr/sbin/callweaver
+   fi
+}
+
+callweaver_stop() {
+    # If there is no PID file, ignore this request...
+    if [ -r /var/run/callweaver.pid ]; then
+      killall callweaver
+    fi
+}
+
+callweaver_restart() {
+   callweaver_stop
+   callweaver_start
+}
+
+case "$1" in
+   'start')
+      callweaver_start
+      ;;
+   'stop')
+      callweaver_stop
+      ;;
+   'restart')
+      callweaver_restart
+      ;;
+   *)
+      echo "usage $0 start|stop|restart" ;;
+esac
+

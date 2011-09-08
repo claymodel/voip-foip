@@ -1,0 +1,155 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/asterisk/!svn/ver/327251/branches/1.4/res
+END
+res_jabber.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/299002/branches/1.4/res/res_jabber.c
+END
+res_monitor.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/asterisk/!svn/ver/258775/branches/1.4/res/res_monitor.c
+END
+res_odbc.exports
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/182808/branches/1.4/res/res_odbc.exports
+END
+res_speech.exports
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/asterisk/!svn/ver/182808/branches/1.4/res/res_speech.exports
+END
+res_config_odbc.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/310140/branches/1.4/res/res_config_odbc.c
+END
+res_smdi.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/asterisk/!svn/ver/299002/branches/1.4/res/res_smdi.c
+END
+res_features.exports
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/asterisk/!svn/ver/183126/branches/1.4/res/res_features.exports
+END
+res_agi.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/asterisk/!svn/ver/314822/branches/1.4/res/res_agi.c
+END
+res_adsi.exports
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/182808/branches/1.4/res/res_adsi.exports
+END
+res_indications.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/182808/branches/1.4/res/res_indications.c
+END
+res_jabber.exports
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/asterisk/!svn/ver/182808/branches/1.4/res/res_jabber.exports
+END
+res_odbc.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/asterisk/!svn/ver/300621/branches/1.4/res/res_odbc.c
+END
+res_speech.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/asterisk/!svn/ver/81406/branches/1.4/res/res_speech.c
+END
+res_clioriginate.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/asterisk/!svn/ver/102378/branches/1.4/res/res_clioriginate.c
+END
+res_monitor.exports
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/asterisk/!svn/ver/182808/branches/1.4/res/res_monitor.exports
+END
+res_config_pgsql.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/asterisk/!svn/ver/283880/branches/1.4/res/res_config_pgsql.c
+END
+res_snmp.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/asterisk/!svn/ver/182808/branches/1.4/res/res_snmp.c
+END
+res_features.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/asterisk/!svn/ver/324627/branches/1.4/res/res_features.c
+END
+res_smdi.exports
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/asterisk/!svn/ver/182808/branches/1.4/res/res_smdi.exports
+END
+res_crypto.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/asterisk/!svn/ver/208990/branches/1.4/res/res_crypto.c
+END
+res_convert.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/asterisk/!svn/ver/196826/branches/1.4/res/res_convert.c
+END
+res_adsi.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/asterisk/!svn/ver/89545/branches/1.4/res/res_adsi.c
+END
+res_agi.exports
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/asterisk/!svn/ver/182808/branches/1.4/res/res_agi.exports
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/asterisk/!svn/ver/207647/branches/1.4/res/Makefile
+END
+res_musiconhold.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/asterisk/!svn/ver/305471/branches/1.4/res/res_musiconhold.c
+END

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+                      "http://www.docbook.org/xml/4.4/docbookx.dtd" [
+<!ENTITY % globalents SYSTEM "../libs/global.ent">
+%globalents;
+]>
+<book>
+	<title>Installation Guide</title>
+	<bookinfo>
+		<authorgroup>
+			<author>
+				<firstname>Sean</firstname>
+				<surname>Wheller</surname>
+			</author>
+		</authorgroup>
+		<abstract>
+			<para>...</para>
+		</abstract>
+		&copyright; 
+		&legalnotice;
+		&publisher;
+	</bookinfo>
+	<part>
+		<title>First Part </title>
+		<chapter>
+			<title>Chapter Title</title>
+			<sect1>
+				<title>Section1 Title</title>
+				<para>Text</para>
+			</sect1>
+		</chapter>
+	</part>
+</book>

@@ -1,0 +1,133 @@
+> I still don't see how the asterisk sends events to jabber or why
+<anthm> ok do you have a jabber server ?
+<anthm> say it's mydom.com
+<anthm> you make an account res_jabber@mydom.com
+<anthm> and you tell the config in asterisk the details
+<anthm> the master_thread is the / resource
+<anthm> so if you add that account to your buddy list
+<anthm> you will see it log in when you load the module
+<c888> 20:05 1 Brian West 1000 66.250.69.250 (exit)
+* c888 20:05 Brian West  has left the conference.
+<anthm> res_jabber/master_thread
+<anthm> now say you have your dialplan dumping off all calls too the nextgen app
+<anthm> you call the box on iax for instance
+<anthm> and it executes the app
+<anthm> now you will see another instance on your buddy list
+<anthm> res_jabber/iax-xyz-whatever
+<pressure_man> anthm, instead of spieling this all off in irc, how about documenting it?
+<anthm> i just did
+<pressure_man> copy and paste irc channel into README_res_jabber?
+> its better then nothing
+<anthm> anyway whatever jabberid is defined  as master will get a message when that call comes in
+<anthm> you can start a pm with that id that sent you the message and control the call
+<anthm> tell it answer<cr> for instance
+*** huslage (n=huslage@c-67-169-200-122.hsd1.or.comcast.net) has joined channel #callweaver
+<anthm> then tell it stuff like streamfile
+*** Signoff: fanguin (Read error: 110 (Connection timed out))
+<anthm> if you dial any dtmf during all this you will get them all as msgs
+<anthm> you can also query the main_thread resource and ask for a new outbound call
+*** Signoff: file[lap1op] (Connection timed out)
+> Now thats because you have some special logic in extensions.conf that sends it right?
+<anthm>  then once it's up the same rules apply
+> Or does Res_jabber gobble up the entire channel and won't let asterisk touch it?
+<anthm> it's just an app
+> what is the name of the app to invoke that?
+<anthm> yep exactly
+<anthm> nextGen
+> why nextGen?
+<anthm> that's what it is
+<anthm> its a tester for nextgen
+> So I could only interact with it via a controller?
+<anthm> the kicker is, once you have a chat session with 2 separate channels you can command them to trade audio over
++udp
+> But can the controller call other internal asterisk applications?
+<anthm> you can tell it "exec: playback beep"
+<anthm> and it will
+> what about
+> like
+<anthm> though that was not the real point
+> exec: JavaScript /opt/callweaver/js/vociemail.js ?
+<anthm> exec anything
+> is it stable?
+<anthm> *shrug*
+> is there a list of commands that I can do like exec: ?
+<anthm> i'm not really selling it =D
+> huh...
+<anthm> cypromis is the one who tossed it into the callweaver
+<anthm> hence why there is no docs or anything
+> how does the ICD jabber differ from res_jabber?
+*** Signoff: factoryjoe ()
+<anthm> i didnt actually prepare if for release persae
+<anthm> in the perl code
+<anthm> you can see many of them
+<anthm> it uses a proto called NTCP
+> NTCP?
+<anthm> network telephony control protocol
+> yu
+<anthm> my invention
+> alright can I post this in README.res_jabber?
+<anthm> if you would like to sure
+*** Signoff: RoyK (Read error: 110 (Connection timed out))
+<anthm> the perl code was in the tar with the res_jabber b4 not sure if it's still there
+<wsuff> anthm: i think it's in contrib now
+<wsuff> ya res_jabber_addon in contrib
+<anthm> just to test it you can edit the res_jabber.conf to make your jabber_client be the master
+<anthm> you should make an account for the res_jabber with a real client and add it to the roster
+<anthm> so you can see when it logs in
+<anthm> and that is the basic way to test it
+<anthm> you call the app nextgen and you will get a PM saying new call with details
+<anthm> and you can just tell it "answer"
+<c888> 20:20 2 anthm 0 69.216.26.86 (exit)
+* c888 20:20 anthm 0 has left the conference.
+> can I use it in addition to my regular extension logic?
+> Like, still works like for app_queue regular, but i have the ability to all the sudden do a jabber redirect
+<anthm> once you do NextGen it never comes back
+<anthm> so if you want you could make the jabber say exec queue somequeue or something like that
+<anthm> but you lose control
+<anthm> until that exec is done
+<anthm> which why exec is more of a test thing
+<anthm> with the udp audio bridge you still never leave the main loop
+> can you originate another call, and then bridge them together with res_jabber?
+<anthm> you still get all the dtmf events etc
+> udp audio bridge, hmm
+<anthm> yes that is one of the things the perl script does
+> still fuzzy in my head. what does that me3an?
+<anthm> it means
+> so I can originate a call tot he queue, then udp audio bridge them?
+<anthm> if you know the jabber id of 2 difft calls
+<anthm> you can tell 1 to talk to the other one
+> cuz I want to use FollowMe that tries your IM
+<c888> 20:24 1 MikeJ 65.170.43.60 (exit)
+* c888 20:24 Mike J has left the conference.
+<anthm> and they will open udp ports and exchange media regardless of channel type
+> Won't the codecs fuck it up?
+> what jabber function is this?
+> I'm sure its like exec: right?
+<anthm> the channels set read/write to raw
+<anthm> yah there is actually no : that was a typeo
+> does it go to localhost 100% of the time?
+<anthm> the format is <command> <args><CR>
+<anthm> header1: val1:
+<anthm> headern: valn:
+<anthm> <CR><CR>
+<anthm> <CR> being invisible carraige returns
+> Over Jabber?
+> Its not an XML based message -- still CR based?
+> But when jabber gets it, it converts it to XML right... assuming 
+<anthm> bah no way it's encapsulated text message
+<anthm> xml makes me want to vomit
+> you talking about when talking to the master right?
+> <CR> based is fine for this i think. 
+> jez, HTTP and SMTP is <CR> based:)
+<anthm> the control messages are all text packets
+<anthm> the jabber is not really relevant it's just a transport
+> what about event messages?
+<anthm> they look the same but they start with event
+> So the need to be parsed with something that undmerstands event management still though right?
+> No fancy jabber callback functions right?
+<anthm> they are abstracted by the perl code
+<anthm> did you look at it ?
+> Yes
+> I am not planning on using perl however.
+* anthm needs some air
+

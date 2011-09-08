@@ -1,0 +1,14 @@
+# FHS directory layout
+helpstring="follow the Filesystem Hierarchy Standard (FHS)"
+cwprefix=/usr/local
+cwexecdir=${sbindir}
+cwutilsdir=${sbindir}
+cwconfdir=/etc/callweaver
+cwlibdir=${libdir}
+cwvardir=/var/callweaver
+cwdatadir=${prefix}/share
+cwlogdir=${cwvardir}/log
+cwrundir=${cwvardir}/run
+cwspooldir=${cwvardir}/var/spool
+cwmandir=${cwdatadir}/man
+cwdocdir=${cwdatadir}/doc

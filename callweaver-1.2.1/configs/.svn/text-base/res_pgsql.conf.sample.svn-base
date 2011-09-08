@@ -1,0 +1,110 @@
+; The currently recognized parameter key words are:
+;
+; host
+;
+;    Name of host to connect to. If this begins with a slash, it specifies
+;    Unix-domain communication rather than TCP/IP communication; the value is
+;    the name of the directory in which the socket file is stored. The default
+;    behavior when host is not specified is to connect to a Unix-domain socket
+;    in /tmp (or whatever socket directory was specified when PostgreSQL was
+;    built). On machines without Unix-domain sockets, the default is to connect
+;    to localhost.
+;
+; hostaddr
+;
+;    Numeric IP address of host to connect to. This should be in the standard
+;    IPv4 address format, e.g., 172.28.40.9. If your machine supports IPv6, you
+;    can also use those addresses. TCP/IP communication is always used when a
+;    nonempty string is specified for this parameter.
+;
+;    Using hostaddr instead of host allows the application to avoid a host name
+;    look-up, which may be important in applications with time constraints.
+;    However, Kerberos authentication requires the host name. The following
+;    therefore applies: If host is specified without hostaddr, a host name
+;    lookup occurs. If hostaddr is specified without host, the value for
+;    hostaddr gives the remote address. When Kerberos is used, a reverse name
+;    query occurs to obtain the host name for Kerberos. If both host and
+;    hostaddr are specified, the value for hostaddr gives the remote address;
+;    the value for host is ignored, unless Kerberos is used, in which case that
+;    value is used for Kerberos authentication. (Note that authentication is
+;    likely to fail if libpq is passed a host name that is not the name of the
+;    machine at hostaddr.) Also, host rather than hostaddr is used to identify
+;    the connection in ~/.pgpass .
+;
+;    Without either a host name or host address, libpq will connect using a
+;    local Unix-domain socket; or on machines without Unix-domain sockets, it
+;    will attempt to connect to localhost.
+;
+; port
+;
+;    Port number to connect to at the server host, or socket file name
+;    extension for Unix-domain connections.
+;
+; dbname
+;
+;    The database name. Defaults to be the same as the user name.
+;
+; user
+;
+;    PostgreSQL user name to connect as. Defaults to be the same as the
+;    operating system name of the user running the application.
+;
+; password
+;
+;    Password to be used if the server demands password authentication.
+;
+; connect_timeout
+;
+;    Maximum wait for connection, in seconds (write as a decimal integer
+;    string). Zero or not specified means wait indefinitely.
+;    It is not recommended to use a timeout of less than 2 seconds.
+;
+; options
+;
+;    Command-line options to be sent to the server.
+;
+; tty
+;
+;    Ignored (formerly, this specified where to send server debug output).
+;
+; sslmode
+;
+;    This option determines whether or with what priority an SSL connection
+;    will be negotiated with the server. There are four modes: disable will
+;    attempt only an unencrypted SSL connection; allow will negotiate, trying
+;    first a non-SSL connection, then if that fails, trying an SSL connection;
+;    prefer (the default) will negotiate, trying first an SSL connection, then
+;    if that fails, trying a regular non-SSL connection; require will try only
+;    an SSL connection.
+;
+;    If PostgreSQL is compiled without SSL support, using option require will
+;    cause an error, while options allow and prefer will be accepted but libpq
+;    will not in fact attempt an SSL connection.
+;
+; requiressl
+;
+;    This option is deprecated in favor of the sslmode setting.
+;
+;    If set to 1, an SSL connection to the server is required (this is
+;    equivalent to sslmode require). libpq will then refuse to connect if the
+;    server does not accept an SSL connection. If set to 0 (default), libpq will
+;    negotiate the connection type with the server (equivalent to sslmode
+;    prefer). This option is only available if PostgreSQL is compiled with SSL
+;    support. 
+;
+; service
+;
+;    Service name to use for additional parameters. It specifies a service name
+;    in pg_service.conf that holds additional connection parameters. This
+;    allows applications to specify only a service name so connection
+;    parameters can be centrally maintained. See share/pg_service.conf.sample
+;    in the installation directory for information on how to set up the file.
+;
+;
+; If any parameter is unspecified, then the corresponding environment variable
+; is checked. If the environment variable is not set either, then the indicated
+; built-in defaults are used. 
+
+[general]
+dsn = host=localhost dbname=callweaver user=callweaver password=qwerty
+

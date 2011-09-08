@@ -1,0 +1,11 @@
+To: $SENDTO
+Subject: Avviso a riguardo di fax
+From: Server fax HylaFAX <$FROMADDR>
+Content-type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: Quoted-Printable
+
+Il fax per $number, una richiesta di scaricamento fax,
+non può essere completata perché nessun documento era disponibile
+per essere scaricato.
+
+Il tempo di elaborazione è stato $JTIME.

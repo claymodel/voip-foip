@@ -1,0 +1,66 @@
+#!/usr/bin/perl
+#
+# Simple OGI Application to show some of the features of OGI
+# 
+# Written by: James Golovich <james@gnuinter.net>
+#
+
+use CallWeaver::OGI;
+
+$OGI = new CallWeaver::OGI;
+
+my %input = $OGI->ReadParse();
+my $tests = 0;
+my $pass = 0;
+my $fail = 0;
+
+#setup callback
+$OGI->setcallback(\&mycallback);
+
+
+print STDERR "OGI Environment Dump:\n";
+foreach $i (sort keys %input) {
+	print STDERR " -- $i = $input{$i}\n";
+}
+
+print STDERR "1.  Testing 'sendfile'...";
+score($OGI->stream_file('beep'));
+print STDERR "2.  Testing 'sendtext'...";
+score($OGI->send_text('hello world'));
+print STDERR "3.  Testing 'sendimage'...";
+score($OGI->send_image('callweaver.org-image'));
+print STDERR "4.  Testing 'saynumber'...";
+score($OGI->say_number('192837465'));
+print STDERR "5.  Testing 'waitdtmf'...";
+score($OGI->wait_for_digit(1000));
+print STDERR "6.  Testing 'record'...";
+score($OGI->record_file('testogi', 'gsm', 1234, 300));
+print STDERR "6a.  Testing 'record' playback...";
+score($OGI->stream_file('testogi'));
+print STDERR "7.. Testing 'exec Dial,IAX/callweaver.org\@demo'...";
+score($OGI->exec('Dial', 'IAX/callweaver.org@demo'));
+
+print STDERR "================== Complete ======================\n";
+print STDERR "$tests tests completed, $pass passed, $fail failed\n";
+print STDERR "==================================================\n";
+
+sub score {
+	my ($returncode) = @_;
+
+	$tests++;
+	if ($returncode >=0) {
+		print STDERR "PASS ($returncode)\n";
+		$pass++;
+	} else {
+		print STDERR "FAIL ($returncode)\n";
+		$fail++;
+	}
+
+}
+
+sub mycallback {
+        my ($returncode) = @_;
+        print STDERR "MYCALLBACK: User Hungup ($returncode)\n";
+        exit($returncode);
+}
+

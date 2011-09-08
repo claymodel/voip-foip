@@ -1,0 +1,16 @@
+# OpenBSD directory layout
+helpstring="follow the OpenBSD standard"
+cwprefix=${prefix}
+cwexecdir=${sbindir}
+cwutilsdir=${sbindir}
+cwconfdir=${sysconfdir}/callweaver
+cwlibdir=${libdir}
+cwvardir=/var/db/callweaver
+cwdatadir=${datadir}/callweaver
+cwlogdir=/var/log/callweaver
+cwrundir=/var/run/callweaver
+cwspooldir=/var/spool/callweaver
+cwmandir=${prefix}/man
+cwdocdir=${datadir}/doc/callweaver
+cwmoddir=${libdir}/callweaver/modules
+cwogidir=${datadir}/callweaver/ogi-bin

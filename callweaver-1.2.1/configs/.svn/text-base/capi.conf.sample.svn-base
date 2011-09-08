@@ -1,0 +1,63 @@
+;
+; CAPI config
+;
+;
+
+; general section
+
+[general]
+nationalprefix=0
+internationalprefix=00
+rxgain=0.8
+txgain=0.8
+language=de      ;set default language
+;ulaw=yes        ;set this, if you live in u-law world instead of a-law
+
+; interface sections ...
+
+[ISDN1]          ;this example interface gets name 'ISDN1' and may be any
+                 ;name not starting with 'g' or 'contr'.
+                 ;Use one interface section for each isdn port!
+;ntmode=yes      ;if isdn card operates in nt mode, set this to yes
+isdnmode=msn     ;'MSN' (point-to-multipoint) or 'DID' (direct inward dial)
+                 ;when using NT-mode, 'DID' should be set in any case
+incomingmsn=*    ;allow incoming calls to this list of MSNs/DIDs, * = any
+;defaultcid=123  ;set a default caller id to that interface for dial-out,
+                 ;this caller id will be used when dial option 'd' is set.
+;controller=0    ;ISDN4BSD default
+;controller=7    ;ISDN4BSD USB default
+controller=1     ;capi controller number of this interface/port
+group=1          ;dialout group
+;prefix=0        ;set a prefix to calling number on incoming calls
+softdtmf=on      ;enable/disable software dtmf detection, recommended for AVM cards
+relaxdtmf=on     ;in addition to softdtmf, you can use relaxed dtmf detection
+faxdetect=off    ;enable faxdetection and redirection to EXTEN 'fax' for incoming and/or
+                 ;outgoing calls. (default='off', possible values: 'incoming','outgoing','both')
+accountcode=     ;PBX accountcode to use in CDRs
+;amaflags=default;AMA flags for CDR ('default', 'omit', 'billing', or 'documentation')
+context=capi-in  ;context for incoming calls
+;holdtype=hold   ;when the PBX puts the call on hold, ISDN HOLD will be used. If
+                 ;set to 'local' (default value), no hold is done and the PBX may
+                 ;play MOH.
+;immediate=yes   ;DID: immediate start of pbx with extension 's' if no digits were
+                 ;     received on incoming call (no destination number yet)
+                 ;MSN: start pbx on CONNECT_IND and don't wait for SETUP/SENDING-COMPLETE.
+                 ;     info like REDIRECTINGNUMBER may be lost, but this is necessary for
+                 ;     drivers/pbx/telco which does not send SETUP or SENDING-COMPLETE.
+;echosquelch=1   ;_VERY_PRIMITIVE_ echo suppression
+;echocancel=yes  ;EICON DIVA SERVER (CAPI) echo cancelation (yes=g165)
+                 ;(possible values: 'no', 'yes', 'force', 'g164', 'g165') 
+echocancelold=yes;use facility selector 6 instead of correct 8 (necessary for older eicon drivers)
+;echotail=64     ;echo cancel tail setting (default=0 for maximum)
+;echocancelnlp=1 ;activate non-linear-processing; this improves echo cancel ratio, but might
+                 ;incorporate variable gain in the signal path.
+;bridge=yes      ;native bridging (CAPI line interconnect) if available
+;callgroup=1     ;PBX call group
+;pickupgroup=1   ;PBX pickup group (which call groups are we allowed to pickup)
+;language=de     ;set language for this device (overwrites default language)
+;disallow=all    ;RTP codec selection (valid with Eicon DIVA Server only)
+;allow=all       ;RTP codec selection (valid with Eicon DIVA Server only)
+devices=2        ;number of concurrent calls (b-channels) on this controller
+                 ;(2 makes sense for single BRI, 30/23 for PRI/T1)
+
+
