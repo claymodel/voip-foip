@@ -1,0 +1,131 @@
+ERP5 system on Debian
+Debian packages for ERP5 system
+
+HowToRunERP5OnDebian
+HowTo describing running ERP5 system on Debian and derivatives
+
+Introduction
+
+You might not belive me, but this is really copy&paste how-to to run ERP5 on Debian/sid, Debian/etch, Ubuntu/feisty and Ubuntu/gutsy.
+Pre-requirements
+
+What to you need? Quite clean installation of Debian-like system, for which you are ready to have destroyed. Provided packages are totally experimental, they might (and probably will) destroy your system.
+
+Create normal user in that system, it will be called erp5 in this How-To. Give those user shell and password.
+Installing required packages
+
+As root we need to install some packages. ERP5-related stuff is packaged and put into apt-repository. So add to /etc/apt/sources.list those:
+Debian: etch, Ubuntu: feisty, gutsy
+
+deb http://erp5.niema.pl/packages/debian/etch/i386/ ./
+deb http://www.ventis.biz/erp5/etch/i386/ ./
+
+And run apt-get update as root:
+
+apt-get update
+
+Note: You might want to have more than totally basic repository selection. In case of debian add contrib and non-free in case of ubuntu - universe and multiverse.
+
+Now it is time to install packages using apt-get install command.
+
+Note: Those packages are only "base" system of ERP5 - so some dependences aren't resolved automagiaclly - they will be explicitly listed here.
+
+In first run install this set:
+
+apt-get install erp5-cmfactionicons erp5-cmfcalendar erp5-cmfcore \
+erp5-cmfdefault erp5-cmfmailin erp5-cmfphoto erp5-cmfreporttool erp5-cmfsetup \
+erp5-cmftopic erp5-cmfuid erp5-dcworkflow erp5-extfile erp5-fckeditor erp5-formulator \
+erp5-glpk erp5-ihotfix erp5-ldapmultiplugins erp5-ldapuserfolder erp5-localizer \
+erp5-photo erp5-pluggableauthservice erp5-pluginregistry erp5-python-reportlab \
+erp5-python-reportlab-doc erp5-python2.4-reportlab erp5-timerservice \
+erp5-zelenium erp5-zmailin erp5-zope erp5diff \
+python-glpk python-memcached python-ply
+
+Note: Those packages aren't digitally signed (and won't be - unless they state will be official, which is not for now).
+
+Now we need some additional packages:
+
+apt-get install python-svn subversion mysql-server
+
+And mysql configuration:
+
+# as root of course
+mysql
+mysql> CREATE DATABASE erp5;
+mysql> GRANT ALL PRIVILEGES ON erp5.* TO erp5@localhost WITH GRANT OPTION;
+
+Creating instance
+
+Login to system as user erp5 (or any other you created before).
+
+Now invoke:
+
+/usr/lib/erp5/bin/mkzopeinstance.py -d /home/erp5/one -u zope:zope
+cd ~/one
+mkdir Constraint Document PropertySheet
+
+From now our INSTANCE_HOME is /home/erp5/one - replace it if you changed something.
+
+We need to download some of goodies from Nexedi SVN repository. There is script provided to achieve this, download it and edit a little:
+
+cd INSTANCE_HOME/Products
+wget --no-check-certificate https://svn.erp5.org/repos/public/erp5/trunk/products/ERP5/utils/svn_update.sh
+chmod +x svn_update.sh
+
+Now edit svn_update.sh with your favourite editor:
+
+1. before ZMySQLDDA put ZMySQLDA
+2. replace all /var/lib/zope with INSTANCE_HOME
+3. set USER and GROUP to erp5
+
+And run it:
+
+./svn_update.sh
+
+Time to configure timerserver. Add lines using cat:
+
+cat >> INSTANCE_HOME/etc/zope.conf
+
+%import timerserver
+
+interval 5
+
+
+^D (Control + D)
+
+Time to start Zope:
+
+INSTANCE_HOME/bin/zopectl
+zopectl> fg
+
+Last log message shall be:
+
+2007-10-11T11:23:01 INFO(0) Zope Ready to handle requests
+
+Now navigate by your web browser to address:
+
+http://server.name:8080/manage_main
+
+User is zope, password is zope.
+
+Now add ERP5 Site, change only:
+
+* ERP5 Database erp5 erp5
+* ERP5 Deferred Database erp5 erp5
+* CMF Activity Database erp5 erp5
+
+Now it is time to visit ERP5 Community Site to know how to get support. Other interesting is resource ERP5 Handbook.
+
+Let the source be with you!
+Known problems
+
+Check Issuse list on this project.
+Problem with installing Business Templates aka tarfile.py issue
+
+You'll need patched tarfile. To have it on your system, and avoid overwriting it after upgrade invoke:
+
+for p in /usr/lib/python*/tarfile.py ; do
+dpkg-divert --add --rename --divert $p-broken $p
+wget -O $p http://deb4erp5.googlecode.com/files/tarfile.py
+done
+

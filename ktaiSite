@@ -1,0 +1,27 @@
+Web Application for Japanese Mobile (K-TAI)
+CakePHP is a development framework for PHP that borrows many ideas from Ruby on Rails.
+Ruby On Rails is more then 10 times faster then CakePHP.
+But I am now using PHP, check out Ktai Library for CakePHP1.2.(http://blog.ecworks.jp/ktai).
+
+????If you wish to use Ruby please look at this http://wiki.merbivore.com/start
+
+The features of this library include:
+
+* Handset detection by user agent (docomo, SoftBank, KDDI, emobile, iPhone)
+* Carrier detection by email
+* Cross carrier emoji lookup
+* Entire page emoji conversion
+* accesskey attribute for links
+* Display emoji on PC
+
+
+
+I had a quick look through the code, and unfortunately while CakePHP is Object Oriented,
+this code is not. This code, like much of the code for Japanese mobiles make extensive use
+of a "carrier code" variable. If the library used carrier objects instead, it would be
+much cleaner. Additionally, there is a lot of duplicated boilerplate code in the
+KtaiHelper and KtaiComponent class that code be removed in Ruby throught the use of the
+Forwardable module. Nevertheless, if you are using PHP, you might be able to find
+something that helps you.
+
+Cheers! 
